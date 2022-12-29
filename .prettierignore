@@ -1,0 +1,9 @@
+dist
+node_modules
+.yarn
+build
+.docusaurus
+
+versions.json
+docusaurus.config.js
+versioned_sidebars/*.json

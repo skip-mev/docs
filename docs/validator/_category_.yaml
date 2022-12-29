@@ -1,0 +1,7 @@
+label: 'Validator'
+position: 1
+link:
+  type: doc
+  id: validator/intro
+customProps:
+  description: This description can be used in the swizzled DocCard
