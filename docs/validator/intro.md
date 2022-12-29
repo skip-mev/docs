@@ -10,21 +10,21 @@ Check out [Validator Setup [5-10 mins]](./setup.md) to set up Skip. It takes 5 m
 
 :::
 
-
 ## Summary
 
-Skip helps validators and their stakers capture additional income by auctioning valuable top-of-block space to a decentralized network of sophisticated traders (”searchers”) and forwarding the proceeds of the auction to validators and stakers. 
+Skip helps validators and their stakers capture additional income by auctioning valuable top-of-block space to a decentralized network of sophisticated traders (”searchers”) and forwarding the proceeds of the auction to validators and stakers.
 
 ## What does Skip do?
 
 ### Validators that integrate with Skip:
 
 - Allow MEV to be captured in their blocks without needing to sign headers for unseen blocks, **increasing block rewards** without sacrificing their builder rights
-- **Can **prevent toxic MEV strategies** like frontrunning & sandwich attacks, while still capturing revenue from 
+- **Can **prevent toxic MEV strategies\*\* like frontrunning & sandwich attacks, while still capturing revenue from
 - Can configure **how much MEV revenue to keep** (the rest goes to stakers!)
 - **No modifications needed** to their consensus key signing services (e.g. Horcrux, TMKMS, or custom), or any new security assumptions
 
 ### Skip is extremely easy to integrate with:
+
 - **Estimated time:** 5-10 minutes
 - **Estimated downtime:** < 10 s with Cosmovisor
 - No need to make any modifications to consensus key signing services

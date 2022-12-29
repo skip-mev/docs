@@ -43,7 +43,7 @@ The design goals of MEV-Tendermint is to allow & preserve:
 
 [reinforce that we have a new transaction data structure]
 
-🚜  **Reaping** 
+🚜  **Reaping**
 
 - On reap, mev-tendermint first checks whether there are any fully-constructed bundles in the sidecar then reaps these first.
 - Next, it reaps from the ordinary mempool, with some additional checks to ensure that transactions reaped from the sidecar don’t get reaped again if they are also present in the standard mempool
@@ -55,27 +55,27 @@ The design goals of MEV-Tendermint is to allow & preserve:
 ### **#1 The Sidecar**
 
 - A separate, private mempool that respects `bundles` of transactions
-    - Relevant files: `mempool/clist_sidecar.go`
+  - Relevant files: `mempool/clist_sidecar.go`
 - Has **selective gossiping**, meaning it only gossips:
-    - Over its own `SidecarChannel`
-    - **Only** to peers that are added as its `personal_peers`
-        - In practice, `personal_peers` for each node are set to be:
-            - Sentry node →  **Skip sentinel** & **the other nodes you’re running that the sentry is aware of (e.g. validator or a layer of sentries closer to the validator)**
-            - Validator node → **only its sentries**
+  - Over its own `SidecarChannel`
+  - **Only** to peers that are added as its `personal_peers`
+    - In practice, `personal_peers` for each node are set to be:
+      - Sentry node → **Skip sentinel** & **the other nodes you’re running that the sentry is aware of (e.g. validator or a layer of sentries closer to the validator)**
+      - Validator node → **only its sentries**
 
 **#2 The Mempool Reactor**
 
 - The mempool reactor now supports a `SidecarChannel` over which only gossip for `SidecarTxs` can be handled
-    - Relevant files: `mempool/reactor.go`
-    - `SidecarTxs` have new metadata that is transmitted over gossip, including
-        - `BundleId` - the **global** order of the bundle this `SidecarTx` is in, per height
-        - `BundleOrder` - the **local** order of this `SidecarTx` within its bundle
-        - `DesiredHeight` - the height of the bundle this `SidecarTx` was submitted for
-        - `BundleSize` - the total size of the bundle this `SidecarcarTx` is in
-        - `TotalFee` - the total fee of the bundle this `SidecarTx` is in
-    - This metadata is submitted at a transaction level as **tendermint currently is not designed to broadcast batches of transactions**
+  - Relevant files: `mempool/reactor.go`
+  - `SidecarTxs` have new metadata that is transmitted over gossip, including
+    - `BundleId` - the **global** order of the bundle this `SidecarTx` is in, per height
+    - `BundleOrder` - the **local** order of this `SidecarTx` within its bundle
+    - `DesiredHeight` - the height of the bundle this `SidecarTx` was submitted for
+    - `BundleSize` - the total size of the bundle this `SidecarcarTx` is in
+    - `TotalFee` - the total fee of the bundle this `SidecarTx` is in
+  - This metadata is submitted at a transaction level as **tendermint currently is not designed to broadcast batches of transactions**
 
 **#3 Selective Reaping**
 
 - The regular mempool now considers `sidecarTxs` (i.e. bundles) in addition to regular txs, and orders the former before the latter
-    - Relevant files: `mempool/clist_mempool.go`, `state/execution.go`
+  - Relevant files: `mempool/clist_mempool.go`, `state/execution.go`

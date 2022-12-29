@@ -16,8 +16,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'skip', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'skip-mev', // Usually your GitHub org/user name.
+  projectName: 'docs', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -38,7 +38,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/skip-mev/docs/tree/main',
         },
         blog: false,
         theme: {
@@ -71,18 +71,18 @@ const config = {
           {
             title: 'Docs',
             items: [
-							{
-								label: 'Validator',
-								to: '/validator'
-							},
-							{
-								label: 'Searcher',
-								to: '/searcher'
-							},
-							{
-								label: 'Chain Configuration',
-								to: '/chain-configuration'
-							}
+			  {
+				  label: 'Validator',
+				  to: '/validator'
+			  },
+			  {
+				  label: 'Searcher',
+				  to: '/searcher'
+			  },
+			  {
+				  label: 'Chain Configuration',
+				  to: '/chain-configuration'
+			  }
             ],
           },
           {
@@ -90,23 +90,23 @@ const config = {
             items: [
               {
                 label: 'Discord',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                href: 'https://www.notion.so/d0360204395040ccbc260dd2d1e35104',
               },
               {
                 label: 'Chat Telegram',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://t.me/+nwk3BENlQbsxMGNh',
               },
               {
                 label: 'Announcements Telegram',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://t.me/+cOqB4ALhPdMwZDMx',
               },
               {
                 label: 'Juno Telegram',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://t.me/+3MR5EP3Vc2gxNTFh',
               },
               {
                 label: 'Evmos Telegram',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://t.me/+55HtDJdMH-VkYjMx',
               }
             ],
           },
@@ -115,11 +115,11 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/skip-mev',
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/skipprotocol',
               },
             ],
           },
@@ -132,14 +132,14 @@ const config = {
       },
     }),
 	themes: [
-    [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
-      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-      ({
-        hashed: true,
-				docsRouteBasePath: '/', // needs to match routeBasePath of docs
-      }),
-    ],
+	  [
+		require.resolve("@easyops-cn/docusaurus-search-local"),
+		/** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+		({
+		  hashed: true,
+		  docsRouteBasePath: '/', // needs to match routeBasePath of docs
+		}),
+	  ],
 	],
 };
 
