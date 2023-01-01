@@ -16,7 +16,7 @@ Please see our documentation below for how to integrate and use our endpoints.
 
 ## **For validators →**
 
-[Skip Validator Documentation](./skip-validator)
+[Skip Validator Documentation](./validator/intro.md)
 
 ## **For searchers →**
 

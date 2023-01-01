@@ -32,17 +32,21 @@ Skip requires searchers to **sign** bundles with the private key they also used 
 
 - **For those wanting to learn how to sign bundles without using our helper libraries, see below for instructions (note: go and rust helper libraries will be released shortly)👇**
   To start, you’ll need two things (python will be used for this example):
+
   - `list_of_tx_bytes`: This is a list (or array, depending on programming language) of `tx_bytes` (note: if you get a tx from a mempool, they are in base64-encoded string format, to obtain tx_bytes, simply base64-decode the string).
     ```python
     list_of_tx_bytes: list[bytes] = [b'<tx_bytes>', b'<tx_bytes']
     ```
   - `priv_key`: This is an object in your respective programming language that allows for signing with the private key for the `secp256k1` digital key scheme (the same private key you’re used to signing transactions with in the Cosmos ecosystem).
+
     ```python
     from cosmpy.crypto.keypairs import PrivateKey
 
     priv_key = PrivateKey(b'<private key bytes>')
     ```
-  Now, to obtain the correct signature to be sent with your bundle to Skip, you will:
+
+    Now, to obtain the correct signature to be sent with your bundle to Skip, you will:
+
   1. Append the list of `tx_bytes` together into a single flat bytes array
   2. Hash the flat bytes array with `sha256` to obtain a `bundle_digest`
   3. Sign the `bundle_digest` with your private key
@@ -81,7 +85,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
   - `desiredHeight` is the chain height that of the auction that this bundle will be considered for.
     - **🚀 Note, if you set this as `0`, Skip will automatically try to include your bundle in the soonest possible auction 🚀**
       - This is a good option if you are bundling with another transaction, which may be committed before your bundle otherwise
-    - **********************************************\*\*\*\***********************************************Also note, you can submit transactions for auctions up to 5 blocks in advance**********************************************\*\*\*\***********************************************
+    - **********************\*\***********************\*\*\*\***********************\*\***********************Also note, you can submit transactions for auctions up to 5 blocks in advance**********************\*\***********************\*\*\*\***********************\*\***********************
   - `pubkey` is the base64-encoded public key associated with the private key that your bundle was signed with (this will be checked by the Skip sentinel).
   - `signature` is the base64-encoded signature obtained from signing the bundle digest with your private key that corresponds to the `pubkey`.
     - See Signing Bundles section above for more information on how to generate this signature.
@@ -139,7 +143,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
 </aside>
 
-**🚨 You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](Chain%20Configuration%20431f9bfd28694949aec46de190b1eb5a.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**
+**🚨 You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](./chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**
 
 In order to include a payment to the Auction House, you must include a `**MsgSend` message\*\* in any of the transactions in your bundle that pays the `AuctionHouseAddress`
 

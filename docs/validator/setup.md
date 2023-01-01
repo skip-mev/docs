@@ -4,18 +4,18 @@ description: Skip Validator Setup
 
 # Setup
 
-[5-10 mins]
-
 ## Summary of Steps
 
-1. Register as a validator on [**skip.money/registration**](http://skip.money/registration) to receive an API key
+**Estimated Time**: 5-10 mins
+
+1. Register as a validator on [skip.money/registration](http://skip.money/registration) to receive an API key
 2. Replace `tendermint` with `mev-tendermint` on all of your nodes
 3. Add 3-4 lines of additional config to your nodes
 4. Recompile your binary and restart your nodes 🚀
 
 Here’s a quick overview by [Blockpane:](https://blockpane.com/)
 
-[https://www.youtube.com/watch?v=\_75A4RWWwaM](https://www.youtube.com/watch?v=_75A4RWWwaM)
+<iframe className="video" src="https://www.youtube.com/embed/_75A4RWWwaM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
 
 **Any questions / issues during integration? Ask us: [https://discord.gg/amAgf9Z39w](https://discord.gg/amAgf9Z39w)**
 
@@ -71,7 +71,8 @@ replace (
   go mod edit -replace github.com/tendermint/tendermint=github.com/skip-mev/mev-tendermint@$MEV_TENDERMINT_VERSION
   ```
 - **[Manual]: find the correct version-tag to use 👇**
-  - [👇 **(Expand) Find the correct values for these here👇**](Validator%20Setup%20%5B5-10%20mins%5D%20f818646429524356a4e878f1d70866b1.md)
+<!--- TODO: The link below needs to point to the correct place --->
+- [👇 **(Expand) Find the correct values for these here👇**](./setup.md)
   - Or run:
     ```bash
     export CHAIN_ID=<USE CORRECT CHAIN ID>
@@ -91,9 +92,9 @@ replace (
 
 `mev-tendermint` introduces a new section of config in `config.toml` called `[sidecar]`.
 
-(Optional: you can read more about what these are here: [Validator Config Reference Docs](Validator%20Config%20Reference%20Docs%20b9b1423aefd84719af6c6b4a09d4ad4f.md))
+(Optional: you can read more about what these are here: [Validator Config Reference Docs](./config.md))
 
-…by the end, the end of your `config.toml` on each node will look something like this (with different string values). ******************************\*\*\*\*******************************Make sure to include the line `[sidecar]` at the top of this section in `config.toml`.\*\*
+…by the end, the end of your `config.toml` on each node will look something like this (with different string values). **************\*\***************\*\*\*\***************\*\***************Make sure to include the line `[sidecar]` at the top of this section in `config.toml`.\*\*
 
 ```bash
 # OTHER CONFIG...
@@ -105,9 +106,11 @@ relayer_rpc_string = "http://uni-5-api.skip.money"
 api_key = "2314ajinashg2389jfjap"**
 ```
 
+<!--- TODO: Is this the same as the chain configuration? --->
+
 - 👇 **(Expand) Find the correct values for these here👇**
 
-  ******\*\*\*\*******Mainnets******\*\*\*\*******
+  **\*\***\*\*\*\***\*\***Mainnets**\*\***\*\*\*\***\*\***
 
   | Chain name     | Chain ID     | Supported Chain Version | relayer_rpc_string                 | relayer_peer_string                                                             | MEV-tendermint Version  | AuctionHouse Address                         |
   | -------------- | ------------ | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------- | ----------------------- | -------------------------------------------- |
@@ -125,8 +128,11 @@ api_key = "2314ajinashg2389jfjap"**
   | Terra 2 Testnet   | pisco-1       | v2.2.0                  | http://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656       | v0.34.21-terra.1-mev.13 | terra1d5fzv2y8fpdax4u2nnzrn5uf9ghyu5sxr865uy |
 
 - **Extra config for sentry configurations 🏛**
+
   - **On the sentry nodes:**
+
     - Add an **extra line** to the `[sidecar]` config called `**personal_peer_ids**`, and add the node id for your **validator**
+
     ```jsx
     [sidecar]
     relayer_peer_string = "d1463b730c6e0dcea59db726836aeaff13a8119f@uni-5-sentinel.skip.money:26656"
@@ -134,23 +140,30 @@ api_key = "2314ajinashg2389jfjap"**
     ****api_key = "2314ajinashg2389jfjap"
     **************************************************************************************personal_peer_ids = "NODEID1,NODEID2, ..."**************************************************************************************
     ```
+
     → You can find your node ids by running:
+
     ```jsx
     <NODE_DAEMON> tendermint show-node-id --home <HOME_DIR>
 
     **# example:**
     junod tendermint show-node-id --home ./juno
     ```
+
   - **On the validator:**
+
     - **Remove** the line for `relayer_peer_string`
     - **Remove** the line for `relayer_rpc_string`
-    - ******\*\*******Remove******\*\******* the line for `api_key`
-    - Add an **extra line** to the `[sidecar]` config called `**personal_peer_ids`,** and add the node ids for your **********\*\*************sentry nodes**********\*\*\*\***********
+    - **\*\***\*\***\*\***Remove**\*\***\*\***\*\*** the line for `api_key`
+    - Add an **extra line** to the `[sidecar]` config called `**personal_peer_ids`,** and add the node ids for your **\*\*\*\*****\*\*****\*\*\*\*****sentry nodes****\*\*****\*\*\*\*****\*\*****
+
     ```jsx
     [sidecar]
     **************************************************************************************personal_peer_ids = "NODEID1,NODEID2, ..."**************************************************************************************
     ```
+
     → You can find your node ids by running:
+
     ```jsx
     <NODE_DAEMON> tendermint show-node-id --home <HOME_DIR>
 
@@ -181,6 +194,7 @@ api_key = "2314ajinashg2389jfjap"**
 ### Monitoring & Troubleshooting ✍️
 
 - Check if you **are running `mev-tendermint`** by running either 👇
+
   ```bash
   **# by running binary**
   curl -sL localhost:26657/status | jq .result.mev_info
@@ -188,6 +202,7 @@ api_key = "2314ajinashg2389jfjap"**
   **# or by checking version detail**
   junod version --long | grep mev
   ```
+
 - Check if you are **peered with the sentinel** by running **👇**
   Run `**curl http://localhost:26657/status**`
   You should see, at the bottom:
@@ -196,13 +211,15 @@ api_key = "2314ajinashg2389jfjap"**
   ```
   1. 🚨 If this is not showing, you are likely not running `mev-tendermint`
   2. 🚨 If this is showing false, it’s either that the sentinel is down (unlikely), or you have an incorrect **`relayer_peer_string`** (more common)
-- Check if you are ******\*\*******properly registered with your API Key******\*\******* by running ******\*\*******👇******\*\*******
+- Check if you are **\*\***\*\***\*\***properly registered with your API Key**\*\***\*\***\*\*** by running **\*\***\*\***\*\***👇**\*\***\*\***\*\***
+
   ```bash
   curl <**RELAYER_RPC_STRING**> --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["**<API_KEY>**"], "id": 1}'
 
   **# EXAMPLE**
   curl http://juno-1-api.skip.money/ --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["YdtqnUpRsWOCK1wFIVBW1/rGGqY="], "id": 1}'
   ```
+
   1. 🚨 When you run this, you should see your peers connected, example below:
 
      ```bash
@@ -219,9 +236,10 @@ api_key = "2314ajinashg2389jfjap"**
      ```
 
   2. 🚨 If you don’t see your peers connected, you likely have an incorrect `**api_key**` or `**relayer_rpc_string**` configuration
+
 - Check new **prometheus metrics below** exposed on `mev-tendermint` 👇
   - In particular, you can track `**sidecar_relay_connected**` to check connection
-  - View the new prometheus metrics exposed on mev-tendermint. See this page for more details: [Metrics](Metrics%20484630ff18514fd29b4a2585f5b29dd8.md)
+  - View the new prometheus metrics exposed on mev-tendermint. See this page for more details: [Metrics](./metrics.md)
   - These can be added to a Grafana dashboard, for example via this [**dashboard that Polkachu made**](https://gist.github.com/PolkachuIntern/0083c88ad16eecc2bea1c8e4d85960ed)
 
 ---

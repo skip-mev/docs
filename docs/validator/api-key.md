@@ -17,9 +17,9 @@ After completion, go to [https://skip.money/registration](http://skip.money/regi
 simd tx authz grant <addr receiving grant> generic --msg-type /cosmos.gov.v1beta1.MsgVote --from <operator key>
 ```
 
-- Here, the ********\*\*********`msg-type`********\*\********* is the cosmos Type URL of the message that the granter can submit on behalf of the operator
-  - This means that the address receiving the `**authz**` grant **can vote on gov proposals on behalf of your validator** (and sign to get a Skip API Key) contact us and we’ll generate you one.
-  - **\*\*\*\***The address receiving the grant must not have a null pubkey**\*\*\*\***. In other words, the address you want to sign in with must have signed a transaction before signing the Skip challenge.
+- Here, the `msg-type` is the cosmos Type URL of the message that the granter can submit on behalf of the operator
+  - This means that the address receiving the `authz` grant **can vote on gov proposals on behalf of your validator** (and sign to get a Skip API Key) contact us and we’ll generate you one.
+  - **The address receiving the grant must not have a null pubkey**. In other words, the address you want to sign in with must have signed a transaction before signing the Skip challenge.
 - If you don’t want to sign a challenge, **[contact us](https://skip.money/contact)** and we’ll generate you an API Key.
 
 ## ⬅️ Revoking `MsgVote` Permissions

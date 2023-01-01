@@ -6,11 +6,11 @@ description: How Skip Works
 
 ## Introduction Video
 
-[https://www.loom.com/share/ae41a0fa332141338bab439a0c6e10e1](https://www.loom.com/share/ae41a0fa332141338bab439a0c6e10e1)
+<iframe className="video" src="https://www.loom.com/embed/ae41a0fa332141338bab439a0c6e10e1"/>
 
-# 🤿 About `mev-tendermint`
+## About `mev-tendermint`
 
-## ✅  Design
+### ✅  Design
 
 The design goals of MEV-Tendermint is to allow & preserve:
 
@@ -21,7 +21,7 @@ The design goals of MEV-Tendermint is to allow & preserve:
 5. 🔄  **On-chain transaction submission** via gossip, no need for off-chain submission like HTTP endpoints, endpoint querying, etc
 6. 💨  **Impossible to slow down block time**, i.e. no part of mev-tendermint introduces consensus delays
 
-## 🔎  Basic Functionality Overview
+### 🔎  Basic Functionality Overview
 
 🏦  **Auction**
 
@@ -50,9 +50,9 @@ The design goals of MEV-Tendermint is to allow & preserve:
 
 [reinforce reaping of bundle goes to top if available]
 
-## 🧱 Components
+### 🧱 Components
 
-### **#1 The Sidecar**
+**#1 The Sidecar**
 
 - A separate, private mempool that respects `bundles` of transactions
   - Relevant files: `mempool/clist_sidecar.go`

@@ -6,12 +6,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Skip Docs',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Skip Protocol Docs',
+  tagline: 'Documentation for skip protocol!',
+  url: 'https://skip-protocl-docs.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
@@ -32,115 +32,126 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
+	docs: {
 	  routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/skip-mev/docs/tree/main',
-        },
-        blog: false,
-        theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
+	  sidebarPath: require.resolve('./sidebars.js'),
+	  // Please change this to your repo.
+	  // Remove this to remove the "edit this page" links.
+	  editUrl:
+	  'https://github.com/skip-mev/docs/tree/main',
+	},
+	blog: false,
+	theme: {
+	  customCss: require.resolve('./src/css/custom.css'),
+	},
       }),
     ],
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      navbar: {
-        title: 'My Site',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
-        },
-        items: [
-          {
-            href: 'https://skip.money',
-            label: 'Skip Site',
-            position: 'right',
-          },
-        ],
+  /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+  ({
+    announcementBar: {
+      id: 'new_docs',
+      content: 'Welcome to the new Skip Docs! It\'s possible something'
+      + ' got lost in translation. If something seems off, check out the original <a href="https://skip-protocol.notion.site/Skip-Documentation-a940cd75b99548c7880f1d35fb547d5b">Notion docs</a> and feel free to ask us any questions'
+      + ' on our <a href="https://www.notion.so/d0360204395040ccbc260dd2d1e35104">Discord</a>'
+    },
+    colorMode: {
+      respectPrefersColorScheme: true
+    },
+    navbar: {
+      title: 'Skip Protocol',
+      logo: {
+	alt: 'Skip Protocl Logo',
+	src: 'img/logo.svg',
       },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-			  {
-				  label: 'Validator',
-				  to: '/validator'
-			  },
-			  {
-				  label: 'Searcher',
-				  to: '/searcher'
-			  },
-			  {
-				  label: 'Chain Configuration',
-				  to: '/chain-configuration'
-			  }
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Discord',
-                href: 'https://www.notion.so/d0360204395040ccbc260dd2d1e35104',
-              },
-              {
-                label: 'Chat Telegram',
-                href: 'https://t.me/+nwk3BENlQbsxMGNh',
-              },
-              {
-                label: 'Announcements Telegram',
-                href: 'https://t.me/+cOqB4ALhPdMwZDMx',
-              },
-              {
-                label: 'Juno Telegram',
-                href: 'https://t.me/+3MR5EP3Vc2gxNTFh',
-              },
-              {
-                label: 'Evmos Telegram',
-                href: 'https://t.me/+55HtDJdMH-VkYjMx',
-              }
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/skip-mev',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/skipprotocol',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Skip Protocol. Built with Docusaurus.`,
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
-	themes: [
-	  [
-		require.resolve("@easyops-cn/docusaurus-search-local"),
-		/** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-		({
-		  hashed: true,
-		  docsRouteBasePath: '/', // needs to match routeBasePath of docs
-		}),
+      items: [
+	{
+	  href: 'https://skip.money',
+	  label: 'Skip Site',
+	  position: 'right',
+	},
+      ],
+    },
+    footer: {
+      style: 'dark',
+      links: [
+	{
+	  title: 'Docs',
+	  items: [
+	    {
+	      label: 'Validator',
+	      to: '/validator/intro'
+	    },
+	    {
+	      label: 'Searcher',
+	      to: '/searcher'
+	    },
+	    {
+	      label: 'Chain Configuration',
+	      to: '/chain-configuration'
+	    }
 	  ],
-	],
+	},
+	{
+	  title: 'Community',
+	  items: [
+	    {
+	      label: 'Discord',
+	      href: 'https://www.notion.so/d0360204395040ccbc260dd2d1e35104',
+	    },
+	    {
+	      label: 'Chat Telegram',
+	      href: 'https://t.me/+nwk3BENlQbsxMGNh',
+	    },
+	    {
+	      label: 'Announcements Telegram',
+	      href: 'https://t.me/+cOqB4ALhPdMwZDMx',
+	    },
+	    {
+	      label: 'Juno Telegram',
+	      href: 'https://t.me/+3MR5EP3Vc2gxNTFh',
+	    },
+	    {
+	      label: 'Evmos Telegram',
+	      href: 'https://t.me/+55HtDJdMH-VkYjMx',
+	    }
+	  ],
+	},
+	{
+	  title: 'More',
+	  items: [
+	    {
+	      label: 'GitHub',
+	      href: 'https://github.com/skip-mev',
+	    },
+	    {
+	      label: 'Twitter',
+	      href: 'https://twitter.com/skipprotocol',
+	    },
+	  ],
+	},
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} Skip Protocol. Built with Docusaurus.`,
+    },
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme,
+      // add additional languages for syntax highlighting here
+      additionalLanguages: ['toml']
+    },
+  }),
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+	hashed: true,
+	docsRouteBasePath: '/', // needs to match routeBasePath of docs
+      }),
+    ],
+  ],
 };
 
 module.exports = config;
