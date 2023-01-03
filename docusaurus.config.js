@@ -1,6 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-
+const commit = process.env.COMMIT_REF ?? 'main';
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
@@ -37,8 +37,7 @@ const config = {
 	  sidebarPath: require.resolve('./sidebars.js'),
 	  // Please change this to your repo.
 	  // Remove this to remove the "edit this page" links.
-	  editUrl:
-	  'https://github.com/skip-mev/docs/tree/main',
+	  editUrl: `https://github.com/skip-mev/docs/tree/${commit}`,
 	},
 	blog: false,
 	theme: {
