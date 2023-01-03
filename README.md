@@ -1,4 +1,6 @@
-# Website
+# Skip Docs
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/82680ad8-34e7-4712-b36b-5bb4a007ed3a/deploy-status)](https://app.netlify.com/sites/skip-protocol-docs/deploys)
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
@@ -26,16 +28,4 @@ This command generates static content into the `build` directory and can be serv
 
 ### Deployment
 
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Deployed through Netlify
