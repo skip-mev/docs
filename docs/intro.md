@@ -8,7 +8,7 @@ sidebar_position: 0
 # Introduction
 
 <aside>
-⚡ Skip allows for searchers to capture MEV in the Cosmos ecosystem, across a variety of chains, and **for validators, stakers, and searchers to share in the rewards**.
+⚡ Skip allows for searchers to capture MEV in the Cosmos ecosystem, across a variety of chains, and <b>for validators, stakers, and searchers to share in the rewards</b>.
 
 Please see our documentation below for how to integrate and use our endpoints.
 

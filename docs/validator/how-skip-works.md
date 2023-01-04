@@ -6,7 +6,7 @@ description: How Skip Works
 
 ## Introduction Video
 
-<iframe className="video" src="https://www.loom.com/embed/ae41a0fa332141338bab439a0c6e10e1"/>
+[https://www.loom.com/share/ae41a0fa332141338bab439a0c6e10e1](https://www.loom.com/share/ae41a0fa332141338bab439a0c6e10e1)
 
 ## About `mev-tendermint`
 

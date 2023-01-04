@@ -4,11 +4,12 @@ description: Validator Introduction
 
 # Validator
 
-:::tip
-**Get started right away!**  
-Check out [Validator Setup [5-10 mins]](./setup.md) to set up Skip. It takes 5 minutes
+<aside>
+🏃‍♂️ <b> Get started right away </b>
 
-:::
+Check out [Validator Setup [5-10 mins]](https://www.notion.so/Validator-Setup-5-10-mins-f818646429524356a4e878f1d70866b1) to set up Skip. It takes 5 minutes
+
+</aside>
 
 ## Summary
 
@@ -19,7 +20,7 @@ Skip helps validators and their stakers capture additional income by auctioning 
 ### Validators that integrate with Skip:
 
 - Allow MEV to be captured in their blocks without needing to sign headers for unseen blocks, **increasing block rewards** without sacrificing their builder rights
-- **Can **prevent toxic MEV strategies\*\* like frontrunning & sandwich attacks, while still capturing revenue from
+- **Can prevent toxic MEV strategies** like frontrunning & sandwich attacks, while still capturing revenue from
 - Can configure **how much MEV revenue to keep** (the rest goes to stakers!)
 - **No modifications needed** to their consensus key signing services (e.g. Horcrux, TMKMS, or custom), or any new security assumptions
 
