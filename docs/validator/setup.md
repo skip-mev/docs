@@ -42,10 +42,7 @@ Here’s a quick overview by [Blockpane:](https://blockpane.com/)
 
 💵 **You can also configure your MEV payments between you / network stakers on the site.**
 
-<aside>
-🆘 If you cannot access your validator operator key or any key with `MsgVote` authorization in Keplr, please contact us on [**discord**](https://discord.gg/amAgf9Z39w). We will manually add you to the system.
-
-</aside>
+🆘 If you cannot access your validator operator key or any key with <code>MsgVote</code> authorization in Keplr, please contact us on <a href="(https://discord.gg/amAgf9Z39w">(https://discord.gg/amAgf9Z39w)</a>. We will manually add you to the system.
 
 ---
 
@@ -94,7 +91,7 @@ replace (
 
 (Optional: you can read more about what these are here: [Validator Config Reference Docs](./config.md))
 
-…by the end, the end of your `config.toml` on each node will look something like this (with different string values). **************\*\***************\*\*\*\***************\*\***************Make sure to include the line `[sidecar]` at the top of this section in `config.toml`.\*\*
+…by the end, the end of your `config.toml` on each node will look something like this (with different string values). **Make sure to include the line `[sidecar]` at the top of this section in `config.toml`.**
 
 ```bash
 # OTHER CONFIG...
@@ -110,7 +107,7 @@ api_key = "2314ajinashg2389jfjap"**
 
 - 👇 **(Expand) Find the correct values for these here👇**
 
-  **\*\***\*\*\*\***\*\***Mainnets**\*\***\*\*\*\***\*\***
+  **Mainnets**
 
   | Chain name     | Chain ID     | Supported Chain Version | relayer_rpc_string                 | relayer_peer_string                                                             | MEV-tendermint Version  | AuctionHouse Address                         |
   | -------------- | ------------ | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------- | ----------------------- | -------------------------------------------- |
@@ -131,14 +128,15 @@ api_key = "2314ajinashg2389jfjap"**
 
   - **On the sentry nodes:**
 
-    - Add an **extra line** to the `[sidecar]` config called `**personal_peer_ids**`, and add the node id for your **validator**
+    - Add an **extra line** to the `[sidecar]` config called **`personal_peer_ids`**, and add the node id for your **validator**
 
     ```jsx
-    [sidecar]
-    relayer_peer_string = "d1463b730c6e0dcea59db726836aeaff13a8119f@uni-5-sentinel.skip.money:26656"
-    relayer_rpc_string = "http://uni-5-api.skip.money"
-    ****api_key = "2314ajinashg2389jfjap"
-    **************************************************************************************personal_peer_ids = "NODEID1,NODEID2, ..."**************************************************************************************
+    [sidecar];
+    relayer_peer_string =
+      "d1463b730c6e0dcea59db726836aeaff13a8119f@uni-5-sentinel.skip.money:26656";
+    relayer_rpc_string = "http://uni-5-api.skip.money";
+    api_key = "2314ajinashg2389jfjap";
+    personal_peer_ids = "NODEID1,NODEID2, ...";
     ```
 
     → You can find your node ids by running:
@@ -146,7 +144,7 @@ api_key = "2314ajinashg2389jfjap"**
     ```jsx
     <NODE_DAEMON> tendermint show-node-id --home <HOME_DIR>
 
-    **# example:**
+    # example:
     junod tendermint show-node-id --home ./juno
     ```
 
@@ -154,12 +152,12 @@ api_key = "2314ajinashg2389jfjap"**
 
     - **Remove** the line for `relayer_peer_string`
     - **Remove** the line for `relayer_rpc_string`
-    - **\*\***\*\***\*\***Remove**\*\***\*\***\*\*** the line for `api_key`
-    - Add an **extra line** to the `[sidecar]` config called `**personal_peer_ids`,** and add the node ids for your **\*\*\*\*****\*\*****\*\*\*\*****sentry nodes****\*\*****\*\*\*\*****\*\*****
+    - **Remove** the line for `api_key`
+    - Add an **extra line** to the `[sidecar]` config called **`personal_peer_ids`**, and add the node ids for your **sentry nodes**
 
     ```jsx
-    [sidecar]
-    **************************************************************************************personal_peer_ids = "NODEID1,NODEID2, ..."**************************************************************************************
+    [sidecar];
+    personal_peer_ids = "NODEID1,NODEID2, ...";
     ```
 
     → You can find your node ids by running:
@@ -167,7 +165,7 @@ api_key = "2314ajinashg2389jfjap"**
     ```jsx
     <NODE_DAEMON> tendermint show-node-id --home <HOME_DIR>
 
-    **# example:**
+    # example:
     junod tendermint show-node-id --home ./juno
     ```
 
@@ -204,19 +202,23 @@ api_key = "2314ajinashg2389jfjap"**
   ```
 
 - Check if you are **peered with the sentinel** by running **👇**
-  Run `**curl http://localhost:26657/status**`
+
+  Run **`curl http://localhost:26657/status`**
   You should see, at the bottom:
+
   ```jsx
    ”is_peered_with_relayer”: true
   ```
+
   1. 🚨 If this is not showing, you are likely not running `mev-tendermint`
   2. 🚨 If this is showing false, it’s either that the sentinel is down (unlikely), or you have an incorrect **`relayer_peer_string`** (more common)
-- Check if you are **\*\***\*\***\*\***properly registered with your API Key**\*\***\*\***\*\*** by running **\*\***\*\***\*\***👇**\*\***\*\***\*\***
+
+- Check if you are **_properly registered with your API Key_** by running 👇
 
   ```bash
-  curl <**RELAYER_RPC_STRING**> --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["**<API_KEY>**"], "id": 1}'
+  curl <RELAYER_RPC_STRING> --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["**<API_KEY>**"], "id": 1}'
 
-  **# EXAMPLE**
+  # EXAMPLE
   curl http://juno-1-api.skip.money/ --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["YdtqnUpRsWOCK1wFIVBW1/rGGqY="], "id": 1}'
   ```
 
@@ -235,10 +237,10 @@ api_key = "2314ajinashg2389jfjap"**
      }
      ```
 
-  2. 🚨 If you don’t see your peers connected, you likely have an incorrect `**api_key**` or `**relayer_rpc_string**` configuration
+  2. 🚨 If you don’t see your peers connected, you likely have an incorrect **`api_key`** or **`relayer_rpc_string`** configuration
 
 - Check new **prometheus metrics below** exposed on `mev-tendermint` 👇
-  - In particular, you can track `**sidecar_relay_connected**` to check connection
+  - In particular, you can track **`sidecar_relay_connected`** to check connection
   - View the new prometheus metrics exposed on mev-tendermint. See this page for more details: [Metrics](./metrics.md)
   - These can be added to a Grafana dashboard, for example via this [**dashboard that Polkachu made**](https://gist.github.com/PolkachuIntern/0083c88ad16eecc2bea1c8e4d85960ed)
 

@@ -5,9 +5,8 @@ sidebar_position: 3
 
 # Chain Configuration
 
-:::tip
-All of this information is available and can be accessed programmatically on [github.com/skip-mev/config](http://github.com/skip-mev/config) (Using Github’s raw user content download capabilities)
-:::
+<aside>
+🗣 All of this information is available and can be accessed programmatically on <a hef="http://github.com/skip-mev/config">github.com/skip-mev/config</a> (Using Github’s raw user content download capabilities) </aside>
 
 ## Mainnets
 
@@ -26,8 +25,5 @@ All of this information is available and can be accessed programmatically on [gi
 | Injective Testnet | `injective`-888 | v1.8              | `http://inective-888-api.skip.money`      | `24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656` | `v0.34.23-mev.12`                 | `inj1mwj9kxxxuflr233pulfk037lr55jv680wy5sm4`   |
 | Terra 2 Testnet   | `pisco-1`       | v2.2.0            | `http://pisco-1-api.skip.money`           | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656`       | `v0.34.21-terra.1-mev.13`         | `terra1d5fzv2y8fpdax4u2nnzrn5uf9ghyu5sxr865uy` |
 
-:::note
-**Peering with Skip if you’re not a validator: **
-You should not expect to receive any advantage searching if you peer with Skip’s node. The node will not gossip transactions or bundles to you under any circumstances — either from the chain’s public mempool or from the Skip auction.
-
-:::
+<aside> ⚠️ <b>Peering with Skip if you’re not a validator</b> - 
+You should not expect to receive any advantage searching if you peer with Skip’s node. The node will not gossip transactions or bundles to you under any circumstances — either from the chain’s public mempool or from the Skip auction. </aside>

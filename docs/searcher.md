@@ -85,7 +85,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
   - `desiredHeight` is the chain height that of the auction that this bundle will be considered for.
     - **🚀 Note, if you set this as `0`, Skip will automatically try to include your bundle in the soonest possible auction 🚀**
       - This is a good option if you are bundling with another transaction, which may be committed before your bundle otherwise
-    - **********************\*\***********************\*\*\*\***********************\*\***********************Also note, you can submit transactions for auctions up to 5 blocks in advance**********************\*\***********************\*\*\*\***********************\*\***********************
+    - **_Also note, you can submit transactions for auctions up to 5 blocks in advance_**
   - `pubkey` is the base64-encoded public key associated with the private key that your bundle was signed with (this will be checked by the Skip sentinel).
   - `signature` is the base64-encoded signature obtained from signing the bundle digest with your private key that corresponds to the `pubkey`.
     - See Signing Bundles section above for more information on how to generate this signature.
@@ -139,13 +139,13 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 ## Winning the Auction
 
 <aside>
-💡 **Skip bundles are ordered by payment to the `AuctionHouseAddress`**
+💡 <b>Skip bundles are ordered by payment to the <code>AuctionHouseAddress</code></b>
 
 </aside>
 
 **🚨 You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](./chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**
 
-In order to include a payment to the Auction House, you must include a `**MsgSend` message\*\* in any of the transactions in your bundle that pays the `AuctionHouseAddress`
+In order to include a payment to the Auction House, you must include a **`MsgSend` message** in any of the transactions in your bundle that pays the `AuctionHouseAddress`
 
 → The entirety of your Auction House payment is sent to the proposing validator, and their stakers. You do not need to worry about this split, Skip handles it on-chain and automatically.
 
@@ -154,7 +154,7 @@ The greater your bundle’s `AuctionHousePayment`, the greater the likelihood th
 ## Simulation and Gas Refunds
 
 <aside>
-💸 **Bundles will only have their gas used if they are executed on-chain as valid.**
+💸 <b>Bundles will only have their gas used if they are executed on-chain as valid.</b>
 
 That is, if your bundle would have been executed invalid (for whatever reason), you will receive a full gas refund, no money will leave your account, and it will not end up on chain as reverted.
 
@@ -164,7 +164,7 @@ Only auction winners spend fees. There is no cost or downside to losing the Skip
 
 ## Allowed Bundles (with frontrun-protect)
 
-\*(**Key):\***
+**_(Key):_**
 
 - _Signer X = tx that’s not signed by you_
 - _Signer Y = another other txs that are not signed by you_
@@ -214,7 +214,7 @@ Only auction winners spend fees. There is no cost or downside to losing the Skip
 
 Anything not in allowed bundles above is disallowed by validators with frontrunning protection on. See examples of disallowed bundles below.
 
-\*(**Key):\***
+**_(Key):_**
 
 - _Signer X = tx that’s not signed by you_
 - _Signer Y = another other txs that are not signed by you_

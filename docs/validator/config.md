@@ -4,10 +4,9 @@ description: Validator Config Reference Docs
 
 # Config
 
-:::note
-This page gives more detail about the purpose and meaning of the new config `mev-tendermint` adds in your node’s `config.toml` file
-
-:::
+<aside>
+🗣 This page gives more detail about the purpose and meaning of the new config <code>mev-tendermint</code> adds in your node’s <code>config.toml</code> file
+</aside>
 
 | Name                  | Meaning                                                                                                                                                  | When to set                                                                                                                                                                                                                                             | Example value                                                                       |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
