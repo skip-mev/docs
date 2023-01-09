@@ -1,13 +1,14 @@
 ---
-description: Skip Protocol Searcher Documentation
+description: Skip Select Searcher Documentation
+title: Searcher Docs
 sidebar_position: 2
 ---
 
-# Searcher
+# Searcher Docs
 
 **Estimated time:** 20 mins
 
-⚡ Searchers can use Skip endpoints to risklessly capture arbitrage, liquidation, and other MEV opportunities in the Cosmos ecosystem.
+⚡ Searchers can use Skip Select endpoints to risklessly capture arbitrage, liquidation, and other MEV opportunities in the Cosmos ecosystem.
 
 → Skip maintains easy-to-use packages ([javascript](https://www.npmjs.com/package/@skip-mev/skipjs), [python](https://github.com/skip-mev/skip-py)) for signing and sending bundles of transactions to the Skip Relay. Example usage can be found in each package’s documentation.
 
@@ -138,12 +139,13 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
 ## Winning the Auction
 
-<aside>
-💡 <b>Skip bundles are ordered by payment to the <code>AuctionHouseAddress</code></b>
+:::tip Bundle Ordering
 
-</aside>
+Bundles are ordered by payment to the `AuctionHouseAddress`
 
-**🚨 You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](./chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**
+:::
+
+**🚨 You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](./3-chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**
 
 In order to include a payment to the Auction House, you must include a **`MsgSend` message** in any of the transactions in your bundle that pays the `AuctionHouseAddress`
 
@@ -151,16 +153,15 @@ In order to include a payment to the Auction House, you must include a **`MsgSen
 
 The greater your bundle’s `AuctionHousePayment`, the greater the likelihood that it will be included on-chain. If you lose the auction, you can explore the chain afterwards to discover bundles with higher `AuctionHousePayments` that outbid you.
 
-## Simulation and Gas Refunds
+## Bundle Reversion Protection
 
-<aside>
-💸 <b>Bundles will only have their gas used if they are executed on-chain as valid.</b>
+**Bundles will only end up on-chain if every 
+transaction in the bundle executes successfully**
 
-That is, if your bundle would have been executed invalid (for whatever reason), you will receive a full gas refund, no money will leave your account, and it will not end up on chain as reverted.
+If any transaction in your bundle would have reverted on-chain (for whatever reason), Skip will not execute the bundle land on-chain. Your transaction fees and auction payment will not be consumed. 
 
-</aside>
 
-Only auction winners spend fees. There is no cost or downside to losing the Skip auction!
+That means only auction winners spend fees. There is no cost or downside to losing the Skip auction!
 
 ## Allowed Bundles (with frontrun-protect)
 

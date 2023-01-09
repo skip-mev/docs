@@ -1,12 +1,14 @@
 ---
 description: How Skip Works
+title: How Skip Select Works
+sidebar_position: 4
 ---
 
-# How Skip Works
+# How Skip Select Works
 
 ## Introduction Video
 
-[https://www.loom.com/share/ae41a0fa332141338bab439a0c6e10e1](https://www.loom.com/share/ae41a0fa332141338bab439a0c6e10e1)
+<iframe className="video" src="https://www.loom.com/embed/ae41a0fa332141338bab439a0c6e10e1" allowFullScreen />
 
 ## About `mev-tendermint`
 

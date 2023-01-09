@@ -55,7 +55,7 @@ const config = {
       id: 'new_docs',
       content: 'Welcome to the new Skip Docs! It\'s possible something'
       + ' got lost in translation. If something seems off, check out the original <a href="https://skip-protocol.notion.site/Skip-Documentation-a940cd75b99548c7880f1d35fb547d5b">Notion docs</a> and feel free to ask us any questions'
-      + ' on our <a href="https://www.notion.so/d0360204395040ccbc260dd2d1e35104">Discord</a>'
+      + ' on our <a href="https://discord.gg/sq4bPtYV57">Discord</a>'
     },
     colorMode: {
       respectPrefersColorScheme: true
@@ -82,7 +82,7 @@ const config = {
 	  items: [
 	    {
 	      label: 'Validator',
-	      to: '/validator/intro'
+	      to: '/validator/quickstart'
 	    },
 	    {
 	      label: 'Searcher',
@@ -99,7 +99,7 @@ const config = {
 	  items: [
 	    {
 	      label: 'Discord',
-	      href: 'https://www.notion.so/d0360204395040ccbc260dd2d1e35104',
+	      href: 'https://discord.gg/sq4bPtYV57',
 	    },
 	    {
 	      label: 'Chat Telegram',
