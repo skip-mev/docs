@@ -5,7 +5,7 @@ slug: /
 sidebar_position: 0
 ---
 
-# Introduction to Skip Select
+# Skip Select
 
 <aside>
 ⚡ Skip Select is a blockspace auction system that allows searchers to capture MEV in the Cosmos ecosystem, across a variety of chains, and <b>for validators, stakers, and searchers to share in the rewards</b>. 
@@ -16,6 +16,7 @@ Please see our documentation below for how to integrate and use our endpoints.
 
 
 ## **For validators**
+
 <aside>
 🏃‍♂️ <b> Get started right away </b>
 
@@ -39,8 +40,8 @@ The process of integrating with Skip Select is very easy:
 - No need to make changes to sentry ↔  signing node configurations
 
 All you need to do is register for an API key and rebuild your chain client `mev-tendermint` according to the 
-the instructions in the [Quickstart](./validator/0-quickstart.md)
+the instructions in [Quickstart](./validator/0-quickstart.md)
 
 ## **For searchers**
 
-[Skip Searcher Documentation](./2-searcher.md)
+Check out the [Searcher Docs](./2-searcher.md)

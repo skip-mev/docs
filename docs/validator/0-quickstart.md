@@ -1,10 +1,10 @@
 ---
 description: Skip Validator Quickstart
-title: Quickstart
+title: Validator Quickstart
 sidebar_position: 0
 ---
 
-It takes just 5 minutes to integrate Skip Select for your validator. 
+It takes just 5 minutes to start using Skip Select to capture MEV with your validator. 
 
 ## Summary of Steps
 
@@ -19,7 +19,7 @@ Here’s a quick overview by [Blockpane:](https://blockpane.com/)
 
 <iframe className="video" src="https://www.youtube.com/embed/_75A4RWWwaM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
 
-**Any questions / issues during integration? Ask us on Discord: https://discord.gg/amAgf9Z39w**
+**Any questions / issues during integration? Ask us on [Discord](https://discord.gg/amAgf9Z39w)**
 
 ## Chain IDs that Skip supports:
 
