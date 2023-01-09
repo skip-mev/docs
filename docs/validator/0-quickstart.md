@@ -44,7 +44,7 @@ Here’s a quick overview by [Blockpane:](https://blockpane.com/)
 
 💵 **You can also configure your MEV payments between you / network stakers on the site.**
 
-🆘 If you cannot access your validator operator key or any key with <code>MsgVote</code> authorization in Keplr, please contact us on <a href="(https://discord.gg/amAgf9Z39w">(https://discord.gg/amAgf9Z39w)</a>. We will manually add you to the system.
+🆘 If you cannot access your validator operator key or any key with <code>MsgVote</code> authorization in Keplr, please contact us on <a href="https://discord.gg/amAgf9Z39w" target="_blank">Discord</a>. We will manually add you to the system.
 
 ---
 
