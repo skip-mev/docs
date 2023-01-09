@@ -1,13 +1,14 @@
 ---
-description: Skip Protocol Searcher Documentation
+description: Skip Select Searcher Documentation
+title: Searcher Docs
 sidebar_position: 2
 ---
 
-# Searcher
+# Searcher Docs
 
 **Estimated time:** 20 mins
 
-⚡ Searchers can use Skip endpoints to risklessly capture arbitrage, liquidation, and other MEV opportunities in the Cosmos ecosystem.
+⚡ Searchers can use Skip Select endpoints to risklessly capture arbitrage, liquidation, and other MEV opportunities in the Cosmos ecosystem.
 
 → Skip maintains easy-to-use packages ([javascript](https://www.npmjs.com/package/@skip-mev/skipjs), [python](https://github.com/skip-mev/skip-py)) for signing and sending bundles of transactions to the Skip Relay. Example usage can be found in each package’s documentation.
 

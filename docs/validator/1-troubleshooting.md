@@ -1,15 +1,65 @@
 ---
 description: Validator Troubleshooting
+title: Troubleshooting Guide
+sidebar_position: 1
 ---
 
 # Troubleshooting
 
 <aside>
-⚠️ Are you having trouble starting your node with [mev-tendermint](https://www.notion.so/dYdX-Skip-MEV-Research-Proposal-4aeb5e75bb90490c9a29ac7d967d8a27)? We’ve compiled a list of common problems we’ve seen many validators experience
+⚠️ Are you having trouble starting your node with mev-tendermint? We’ve compiled a list of common problems we’ve seen many validators experience
 
 </aside>
 
-### Double check your go.mod file
+## How do I know if mev-tendermint is working as expected?
+If mev-tendermint is working correctly `curl -sL localhost:26657/status | jq .result.mev_info` should return: 
+
+```jsx
+{
+    "is_peered_with_sentinel": true,
+    "last_received_bundle_height": "0"
+}
+```
+
+- `is_peered_with_sentinel` should be true for all nodes exposed to the internet (i.e. those that should 
+receive MEV bundles directly from Skip) and false for validator nodes that are protected behind sentries>
+- `last_received_bundle_height` should update from time to time as your node receives MEV bundles from Skip
+
+
+### Check that your node is built with mev-tendermint
+If the result of `curl -sL localhost:26657/status | jq .result.mev_info` is `null`, your node binary wasn't built with mev-tendermint. Revisit the [quickstart guide](./0-quickstart.md) or [the page on automatically building with mev-tendermint](./4-autobuild.md)
+
+
+### Check that you are registered with Skip
+Check if you are **_properly registered with your API Key_** by running:
+
+```bash
+curl <SENTINEL_RPC_STRING> --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["**<API_KEY>**"], "id": 1}'
+
+# EXAMPLE
+curl http://juno-1-api.skip.money/ --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["YdtqnUpRsWOCK1wFIVBW1/rGGqY="], "id": 1}'
+```
+
+1. 🚨 When you run this, you should see your peers connected, example below:
+
+    ```bash
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "**Peers": [
+          "557611c7a7307ce023a7d13486b570282521296d@34.205.156.129:49510"
+        ],**
+        "code": 0
+      }
+    }
+    ```
+
+2. 🚨 If you don’t see your peers connected, you likely have an incorrect **`api_key`** or **`sentinel_rpc_string`** configuration
+
+
+
+### Check your go.mod file is correct
 
 Problems with mev-tendermint set up can often be traced back to your go.mod file.
 
@@ -70,24 +120,19 @@ Folks frequently misconfigure some of the Skip settings `config.toml`
 **Symptoms:**
 
 - Node panic on start-up
-- Failure to connect to relayer
+- Failure to connect to sentinel
 
 **Here are some questions to investigate that cover the most common sources of error we’ve seen in config:**
 
 - **_Does your `config.toml` file have a `[sidecar]` section?_**
   → Ensure that the config/config.toml file that your node is loading at startup has the `[sidecar]` section that Skip expects. Folks commonly exclude this by accident in cases where they’re unsure where their node is loading the file from
-- **_Does `relayer_rpc_string` have `http://` at the start?_**
-  → `relayer_rpc_string` needs to have http:// at the beginning. Folks often cut it by mistake or for cleanliness, thinking it’s not necessary
-  → The relayer RPC server is not configured to function over HTTPS, so ensure your prefix is `http` and NOT `https`
-- **_Does `relayer_peer_string` NOT have `http://` at the start?_**
-  → `relayer_peer_string` **should not** have http at the beginning because it is a tendermint p2p node identifier
+- **_Does `sentinel_rpc_string` have `http://` at the start?_**
+  → `sentinel_rpc_string` needs to have http:// at the beginning. Folks often cut it by mistake or for cleanliness, thinking it’s not necessary
+  → The sentinel RPC server is not configured to function over HTTPS, so ensure your prefix is `http` and NOT `https`
+- **_Does `sentinel_peer_string` NOT have `http://` at the start?_**
+  → `sentinel_peer_string` **should not** have http at the beginning because it is a tendermint p2p node identifier
   → Folks often accidentally prepend the string with `http://` by pasting it into the Google Chrome address bar then copying it to ensure it’s plain text (Chrome gets carried away for some reason)
 - **Do any of the config settings you’ve added have curly quotes?**
   → Your quotes need to be straight, plain-text quotes, rather than rich-text curly quotes
   → Folks sometimes introduce curly quotes by copying the quotes into a chat service or an editor that assumes rich text by default and makes the conversion (Slack is a common culprit)
-
-  ![WRONG! ](/img/docs/validator/quotes-wrong.png)
-  WRONG!
-
-  ![Right!](/img/docs/validator/quotes-correct.png)
-  Right!
+ 

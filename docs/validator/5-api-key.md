@@ -1,8 +1,10 @@
 ---
 description: API Key via MsgVote Grant
+title: Obtain API Key with Authz
+sidebar_position: 5
 ---
 
-# API Key
+# Obtain API Key with Authz
 
 <aside>
 🎉 If you don’t want to use your validator operator key to sign a challenge via Keplr, Skip now let’s you sign with <B>any other account!</B>
