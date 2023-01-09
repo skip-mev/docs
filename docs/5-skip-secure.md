@@ -19,6 +19,8 @@ If the transaction is included in a block OR the transaction has been held by th
 
 ## How To Use Skip Secure
 
+### For Developers
+
 Skip Secure exposes an RPC function, `send_secure_transaction`, with the same signature as the native Tendermint transaction broadcast methods.
 
 Transactions sent through Skip Secure **MUST** have the `memo` field of the transaction exactly equal to the sender address. This is to prevent abuse, by enforcing that transactions sent through Skip Secure must have been created with the express intent of being sent through Skip Secure.
@@ -31,3 +33,9 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"send_secure_transaction", "param
 
 For convenience, the `skipjs` and `skip-py` libraries also expose helper functions for developers to easily integrate with Skip Secure.
 For example usage, see the [skipjs GitHub Repo](https://github.com/skip-mev/skipjs) and [skip-py GitHub Repo](https://github.com/skip-mev/skip-py).
+
+### For Chain Users
+
+Skip Secure can be used directly with Keplr wallet (and other wallets) by changing the endpoints to Skip's Sentinel endpoints.
+
+In Keplr, this can be done by going to **Settings -> Endpoints** and replacing the RPC and LCD endpoints with the corresponding Sentinel endpoints for the chain used.
