@@ -14,6 +14,7 @@ Please see our documentation below for how to integrate and use our endpoints.
 
 </aside>
 
+
 ## **For validators**
 <aside>
 🏃‍♂️ <b> Get started right away </b>
@@ -38,8 +39,8 @@ The process of integrating with Skip Select is very easy:
 - No need to make changes to sentry ↔  signing node configurations
 
 All you need to do is register for an API key and rebuild your chain client `mev-tendermint` according to the 
-the instructions in the [Quickstart](./validator/quickstart.md)
+the instructions in the [Quickstart](./validator/0-quickstart.md)
 
 ## **For searchers**
 
-[Skip Searcher Documentation](./searcher.md)
+[Skip Searcher Documentation](./2-searcher.md)
