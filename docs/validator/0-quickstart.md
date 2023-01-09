@@ -19,7 +19,7 @@ Here’s a quick overview by [Blockpane:](https://blockpane.com/)
 
 <iframe className="video" src="https://www.youtube.com/embed/_75A4RWWwaM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
 
-**Any questions / issues during integration? Ask us on** <a href="https://discord.gg/amAgf9Z39w" target="_blank">Discord</a>
+**Any questions / issues during integration? Ask us on Discord: https://discord.gg/amAgf9Z39w**
 
 ## Chain IDs that Skip supports:
 
