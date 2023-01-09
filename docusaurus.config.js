@@ -82,7 +82,7 @@ const config = {
 	  items: [
 	    {
 	      label: 'Validator',
-	      to: '/validator/intro'
+	      to: '/validator/quickstart'
 	    },
 	    {
 	      label: 'Searcher',
@@ -99,7 +99,7 @@ const config = {
 	  items: [
 	    {
 	      label: 'Discord',
-	      href: 'https://www.notion.so/d0360204395040ccbc260dd2d1e35104',
+	      href: 'https://discord.gg/sq4bPtYV57',
 	    },
 	    {
 	      label: 'Chat Telegram',
