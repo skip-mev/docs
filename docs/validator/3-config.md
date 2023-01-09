@@ -6,10 +6,10 @@ sidebar_position: 3
 
 # Configuration Reference Guide
 
-<aside>
-🗣 This page gives more detail about the purpose and meaning of the new config <code>mev-tendermint</code> adds in your node’s <code>config.toml</code> file
-</aside>
+:::info Summary
+This page gives more detail about the purpose and meaning of the new config `mev-tendermint` adds in your node’s `config.toml` file
 
+:::
 | Name                  | Meaning                                                                                                                                                  | When to set                                                                                                                                                                                                                                             | Example value                                                                       |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `api_key`             | Unique string Skip uses to ensure a node establishing a connection with our relay actually belongs to you                                                | On nodes that peer directly with Skip’s sentinel (optional)                                                                                                                                                                                              | `2314ajinashg2389jfjap`                                                             |

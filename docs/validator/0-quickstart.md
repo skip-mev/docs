@@ -79,21 +79,19 @@ to perform the replacement automatically or manually.
   ```
 ### 🚨🚨 **After performing the replacement run `go mod tidy` 🚨🚨**
 
-<aside>
-<b>Alternative to replacing tendermint yourself:</b>
+:::tip Alternative to replacing tendermint yourself
 
-Instead of replacing tendermint with mev-tendermint yourself, you can simply checkout and build one the github.com/skip-mev fork of
-chain source code, where we have already performed the replacement for you in the VERSION_TAG-mev tags. 
+Instead of replacing `tendermint` with `mev-tendermint` yourself, you can simply checkout and build the github.com/skip-mev fork of chain source code, where we have already performed the replacement for you in the VERSION_TAG-mev tags. 
+
 For example, https://github.com/skip-mev/evmos/releases/tag/v10.0.1-mev is v10.0.1 of EVMOS with the correct version of mev-tendermint already added for you. 
-</aside>
+
+Read more about other methods for automatically installing mev-tendermint [here](./4-autobuild.md)
+:::
  
-<aside>
-♻️ If you use Horcrux or any other infrastructure set up that requires multiple full nodes, you need to replace Tendermint on all of them.
+:::info Replace tendermint on all nodes
+If you use Horcrux or any other infrastructure set up that requires multiple full nodes, you need to replace Tendermint on all of them.
 
-</aside>
-
----
-
+:::
 ## 3. Update config.toml
 
 `mev-tendermint` introduces a new section of config in `config.toml` called `[sidecar]` that includes several 

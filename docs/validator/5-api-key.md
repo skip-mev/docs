@@ -6,12 +6,11 @@ sidebar_position: 5
 
 # Obtain API Key with Authz
 
-<aside>
+
 🎉 If you don’t want to use your validator operator key to sign a challenge via Keplr, Skip now let’s you sign with <B>any other account!</B>
 
 This requires granting **`MsgVote`** permissions to a different address via `authz`, and then signing with that address. See below.
 
-</aside>
 
 → ✅  After completion, go to **[https://skip.money/registration](http://skip.money/registration)** to get an API Key.
 

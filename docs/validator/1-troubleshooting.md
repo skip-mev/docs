@@ -6,10 +6,9 @@ sidebar_position: 1
 
 # Troubleshooting
 
-<aside>
-⚠️ Are you having trouble starting your node with mev-tendermint? We’ve compiled a list of common problems we’ve seen many validators experience
 
-</aside>
+Are you having trouble starting your node with mev-tendermint? We’ve compiled a list of common problems and solutions we’ve seen many validators experience
+
 
 ## How do I know if mev-tendermint is working as expected?
 If mev-tendermint is working correctly `curl -sL localhost:26657/status | jq .result.mev_info` should return: 
