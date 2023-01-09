@@ -89,7 +89,7 @@ Problems with mev-tendermint set up can often be traced back to your go.mod file
 - **_Are you using the version of mev-tendermint that matches the version in [github.com/skip-mev/config/](http://github.com/skip-mev/config/) (in the directory for your chain_id and chain_version)?_**
   → Often times, compilation and runtime errors can be caused by using an old version of mev-tendermint.
   <!--- TODO:"config repo" used to be a link to the same page --->
-  → Double check that the version referenced in the `replace` statement in your `go.mod` file matches the version in [Skip’s docs](./config.md) / the config repo for your particular chain id and chain version. (The chain id should be listed in the chain’s official documentation, and the chain version tag can be found in the latest upgrade announcement for the chain and usually in their official docs or github repos)
+  → Double check that the version referenced in the `replace` statement in your `go.mod` file matches the version in [Skip’s docs](./../3-chain-configuration.md) / the config repo for your particular chain id and chain version. (The chain id should be listed in the chain’s official documentation, and the chain version tag can be found in the latest upgrade announcement for the chain and usually in their official docs or github repos)
 
 ### Double check your application version
 
