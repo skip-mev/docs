@@ -25,6 +25,12 @@ If mev-tendermint is working correctly `curl -sL localhost:26657/status | jq .re
 receive MEV bundles directly from Skip) and false for validator nodes that are protected behind sentries>
 - `last_received_bundle_height` should update from time to time as your node receives MEV bundles from Skip
 
+### Check that your validator is configured correctly
+
+- We recommend 0-5 `persistent_peers`. Many validators have reported reduced performance of tendermint and mev-tendermint
+when using more than several `persistent_peers`
+- `seed` mode should be set to `false`. Seed mode regularly drops inbound peers and can lead to missed blocks.
+- `timeout_commit` should be set to the chain's default value. You can find this by running `simd init test --home my-test-dir` and checking the value of `timeout_commit` in `my-test-dir/config/config.toml`
 
 ### Check that your node is built with mev-tendermint
 If the result of `curl -sL localhost:26657/status | jq .result.mev_info` is `null`, your node binary wasn't built with mev-tendermint. Revisit the [quickstart guide](./0-quickstart.md) or [the page on automatically building with mev-tendermint](./4-autobuild.md)
