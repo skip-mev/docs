@@ -144,7 +144,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
 </aside>
 
-**🚨 You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](./chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**
+**🚨 You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](./3-chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**
 
 In order to include a payment to the Auction House, you must include a **`MsgSend` message** in any of the transactions in your bundle that pays the `AuctionHouseAddress`
 

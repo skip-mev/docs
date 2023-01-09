@@ -80,7 +80,7 @@ Problems with mev-tendermint set up can often be traced back to your go.mod file
   → Towards the bottom of your go.mod file you should have a line that looks like this:
   `replace [github.com/tendermint/tendermint](http://github.com/tendermint/tendermint) => [github.com/skip-mev](http://github.com/skip-mev)/mev-tendermint MEV_TENDERMINT_VERSION`
   → If you don’t have the replace statement, your node will run without communicating with Skip and will be unable to receive MEV bundles that increase your validator rewards
-  → Find the mev-tendermint version you should be using [here](./config.md)
+  → Find the mev-tendermint version you should be using [here](./../3-chain-configuration.md)
 - **_*Do you have EXACTLY 1 `tendermint/tendermint` replace statement?*_**
   → Some chains (e.g. Terra2) replace tendermint with their own version of tendermint using a go.mod replace statement, just like we do. If you leave that pre-existing replace statement in the go.mod file and you add one to replace tendermint with mev-tendermint, the client will not compile. So make sure you get rid of that pre-existing replace statement.
 - **_*Is mev-tendermint in a `replace` section AND not in a `require` section?*_**

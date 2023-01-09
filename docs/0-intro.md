@@ -18,7 +18,7 @@ Please see our documentation below for how to integrate and use our endpoints.
 <aside>
 🏃‍♂️ <b> Get started right away </b>
 
-Check out [Quickstart](./validator/quickstart.md) to set up Skip Select. It takes 5 minutes. 
+Check out [Quickstart](./validator/0-quickstart.md) to set up Skip Select. It takes 5 minutes. 
 
 </aside>
 
