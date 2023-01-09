@@ -7,22 +7,20 @@ sidebar_position: 0
 
 # Skip Select
 
-<aside>
-⚡ Skip Select is a blockspace auction system that allows searchers to capture MEV in the Cosmos ecosystem, across a variety of chains, and <b>for validators, stakers, and searchers to share in the rewards</b>. 
+
+Skip Select is a blockspace auction system that allows searchers to capture MEV in the Cosmos ecosystem, across a variety of chains, and <b>for validators, stakers, and searchers to share in the rewards</b>. 
 
 Please see our documentation below for how to integrate and use our endpoints.
 
-</aside>
 
 
 ## **For validators**
 
-<aside>
-🏃‍♂️ <b> Get started right away </b>
+:::tip Get started right away 
 
-Check out [Quickstart](./validator/0-quickstart.md) to set up Skip Select. It takes 5 minutes. 
+Check out [Quickstart](./validator/0-quickstart.md) to set up Skip Select now. It takes 5 minutes. 
 
-</aside>
+:::
 
 Validators that integrate with Skip Select:
 
