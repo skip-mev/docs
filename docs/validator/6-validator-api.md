@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Validator API
 
-## GET Disconnected Validators
+## `GET` Disconnected Validators
 
 - This request returns the operator addresses of all disconnected validators for the requested chain
   :::info Disconnected Validator
@@ -35,7 +35,7 @@ sidebar_position: 6
   }
   ```
 
-## GET Registered Validators with Config Info
+## `GET` Registered Validators with Config Info
 
 - This request returns the information (detailed below) for each validator running skip on the specified chain
   - `OperatorAddress` - Operator address of the validator
@@ -47,7 +47,6 @@ sidebar_position: 6
   - `ChainID` - Chain id of network requested.
 ### URI: `/validator_infos`
 
-### Supported Verb: `GET`
 ### Query String Params:
 * `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
 
@@ -81,7 +80,7 @@ sidebar_position: 6
   }
   ```
 
-## GET Validator Connection Status 
+## `GET` Validator Connection Status 
 
 - This request returns the configuration information for each validator registered for Skip Select on the specified chain
   - `moniker` - Moniker of the validator
@@ -92,7 +91,6 @@ sidebar_position: 6
 
 ### URI: `/connection_data`
 
-### Supported Verb: `GET`
 ### Query String Params:
 * `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
 
