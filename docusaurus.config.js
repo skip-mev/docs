@@ -81,11 +81,11 @@ const config = {
 	  title: 'Docs',
 	  items: [
 	    {
-	      label: 'Validator',
+	      label: 'Validator Docs',
 	      to: '/validator/quickstart'
 	    },
 	    {
-	      label: 'Searcher',
+	      label: 'Searcher Docs',
 	      to: '/searcher'
 	    },
 	    {
