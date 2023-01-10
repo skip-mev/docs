@@ -1,20 +1,22 @@
 ---
 description: Skip Validator API
-title: validator API
-sidebar_position: 7
+title: Validator API
+sidebar_position: 6
 ---
 
-# API
+# Validator API
 
-## GET All Disconnected Validators Per Chain
+## GET Disconnected Validators
 
 - This request returns the operator addresses of all disconnected validators for the requested chain
   :::info Disconnected Validator
   A validator is considered disconnected if none of the validator's nodes (sentry / validator) are currently peered with the sentinel. **this means that the node is not receiving bundles!!**
+  :::
+### URI: `/disconnected_validators`
 
-- The format of the request is as follows: `/disconnected_validators?chain_id=<chain id for request>`
-
-### Example
+### Query String Params:
+* `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+### Example:
 
 - **Request**
   - `curl -X GET https://skip.money/disconnected_validators?chain_id=evmos_9001-2`
@@ -33,7 +35,7 @@ sidebar_position: 7
   }
   ```
 
-## GET All Validators Registered Per Chain
+## GET Registered Validators with Config Info
 
 - This request returns the information (detailed below) for each validator running skip on the specified chain
   - `OperatorAddress` - Operator address of the validator
@@ -43,9 +45,14 @@ sidebar_position: 7
   - `ValProfit` - The profit this validator has accrued to date
   - `NetworkProfit` - The profit this validator has generated in network fees from bundles for the network
   - `ChainID` - Chain id of network requested.
-- The format of the request is as follows: `curl -X GET https://skip.money/validator_infos?chain_id=<chain id of request>`
+### URI: `/validator_infos`
 
-### Example
+### Supported Verb: `GET`
+### Query String Params:
+* `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+
+
+### Example:
 
 - **Request**
   - ` curl -X GET https://skip.money/validator_infos?chain_id=uni-5`
@@ -74,17 +81,22 @@ sidebar_position: 7
   }
   ```
 
-## GET The Connection State Of All Validators Per Chain
+## GET Validator Connection Status 
 
-- This request returns the information (detailed below) for each validator running skip on the specified chain
+- This request returns the configuration information for each validator registered for Skip Select on the specified chain
   - `moniker` - Moniker of the validator
-  - `connection_status` - Whether or not the validator is currently peered with the sentinel
+  - `connection_status` - Whether or not the validator is currently peered with the sentinel ("disconnected" or "connected")
   - `time_since_connected` - Time in hours since the validator was last peered with the sentinel
+    - `time_since_connected`: will be `-1` for validators who have never connected to the sentinel
   - `version` - Which version of `mev-tendermint` the validator is running
-    - `time_since_connection` will be `-1` for validators who have never connected to the sentinel
-- The format of the request is as follows: `curl -X GET https://skip.money/connection_data?chain_id=<chain id for request>`
 
-### Example
+### URI: `/connection_data`
+
+### Supported Verb: `GET`
+### Query String Params:
+* `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+
+### Example:
 
 - **Request**
   - `curl -X GET https://skip.money/connection_data?chain_id=uni-5`
@@ -98,9 +110,9 @@ sidebar_position: 7
   		"version": "NA"
   	},
   	{
-  		"moniker": "✅ CryptoCrew Validators #IBCgang",
-  		"connection_status": "connected",
-  		"time_since_connected": 0,
+  		"moniker": "Please valiDate Me",
+  		"connection_status": "disconnected",
+  		"time_since_connected": -1,
   		"version": "NA"
   	}
       ...
