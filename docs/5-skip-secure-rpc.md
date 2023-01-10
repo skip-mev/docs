@@ -24,9 +24,3 @@ Skip Secure RPC is a private transaction system that enables users, frontends, a
 - Transactions sent through Skip Secure RPC **MUST** have the `memo` field of the transaction exactly equal to the sender address.
 - For convenience, the `skipjs` and `skip-py` libraries also expose helper functions for developers to easily integrate with Skip Secure.
   For example usage, see the [skipjs GitHub Repo](https://github.com/skip-mev/skipjs) and [skip-py GitHub Repo](https://github.com/skip-mev/skip-py).
-
-### For Chain Users
-
-Skip Secure RPC can be used directly with Keplr wallet (and other wallets) by changing the endpoints to Skip's Sentinel endpoints.
-
-In Keplr, this can be done by going to **Settings -> Endpoints** and replacing the RPC and LCD endpoints with the corresponding Sentinel endpoints for the chain used.
