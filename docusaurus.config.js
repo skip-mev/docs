@@ -91,6 +91,10 @@ const config = {
 	    {
 	      label: 'Chain Configuration',
 	      to: '/chain-configuration'
+	    },
+	    {
+	      label: 'Skip Secure RPC',
+	      to: '/skip-secure-rpc'
 	    }
 	  ],
 	},
