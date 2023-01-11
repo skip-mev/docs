@@ -39,7 +39,7 @@ If the result of `curl -sL localhost:26657/status | jq .result.mev_info` is `nul
 Check if you are **_properly registered with your API Key_** by running:
 
 ```bash
-curl <SENTINEL_RPC_STRING> --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["**<API_KEY>**"], "id": 1}'
+curl <SENTINEL_RPC_STRING> --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["<API_KEY>"], "id": 1}'
 
 # EXAMPLE
 curl http://juno-1-api.skip.money/ --header "Content-Type: application/json" --request POST --data '{"method": "get_peers", "params": ["YdtqnUpRsWOCK1wFIVBW1/rGGqY="], "id": 1}'
@@ -52,9 +52,9 @@ curl http://juno-1-api.skip.money/ --header "Content-Type: application/json" --r
       "jsonrpc": "2.0",
       "id": 1,
       "result": {
-        "**Peers": [
+        "Peers": [
           "557611c7a7307ce023a7d13486b570282521296d@34.205.156.129:49510"
-        ],**
+        ],
         "code": 0
       }
     }
