@@ -1,16 +1,16 @@
 ---
-description: Skip Secure RPC
-title: Skip Secure RPC
+description: Skip Secure
+title: Skip Secure
 sidebar_position: 5
 ---
 
-# Skip Secure RPC
+# Skip Secure
 
-Skip Secure RPC is a private transaction system that enables users, frontends, and blockchain clients to submit transactions without exposing them to the public mempool.
+Skip Secure is a private transaction system that enables users, frontends, and blockchain clients to submit transactions without exposing them to the public mempool. Skip Secure supports submitting transactions over [Cosmos REST Server / LCD](https://docs.cosmos.network/main/core/grpc_rest#rest-server) and [Tendermint RPC](https://docs.cosmos.network/main/core/grpc_rest#tendermint-rpc)
 
-## Skip Secure RPC Functionality
+## Skip Secure Functionality
 
-- Transactions submitted to the Skip Secure RPC endpoint are sent directly to the Skip Sentinel, which privately holds the transaction for up to 5 minutes.
+- Transactions submitted to the Skip Secure endpoint are sent directly to the Skip Sentinel, which privately holds the transaction for up to 5 minutes.
 - Each time the proposer of a block is a Skip validator, the Sentinel attempts to privately broadcast the transaction only to that validator through the Skip Select sidecar (not the normal mempool).
   This means that even if the proposer does not include the transaction in their block, they do not gossip the transaction to other nodes in the chain.
 - If the transaction is included in a block OR the transaction has been held by the Sentinel for 5 minutes, the transaction expires and the Sentinel no longer attempts to broadcast the transaction.
