@@ -20,14 +20,14 @@ Skip Secure is a private transaction system that enables users, frontends, and b
 ### For Developers
 
 - Skip Secure RPC can be invoked in two ways: 
-  - Calling the regular transaction broadcast methods on the Tendermint RPC provided by the Skip Sentinel -- [Documented here](https://docs.tendermint.com/v0.34/rpc/)
+  - Calling the regular transaction broadcast methods on the Tendermint RPC (`broadcast_tx_sync`, `broadcast_tx_async`) provided by the Skip Sentinel -- [Documented here](https://docs.tendermint.com/v0.34/rpc/)
     ```bash
     curl -X POST --data '{"jsonrpc":"2.0","method":"broadcast_tx_sync","params":["<base64_encoded_tx_hash>"],"id":1}' -H "Content-Type: application/json" http://pisco-1-api.skip.money/
     ```
   - Calling the the Cosmos-SDK REST server / LCD broadcast tx method (`POST /cosmos/tx/v1beta1/txs`) -- [Documented here](https://docs.figment.io/api-reference/node-api/cosmos-lcd/#/txs)
-  ```bash
-  curl -X POST "http://pisco-1-lcd.skip.money/txs" -H "accept: application/json" -H "Content-Type: application/json" -d '{ "tx": { "msg": [ "string" ], "fee": { "gas": "5000", "amount": [ { "denom\": "uluna", "amount": "50" } ] }, "memo": "memo_here", "signature": { "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=", "pub_key": { "type": "tendermint/PubKeySecp256k1", "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH" }, "account_number": "0", "sequence": "0" } }, "mode": "sync", "sequences": [ "1" ], "fee_granter": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv"}'
-  ```
+    ```bash
+    curl -X POST "http://pisco-1-lcd.skip.money/txs" -H "accept: application/json" -H "Content-Type: application/json" -d '{ "tx": { "msg": [ "string" ], "fee": { "gas": "5000", "amount": [ { "denom\": "uluna", "amount": "50" } ] }, "memo": "memo_here", "signature": { "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=", "pub_key": { "type": "tendermint/PubKeySecp256k1", "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH" }, "account_number": "0", "sequence": "0" } }, "mode": "sync", "sequences": [ "1" ], "fee_granter": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv"}'
+    ```
 
 - Please find Skip's RPC and Cosmos REST / LCD endpoints [here](3-chain-configuration.md)
 - Transactions sent through Skip Secure RPC **MUST** have the `memo` field of the transaction exactly equal to the sender address.

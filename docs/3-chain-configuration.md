@@ -13,7 +13,7 @@ All of this information is available and can be accessed programmatically on <a 
 
 ## Mainnets
 
-| Chain name      | Chain ID       | Supported Chain Version(s) | Skip Sentinel RPC (`sentinel_rpc_string`) for vals + searchers | sentinel_peer_string (for vals)                                                    | MEV-tendermint Version (for vals) | AuctionHouse Address (for searchers)           | Skip Sentinel Cosmos REST / LCD |
+| Chain name      | Chain ID       | Supported Chain Version(s) | Skip Sentinel RPC (`sentinel_rpc_string`) for vals + searchers | `sentinel_peer_string` for vals                                                    | MEV-tendermint Version (for vals) | AuctionHouse Address (for searchers)           | Skip Sentinel Cosmos-SDK REST / LCD for Skip Secure |
 | --------------- | -------------- | -------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------- | ----------------------------------------- |
 | JUNO Mainnet    | `juno-1`       | v11.0.3 v11.0.0            | `http://juno-1-api.skip.money`            | `8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656`       | `v0.34.21-mev.14`                 | `juno10g0l3hd9sau3vnjrayjhergcpxemucxcspgnn4`  | `http://juno-1-lcd.skip.money`       |
 | EVMOS Mainnet   | `evmos_9001-2` | v10.0.0 v10.0.1            | `http://evmos_9001-2-api.skip.money`      | `c0a2990e2a5dad7f4ace044d2f936de6891c6f0a@evmos_9001-2-sentinel.skip.money:26656` | `v0.34.24-mev.14`                 | `evmos17yqtnk08ly94lgz3fzagfu2twsws33z7cpkxa2` | `http://evmos_9001-2-lcd.skip.money` |
@@ -21,7 +21,7 @@ All of this information is available and can be accessed programmatically on <a 
 
 ## Testnets
 
-| Chain name        | Chain ID        | Version Supported | Skip Sentinel RPC (`sentinel_rpc_string`) for vals + searchers | sentinel_peer_string (for vals)                                                     | MEV-tendermint Version (for vals) | AuctionHouse Address (for searchers)           | Skip Sentinel Cosmos REST / LCD for Skip Secure
+| Chain name        | Chain ID        | Version Supported | Skip Sentinel RPC (`sentinel_rpc_string`) for vals + searchers | `sentinel_peer_string` for vals                                                     | MEV-tendermint Version (for vals) | AuctionHouse Address (for searchers)           | Skip Sentinel Cosmos-SDK REST / LCD for Skip Secure
 | ----------------- | --------------- | ----------------- | ----------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------- | ----------------------------------------- |
 | JUNO Testnet      | `uni`-5         | v11.0.0-alpha     | `http://uni-5-api.skip.money`             | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-5-sentinel.skip.money:26656`         | `v0.34.21-mev.14`                 | `juno10g0l3hd9sau3vnjrayjhergcpxemucxcspgnn4`  |   `http://uni-5-lcd.skip.money`         |
 | EVMOS Testnet     | `evmos_9000`-4  | v10.0.0-rc4       | `http://evmos_9000-4-api.skip.money`      | `4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos_9000-4-sentinel.skip.money:26656`  | `v0.34.24-mev.14`                 | `evmos17yqtnk08ly94lgz3fzagfu2twsws33z7cpkxa2` |  `http://evmos_9000-4-lcd.skip.money`   |
