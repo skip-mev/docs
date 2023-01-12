@@ -19,7 +19,8 @@ Skip Secure is a private transaction system that enables users, frontends, and b
 
 ### For Developers
 
-- Skip Secure RPC can be invoked in two ways: 
+- Skip Secure RPC can be invoked in two ways:
+
   - Calling the regular transaction broadcast methods on the Tendermint RPC (`broadcast_tx_sync`, `broadcast_tx_async`) provided by the Skip Sentinel -- [Documented here](https://docs.tendermint.com/v0.34/rpc/)
     ```bash
     curl -X POST --data '{"jsonrpc":"2.0","method":"broadcast_tx_sync","params":["<base64_encoded_tx_hash>"],"id":1}' -H "Content-Type: application/json" http://pisco-1-api.skip.money/
@@ -33,3 +34,18 @@ Skip Secure is a private transaction system that enables users, frontends, and b
 - Transactions sent through Skip Secure RPC **MUST** have the `memo` field of the transaction exactly equal to the sender address.
 - For convenience, the `skipjs` and `skip-py` libraries also expose helper functions for developers to easily integrate with Skip Secure.
   For example usage, see the [skipjs GitHub Repo](https://github.com/skip-mev/skipjs) and [skip-py GitHub Repo](https://github.com/skip-mev/skip-py).
+
+### For Users
+
+Skip Secure can be used directly with Keplr wallet, Terra Station, and other wallets by changing the wallet endpoints to Skip's Sentinel endpoints.
+
+In Keplr, this can be done by going to **Settings -> Endpoints** and replacing the LCD endpoint with the corresponding Sentinel LCD endpoint for the chain used.
+
+< insert video of doing this in Keplr, and sending a tx using the right memo >
+
+In Terra Station, this can be done by going to **Settings -> Network -> Add a network (or Manage Networks -> Add a network)** and adding a network using the Sentinel LCD endpoints for the chain used.
+
+< insert video of doing this in Terra station, and sending a tx using the right memo >
+
+- After this configuration, all transactions sent by the wallet will be routed to Skip Secure.
+- All transactions sent with the wallet using Skip Secure **MUST** have the `memo` field of the transaction set exactly to the sender address.
