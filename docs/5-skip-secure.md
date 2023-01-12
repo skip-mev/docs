@@ -46,7 +46,7 @@ After this configuration, all transactions sent by the wallet:
 
 
 :::tip Sentinel LCD Endpoints
-You can find the Sentinel LCD endpoints for all chains Skip Secure supports in [this table](./3-chain-configuration#mainnets) under the column labeled "Skip Sentinel Cosmos-SDK REST / LCD for Skip Secure".
+You can find the Sentinel LCD endpoints for all chains Skip Secure supports in [this table](./3-chain-configuration.md#mainnets) under the column labeled "Skip Sentinel Cosmos-SDK REST / LCD for Skip Secure".
 :::
 #### Keplr Users
 
