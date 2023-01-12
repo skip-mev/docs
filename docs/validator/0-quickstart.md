@@ -26,7 +26,7 @@ Here’s a quick overview by [Blockpane:](https://blockpane.com/)
 ### Mainnets
 
 - Juno Mainnet `CHAIN_ID=juno-1`
-- EVMOS Mainnet `CHAIN_ID=9001-2`
+- EVMOS Mainnet `CHAIN_ID=evmos_9001-2`
 - Terra2 Mainnet `CHAIN_ID=phoenix-1`
 
 ### Testnets

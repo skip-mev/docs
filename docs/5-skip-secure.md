@@ -17,7 +17,7 @@ Skip Secure is a private transaction system that enables users, frontends, and b
 
 ## How To Use Skip Secure RPC
 
-### For Developers
+### Developers
 
 - Skip Secure RPC can be invoked in two ways:
 
@@ -35,17 +35,33 @@ Skip Secure is a private transaction system that enables users, frontends, and b
 - For convenience, the `skipjs` and `skip-py` libraries also expose helper functions for developers to easily integrate with Skip Secure.
   For example usage, see the [skipjs GitHub Repo](https://github.com/skip-mev/skipjs) and [skip-py GitHub Repo](https://github.com/skip-mev/skip-py).
 
-### For Users
+### Wallet Users
 
-Skip Secure can be used directly with Keplr wallet, Terra Station, and other wallets by changing the wallet endpoints to Skip's Sentinel endpoints.
+Skip Secure can be used directly with Keplr wallet, Terra Station, and other wallets by changing the wallet's LCD endpoint to the Skip Sentinel LCD endpoint.
 
-In Keplr, this can be done by going to **Settings -> Endpoints** and replacing the LCD endpoint with the corresponding Sentinel LCD endpoint for the chain used.
+After this configuration, all transactions sent by the wallet:
+
+- Will be routed privately through Skip Secure 
+- **MUST** have the transaction `memo` field set exactly to the sender address.
+
+
+:::tip Sentinel LCD Endpoints
+You can find the Sentinel LCD endpoints for all chains Skip Secure supports in [this table](./3-chain-configuration#mainnets) under the column labeled "Skip Sentinel Cosmos-SDK REST / LCD for Skip Secure".
+:::
+#### Keplr Users
+
+* Navigate to **Settings -> Endpoints**
+* Replace the LCD endpoint with the corresponding Sentinel LCD endpoint for the chain used
+* Transactions you send **MUST** have the transaction `memo` field set exactly to the sender address
+
+
 
 < insert video of doing this in Keplr, and sending a tx using the right memo >
 
-In Terra Station, this can be done by going to **Settings -> Network -> Add a network (or Manage Networks -> Add a network)** and adding a network using the Sentinel LCD endpoints for the chain used.
-
+### Terra Station
+* Navigate to **Settings -> Network -> Add a network (or Manage Networks -> Add a network)** 
+* Add a network using the Sentinel LCD endpoint for the intended chain (e.g. phoenix-1)
+* Transactions you send **MUST** have the transaction `memo` field set exactly to the sender address.
+ 
 < insert video of doing this in Terra station, and sending a tx using the right memo >
 
-- After this configuration, all transactions sent by the wallet will be routed to Skip Secure.
-- All transactions sent with the wallet using Skip Secure **MUST** have the `memo` field of the transaction set exactly to the sender address.
