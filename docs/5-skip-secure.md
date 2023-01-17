@@ -15,7 +15,7 @@ Skip Secure is a private transaction system that enables users, frontends, and b
   This means that even if the proposer does not include the transaction in their block, they do not gossip the transaction to other nodes in the chain.
 - If the transaction is included in a block OR the transaction has been held by the Sentinel for 5 minutes, the transaction expires and the Sentinel no longer attempts to broadcast the transaction.
 
-<iframe className="video" src="https://www.youtube.com/embed/_75A4RWWwaM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GDxaLOljqyo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## How To Use Skip Secure RPC
 
