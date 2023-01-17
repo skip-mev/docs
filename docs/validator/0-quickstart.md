@@ -104,7 +104,7 @@ config settings that allow your node to recieve MEV bundles from Skip.
 ```bash
 # OTHER CONFIG...
 
-# **EXAMPLE** below (please use the correct values)
+# EXAMPLE below (please use the correct values)
 [sidecar]
 sentinel_peer_string = "fakepeerid@fake_network_id-sentinel.skip.money:26656"
 sentinel_rpc_string = "http://fake_network_id.skip.money"
@@ -128,7 +128,7 @@ api_key = "fake_api_key"
   | Chain name        | Chain ID      | Supported Chain Version | sentinel_rpc_string                  | sentinel_peer_string                                                              |
   | ----------------- | ------------- | ----------------------- | ----------------------------------- | -------------------------------------------------------------------------------- | 
   | JUNO Testnet      | uni-5         | v11.0.0-alpha           | http://uni-5-api.skip.money         | f18d6e226545b348aa37c86cc735d0620838fcd8@uni-5-sentinel.skip.money:26656        | 
-  | EVMOS Testnet     | evmos_9000-4  | v10.0.0-rc4             | http://evmos_9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos_9000-4-sentinel.skip.money:26656 | 
+  | EVMOS Testnet     | evmos_9000-4  | v11.0.0-rc1             | http://evmos_9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos_9000-4-sentinel.skip.money:26656 | 
   | Injective Testnet | injective-888 | v1.9                    | http://injective-888-api.skip.money | 24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656 | 
   | Terra 2 Testnet   | pisco-1       | v2.2.0                  | http://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656       | 
 
