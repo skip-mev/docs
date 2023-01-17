@@ -15,7 +15,7 @@ Skip Secure is a private transaction system that enables users, frontends, and b
   This means that even if the proposer does not include the transaction in their block, they do not gossip the transaction to other nodes in the chain.
 - If the transaction is included in a block OR the transaction has been held by the Sentinel for 5 minutes, the transaction expires and the Sentinel no longer attempts to broadcast the transaction.
 
-<insert video>
+<iframe className="video" src="https://www.youtube.com/embed/_75A4RWWwaM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
 
 ## How To Use Skip Secure RPC
 
@@ -56,14 +56,5 @@ You can find the Sentinel LCD endpoints for all chains Skip Secure supports in [
 * Replace the LCD endpoint with the corresponding Sentinel LCD endpoint for the chain used
 * Transactions you send **MUST** have the transaction `memo` field set exactly to the sender address
 
-
-
-< insert video of doing this in Keplr, and sending a tx using the right memo >
-
-#### Terra Station
-* Navigate to **Settings -> Network -> Add a network (or Manage Networks -> Add a network)** 
-* Add a network using the Sentinel LCD endpoint for the intended chain (e.g. phoenix-1)
-* Transactions you send **MUST** have the transaction `memo` field set exactly to the sender address.
- 
-< insert video of doing this in Terra station, and sending a tx using the right memo >
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-MnIJlP0bC0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
