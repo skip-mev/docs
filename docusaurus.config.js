@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Skip Protocol Docs',
   tagline: 'Documentation for skip protocol!',
-  url: 'https://skip-protocl-docs.netlify.app',
+  url: 'https://skip-protocol-docs.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
@@ -51,6 +51,7 @@ const config = {
   themeConfig:
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
   ({
+    image: 'img/skip-og-image.jpg', // used for og:image, e.g., for social media previews
     announcementBar: {
       id: 'new_docs',
       content: 'Welcome to the new Skip Docs! It\'s possible something'
