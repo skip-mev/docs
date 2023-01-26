@@ -4,7 +4,7 @@ title: Validator Quickstart
 sidebar_position: 0
 ---
 
-It takes just 5 minutes to start using Skip Select to capture MEV with your validator. 
+It takes just 5 minutes to start using Skip Select to capture MEV with your validator.
 
 ## Summary of Steps
 
@@ -48,12 +48,14 @@ Here’s a quick overview by [Blockpane:](https://blockpane.com/)
 
 ---
 
-## 2. Replace Tendermint 
-You must build the chain client with the mev-tendermint instead of tendermint. Below you can find instructions 
+## 2. Replace Tendermint
+
+You must build the chain client with the mev-tendermint instead of tendermint. Below you can find instructions
 to perform the replacement automatically or manually.
 
-- **Automated replacement** 
+- **Automated replacement**
   Run the following commands to automatically update your go.mod file with the correct version of mev-tendermint:
+
   ```bash
   export CHAIN_ID=<CORRECT CHAIN ID>
   export CHAIN_VERSION=<CHAIN_VERSION_RELEASE_TAG>
@@ -64,38 +66,42 @@ to perform the replacement automatically or manually.
 
 - **Manual Replacement**
   Find the correct mev-tendermint version tag [here](./../3-chain-configuration.md) or run:
-    ```bash
-    export CHAIN_ID=<USE CORRECT CHAIN ID>
-    export CHAIN_VERSION<USE CORRECT CHAIN VERSION>
-    curl https://raw.githubusercontent.com/skip-mev/config/main/$CHAIN_ID/$CHAIN_VERSION/mev-tendermint_version.txt
-    ```
+
+  ```bash
+  export CHAIN_ID=<USE CORRECT CHAIN ID>
+  export CHAIN_VERSION<USE CORRECT CHAIN VERSION>
+  curl https://raw.githubusercontent.com/skip-mev/config/main/$CHAIN_ID/$CHAIN_VERSION/mev-tendermint_version.txt
+  ```
 
   Once you have the correct version of mev-tendermint, open the go.mod file and add the following line at the end:
+
   ```tsx
   replace (
     // Other stuff...
     github.com/tendermint/tendermint => github.com/skip-mev/mev-tendermint <VERSION TAG>
   )
   ```
+
 ### 🚨🚨 **After performing the replacement run `go mod tidy` 🚨🚨**
 
 :::tip Alternative to replacing tendermint yourself
 
-Instead of replacing `tendermint` with `mev-tendermint` yourself, you can simply checkout and build the github.com/skip-mev fork of chain source code, where we have already performed the replacement for you in the VERSION_TAG-mev tags. 
+Instead of replacing `tendermint` with `mev-tendermint` yourself, you can simply checkout and build the github.com/skip-mev fork of chain source code, where we have already performed the replacement for you in the VERSION_TAG-mev tags.
 
-For example, https://github.com/skip-mev/evmos/releases/tag/v10.0.1-mev is v10.0.1 of EVMOS with the correct version of mev-tendermint already added for you. 
+For example, https://github.com/skip-mev/evmos/releases/tag/v10.0.1-mev is v10.0.1 of EVMOS with the correct version of mev-tendermint already added for you.
 
 Read more about other methods for automatically installing mev-tendermint [here](./4-autobuild.md)
 :::
- 
+
 :::info Replace tendermint on all nodes
 If you use Horcrux or any other infrastructure set up that requires multiple full nodes, you need to replace Tendermint on all of them.
 
 :::
+
 ## 3. Update config.toml
 
-`mev-tendermint` introduces a new section of config in `config.toml` called `[sidecar]` that includes several 
-config settings that allow your node to recieve MEV bundles from Skip. 
+`mev-tendermint` introduces a new section of config in `config.toml` called `[sidecar]` that includes several
+config settings that allow your node to recieve MEV bundles from Skip.
 
 (Optional: you can read more about what these are here: [Validator Config Reference Docs](./3-config.md))
 
@@ -117,20 +123,20 @@ api_key = "fake_api_key"
 
   **Mainnets**
 
-  | Chain name     | Chain ID     | Supported Chain Version | sentinel_rpc_string                 | sentinel_peer_string                                                             |
-  | -------------- | ------------ | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------- | 
+  | Chain name     | Chain ID     | Supported Chain Version | sentinel_rpc_string                | sentinel_peer_string                                                            |
+  | -------------- | ------------ | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------- |
   | JUNO Mainnet   | juno-1       | v11.0.3 v11.0.0         | http://juno-1-api.skip.money       | 8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656       |
-  | EVMOS Mainnet  | evmos_9001-2 | v10.0.0 v10.0.1         | http://evmos_9001-2-api.skip.money | c0a2990e2a5dad7f4ace044d2f936de6891c6f0a@evmos_9001-2-sentinel.skip.money:26656 |  
-  | Terra2 Mainnet | phoenix-1    | v2.2.0                  | http://phoenix-1-api.skip.money    | 20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656    | 
+  | EVMOS Mainnet  | evmos_9001-2 | v10.0.0 v10.0.1         | http://evmos_9001-2-api.skip.money | c0a2990e2a5dad7f4ace044d2f936de6891c6f0a@evmos_9001-2-sentinel.skip.money:26656 |
+  | Terra2 Mainnet | phoenix-1    | v2.2.0                  | http://phoenix-1-api.skip.money    | 20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656    |
 
   **Testnets**
 
-  | Chain name        | Chain ID      | Supported Chain Version | sentinel_rpc_string                  | sentinel_peer_string                                                              |
-  | ----------------- |-------------------------| ----------------------- | ----------------------------------- | -------------------------------------------------------------------------------- | 
-  | JUNO Testnet      | uni-5         | v12.0.0-alpha           | http://uni-5-api.skip.money         | f18d6e226545b348aa37c86cc735d0620838fcd8@uni-5-sentinel.skip.money:26656        | 
-  | EVMOS Testnet     | evmos_9000-4  | v11.0.0-rc1             | http://evmos_9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos_9000-4-sentinel.skip.money:26656 | 
-  | Injective Testnet | injective-888 | v1.9                    | http://injective-888-api.skip.money | 24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656 | 
-  | Terra 2 Testnet   | pisco-1       | v2.2.0                  | http://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656       | 
+  | Chain name        | Chain ID      | Supported Chain Version | sentinel_rpc_string                 | sentinel_peer_string                                                             |
+  | ----------------- | ------------- | ----------------------- | ----------------------------------- | -------------------------------------------------------------------------------- |
+  | JUNO Testnet      | uni-5         | v12.0.0-alpha           | http://uni-5-api.skip.money         | f18d6e226545b348aa37c86cc735d0620838fcd8@uni-5-sentinel.skip.money:26656         |
+  | EVMOS Testnet     | evmos_9000-4  | v11.0.0-rc3             | http://evmos_9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos_9000-4-sentinel.skip.money:26656  |
+  | Injective Testnet | injective-888 | v1.9                    | http://injective-888-api.skip.money | 24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656 |
+  | Terra 2 Testnet   | pisco-1       | v2.2.0                  | http://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656       |
 
 - **Extra config for sentry configurations 🏛**
 
@@ -187,26 +193,25 @@ api_key = "fake_api_key"
 
 **Run `curl -sL localhost:26657/status | jq .result.mev_info` to check if you are connected**
 
-  - If things are working correctly you should see this:
- 
-    ```jsx
-    {
-      "is_peered_with_sentinel": true,
-      "last_received_bundle_height": "0"
-    }
-    ```
+- If things are working correctly you should see this:
 
-- **Troubleshooting**: If you aren't receiving the expected output, please visit the [troubleshooting page](./1-troubleshooting.md) or get in touch with Skip team for assistance. 
+  ```jsx
+  {
+    "is_peered_with_sentinel": true,
+    "last_received_bundle_height": "0"
+  }
+  ```
 
-- **Monitoring:** mev-tendermint exposes new Prometheus metrics under the "mev" namespace in tendermint. 
-The most important metric is `mev_sentinel_connected`, which is 1 if your node is able to receive MEV transactions 
-from Skip, and 0 otherwise. Check out [this page](./2-metrics.md) for more information on metrics
+- **Troubleshooting**: If you aren't receiving the expected output, please visit the [troubleshooting page](./1-troubleshooting.md) or get in touch with Skip team for assistance.
 
-
-
+- **Monitoring:** mev-tendermint exposes new Prometheus metrics under the "mev" namespace in tendermint.
+  The most important metric is `mev_sentinel_connected`, which is 1 if your node is able to receive MEV transactions
+  from Skip, and 0 otherwise. Check out [this page](./2-metrics.md) for more information on metrics
 
 ### Handling Chain Upgrades
+
 Handling chain upgrades is simple:
+
 1. Check out the latest chain version tag
 2. Compile the your binary with the correct `mev-tendermint` instead of tendermint **(same as step 2 above)**, keeping the same config
 
