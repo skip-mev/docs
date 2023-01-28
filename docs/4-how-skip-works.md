@@ -28,7 +28,7 @@ The design goals of MEV-Tendermint is to allow & preserve:
 🏦  **Auction**
 
 - Prior to the creation of the first proposal for height `n+1` , the Skip Sentinel infrastructure selects an auction-winning bundle (or bundles) to include at the top of block `n+1`
-- The auction-winning bundle is defined as the bundle that pays the highest gas price ( sum(txFee)/sum(gasWanted) ) and doesn’t include any reverting transactions
+- The auction-winning bundle is defined as the bundle that pays the highest bid to the Skip auction address, doesn’t include any reverting transactions, and respects protection preferences of the block proposer (currently this only includes frontrunning/sandwich protection)
 - The sentinel ensures it’s simulations of the bundle are accurate by simulating it against the version of state where it will actually run (by optimistically applying the proposals produced for height `n` )
 
 🗣️  **Gossip**
