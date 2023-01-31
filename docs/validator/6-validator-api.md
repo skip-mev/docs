@@ -37,7 +37,7 @@ sidebar_position: 6
 
 ## `GET` Registered Validators with Config Info
 
-- This request returns the information (detailed below) for each validator running skip on the specified chain. You can optionally pass in a operator address to filter down results to a single validator by calling the `/validator_info/{chainID}/{operatorAddress}` endpoint.
+- This request returns the information (detailed below) for each validator running skip on the specified chain. You can optionally pass in a operator address to filter down results to a single validator by calling the `/validator_infos/{chainID}/{operatorAddress}` endpoint.
   - `operator_address` - Operator address of the validator
   - `moniker` - Moniker of the validator
   - `front_running_protection` - Whether or not the validator accepts front-running bundles
@@ -82,7 +82,7 @@ sidebar_position: 6
   }
   ```
 
-### URI: `/validator_info/{chainID}/{operatorAddress}`
+### URI: `/validator_infos/{chainID}/{operatorAddress}`
 
 ### URL String Params:
 * `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
@@ -145,7 +145,7 @@ sidebar_position: 6
 
 ## `GET` Status
 
-- This request returns the status - true if they are connected to the sentinel or were previously connected in the past 24 hours - of a validator for the specified chain. 
+- This request returns the status of a validator for the specified chain. Returns true if they are connected to the sentinel or were previously connected in the past 24 hours, otherwise it returns false.
 
 ### URI: `/status/{operatorAddress}/{chainID}`
 
