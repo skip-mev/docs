@@ -12,14 +12,14 @@ sidebar_position: 6
   :::info Disconnected Validator
   A validator is considered disconnected if none of the validator's nodes (sentry / validator) are currently peered with the sentinel. **this means that the node is not receiving bundles!!**
   :::
-### URI: `/disconnected_validators`
+### URI: `/disconnected_validators/{chainID}`
 
 ### Query String Params:
-* `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
 ### Example:
 
 - **Request**
-  - `curl -X GET https://skip.money/disconnected_validators?chain_id=evmos_9001-2`
+  - `curl -X GET https://skip.money/disconnected_validators/evmos_9001-2`
 - **Response**
   ```JSON
   {
@@ -37,7 +37,7 @@ sidebar_position: 6
 
 ## `GET` Registered Validators with Config Info
 
-- This request returns the information (detailed below) for each validator running skip on the specified chain. You can optionally pass in a operator address to filter down results to a single validator by calling the `/validator_infos/{chainID}/{operatorAddress}` endpoint.
+- This request returns the information (detailed below) for each validator running skip on the specified chain. You can optionally pass in a operator address to filter down results to a single validator by calling the `/validator_info/{chainID}/{operatorAddress}` endpoint.
   - `operator_address` - Operator address of the validator
   - `moniker` - Moniker of the validator
   - `front_running_protection` - Whether or not the validator accepts front-running bundles
@@ -45,20 +45,20 @@ sidebar_position: 6
   - `val_profit` - The profit this validator has accrued to date
   - `network_profit` - The profit this validator has generated in network fees from bundles for the network
   - `active` - Whether the validator is currently connected to or was connected to the sentinel in the last 24 hours
-### URI: `/validator_infos/{chainID}`
+### URI: `/validator_info/{chainID}`
 
 ### URL String Params:
-* `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
 
 
 ### Example:
 
 - **Request**
-  - ` curl -X GET https://skip.money/validator_infos/uni-5`
+  - ` curl -X GET https://skip.money/validator_info/uni-5`
 - **Response**
   ```JSON
   {
-    "validator_infos": [
+    "validator_info": [
       {
         "operator_address": "junovaloper1m9yh97z9l75fzegwyrrqy5elntlu9jf7g04cqv",
         "moniker": "skip-tester-283rh2r3h",
@@ -82,11 +82,11 @@ sidebar_position: 6
   }
   ```
 
-### URI: `/validator_infos/{chainID}/{operatorAddress}`
+### URI: `/validator_info/{chainID}/{operatorAddress}`
 
 ### URL String Params:
-* `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
-* `operator_address`: **(Required)** Operator address of the validator (e.g. "junovaloper1x20lytyf6zkcrv5edpkfkn8sz578qg5sujlhnj")
+* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+* `operatorAddress`: **(Required)** Operator address of the validator (e.g. "junovaloper1x20lytyf6zkcrv5edpkfkn8sz578qg5sujlhnj")
 
 
 ### Example:
@@ -96,16 +96,17 @@ sidebar_position: 6
 - **Response**
   ```JSON
   {
-    "validator_info": 
-      {
-        "operator_address": "junovaloper1m9yh97z9l75fzegwyrrqy5elntlu9jf7g04cqv",
-        "moniker": "skip-tester-283rh2r3h",
-        "front_running_protection": true,
-        "payment_percentage": 50,
-        "val_profit": 168667517,
-        "network_profit": 175559088,
-        "active": true,
-      },
+    "validator_info": [
+        {
+          "operator_address": "junovaloper1m9yh97z9l75fzegwyrrqy5elntlu9jf7g04cqv",
+          "moniker": "skip-tester-283rh2r3h",
+          "front_running_protection": true,
+          "payment_percentage": 50,
+          "val_profit": 168667517,
+          "network_profit": 175559088,
+          "active": true,
+        },
+      ]
   }
   ```
 
@@ -114,15 +115,15 @@ sidebar_position: 6
 
 - This request returns a list of validators (denoted by their operator address) that are currently connected or were connected to the sentinel in the previous 24 hours for the specified chain. 
 
-### URI: `/active_validators`
+### URI: `/active_validators/{chainID}`
 
 ### Query String Params:
-* `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
 
 ### Example:
 
 - **Request**
-  - `curl -X GET https://skip.money/active_validators?chain_id=juno-1`
+  - `curl -X GET https://skip.money/active_validators/juno-1`
 - **Response**
   ```JSON
   {
@@ -147,16 +148,16 @@ sidebar_position: 6
 
 - This request returns the status of a validator for the specified chain. Returns true if they are connected to the sentinel or were previously connected in the past 24 hours, otherwise it returns false.
 
-### URI: `/status/{operatorAddress}/{chainID}`
+### URI: `/status/{chainID}/{operatorAddress}`
 
 ### Query String Params:
-* `chain_id`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
-* `operator_address`: **(Required)** Operator address of the validator (e.g. "junovaloper1gfaavqqg79tgcmgws6ys7yvchtc3fl42zjw43l")
+* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+* `operatorAddress`: **(Required)** Operator address of the validator (e.g. "junovaloper1gfaavqqg79tgcmgws6ys7yvchtc3fl42zjw43l")
 
 ### Example:
 
 - **Request**
-  - `curl -X GET https://skip.money/status/junovaloper1mxpyg8u68k6a8wdu3hs5whcpw9q285pcpxm5yx/juno-1`
+  - `curl -X GET https://skip.money/status/juno-1/junovaloper1mxpyg8u68k6a8wdu3hs5whcpw9q285pcpxm5yx`
 
 - **Response**
   ```JSON
