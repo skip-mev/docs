@@ -19,7 +19,7 @@ sidebar_position: 6
 ### Example:
 
 - **Request**
-  - `curl -X GET https://api.skip.money/disconnected_validators/evmos_9001-2`
+  - `curl -X GET https://api.skip.money/v1/disconnected_validators/evmos_9001-2`
 - **Response**
   ```JSON
   {
@@ -54,7 +54,7 @@ sidebar_position: 6
 ### Example:
 
 - **Request**
-  - ` curl -X GET https://api.skip.money/validator_info/uni-5`
+  - ` curl -X GET https://api.skip.money/v1/validator_info/uni-5`
 - **Response**
   ```JSON
   {
@@ -92,7 +92,7 @@ sidebar_position: 6
 ### Example:
 
 - **Request**
-  - ` curl -X GET https://api.skip.money/validator_info/uni-5/junovaloper1m9yh97z9l75fzegwyrrqy5elntlu9jf7g04cqv`
+  - ` curl -X GET https://api.skip.money/v1/validator_info/uni-5/junovaloper1m9yh97z9l75fzegwyrrqy5elntlu9jf7g04cqv`
 - **Response**
   ```JSON
   {
@@ -123,7 +123,7 @@ sidebar_position: 6
 ### Example:
 
 - **Request**
-  - `curl -X GET https://api.skip.money/active_validators/juno-1`
+  - `curl -X GET https://api.skip.money/v1/active_validators/juno-1`
 - **Response**
   ```JSON
   {
@@ -157,7 +157,7 @@ sidebar_position: 6
 ### Example:
 
 - **Request**
-  - `curl -X GET https://api.skip.money/status/juno-1/junovaloper1mxpyg8u68k6a8wdu3hs5whcpw9q285pcpxm5yx`
+  - `curl -X GET https://api.skip.money/v1/status/juno-1/junovaloper1mxpyg8u68k6a8wdu3hs5whcpw9q285pcpxm5yx`
 
 - **Response**
   ```JSON
