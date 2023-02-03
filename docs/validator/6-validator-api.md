@@ -113,7 +113,7 @@ sidebar_position: 6
 
 ## `GET` Active Validators 
 
-- This request returns a list of validators (denoted by their operator address) that are currently connected or were connected to the sentinel in the previous 24 hours for the specified chain. 
+- This request returns a list of validators (denoted by their operator address) that are currently connected or were connected to the sentinel in the previous 7 days for the specified chain. 
 
 ### URI: `/active_validators/{chainID}`
 
