@@ -54,7 +54,7 @@ sidebar_position: 6
 ### Example:
 
 - **Request**
-  - ` curl -X GET https://api.skip.money/v1/validator_info/uni-5`
+  - ` curl -X GET https://api.skip.money/v1/validator_info/uni-6`
 - **Response**
   ```JSON
   {
@@ -92,7 +92,7 @@ sidebar_position: 6
 ### Example:
 
 - **Request**
-  - ` curl -X GET https://api.skip.money/v1/validator_info/uni-5/junovaloper1m9yh97z9l75fzegwyrrqy5elntlu9jf7g04cqv`
+  - ` curl -X GET https://api.skip.money/v1/validator_info/uni-6/junovaloper1m9yh97z9l75fzegwyrrqy5elntlu9jf7g04cqv`
 - **Response**
   ```JSON
   {
