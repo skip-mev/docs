@@ -138,7 +138,7 @@ api_key = "fake_api_key"
   | EVMOS Testnet     | evmos_9000-4  | v11.0.0-rc3             | https://evmos-9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos-9000-4-sentinel.skip.money:26656   |
   | Injective Testnet | injective-888 | v1.9                    | https://injective-888-api.skip.money | 24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656  |
   | Terra 2 Testnet   | pisco-1       | v2.2.0                  | https://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656        |
-| Comdex Testnet    | comdex-test2  | v8.1.0.beta             | https://comdex-test2-api.skip.money  | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656` | 
+| Comdex Testnet    | comdex-test2  | v9.0.0             | https://comdex-test2-api.skip.money  | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656` | 
 
 
 - **Extra config for sentry configurations 🏛**
