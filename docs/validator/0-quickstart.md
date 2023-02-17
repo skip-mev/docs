@@ -31,7 +31,7 @@ Here’s a quick overview by [Blockpane:](https://blockpane.com/)
 
 ### Testnets
 
-- Juno Testnet `CHAIN_ID=uni-5`
+- Juno Testnet `CHAIN_ID=uni-6`
 - Terra2 Testnet `CHAIN_ID=pisco-1`
 - EVMOS Testnet `CHAIN_ID=evmos_9000-4`
 - Injective Testnet `CHAIN_ID=injective-888`
@@ -132,13 +132,13 @@ api_key = "fake_api_key"
 
   **Testnets**
 
-  | Chain name        | Chain ID      | Supported Chain Version | sentinel_rpc_string                 | sentinel_peer_string                                                             |
-  | ----------------- | ------------- | ----------------------- | ----------------------------------- | -------------------------------------------------------------------------------- |
-  | JUNO Testnet      | uni-5         | v12.0.0-alpha3          | https://uni-5-api.skip.money         | f18d6e226545b348aa37c86cc735d0620838fcd8@uni-5-sentinel.skip.money:26656         |
-  | EVMOS Testnet     | evmos_9000-4  | v11.0.0-rc3             | https://evmos-9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos-9000-4-sentinel.skip.money:26656  |
-  | Injective Testnet | injective-888 | v1.9                    | https://injective-888-api.skip.money | 24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656 |
-  | Terra 2 Testnet   | pisco-1       | v2.2.0                  | https://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656       |
-| Comdex Testnet    | comdex-test2  | v8.1.0.beta       | https://comdex-test2-api.skip.money        | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656`  | 
+  | Chain name        | Chain ID      | Supported Chain Version | sentinel_rpc_string                  | sentinel_peer_string                                                              |
+  |---------------|-------------------------|--------------------------------------|-----------------------------------------------------------------------------------| -------------------------------------------------------------------------------- |
+  | JUNO Testnet      | uni-6         | v12.0.0-beta.1          | https://uni-6-api.skip.money         | f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656          |
+  | EVMOS Testnet     | evmos_9000-4  | v11.0.0-rc3             | https://evmos-9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos-9000-4-sentinel.skip.money:26656   |
+  | Injective Testnet | injective-888 | v1.9                    | https://injective-888-api.skip.money | 24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656  |
+  | Terra 2 Testnet   | pisco-1       | v2.2.0                  | https://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656        |
+| Comdex Testnet    | comdex-test2  | v8.1.0.beta             | https://comdex-test2-api.skip.money  | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656` | 
 
 
 - **Extra config for sentry configurations 🏛**
@@ -150,8 +150,8 @@ api_key = "fake_api_key"
     ```jsx
     [sidecar];
     sentinel_peer_string =
-      "d1463b730c6e0dcea59db726836aeaff13a8119f@uni-5-sentinel.skip.money:26656";
-    sentinel_rpc_string = "http://uni-5-api.skip.money";
+      "d1463b730c6e0dcea59db726836aeaff13a8119f@uni-6-sentinel.skip.money:26656";
+    sentinel_rpc_string = "http://uni-6-api.skip.money";
     api_key = "2314ajinashg2389jfjap";
     personal_peer_ids = "NODEID1,NODEID2, ...";
     ```
