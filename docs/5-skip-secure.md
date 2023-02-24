@@ -15,7 +15,7 @@ Skip Secure is a private transaction system that enables users, frontends, and b
   This means that even if the proposer does not include the transaction in their block, they do not gossip the transaction to other nodes in the chain.
 - If the transaction is included in a block OR the transaction has been held by the Sentinel for 5 minutes, the transaction expires and the Sentinel no longer attempts to broadcast the transaction.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GDxaLOljqyo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="video" src="https://www.youtube.com/embed/GDxaLOljqyo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## How To Use Skip Secure RPC
 
@@ -43,18 +43,17 @@ Skip Secure can be used directly with Keplr wallet, Terra Station, and other wal
 
 After this configuration, all transactions sent by the wallet:
 
-- Will be routed privately through Skip Secure 
+- Will be routed privately through Skip Secure
 - **MUST** have the transaction `memo` field set exactly to the sender address.
-
 
 :::tip Sentinel LCD Endpoints
 You can find the Sentinel LCD endpoints for all chains Skip Secure supports in [this table](./3-chain-configuration.md#mainnets) under the column labeled "Skip Sentinel Cosmos-SDK REST / LCD for Skip Secure".
 :::
+
 #### Keplr
 
-* Navigate to **Settings -> Endpoints**
-* Replace the LCD endpoint with the corresponding Sentinel LCD endpoint for the chain used
-* Transactions you send **MUST** have the transaction `memo` field set exactly to the sender address
+- Navigate to **Settings -> Endpoints**
+- Replace the LCD endpoint with the corresponding Sentinel LCD endpoint for the chain used
+- Transactions you send **MUST** have the transaction `memo` field set exactly to the sender address
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-MnIJlP0bC0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+<iframe className="video" src="https://www.youtube.com/embed/-MnIJlP0bC0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

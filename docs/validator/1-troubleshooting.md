@@ -6,12 +6,11 @@ sidebar_position: 1
 
 # Troubleshooting
 
-
 Are you having trouble starting your node with mev-tendermint? We’ve compiled a list of common problems and solutions we’ve seen many validators experience
 
-
 ## How do I know if mev-tendermint is working as expected?
-If mev-tendermint is working correctly `curl -sL localhost:26657/status | jq .result.mev_info` should return: 
+
+If mev-tendermint is working correctly `curl -sL localhost:26657/status | jq .result.mev_info` should return:
 
 ```jsx
 {
@@ -20,22 +19,23 @@ If mev-tendermint is working correctly `curl -sL localhost:26657/status | jq .re
 }
 ```
 
-- `is_peered_with_sentinel` should be true for all nodes exposed to the internet (i.e. those that should 
-receive MEV bundles directly from Skip) and false for validator nodes that are protected behind sentries>
+- `is_peered_with_sentinel` should be true for all nodes exposed to the internet (i.e. those that should
+  receive MEV bundles directly from Skip) and false for validator nodes that are protected behind sentries>
 - `last_received_bundle_height` should update from time to time as your node receives MEV bundles from Skip
 
 ### Check that your validator is configured correctly
 
 - We recommend 0-5 `persistent_peers`. Many validators have reported reduced performance of tendermint and mev-tendermint
-when using more than several `persistent_peers`
+  when using more than several `persistent_peers`
 - `seed` mode should be set to `false`. Seed mode regularly drops inbound peers and can lead to missed blocks.
 - `timeout_commit` should be set to the chain's default value. You can find this by running `simd init test --home my-test-dir` and checking the value of `timeout_commit` in `my-test-dir/config/config.toml`
 
 ### Check that your node is built with mev-tendermint
-If the result of `curl -sL localhost:26657/status | jq .result.mev_info` is `null`, your node binary wasn't built with mev-tendermint. Revisit the [quickstart guide](./0-quickstart.md) or [the page on automatically building with mev-tendermint](./4-autobuild.md)
 
+If the result of `curl -sL localhost:26657/status | jq .result.mev_info` is `null`, your node binary wasn't built with mev-tendermint. Revisit the [quickstart guide](./0-quickstart.md#2-compile-your-node-with-mev-tendermint) or [the page on alternative build methods](./5-alternatives.md)
 
 ### Check that you are registered with Skip
+
 Check if you are **_properly registered with your API Key_** by running:
 
 ```bash
@@ -47,22 +47,20 @@ curl http://juno-1-api.skip.money/ --header "Content-Type: application/json" --r
 
 1. 🚨 When you run this, you should see your peers connected, example below:
 
-    ```bash
-    {
-      "jsonrpc": "2.0",
-      "id": 1,
-      "result": {
-        "Peers": [
-          "557611c7a7307ce023a7d13486b570282521296d@34.205.156.129:49510"
-        ],
-        "code": 0
-      }
-    }
-    ```
+   ```bash
+   {
+     "jsonrpc": "2.0",
+     "id": 1,
+     "result": {
+       "Peers": [
+         "557611c7a7307ce023a7d13486b570282521296d@34.205.156.129:49510"
+       ],
+       "code": 0
+     }
+   }
+   ```
 
 2. 🚨 If you don’t see your peers connected, you likely have an incorrect **`api_key`** or **`sentinel_rpc_string`** configuration
-
-
 
 ### Check your go.mod file is correct
 
@@ -140,4 +138,3 @@ Folks frequently misconfigure some of the Skip settings `config.toml`
 - **Do any of the config settings you’ve added have curly quotes?**
   → Your quotes need to be straight, plain-text quotes, rather than rich-text curly quotes
   → Folks sometimes introduce curly quotes by copying the quotes into a chat service or an editor that assumes rich text by default and makes the conversion (Slack is a common culprit)
- 

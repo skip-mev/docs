@@ -1,7 +1,7 @@
 ---
 description: Skip Validator API
 title: Validator API
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # Validator API
@@ -12,10 +12,13 @@ sidebar_position: 6
   :::info Disconnected Validator
   A validator is considered disconnected if none of the validator's nodes (sentry / validator) are currently peered with the sentinel. **this means that the node is not receiving bundles!!**
   :::
+
 ### URI: `/disconnected_validators/{chainID}`
 
 ### Query String Params:
-* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+
+- `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+
 ### Example:
 
 - **Request**
@@ -45,11 +48,12 @@ sidebar_position: 6
   - `val_profit` - The profit this validator has accrued to date
   - `network_profit` - The profit this validator has generated in network fees from bundles for the network
   - `active` - Whether the validator is currently connected to or was connected to the sentinel in the last 24 hours
+
 ### URI: `/validator_info/{chainID}`
 
 ### URL String Params:
-* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
 
+- `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
 
 ### Example:
 
@@ -85,9 +89,9 @@ sidebar_position: 6
 ### URI: `/validator_info/{chainID}/{operatorAddress}`
 
 ### URL String Params:
-* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
-* `operatorAddress`: **(Required)** Operator address of the validator (e.g. "junovaloper1x20lytyf6zkcrv5edpkfkn8sz578qg5sujlhnj")
 
+- `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+- `operatorAddress`: **(Required)** Operator address of the validator (e.g. "junovaloper1x20lytyf6zkcrv5edpkfkn8sz578qg5sujlhnj")
 
 ### Example:
 
@@ -110,15 +114,15 @@ sidebar_position: 6
   }
   ```
 
+## `GET` Active Validators
 
-## `GET` Active Validators 
-
-- This request returns a list of validators (denoted by their operator address) that are currently connected or were connected to the sentinel in the previous 7 days for the specified chain. 
+- This request returns a list of validators (denoted by their operator address) that are currently connected or were connected to the sentinel in the previous 7 days for the specified chain.
 
 ### URI: `/active_validators/{chainID}`
 
 ### Query String Params:
-* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+
+- `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
 
 ### Example:
 
@@ -151,12 +155,14 @@ sidebar_position: 6
 ### URI: `/status/{chainID}/{operatorAddress}`
 
 ### Query String Params:
-* `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
-* `operatorAddress`: **(Required)** Operator address of the validator (e.g. "junovaloper1gfaavqqg79tgcmgws6ys7yvchtc3fl42zjw43l")
+
+- `chainID`: **(Required)** Chain ID of the target chain (e.g. "juno-1")
+- `operatorAddress`: **(Required)** Operator address of the validator (e.g. "junovaloper1gfaavqqg79tgcmgws6ys7yvchtc3fl42zjw43l")
 
 ### Example:
 
 - **Request**
+
   - `curl -X GET https://api.skip.money/v1/status/juno-1/junovaloper1mxpyg8u68k6a8wdu3hs5whcpw9q285pcpxm5yx`
 
 - **Response**

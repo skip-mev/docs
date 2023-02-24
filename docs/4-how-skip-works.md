@@ -14,7 +14,7 @@ sidebar_position: 4
 
 ### ✅  Design
 
-The design goals of MEV-Tendermint is to allow & preserve:
+The design goals of MEV-Tendermint are to allow & preserve:
 
 1. 🔒  **Privacy** for users submitting bundles
 2. 🎁  **Atomicity** for bundles of transactions
