@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Skip Protocol Docs',
   tagline: 'Documentation for skip protocol!',
-  url: 'https://skip-protocl-docs.netlify.app',
+  url: 'https://skip-protocol-docs.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
@@ -51,12 +51,7 @@ const config = {
   themeConfig:
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
   ({
-    announcementBar: {
-      id: 'new_docs',
-      content: 'Welcome to the new Skip Docs! It\'s possible something'
-      + ' got lost in translation. If something seems off, check out the original <a href="https://skip-protocol.notion.site/Skip-Documentation-a940cd75b99548c7880f1d35fb547d5b">Notion docs</a> and feel free to ask us any questions'
-      + ' on our <a href="https://discord.gg/sq4bPtYV57">Discord</a>'
-    },
+	image: 'img/skip-og-image.jpg', // used for og:image, e.g., for social media previews 
     colorMode: {
       respectPrefersColorScheme: true
     },
@@ -108,19 +103,7 @@ const config = {
 	    {
 	      label: 'Chat Telegram',
 	      href: 'https://t.me/+nwk3BENlQbsxMGNh',
-	    },
-	    {
-	      label: 'Announcements Telegram',
-	      href: 'https://t.me/+cOqB4ALhPdMwZDMx',
-	    },
-	    {
-	      label: 'Juno Telegram',
-	      href: 'https://t.me/+3MR5EP3Vc2gxNTFh',
-	    },
-	    {
-	      label: 'Evmos Telegram',
-	      href: 'https://t.me/+55HtDJdMH-VkYjMx',
-	    }
+	    }, 
 	  ],
 	},
 	{
