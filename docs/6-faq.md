@@ -27,11 +27,11 @@ Skip gives app chains and validators maximum choice and flexibility in how to bu
 - [Skip Secure](5-skip-secure.md)
   - A private RPC endpoint anyone can add to their wallets to have private transactions, meaning no possibility of frontrunning or sandwiching
 
-### Does skip have a token?
+### Does Skip have a token?
 
 No, Skip doesn’t have a token.
 
-### How many chains is skip currently live on?
+### How many chains is Skip currently live on?
 
 Check [skip.money/validators](http://skip.money/validators) to see all chains that Skip currently supports.
 
@@ -61,7 +61,7 @@ Skip’s vision is to make blockchains financially sustainable through MEV, and 
 
 ### Is it possible to know if a validator is running Skip?
 
-Yes, Validators running Skip have a skip badge in the validators details on Mintscan, and are also listed on Skip's website ([https://skip.money/validators](https://skip.money/validators))
+Yes, Validators running Skip have a Skip badge in the validators details on Mintscan, and are also listed on Skip's website ([https://skip.money/validators](https://skip.money/validators))
 
 ### How much money does Skip generate validators?
 
