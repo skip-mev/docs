@@ -117,15 +117,17 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 - **The `broadcast_bundle_sync` method returns a result with the following information 👇**
   - `code` indicates the status of the bundle ingress request. The following are the code meanings:
   ```
-  0: The submission was successful, and the bundle is considered in the auction
+  0: The bundle won the auction
   1: The pubkey provided could not be translated into an address
   2: The bundle signature failed verification
   3: The bundle failed in a precheck (tx metadata or the auction for desiredHeight was closed)
   4: The desiredHeight proposer is not a Skip validator, therefore there is no auction
   5: The bundle failed in CheckTx
-  6: The bundle failed to be queued for simulation -- usually this means it arrived too late
-  7: The bundle was not simulated -- usually this means it lost the auction or arrived too late
+  6: Deprecated Error Code
+  7: The bundle was not simulated (this means it arrived too late for a given auction height)
   8: The bundle was simulated and some transaction failed in simulation
+  9: The bundle lost the auction due to being outbid
+  10: The bundle response did not wait for auction simulation (this means the desired height is too early for auction simulation)
   ```
   - `txs` contains an array of the last 20 bytes of the string representation of the each of submitted transactions
   - `result_check_txs` contains the ABCI result of calling CheckTx on each transaction, in the same order they were passed in
