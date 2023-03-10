@@ -18,15 +18,43 @@ sidebar_position: 2
 
 ---
 
+## 🏦 Auction
+
+### ⭐ Overview
+
+The Skip Select Auction is an auction for top-of-block, non-reverting, bundle inclusion.
+
+- ☝️ Top-of-block: The bundle submitted will be executed at the top of the block for the block height desired by the searcher.
+- 🛡️ Non-reverting: No transaction in the bundle will ever fail on chain, protecting searchers from wasting bid payments and gas fees on failed MEV extraction attempts.
+  - Stated in another way, only auction winners pay the auction bid and spend gas fees, there is no cost or downside to participating and losing in the Skip auction!
+- 🎁 Bundle Inclusion: Searchers submit a set of transactions, denoted as a bundle, to the auction for top-of-block, non-reverting inclusion.
+
+### 🫵 Participation
+
+In order to compete in the auction, a searcher must sign and submit a bundle to the Skip Relay (more details on how to do this in the sections below). A payment to the `AuctionHouseAddress` must exist in one of the searcher's transactions in their submitted bundle.
+
+- Currently, this payment must be a Cosmos `MsgSend` message, but we are actively exploring contract-based payments for CosmWasm and EVM chains.
+
+- 👉 **You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](./3-chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**)
+
+### 🥇 Winning
+
+The winner of an auction for any given block height is the non-reverting bundle submitted to the auction that has the largest payment to the `AuctionHouseAddress` and respects validator preferences (currently only front-running protection, more details in the preferences section below).
+
+The greater your bundle’s payment to the `AuctionHouseAddress`, the greater the likelihood that it will be included on-chain. If you lose the auction, you can explore Skip's activity dashboard (https://skip.money/activity) or the chain afterwards to discover bundles with higher payments to the `AuctionHouseAddress` that outbid you.
+
+- 💸 The entirety of your Auction House payment is sent to the proposing validator and network stakers. You do not need to worry about this split, Skip handles it automatically on-chain.
+
+---
+
 ## ✍️ Signing Bundles
 
 Skip requires searchers to **sign** bundles with the private key they also used to sign their transactions with in their submitted bundles.
 
 - Note, this still allows you to bundle with transactions that aren’t your own (i.e. that you did not sign).
 
-<h3>
 <details>
-<summary> 🤝 With our Helper Libraries </summary>
+<summary>🤝 With our Helper Libraries</summary>
 
 ✍️ You can sign bundles with:
 
@@ -34,9 +62,7 @@ Skip requires searchers to **sign** bundles with the private key they also used 
 - [skip-python](https://github.com/skip-mev/skip-py) via the `sign_bundle` method or the combined `sign_and_send_bundle` method
 
 </details>
-</h3>
 
-<h3>
 <details>
 <summary> 🧠 Without our Helper Libraries </summary>
 
@@ -74,27 +100,23 @@ To start, you’ll need two things (python will be used for this example):
    ```
 
 </details>
-</h3>
 
 ---
 
-## 💸 Sending Bundles
+## 📨 Sending Bundles
 
 Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
-<h3>
 <details>
 <summary> 🤝 With our Helper Libraries </summary>
 
 ✍️ You can send bundles with:
 
 - [skipjs](https://github.com/skip-mev/skipjs) via the `sendBundle` method on the `SkipBundleClient`
-- [skip-python](https://github.com/skip-mev/skip-py)** via the `**send_bundle**`method or the combined`**sign_and_send_bundle\*\*` method
+- [skip-python](https://github.com/skip-mev/skip-py) via the `send_bundle` method or the combined `sign_and_send_bundle` method
 
 </details>
-</h3>
 
-<h3>
 <details>
 <summary> 🧠 Without our Helper Libraries </summary>
 
@@ -135,13 +157,14 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
   ```
 
 </details>
-</h3>
 
 ---
 
 ## 📣 Bundle Submission Responses
 
-### Response Format and Meaning
+Submitting bundles to the Skip Relay results in a response back from the Relay that informs the searcher about the structure of their bundle and the results from attempting to include the bundle in an auction for a given block height.
+
+### 📜 Response Format and Meaning
 
 ```JSON
 {'jsonrpc': '2.0', 'id': 1, 'result':
@@ -160,7 +183,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
 - 🚨 **Bundle submissions for blocks over two in advance do not simulate immediately, and this response will come before the simulation occurs, therefore simulation_success will be false in the jsonrpc response regardless of whether the simulation succeeded or not.**
 
-### Codes and Meaning
+### 🚩 Codes and Meaning
 
 ```
 0: The bundle won the auction
@@ -179,7 +202,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 - 🐇 Bundle submission responses are immediate for codes: 1, 2, 3, 4, 5, 7, and 10
 - 🐢 Bundle submission responses are returned after the auction for a desired height concludes if a bundle is valid and is simulated / considered for the auction. This encapsulates error codes: 0, 8, and 9.
 
-### Example Responses
+### 👐 Example Responses
 
 <details>
 <summary> 👑 Code 0: The bundle won the auction </summary>
@@ -210,36 +233,17 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
 ---
 
-## 🏆 Winning the Auction
+## 👩‍⚖️ Validator Preferences
 
-:::tip Bundle Ordering
+Skip Select allows validators running mev-tendermint to have preferences over the bundles that are included in the blocks they propose.
 
-Bundles are ordered by payment to the `AuctionHouseAddress`
+### 🛑 🏃‍♂️ Frontrun-Protect
 
-:::
+- Currently, the only preference that impacts searchers is the `Frontrun-Protect` preference, which disallows bundles that may frontrun or sandwich a transaction not signed by the searcher.
+- `Frontrun-Protect` is turned on on all validators running mev-tendermint at the moment. Sorry sandwichers.
 
-**🚨 You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](./3-chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**
-
-In order to include a payment to the Auction House, you must include a **`MsgSend` message** in any of the transactions in your bundle that pays the `AuctionHouseAddress`
-
-→ The entirety of your Auction House payment is sent to the proposing validator, and their stakers. You do not need to worry about this split, Skip handles it on-chain and automatically.
-
-The greater your bundle’s `AuctionHousePayment`, the greater the likelihood that it will be included on-chain. If you lose the auction, you can explore the chain afterwards to discover bundles with higher `AuctionHousePayments` that outbid you.
-
----
-
-## 🛡️ Bundle Reversion Protection
-
-**Bundles will only end up on-chain if every
-transaction in the bundle executes successfully**
-
-If any transaction in your bundle would have reverted on-chain (for whatever reason), Skip will not execute the bundle land on-chain. Your transaction fees and auction payment will not be consumed.
-
-That means only auction winners spend fees. There is no cost or downside to losing the Skip auction!
-
----
-
-## ✅ Allowed Bundles (with frontrun-protect)
+<details>
+<summary> ✅ Allowed Bundles (with frontrun-protect) </summary>
 
 **_(Key):_**
 
@@ -287,9 +291,10 @@ That means only auction winners spend fees. There is no cost or downside to losi
 
 [SIGNER YOU]
 
----
+</details>
 
-## ❌ Disallowed Bundles (with frontrun-protect)
+<details>
+<summary> ❌ Disallowed Bundles (with frontrun-protect) </summary>
 
 Anything not in allowed bundles above is disallowed by validators with frontrunning protection on. See examples of disallowed bundles below.
 
@@ -328,3 +333,5 @@ Anything not in allowed bundles above is disallowed by validators with frontrunn
 [SIGNER Y]
 
 [SIGNER YOU]
+
+</details>
