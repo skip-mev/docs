@@ -18,20 +18,26 @@ sidebar_position: 2
 
 ---
 
-## Signing Bundles
+## ✍️ Signing Bundles
 
-Skip requires searchers to **sign** bundles with the private key they also used to sign their transactions with in their submitted bundles. Note, this still allows you to bundle with transactions that aren’t your own (i.e. that you did not sign).
+Skip requires searchers to **sign** bundles with the private key they also used to sign their transactions with in their submitted bundles. 
+- Note, this still allows you to bundle with transactions that aren’t your own (i.e. that you did not sign).
 
-### With our Helper Libraries
+<h3>
+<details>
+<summary> 🤝 With our Helper Libraries </summary>
 
 ✍️ You can sign bundles with:
 
 - [skipjs](https://github.com/skip-mev/skipjs) via the `signBundle` method on the `SkipBundleClient`
 - [skip-python](https://github.com/skip-mev/skip-py) via the `sign_bundle` method or the combined `sign_and_send_bundle` method
+</details>
+</h3>
 
-### Without our Helper Libraries
+<h3>
+<details>
+<summary> 🧠 Without our Helper Libraries </summary>
 
-- **For those wanting to learn how to sign bundles without using our helper libraries, see below for instructions (note: go and rust helper libraries will be released shortly)👇**
   To start, you’ll need two things (python will be used for this example):
 
   - `list_of_tx_bytes`: This is a list (or array, depending on programming language) of `tx_bytes` (note: if you get a tx from a mempool, they are in base64-encoded string format, to obtain tx_bytes, simply base64-decode the string).
@@ -64,19 +70,29 @@ Skip requires searchers to **sign** bundles with the private key they also used 
      # Sign digest of bundle
      bundle_signature = priv_key.sign_digest(bundle_digest)
      ```
+</details>
+</h3>
 
-## Sending Bundles
+---
+
+## 💸 Sending Bundles
 
 Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
-### With our Helper Libraries
+<h3>
+<details>
+<summary> 🤝 With our Helper Libraries </summary>
 
 ✍️ You can send bundles with:
 
 - [skipjs](https://github.com/skip-mev/skipjs) via the `sendBundle` method on the `SkipBundleClient`
 - [skip-python](https://github.com/skip-mev/skip-py)** via the `**send_bundle**`method or the combined`**sign_and_send_bundle\*\*` method
+</details>
+</h3>
 
-### Without our Helper Libraries
+<h3>
+<details>
+<summary> 🧠 Without our Helper Libraries </summary>
 
 - **For those wanting to learn how to send bundles without using our helper libraries, see below for instructions (note: go and rust helper libraries will be released shortly)👇**
 
@@ -103,7 +119,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
   # Create data params
   data = {'jsonrpc': '2.0',
-          'method': method,
+          'method': 'broadcast_bundle_sync',
           'params': [txs,
                      desired_height,
                      pubkey,
@@ -113,9 +129,31 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
   # Send post request to SKIP RPC with data, get response
   response = httpx.post(skip_rpc_url, json=data)
   ```
+</details>
+</h3>
 
-- **The `broadcast_bundle_sync` method returns a result with the following information 👇**
-  - `code` indicates the status of the bundle ingress request. The following are the code meanings:
+---
+
+## 📣 Bundle Submission Responses
+
+### Response Format and Meaning
+``` JSON
+{'jsonrpc': '2.0', 'id': 1, 'result': 
+  {'code': <Int: Code for the bundle response, see codes section below for more details>, 
+   'txs': '[<Array of tx hashes of the txs in the bundle>]', 
+   'auction_fee': <Int as String: Fee paid to the auction in the auction denom>, 
+   'bundle_size': <Int as String: Number of Txs in the bundle submitted>, 
+   'desired_height': <Int as String: Block height the bundle attempted inclusion in>, 
+   'waited_for_simulation_results': <Bool: If the bundle waited for simulation results>, 
+   'simulation_success': <Bool: Indicates whether all txs in the bundle succeeded in an on-chain simulation>, 
+   'result_check_txs': '[<ABCI result of calling CheckTx on each transaction, in the same order they were passed in>]', 
+   'result_deliver_txs': '[<ABCI result of simulating each transaction, in the same order they were passed in>]', 
+   'error': '<Error response if an error occured, see codes section below for more details>'}
+}
+```
+- 🚨 **Bundle submissions for blocks over two in advance do not simulate immediately, and this response will come before the simulation occurs, therefore simulation_success will be false in the jsonrpc response regardless of whether the simulation succeeded or not.**
+
+### Codes and Meaning
   ```
   0: The bundle won the auction
   1: The pubkey provided could not be translated into an address
@@ -129,17 +167,41 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
   9: The bundle lost the auction due to being outbid
   10: The bundle response did not wait for auction simulation (this means the desired height is too early for auction simulation)
   ```
-  - `txs` contains an array of the last 20 bytes of the string representation of the each of submitted transactions
-  - `result_check_txs` contains the ABCI result of calling CheckTx on each transaction, in the same order they were passed in
-  - `result_deliver_txs` contains the ABCI result of simulating each transaction, in the same order they were passed in
-  - `auction_fee` is the total fee paid to the Skip Auction
-  - `bundle_size` is the number of transactions in the bundle
-  - `desired_height` is the bundle’s desired height. If the caller’s desired height was 0, this will contain the height that the bundle was actually in the auction for
-  - `simulation_success` indicates whether the bundle succeeded in an on-chain simulation (all transactions must have been successful for this to be true)
-    - **Bundle submissions for blocks over two in advance do not simulate immediately, and this response will come before the simulation occurs, therefore this will be false in the jsonrpc response regardless of whether the simulation succeeded or not.**
-  - `error` contains an error string, if any errors occurred
+- 🐇 Bundle submission responses are immediate for codes: 1, 2, 3, 4, 5, 7, and 10
+- 🐢 Bundle submission responses are returned after the auction for a desired height concludes if a bundle is valid and is simulated / considered for the auction. This encapsulates error codes: 0, 8, and 9.
 
-## Winning the Auction
+### Example Responses
+
+<details>
+<summary> 👑 Code 0: The bundle won the auction </summary>
+
+``` JSON
+{'jsonrpc': '2.0', 'id': 1, 'result': {'code': 0, 'txs': ['eeb49d472e663571cb809227b5f6cb01dcdc15dc9b06677d39c3c08bdfb87b99'], 'auction_fee': '600', 'bundle_size': '1', 'desired_height': '7333573', 'waited_for_simulation_results': True, 'simulation_success': True, 'result_check_txs': [{'code': 0, 'data': '', 'log': '[]', 'info': '', 'gas_wanted': '100000', 'gas_used': '57035', 'events': [], 'codespace': ''}, {'code': 0, 'data': None, 'log': '', 'info': '', 'gas_wanted': '100000', 'gas_used': '0', 'events': [], 'codespace': ''}], 'result_deliver_txs': [{'code': 0, 'data': 'Ch4KHC9jb3Ntb3MuYmFuay52MWJldGExLk1zZ1NlbmQ=', 'log': '[{"events":[{"type":"coin_received","attributes":[{"key":"receiver","value":"juno10g0l3hd9sau3vnjrayjhergcpxemucxcspgnn4"},{"key":"amount","value":"600ujuno"}]},{"type":"coin_spent","attributes":[{"key":"spender","value":"juno1zhqrfu9w3sugwykef3rq8t0vlxkz72vwnnptts"},{"key":"amount","value":"600ujuno"}]},{"type":"message","attributes":[{"key":"action","value":"/cosmos.bank.v1beta1.MsgSend"},{"key":"sender","value":"juno1zhqrfu9w3sugwykef3rq8t0vlxkz72vwnnptts"},{"key":"module","value":"bank"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"juno10g0l3hd9sau3vnjrayjhergcpxemucxcspgnn4"},{"key":"sender","value":"juno1zhqrfu9w3sugwykef3rq8t0vlxkz72vwnnptts"},{"key":"amount","value":"600ujuno"}]}]}]', 'info': '', 'gas_wanted': '100000', 'gas_used': '70548', 'events': [], 'codespace': ''}, {'code': 0, 'data': 'Ch4KHC9jb3Ntb3MuYmFuay52MWJldGExLk1zZ1NlbmQ=', 'log': '[{"events":[{"type":"coin_received","attributes":[{"key":"receiver","value":"juno1lzhlnpahvznwfv4jmay2tgaha5kmz5qx292dgs"},{"key":"amount","value":"50ujuno"}]},{"type":"coin_spent","attributes":[{"key":"spender","value":"juno10g0l3hd9sau3vnjrayjhergcpxemucxcspgnn4"},{"key":"amount","value":"50ujuno"}]},{"type":"message","attributes":[{"key":"action","value":"/cosmos.bank.v1beta1.MsgSend"},{"key":"sender","value":"juno10g0l3hd9sau3vnjrayjhergcpxemucxcspgnn4"},{"key":"module","value":"bank"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"juno1lzhlnpahvznwfv4jmay2tgaha5kmz5qx292dgs"},{"key":"sender","value":"juno10g0l3hd9sau3vnjrayjhergcpxemucxcspgnn4"},{"key":"amount","value":"50ujuno"}]}]}]', 'info': '', 'gas_wanted': '100000', 'gas_used': '70536', 'events': [], 'codespace': ''}], 'error': ''}}
+```
+
+</details>
+
+<details>
+<summary> ⏭️ Code 4: The desiredHeight proposer is not a Skip validator, therefore there is no auction </summary>
+
+``` JSON
+{'jsonrpc': '2.0', 'id': 1, 'result': {'code': 4, 'txs': None, 'auction_fee': '0', 'bundle_size': '1', 'desired_height': '7333048', 'waited_for_simulation_results': False, 'simulation_success': False, 'result_check_txs': None, 'result_deliver_txs': None, 'error': "Don't have skip validator up next"}}
+```
+
+</details>
+
+<details>
+<summary> 🤷‍♀️ Code 9: The bundle lost the auction due to being outbid </summary>
+
+``` JSON
+{'jsonrpc': '2.0', 'id': 1, 'result': {'code': 9, 'txs': ['a6e23c8b8224deee168ff06331e67abaaa47dea10a4a0b75610a66987b45be3d'], 'auction_fee': '600', 'bundle_size': '1', 'desired_height': '473605', 'waited_for_simulation_results': True, 'simulation_success': False, 'result_check_txs': [{'code': 0, 'data': '', 'log': '[]', 'info': '', 'gas_wanted': '100000', 'gas_used': '60388', 'events': [], 'codespace': '', 'sender': '', 'priority': '0', 'mempoolError': ''}, {'code': 0, 'data': None, 'log': '', 'info': '', 'gas_wanted': '0', 'gas_used': '0', 'events': [], 'codespace': '', 'sender': '', 'priority': '0', 'mempoolError': ''}], 'result_deliver_txs': [], 'error': 'bundle did not win auction'}}
+```
+
+</details>
+
+---
+
+## 🏆 Winning the Auction
 
 :::tip Bundle Ordering
 
@@ -155,7 +217,9 @@ In order to include a payment to the Auction House, you must include a **`MsgSen
 
 The greater your bundle’s `AuctionHousePayment`, the greater the likelihood that it will be included on-chain. If you lose the auction, you can explore the chain afterwards to discover bundles with higher `AuctionHousePayments` that outbid you.
 
-## Bundle Reversion Protection
+---
+
+## 🛡️ Bundle Reversion Protection
 
 **Bundles will only end up on-chain if every 
 transaction in the bundle executes successfully**
@@ -165,7 +229,9 @@ If any transaction in your bundle would have reverted on-chain (for whatever rea
 
 That means only auction winners spend fees. There is no cost or downside to losing the Skip auction!
 
-## Allowed Bundles (with frontrun-protect)
+---
+
+## ✅ Allowed Bundles (with frontrun-protect)
 
 **_(Key):_**
 
@@ -173,7 +239,7 @@ That means only auction winners spend fees. There is no cost or downside to losi
 - _Signer Y = another other txs that are not signed by you_
 - _Signer YOU = tx signed by you_
 
----
+<br>
 
 **(singleton type)** **- A**
 
@@ -213,7 +279,9 @@ That means only auction winners spend fees. There is no cost or downside to losi
 
 [SIGNER YOU]
 
-## Disallowed Bundles (with frontrun-protect)
+---
+
+## ❌ Disallowed Bundles (with frontrun-protect)
 
 Anything not in allowed bundles above is disallowed by validators with frontrunning protection on. See examples of disallowed bundles below.
 
@@ -223,7 +291,7 @@ Anything not in allowed bundles above is disallowed by validators with frontrunn
 - _Signer Y = another other txs that are not signed by you_
 - _Signer YOU = tx signed by you_
 
----
+<br>
 
 **(unknown signers type)**
 
