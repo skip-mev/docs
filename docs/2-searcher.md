@@ -31,6 +31,7 @@ Skip requires searchers to **sign** bundles with the private key they also used 
 
 - [skipjs](https://github.com/skip-mev/skipjs) via the `signBundle` method on the `SkipBundleClient`
 - [skip-python](https://github.com/skip-mev/skip-py) via the `sign_bundle` method or the combined `sign_and_send_bundle` method
+
 </details>
 </h3>
 
@@ -70,6 +71,7 @@ Skip requires searchers to **sign** bundles with the private key they also used 
      # Sign digest of bundle
      bundle_signature = priv_key.sign_digest(bundle_digest)
      ```
+
 </details>
 </h3>
 
@@ -87,6 +89,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
 
 - [skipjs](https://github.com/skip-mev/skipjs) via the `sendBundle` method on the `SkipBundleClient`
 - [skip-python](https://github.com/skip-mev/skip-py)** via the `**send_bundle**`method or the combined`**sign_and_send_bundle\*\*` method
+
 </details>
 </h3>
 
@@ -129,6 +132,7 @@ Skip exposes an **RPC** method for submitting bundles: `broadcast_bundle_sync`.
   # Send post request to SKIP RPC with data, get response
   response = httpx.post(skip_rpc_url, json=data)
   ```
+  
 </details>
 </h3>
 
