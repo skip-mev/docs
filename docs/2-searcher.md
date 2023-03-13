@@ -245,51 +245,7 @@ Skip Select allows validators running mev-tendermint to have preferences over th
 <details>
 <summary> ✅ Allowed Bundles (with frontrun-protect) </summary>
 
-**_(Key):_**
-
-- _Signer X = tx that’s not signed by you_
-- _Signer Y = another other txs that are not signed by you_
-- _Signer YOU = tx signed by you_
-
-<br />
-
-**(singleton type)** **- A**
-
-[SIGNER YOU]
-
-**(singleton type) - B**
-
-[SIGNER X]
-
-**(multi type) - A**
-
-[SIGNER X]
-
-[SIGNER X]
-
-**(multi type) - B**
-
-[SIGNER YOU]
-
-[SIGNER YOU]
-
-**(backrun type)**
-
-[SIGNER X]
-
-[SIGNER YOU]
-
-**(multi-backrun type)**
-
-[SIGNER X]
-
-[SIGNER X]
-
-[SIGNER X]
-
-[SIGNER YOU]
-
-[SIGNER YOU]
+![Allowed Bundles](/img/searcher/allowed_bundles.png)
 
 </details>
 
@@ -298,40 +254,6 @@ Skip Select allows validators running mev-tendermint to have preferences over th
 
 Anything not in allowed bundles above is disallowed by validators with frontrunning protection on. See examples of disallowed bundles below.
 
-**_(Key):_**
-
-- _Signer X = tx that’s not signed by you_
-- _Signer Y = another other txs that are not signed by you_
-- _Signer YOU = tx signed by you_
-
-<br />
-
-**(unknown signers type)**
-
-[SIGNER X]
-
-[SIGNER Y]
-
-**(frontrun type)**
-
-[SIGNER YOU]
-
-[SIGNER X]
-
-**(sandwich type)**
-
-[SIGNER YOU]
-
-[SIGNER X]
-
-[SIGNER YOU]
-
-**(backrun type with mixed signatures)**
-
-[SIGNER X]
-
-[SIGNER Y]
-
-[SIGNER YOU]
+![Disallowed Bundles](/img/searcher/disallowed_bundles.png)
 
 </details>
