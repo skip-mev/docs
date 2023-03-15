@@ -6,6 +6,34 @@ sidebar_position: 7
 
 # Validator API
 
+## `GET` Supported Chains
+
+- This request returns a list of chain IDs that Skip currently supports. These are the valid `chainID` parameters that can be passed to the other API endpoints.
+
+### URI: `/chains`
+
+### Example:
+
+- **Request**
+  - `curl -X GET https://api.skip.money/v1/chains`
+- **Response**
+  ```JSON
+  {
+  	"chains": [
+  		"phoenix-1",
+  		"injective-888",
+  		"pisco-1",
+  		"evmos_9001-2",
+  		"injective-1",
+  		"comdex-test2",
+  		"comdex-1",
+  		"juno-1",
+  		"evmos_9000-4",
+  		"uni-6"
+  	]
+  }
+  ```
+
 ## `GET` Disconnected Validators
 
 - This request returns the operator addresses of all disconnected validators for the requested chain
