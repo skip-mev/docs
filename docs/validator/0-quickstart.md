@@ -4,14 +4,14 @@ title: Validator Quickstart
 sidebar_position: 0
 ---
 
-It takes just 5 minutes to start using Skip Select to capture MEV with your validator.
+It takes just 5 minutes to start using Skip Select to capture MEV with your validator. Even less on chains that include `mev-tendermint` by default.
 
 ## Summary of Steps
 
 **Estimated Time**: 5 mins
 
 1. Register as a validator on [skip.money/registration](http://skip.money/registration) to receive an API key
-2. Compile your node binaries with `mev-tendermint`
+2. Compile your node binaries with `mev-tendermint` (if mev-tendermint is not included in the chain binary by default)
 3. Add 3-4 lines of additional config to your nodes
 4. Restart your nodes 🚀
 
@@ -35,6 +35,10 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 - Injective Testnet `CHAIN_ID=injective-888`
 - Comdex Testnet `CHAIN_ID=comdex-test2`
 
+
+## Chain IDs that include `mev-tendermint` by default
+### Testnets
+- Juno Testnet `CHAIN_ID=uni-6`
 ---
 
 ## 1. Register ✅
@@ -46,6 +50,8 @@ You will need access to your operator key or a key to which your operator has de
 💵 **After registering, you can also use the Skip web app to configure your MEV payments between you / network stakers on the site.**
 
 ## 2. Compile your node with `mev-tendermint`
+
+**THIS STEP IS ONLY REQUIRED IF YOUR CHAIN DOES NOT INCLUDE `mev-tendermint` BY DEFAULT.**
 
 We provide forks of the source code for all the open source chains we support at https://github.com/skip-mev that come pre-loaded with mev-tendermint _and no other modifications_.
 
@@ -130,7 +136,7 @@ api_key = "fake_api_key"
 
   | Chain name        | Chain ID      | Supported Chain Version | sentinel_rpc_string                  | sentinel_peer_string                                                              |
   | ----------------- |-------------------------| ----------------------- | ------------------------------------ | --------------------------------------------------------------------------------- |
-  | JUNO Testnet      | uni-6         | v13.0.1                 | https://uni-6-api.skip.money         | f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656          |
+  | JUNO Testnet      | uni-6         | v14.0.0-alpha.2                 | https://uni-6-api.skip.money         | f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656          |
   | EVMOS Testnet     | evmos_9000-4  | v12.0.0-rc4             | https://evmos-9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos-9000-4-sentinel.skip.money:26656   |
   | Injective Testnet | injective-888 | v1.10.2                 | https://injective-888-api.skip.money | 24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656  |
   | Terra 2 Testnet   | pisco-1       | v2.3.0-rc.0             | https://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656        |
