@@ -34,7 +34,8 @@ The process of integrating with Skip Select is very easy:
 - No need to make changes to sentry ↔  signing node configurations
 
 All you need to do is register for an API key and rebuild your chain client `mev-tendermint` according to the
-the instructions in [Quickstart](./validator/0-quickstart.md)
+the instructions in [Quickstart](./validator/0-quickstart.md). Some chains include `mev-tendermint` in their default build, so you may not need to do anything outside
+of registering for an API key and configuring your chain client to use it.
 
 ## **For searchers**
 
