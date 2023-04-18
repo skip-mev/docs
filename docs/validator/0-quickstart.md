@@ -132,7 +132,7 @@ api_key = "fake_api_key"
 
   | Chain name        | Chain ID       | Supported Chain Version | sentinel_rpc_string                 | sentinel_peer_string                                                            |
   | ----------------- | -------------- | ----------------------- | ----------------------------------- | ------------------------------------------------------------------------------- |
-  | JUNO Mainnet      | `juno-1`       | v14.0.0                 | https://juno-1-api.skip.money       | 8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656       |
+  | JUNO Mainnet      | `juno-1`       | v14.1.0                 | https://juno-1-api.skip.money       | 8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656       |
   | EVMOS Mainnet     | `evmos_9001-2` | v12.1.2                 | https://evmos-9001-2-api.skip.money | c0a2990e2a5dad7f4ace044d2f936de6891c6f0a@evmos-9001-2-sentinel.skip.money:26656 |
   | Terra2 Mainnet    | `phoenix-1`    | v2.3.0                  | https://phoenix-1-api.skip.money    | 20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656    |
   | Injective Mainnet | `injective-1`  | v1.10.0                 | https://injective-1-api.skip.money  | 6f3b548716049d83ab701a1eddef56bd202c09db@injective-1-sentinel.skip.money:26656  |
