@@ -67,6 +67,11 @@ We provide forks of the source code for all the open source chains we support at
 Because the Injective codebase is not open source, Injective requires a different process. You must follow the special Injective instructions [here](./8-injective-build.md). (Don't worry, they're simple.)
 :::
 
+:::caution Not applicable for Evmos past v13.0.0-rc1
+v13.0.0-rc1 introduces a private dependency for their precompiles feature. As a result, building from source with mev-tendermint is not currently possible. 
+The dependency will be made public pending an audit, but in the meantime, you can instead use the prebuilt binaries attached to the releases [here](https://github.com/skip-mev/evmos/releases).
+:::
+
 1. Set `SKIP_CHAIN_REPO` to the name of the fork of the chain you're building:
 
 - **EVMOS:** `export SKIP_CHAIN_REPO=evmos`
