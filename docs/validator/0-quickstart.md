@@ -25,7 +25,8 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 - Terra2 Mainnet `CHAIN_ID=phoenix-1`
 - EVMOS Mainnet `CHAIN_ID=evmos_9001-2`
 - Injective Mainnet `CHAIN_ID=injective-1`
-- COMDEX Mainnet `CHAIN_ID=comdex-1`
+- Comdex Mainnet `CHAIN_ID=comdex-1`
+- Neutron Mainnet `CHAIN_ID=neutron-1`
 
 ### Testnets
 
@@ -41,6 +42,7 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 ### Mainnets
 
 - Juno Mainnet `CHAIN_ID=juno-1`
+- Neutron Mainnet `CHAIN_ID=neutron-1`
 
 ### Testnets
 
@@ -137,24 +139,25 @@ api_key = "fake_api_key"
 
   **Mainnets**
 
-  | Chain name        | Chain ID       | Supported Chain Version | sentinel_rpc_string                 | sentinel_peer_string                                                            |
-  | ----------------- | -------------- | ----------------------- | ----------------------------------- | ------------------------------------------------------------------------------- |
-  | JUNO Mainnet      | `juno-1`       | v14.1.0                 | https://juno-1-api.skip.money       | 8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656       |
-  | EVMOS Mainnet     | `evmos_9001-2` | v12.1.2                 | https://evmos-9001-2-api.skip.money | c0a2990e2a5dad7f4ace044d2f936de6891c6f0a@evmos-9001-2-sentinel.skip.money:26656 |
-  | Terra2 Mainnet    | `phoenix-1`    | v2.3.1                  | https://phoenix-1-api.skip.money    | 20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656    |
-  | Injective Mainnet | `injective-1`  | v1.10.0                 | https://injective-1-api.skip.money  | 6f3b548716049d83ab701a1eddef56bd202c09db@injective-1-sentinel.skip.money:26656  |
-  | Comdex Mainnet    | `comdex-1`     | v7.0.0                  | https://comdex-1-api.skip. money    | 79505b5fb2782acbea09059abde58e7bca76c8e1@comdex-1-sentinel.skip.money:26656     |
+  | Chain name        | Chain ID       | Supported Chain Version   | sentinel_rpc_string                   | sentinel_peer_string                                                              |
+  | ----------------- | -------------- | ------------------------- | ------------------------------------- | --------------------------------------------------------------------------------- |
+  | JUNO Mainnet      | `juno-1`       | `v14.1.0`                 | `https://juno-1-api.skip.money`       | `8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656`       |
+  | EVMOS Mainnet     | `evmos_9001-2` | `v12.1.2`                 | `https://evmos-9001-2-api.skip.money` | `c0a2990e2a5dad7f4ace044d2f936de6891c6f0a@evmos-9001-2-sentinel.skip.money:26656` |
+  | Terra2 Mainnet    | `phoenix-1`    | `v2.3.1`                  | `https://phoenix-1-api.skip.money`    | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656`    |
+  | Injective Mainnet | `injective-1`  | `v1.10.0`                 | `https://injective-1-api.skip.money`  | `6f3b548716049d83ab701a1eddef56bd202c09db@injective-1-sentinel.skip.money:26656`  |
+  | Comdex Mainnet    | `comdex-1`     | `v7.0.0`                  | `https://comdex-1-api.skip.money`     | `79505b5fb2782acbea09059abde58e7bca76c8e1@comdex-1-sentinel.skip.money:26656`     |
+  | Neutron Mainnet   | `neutron-1`    | `v1.0.1`                  | `https://neutron-1-api.skip.money`    | `f44aa4467a5c411f650fd9223644d70afc1eacd1@neutron-1-sentinel.skip.money:26656`    |
 
   **Testnets**
 
-  | Chain name        | Chain ID      | Supported Chain Version | sentinel_rpc_string                  | sentinel_peer_string                                                              |
-  | ----------------- | ------------- | ----------------------- | ------------------------------------ | --------------------------------------------------------------------------------- |
-  | JUNO Testnet      | uni-6         | v14.0.0-alpha.2         | https://uni-6-api.skip.money         | f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656          |
-  | EVMOS Testnet     | evmos_9000-4  | v13.0.0-rc1             | https://evmos-9000-4-api.skip.money  | 4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos-9000-4-sentinel.skip.money:26656   |
-  | Injective Testnet | injective-888 | v1.10.2                 | https://injective-888-api.skip.money | 24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656  |
-  | Terra 2 Testnet   | pisco-1       | v2.3.0-rc.0             | https://pisco-1-api.skip.money       | 5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656        |
-  | Comdex Testnet    | comdex-test2  | v10.1.0                 | https://comdex-test2-api.skip.money  | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656` |
-  | Neutron Testnet   | pion-1        | v1.0.0-rc1              | https://pion-1-api.skip.money        | `f44aa4467a5c411f650fd9223644d70afc1eacd1@pion-1-sentinel.skip.money:26656`       |
+  | Chain name        | Chain ID        | Supported Chain Version   | sentinel_rpc_string                    | sentinel_peer_string                                                               |
+  | ----------------- | --------------- | ------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------- |
+  | JUNO Testnet      | `uni-6`         | `v14.0.0-alpha.2`         | `https://uni-6-api.skip.money`         | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656`         |
+  | EVMOS Testnet     | `evmos_9000-4`  | `v13.0.0-rc1`             | `https://evmos-9000-4-api.skip.money`  | `4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos-9000-4-sentinel.skip.money:26656`  |
+  | Injective Testnet | `injective-888` | `v1.10.2`                 | `https://injective-888-api.skip.money` | `24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656` |
+  | Terra 2 Testnet   | `pisco-1`       | `v2.3.0-rc.0`             | `https://pisco-1-api.skip.money`       | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656`       |
+  | Comdex Testnet    | `comdex-test2`  | `v10.1.0`                 | `https://comdex-test2-api.skip.money`  | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656`  |
+  | Neutron Testnet   | `pion-1`        | `v1.0.0-rc1`              | `https://pion-1-api.skip.money`        | `f44aa4467a5c411f650fd9223644d70afc1eacd1@pion-1-sentinel.skip.money:26656`        |
 
 ### Extra config for sentry configurations
 

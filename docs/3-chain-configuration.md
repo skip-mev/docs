@@ -20,6 +20,7 @@ All of this information is available and can be accessed programmatically on <a 
 | EVMOS Mainnet     | `evmos_9001-2` | v12.1.2                    | `v0.34.26-mev.16`                 | `https://evmos-9001-2-api.skip.money`                          | `c0a2990e2a5dad7f4ace044d2f936de6891c6f0a@evmos-9001-2-sentinel.skip.money:26656` | `evmos17yqtnk08ly94lgz3fzagfu2twsws33z7cpkxa2`  | `https://evmos-9001-2-lcd.skip.money`               |
 | Injective Mainnet | `injective-1`  | v1.10.0                    | `v0.34.23-mev.16`                 | `https://injective-1-api.skip.money`                           | `6f3b548716049d83ab701a1eddef56bd202c09db@injective-1-sentinel.skip.money:26656`  | `inj17yqtnk08ly94lgz3fzagfu2twsws33z7sfsv46`    | `https://injective-1-lcd.skip.money`                |
 | Comdex Mainnet    | `comdex-1`     | v7.0.0                     | `v0.34.22-mev.16`                 | `https://comdex-1-api.skip.money`                              | `79505b5fb2782acbea09059abde58e7bca76c8e1@comdex-1-sentinel.skip.money:26656`     | `comdex1ga2mjs4gxn8xudxmrrp8s2q35rqhg4xafnn5gr` | `https://comdex-1-lcd.skip.money`                   |
+| Neutron Mainnet   | `neutron-1`        | v1.0.1        | `v0.34.27-mev.18`                 | `https://neutron-1-api.skip.money`                                | `08a1653fd6669468f8b9c22d70f476a5b27f576a@neutron-1-sentinel.skip.money:26656`        | `neutron14uzsxwsml22a8e9nwucxzyjfqrtm62sjwzl8jz` | `https://neutron-1-lcd.skip.money`                     |
 
 ## Testnets
 
