@@ -21,6 +21,7 @@ simd tx authz grant <addr receiving grant> generic --msg-type /cosmos.gov.v1beta
 - Here, the `msg-type` is the cosmos Type URL of the message that the granter can submit on behalf of the operator
   - This means that the address receiving the `authz` grant **can vote on gov proposals on behalf of your validator** (and sign to get a Skip API Key) contact us and we’ll generate you one.
   - **The address receiving the grant must not have a null pubkey**. In other words, the address you want to sign in with must have signed a transaction before signing the Skip challenge.
+- **ICS Chains (Neutron)**: Instead of granting permissions on the ICS chain you will need to grant permissions on Cosmos Hub. You will need to pass an address and the operator key you use on Cosmos Hub.
 - If you don’t want to sign a challenge, **[contact us](https://skip.money/contact)** and we’ll generate you an API Key.
 
 ## ⬅️ Revoking `MsgVote` Permissions
