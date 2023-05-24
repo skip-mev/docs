@@ -77,19 +77,19 @@ const config = {
 	  items: [
 	    {
 	      label: 'Validator Docs',
-	      to: '/validator/quickstart'
+	      to: '/select/validator/quickstart'
 	    },
 	    {
 	      label: 'Searcher Docs',
-	      to: '/searcher'
+	      to: '/select/searcher'
 	    },
 	    {
 	      label: 'Chain Configuration',
-	      to: '/chain-configuration'
+	      to: '/select/chain-configuration'
 	    },
 	    {
 	      label: 'Skip Secure',
-	      to: '/skip-secure'
+	      to: '/select/skip-secure'
 	    }
 	  ],
 	},
