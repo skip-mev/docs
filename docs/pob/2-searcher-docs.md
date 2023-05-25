@@ -140,7 +140,7 @@ func createBidTx(
 }
 ```
 
-### ⚙️ *Auction fees*
+### ⚙️ Auction fees
 
 :::info Auction Configuration
 All auction parameters are accessible though the `/pob/builder/v1/params` HTTP path on a standard node or gRPC service defined by `x/builder`.
