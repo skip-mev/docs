@@ -16,15 +16,17 @@ Skip gives app chains and validators maximum choice and flexibility in how to bu
 
 ### What are Skip’s products?
 
-- [Skip Select](select/0-intro.md)
+- [Protocol Owned Builder](pob/overview)
+  - Protocol-Owned Builder (POB) is a set of Cosmos SDK and ABCI++ primitives that permissionlessly, fairly capture MEV in-protocol via an auction of **bundles** (i.e. a set of transactions).
+- [Skip Select](select/intro)
   - A a blockspace auction system that’s currently deployed on most chains that work with Skip. It builds the top of the block from tipped bundles submitted by traders and gives this segment of the block to validators to include on chain
   - Searchers / traders submit bundles of transactions to Skip Select with a "tip" that they're willing to pay in exchange for the guarantee that their bundle will land on chain in exactly the order they specify and not revert.
   - It requires validators to update their binary to include `mev-tendermint` -- an open-source, battle tested patch of Tendermint currently running on over 170 validators and 5 networks. Installation takes 5 minutes.
-- [ProtoRev](https://github.com/osmosis-labs/osmosis/tree/main/x/protorev)
+- [ProtoRev](https://github.com/osmosis-labs/osmosis/blob/main/x/protorev/protorev.md)
   - An onchain module deployed on Osmosis, that captures MEV by backrunning transactions at execution time
 - [Skipper](https://github.com/skip-mev/skipper)
   - An opensource bot that allows for anyone to recapture “good” MEV (backrunning) on any Cosmos network where Skip Select is deployed
-- [Skip Secure](select/5-skip-secure.md)
+- [Skip Secure](select/skip-secure)
   - A private RPC endpoint anyone can add to their wallets to have private transactions, meaning no possibility of frontrunning or sandwiching
 
 ### Does Skip have a token?
@@ -49,7 +51,7 @@ Yes, Skip is free to use, and takes no fees from any parties.
 
 ### How does a validator integrate Skip?
 
-Please follow the “Validator Quickstart” guide in the Skip docs [here](select/validator/0-quickstart.md)
+Please follow the “Validator Quickstart” guide in the Skip docs [here](select/validator/quickstart)
 
 ### How long does validator integration take?
 

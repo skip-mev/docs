@@ -81,7 +81,7 @@ const config = {
 	    },
 	    {
 	      label: 'Select',
-	      to: '/select/skip-select'
+	      to: '/select/intro'
 	    },
 	    {
 	      label: 'Skip Secure',

@@ -1,7 +1,6 @@
 ---
 description: Skip POB Quickstart
 title: Overview
-slug: /
 sidebar_position: 0
 ---
 

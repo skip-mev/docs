@@ -35,7 +35,7 @@ In order to compete in the auction, a searcher must sign and submit a bundle to 
 
 - Currently, this payment must be a Cosmos `MsgSend` message, but we are actively exploring contract-based payments for CosmWasm and EVM chains.
 
-- 👉 **You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](select/3-chain-configuration.md) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**)
+- 👉 **You can find the `AuctionHouseAddress` per chain here: [Chain Configuration](chain-configuration) (or in [github.com/skip-mev/config](http://github.com/skip-mev/config)**)
 
 ### 🥇 Winning
 

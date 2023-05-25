@@ -55,7 +55,7 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 
 **🚨**  If you don’t already have an API Key, please get one from the [Skip registration site](https://skip.money/registration).
 
-You will need access to your operator key or a key to which your operator has delegated a `MsgVote` authorization to register. See [these instructions](select/validator/6-api-key.md) for how to a `MsgVote` authorization if you're not comfortable using your operator key from a browser wallet.
+You will need access to your operator key or a key to which your operator has delegated a `MsgVote` authorization to register. See [these instructions](api-key) for how to a `MsgVote` authorization if you're not comfortable using your operator key from a browser wallet.
 
 💵 **After registering, you can also use the Skip web app to configure your MEV payments between you / network stakers on the site.**
 
@@ -66,7 +66,7 @@ You will need access to your operator key or a key to which your operator has de
 We provide forks of the source code for all the open source chains we support at https://github.com/skip-mev that come pre-loaded with mev-tendermint _and no other modifications_.
 
 :::caution Not applicable for Injective
-Because the Injective codebase is not open source, Injective requires a different process. You must follow the special Injective instructions [here](select/validator/8-injective-build.md). (Don't worry, they're simple.)
+Because the Injective codebase is not open source, Injective requires a different process. You must follow the special Injective instructions [here](injective-build). (Don't worry, they're simple.)
 :::
 
 :::caution Not applicable for Evmos past v13.0.0-rc1
@@ -88,7 +88,7 @@ git clone https://github.com/skip-mev/$SKIP_CHAIN_REPO
 cd $SKIP_CHAIN_REPO
 ```
 
-3. Determine the current version of the chain binary using the official chain documentation or Skip's documentation [here](select/3-chain-configuration.md). and checkout the corresponding `-mev` tag:
+3. Determine the current version of the chain binary using the official chain documentation or Skip's documentation [here](../chain-configuration). and checkout the corresponding `-mev` tag:
 
 ```bash
 git checkout $CHAIN_VERSION-mev
@@ -111,7 +111,7 @@ make install
 5. Repeat this process for all of your full nodes, including if you use Horcrux.
 
 :::info Alternative methods
-Read more about other methods that do not require forking our repos [here](select/validator/5-alternatives.md) if you would prefer to use the official chain repo and inject `mev-tendermint` yourself
+Read more about other methods that do not require forking our repos [here](alternatives) if you would prefer to use the official chain repo and inject `mev-tendermint` yourself
 :::
 
 ## 3. Update config.toml
@@ -119,7 +119,7 @@ Read more about other methods that do not require forking our repos [here](selec
 `mev-tendermint` introduces a new section of config in `config.toml` called `[sidecar]` that includes several
 config settings that allow your node to recieve MEV bundles from Skip.
 
-(You can read more about what these are here: [Validator Config Reference Docs](select/validator/3-config.md))
+(You can read more about what these are here: [Validator Config Reference Docs](select/validator/3-config))
 
 By the end, the end of your `config.toml` on each node will look something like this (with different string values). **Make sure to include the line `[sidecar]` at the top of this section in `config.toml`.**
 
@@ -227,11 +227,11 @@ These steps are only relevant for folks with set ups where they want one of thei
   }
   ```
 
-- **Troubleshooting**: If you aren't receiving the expected output, please visit the [troubleshooting page](select/validator/1-troubleshooting.md) or get in touch with Skip team for assistance.
+- **Troubleshooting**: If you aren't receiving the expected output, please visit the [troubleshooting page](troubleshooting) or get in touch with Skip team for assistance.
 
 - **Monitoring:** mev-tendermint exposes new Prometheus metrics under the "mev" namespace in tendermint.
   The most important metric is `mev_sentinel_connected`, which is 1 if your node is able to receive MEV transactions
-  from Skip, and 0 otherwise. Check out [this page](select/validator/2-monitoring.md) for more information on monitoring and alerting solutions
+  from Skip, and 0 otherwise. Check out [this page](monitoring) for more information on monitoring and alerting solutions
 
 ### Handling Chain Upgrades
 

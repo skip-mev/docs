@@ -40,7 +40,7 @@ Skip's POB provides developers with a set of a few core primitives:
 4. Import and configure the POB `Prepare` / `Process` proposal handlers into their base app.
 5. Import and configure the POB `CheckTx` handler into their base app.
 6. Configure the desired auction parameters (including an address such as the community pool that will accrue auction fees).
-7. **[Optional]** The `AuctionFactory` is in charge of determining how searchers bid for top of block execution and how to extract relevant bid information (transactions, timeout, etc.). Chains can configure their own implementations to have [unique auction flows](https://github.com/skip-mev/pob/blob/main/SPEC.md#configuration).
+7. **[Optional]** The `AuctionFactory` is in charge of determining how searchers bid for top of block execution and how to extract relevant bid information (transactions, timeout, etc.). Chains can configure their own implementations to have [unique auction flows](https://github.com/skip-mev/pob/blob/main/SPEC#configuration).
 
 ### Release Compatibility Matrix
 
