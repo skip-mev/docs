@@ -154,7 +154,6 @@ In order to participate in an auction, searchers must pay a fee. This fee is pai
 4. **`FrontRunningProtection`**: determines whether front-running and sandwich protection is enabled.
 
 :::info Front-running and sandwich protection
-
 **If this is set to true, your bundle must follow these guidelines:**
 
 - You must put your signed transactions **after** transactions you didn’t sign
