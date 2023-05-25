@@ -1,46 +1,36 @@
 ---
-description: Skip Select Introduction
-Title: Skip Select Introduction
+description: Overview of Skip
+title: About
 slug: /
 sidebar_position: 0
 ---
 
-# Skip Select
+:::info Intro
 
-Skip Select is a blockspace auction system that allows searchers to capture MEV in the Cosmos ecosystem, across a variety of chains, and <b>for validators, stakers, and searchers to share in the rewards</b>.
-
-Please see our documentation below for how to integrate and use our endpoints.
-
-## **For validators**
-
-:::tip Get started right away
-
-Check out [Quickstart](./validator/0-quickstart.md) to set up Skip Select now. It takes 5 minutes.
+### Sovereign MEV Solutions for Sovereign Blockchains
 
 :::
 
-Validators that integrate with Skip Select:
+### What is Skip?
 
-- Allow MEV to be captured in their blocks without needing to sign headers for unseen blocks, **increasing block rewards** without sacrificing their builder rights
-- **Can prevent toxic MEV strategies** like frontrunning & sandwich attacks, while still capturing revenue from other forms of MEV
-- Can configure **how much MEV revenue to keep** and how much to share with delegates and the network
-- **Do not need to modify** their consensus key signing services (e.g. Horcrux, TMKMS, or custom), or make any new security assumptions
+Skip helps sovereign blockchains and frontends improve UX and leverage MEV to enrich network stakeholders and protect them from its harmful effects.
 
-The process of integrating with Skip Select is very easy:
+## What does Skip offer?
 
-- **Estimated time:** 5-10 minutes
-- **Estimated downtime:** < 10 s with Cosmovisor
-- No need to make any modifications to consensus key signing services
-- No need to make changes to sentry ↔  signing node configurations
+### For Chains
 
-All you need to do is register for an API key and rebuild your chain client `mev-tendermint` according to the
-the instructions in [Quickstart](./validator/0-quickstart.md). Some chains include `mev-tendermint` in their default build, so you may not need to do anything outside
-of registering for an API key and configuring your chain client to use it.
+Skip offers two products - Skip V1 [Select](select/intro) and Skip V2 [POB](pob/overview) that allow for permissionless MEV recapture as protocol revenue, with full control over what kinds of MEV are allowed, and where revenue accrues.
+Skip V2 is recommended for any chains over Cosmos SDK version 0.47 as it’s fully in-protocol, decentralized, and lightning-fast.
+All integrations take < 20 mins to set up, and please [contact us](https://skip.money/contact) if you need assistance.
 
-## **For searchers**
+### For Validators
 
-Check out the [Searcher Docs](./2-searcher.md)
+On networks that use Skip V1 [Select](select/chain-configuration), validators can register to receive MEV rewards and share the revenue with stakers according to their preference.
 
-## FAQ
+### For Searchers
 
-Check out our [FAQ page](6-faq.md) if you have more questions.
+On both chains that use Skip V1 and V2, searchers can participate in capturing MEV and bidding in the top-of-block auction for atomic execution. Check out our searcher docs for Skip [V1](select/searcher) and [V2](pob/searcher-docs).
+
+### For Frontends [COMING SOON]
+
+Frontends in the app-chain ecosystem can dramatically improve their user’s UX and make the interchain feel unified, while recapturing harmless MEV for their users. Check back soon for documentation on how to get started!

@@ -76,20 +76,16 @@ const config = {
 	  title: 'Docs',
 	  items: [
 	    {
-	      label: 'Validator Docs',
-	      to: '/validator/quickstart'
+	      label: 'Protocol Owned Builder',
+	      to: '/pob/overview'
 	    },
 	    {
-	      label: 'Searcher Docs',
-	      to: '/searcher'
-	    },
-	    {
-	      label: 'Chain Configuration',
-	      to: '/chain-configuration'
+	      label: 'Select',
+	      to: '/select/intro'
 	    },
 	    {
 	      label: 'Skip Secure',
-	      to: '/skip-secure'
+	      to: '/select/skip-secure'
 	    }
 	  ],
 	},

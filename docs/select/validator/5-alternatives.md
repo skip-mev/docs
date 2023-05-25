@@ -17,11 +17,11 @@ Below you can find instruction to perform the replacement automatically or manua
 :::tip Prerequisite
 For either approach, you will need to know the official chain ID (`CHAIN_ID`) and latest binary version release tag (`CHAIN_VERSION`) for the chain you want to use Skip on.
 
-You can find the correct values for these variables [here](./../3-chain-configuration.md).
+You can find the correct values for these variables [here](../chain-configuration).
 :::
 
 :::caution Not applicable for Injective
-Because the Injective codebase is not open source, this approach is not suitable for Injective. You must follow the special injective instructions [here](./8-injective-build.md)
+Because the Injective codebase is not open source, this approach is not suitable for Injective. You must follow the special injective instructions [here](injective-build)
 :::
 
 - **Automated replacement**
@@ -37,7 +37,7 @@ Because the Injective codebase is not open source, this approach is not suitable
   ```
 
 - **Manual Replacement**
-  Find the correct mev-tendermint version tag [here](./../3-chain-configuration.md) or run:
+  Find the correct mev-tendermint version tag [here](../chain-configuration) or run:
 
   ```bash
   export CHAIN_ID=<CHAIN ID>
