@@ -158,7 +158,8 @@ In order to participate in an auction, searchers must pay a fee. This fee is pai
 
 - You must put your signed transactions **after** transactions you didn’t sign
 - You can only have **at most two** unique signers in the bundle
-  :::
+
+:::
 
 Bundle Examples:
 
