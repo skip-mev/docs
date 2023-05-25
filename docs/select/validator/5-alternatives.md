@@ -37,7 +37,7 @@ Because the Injective codebase is not open source, this approach is not suitable
   ```
 
 - **Manual Replacement**
-  Find the correct mev-tendermint version tag [here](/3-chain-configuration.md) or run:
+  Find the correct mev-tendermint version tag [here](select/3-chain-configuration.md) or run:
 
   ```bash
   export CHAIN_ID=<CHAIN ID>
