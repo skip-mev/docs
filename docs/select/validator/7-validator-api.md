@@ -23,12 +23,10 @@ sidebar_position: 7
   		"phoenix-1",
   		"injective-888",
   		"pisco-1",
-  		"evmos_9001-2",
   		"injective-1",
   		"comdex-test2",
   		"comdex-1",
   		"juno-1",
-  		"evmos_9000-4",
   		"uni-6"
   	]
   }
@@ -50,19 +48,23 @@ sidebar_position: 7
 ### Example:
 
 - **Request**
-  - `curl -X GET https://api.skip.money/v1/disconnected_validators/evmos_9001-2`
+  - `curl -X GET https://api.skip.money/v1/disconnected_validators/juno-1`
 - **Response**
   ```JSON
   {
-      "disconnected_validators": [
-          "evmosvaloper1dk4ste222kp256ky00553nexna0rh38hx2ur6c",
-          "evmosvaloper10qpycc2egucukw8afcz4us7xlxxmfwh6rscvjz",
-          "evmosvaloper10xhy8xurfwts9ckjkq0ga92mrjz9txyy6y8l2g",
-          "evmosvaloper1rw4nendrehkr5tkhjswzy8ts97dvwg7rc0u0kp",
-          "evmosvaloper1w9m6p7ctu4gkdsr8plle997h25rzsa96xlzfat",
-          "evmosvaloper1qp49y6vh8vvv5yf8ule8fwx6sss82ncz39tunl",
-          "evmosvaloper1tczjwjrr36e0l5jjqnwrp95kv8mk57zdmxse4m"
-      ]
+    "disconnected_validators": [
+      "junovaloper1ywk2vuqezuslxxs8s7lv2t2622j6raf346guh6",
+      "junovaloper1pa5md4yuw07d32stnh0pfp2ndt84sczj3d4cjw",
+      "junovaloper1jxv0u20scum4trha72c7ltfgfqef6nscm9pmg2",
+      "junovaloper1pvwqfze548z95sdhun58trrvxhlhfrvky5ejtk",
+      "junovaloper1mxpyg8u68k6a8wdu3hs5whcpw9q285pcpxm5yx",
+      "junovaloper15yuuev6n8sfvvkqx2m4rqvrnu8vyuzvmkku3fm",
+      "junovaloper1ww5s8k6820cft2v75cdptesqz3kc27n333arp2",
+      "junovaloper1ssptq8zljxmvm9h7g5yaxyv9khpf84793dkt3j",
+      "junovaloper1yeaw3dv6jk3hr290l2tsew7rr2vjykynme37s2",
+      "junovaloper1zhgppyrs988x4spqxqchflg74qusw2cxxeqmnn",
+      "junovaloper1353ewfc0v7pnn3xre6v9lraghxrhenswmsjhv0"
+    ]
   }
   ```
 
