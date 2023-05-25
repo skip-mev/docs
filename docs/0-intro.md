@@ -5,7 +5,11 @@ slug: /
 sidebar_position: 0
 ---
 
-## _Sovereign MEV Solutions for Sovereign Blockchains_
+:::info Intro
+
+### Sovereign MEV Solutions for Sovereign Blockchains
+
+:::
 
 ### What is Skip?
 
