@@ -43,7 +43,7 @@ There are three things searchers must specify to participate in an auction:
 
 1. The **`Transactions`** they want executed at the top of block.
    - Transactions will be executed in the order they are specified in the message.
-   - The transactions included must be the raw bytes the transaction.
+   - Each transactions included must be the raw bytes of the transaction.
 2. The **`Bidder`** who is bidding for top of block execution.
    - This must be the same account that signs the transaction.
 3. The **`Bid`** they want to send alongside the bundle.
@@ -154,10 +154,11 @@ In order to participate in an auction, searchers must pay a fee. This fee is pai
 4. **`FrontRunningProtection`**: determines whether front-running and sandwich protection is enabled.
 
 :::info Front-running and sandwich protection
-**If this is set to true, your bundle must follow these guidelines**
+**If this is set to true, your bundle must follow these guidelines:**
 
 - You must put your signed transactions **after** transactions you didn’t sign
 - You can only have **at most two** unique signers in the bundle
+  :::
 
 Bundle Examples:
 
@@ -165,7 +166,6 @@ Bundle Examples:
 2. **Valid**: [tx1, tx2, tx3, tx4] where tx1 - tx4 are signed by the bidder.
 3. **Invalid**: [tx1, tx2, tx3] where tx1 and tx3 are signed by the bidder and tx2 is signed by some other signer. (possible sandwich attack)
 4. **Invalid**: [tx1, tx2, tx3] where tx1 is signed by the bidder, and tx2, tx3 are signed by some other signer. (possible front-running attack)
-   :::
 
 #### Querying auction parameters
 

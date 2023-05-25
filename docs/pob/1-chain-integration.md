@@ -39,7 +39,7 @@ Skip's POB provides developers with a set of a few core primitives:
 3. Import and configure the POB mempool into their base app.
 4. Import and configure the POB `Prepare` / `Process` proposal handlers into their base app.
 5. Import and configure the POB `CheckTx` handler into their base app.
-6. Configure the desired auction parameters.
+6. Configure the desired auction parameters (including an address such as the community pool that will accrue auction fees).
 7. **[Optional]** The `AuctionFactory` is in charge of determining how searchers bid for top of block execution and how to extract relevant bid information (transactions, timeout, etc.). Chains can configure their own implementations to have [unique auction flows](https://github.com/skip-mev/pob/blob/main/SPEC.md#configuration).
 
 ### Release Compatibility Matrix
@@ -143,11 +143,10 @@ $ go install github.com/skip-mev/pob
      authtypes.NewModuleAddress(govv1.ModuleName).String(),
    )
 
-
-   app.ModuleManager = module.NewManager(
-     builder.NewAppModule(appCodec, app.BuilderKeeper),
-     ...
-   )
+    app.ModuleManager = module.NewManager(
+      builder.NewAppModule(appCodec, app.BuilderKeeper),
+      ...
+    )
    ```
 
    d. Searchers bid to have their bundles executed at the top of the block
@@ -156,8 +155,7 @@ $ go install github.com/skip-mev/pob
    transactions alongside the normal transactions without having access to the
    application’s mempool. As such, we have to instantiate POB’s custom
    `AuctionMempool` - a modified version of the SDK’s priority sender-nonce
-   mempool - into the application. Note, this should be done after `BaseApp` is
-   instantiated.
+   mempool - into the application.
 
    Application developers can choose to implement their own `AuctionFactory` implementation
    or use the default implementation provided by POB. The `AuctionFactory` is responsible
@@ -180,12 +178,13 @@ $ go install github.com/skip-mev/pob
    will verify the contents of the block proposal by all validators. The
    combination of the `AuctionMempool`, `PrepareProposal` and `ProcessProposal`
    handlers allows the application to verifiably build valid blocks with
-   top-of-block block space reserved for auctions. Additionally, we override the
-   `BaseApp`'s `CheckTx` handler with our own custom `CheckTx` handler that will
+   top-of-block block space reserved for auctions.
+
+   Additionally, we override the `BaseApp`'s `CheckTx` handler with our own custom `CheckTx` handler that will
    be responsible for checking the validity of transactions. We override the
    `CheckTx` handler so that we can verify auction transactions before they are
    inserted into the mempool on top of the latest commit state. This is important
-   because we otherwise there may be discrepencies between the auction transaction
+   because we otherwise there may be discrepencies between how the auction transaction
    and the bundled transactions are validated in `CheckTx` and `PrepareProposal` such
    that the auction can be griefed. All other transactions will be executed with base app's `CheckTx`.
 
