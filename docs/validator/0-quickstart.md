@@ -23,7 +23,6 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 
 - Juno Mainnet `CHAIN_ID=juno-1`
 - Terra2 Mainnet `CHAIN_ID=phoenix-1`
-- EVMOS Mainnet `CHAIN_ID=evmos_9001-2`
 - Injective Mainnet `CHAIN_ID=injective-1`
 - Comdex Mainnet `CHAIN_ID=comdex-1`
 - Neutron Mainnet `CHAIN_ID=neutron-1`
@@ -32,7 +31,6 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 
 - Juno Testnet `CHAIN_ID=uni-6`
 - Terra2 Testnet `CHAIN_ID=pisco-1`
-- EVMOS Testnet `CHAIN_ID=evmos_9000-4`
 - Injective Testnet `CHAIN_ID=injective-888`
 - Comdex Testnet `CHAIN_ID=comdex-test2`
 - Neutron Testnet `CHAIN_ID=pion-1`
@@ -69,14 +67,9 @@ We provide forks of the source code for all the open source chains we support at
 Because the Injective codebase is not open source, Injective requires a different process. You must follow the special Injective instructions [here](./8-injective-build.md). (Don't worry, they're simple.)
 :::
 
-:::caution Not applicable for Evmos past v13.0.0-rc1
-v13.0.0-rc1 introduces a private dependency for their precompiles feature. As a result, building from source with mev-tendermint is not currently possible.
-The dependency will be made public pending an audit, but in the meantime, you can instead use the prebuilt binaries attached to the releases [here](https://github.com/skip-mev/evmos/releases).
-:::
 
 1. Set `SKIP_CHAIN_REPO` to the name of the fork of the chain you're building:
 
-- **EVMOS:** `export SKIP_CHAIN_REPO=evmos`
 - **JUNO:** `export SKIP_CHAIN_REPO=juno`
 - **Terra2:** `export SKIP_CHAIN_REPO=terra-core`
 - **Comdex:** `export SKIP_CHAIN_REPO=comdex`
@@ -97,12 +90,12 @@ git checkout $CHAIN_VERSION-mev
 4. Build the binary as normal using `make install`
 
 :::note Example
-For example, if we were building v10.0.1 of EVMOS, the process would look like:
+For example, if we were building v14.1.0 of Juno, the process would look like:
 
 ```bash
-git clone https://github.com/skip-mev/evmos
-cd evmos
-git checkout v10.0.1-mev
+git clone https://github.com/skip-mev/juno
+cd juno
+git checkout v14.1.0-mev
 make install
 ```
 
@@ -142,7 +135,6 @@ api_key = "fake_api_key"
   | Chain name        | Chain ID       | Supported Chain Version   | sentinel_rpc_string                   | sentinel_peer_string                                                              |
   | ----------------- | -------------- | ------------------------- | ------------------------------------- | --------------------------------------------------------------------------------- |
   | JUNO Mainnet      | `juno-1`       | `v14.1.0`                 | `https://juno-1-api.skip.money`       | `8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656`       |
-  | EVMOS Mainnet     | `evmos_9001-2` | `v12.1.2`                 | `https://evmos-9001-2-api.skip.money` | `c0a2990e2a5dad7f4ace044d2f936de6891c6f0a@evmos-9001-2-sentinel.skip.money:26656` |
   | Terra2 Mainnet    | `phoenix-1`    | `v2.3.1`                  | `https://phoenix-1-api.skip.money`    | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656`    |
   | Injective Mainnet | `injective-1`  | `v1.10.0`                 | `https://injective-1-api.skip.money`  | `6f3b548716049d83ab701a1eddef56bd202c09db@injective-1-sentinel.skip.money:26656`  |
   | Comdex Mainnet    | `comdex-1`     | `v7.0.0`                  | `https://comdex-1-api.skip.money`     | `79505b5fb2782acbea09059abde58e7bca76c8e1@comdex-1-sentinel.skip.money:26656`     |
@@ -153,7 +145,6 @@ api_key = "fake_api_key"
   | Chain name        | Chain ID        | Supported Chain Version   | sentinel_rpc_string                    | sentinel_peer_string                                                               |
   | ----------------- | --------------- | ------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------- |
   | JUNO Testnet      | `uni-6`         | `v14.0.0-alpha.2`         | `https://uni-6-api.skip.money`         | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656`         |
-  | EVMOS Testnet     | `evmos_9000-4`  | `v13.0.0-rc1`             | `https://evmos-9000-4-api.skip.money`  | `4d8990908ae5cbe7783192c0364db4a90af56dbc@evmos-9000-4-sentinel.skip.money:26656`  |
   | Injective Testnet | `injective-888` | `v1.10.2`                 | `https://injective-888-api.skip.money` | `24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656` |
   | Terra 2 Testnet   | `pisco-1`       | `v2.3.0-rc.0`             | `https://pisco-1-api.skip.money`       | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656`       |
   | Comdex Testnet    | `comdex-test2`  | `v10.1.0`                 | `https://comdex-test2-api.skip.money`  | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656`  |
