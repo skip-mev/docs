@@ -119,7 +119,7 @@ Read more about other methods that do not require forking our repos [here](alter
 `mev-tendermint` introduces a new section of config in `config.toml` called `[sidecar]` that includes several
 config settings that allow your node to recieve MEV bundles from Skip.
 
-(You can read more about what these are here: [Validator Config Reference Docs](select/validator/3-config))
+(You can read more about what these are here: [Validator Config Reference Docs](select/validator/config))
 
 By the end, the end of your `config.toml` on each node will look something like this (with different string values). **Make sure to include the line `[sidecar]` at the top of this section in `config.toml`.**
 
