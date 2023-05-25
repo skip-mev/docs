@@ -17,11 +17,11 @@ Below you can find instruction to perform the replacement automatically or manua
 :::tip Prerequisite
 For either approach, you will need to know the official chain ID (`CHAIN_ID`) and latest binary version release tag (`CHAIN_VERSION`) for the chain you want to use Skip on.
 
-You can find the correct values for these variables [here](/3-chain-configuration.md).
+You can find the correct values for these variables [here](select/3-chain-configuration.md).
 :::
 
 :::caution Not applicable for Injective
-Because the Injective codebase is not open source, this approach is not suitable for Injective. You must follow the special injective instructions [here](validator/8-injective-build.md)
+Because the Injective codebase is not open source, this approach is not suitable for Injective. You must follow the special injective instructions [here](select/validator/8-injective-build.md)
 :::
 
 - **Automated replacement**
