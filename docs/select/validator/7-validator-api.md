@@ -22,7 +22,6 @@ sidebar_position: 7
   	"chains": [
   		"phoenix-1",
   		"pisco-1",
-  		"injective-1",
   		"comdex-test2",
   		"comdex-1",
   		"juno-1",

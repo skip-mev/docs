@@ -23,7 +23,6 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 
 - Juno Mainnet `CHAIN_ID=juno-1`
 - Terra2 Mainnet `CHAIN_ID=phoenix-1`
-- Injective Mainnet `CHAIN_ID=injective-1`
 - Comdex Mainnet `CHAIN_ID=comdex-1`
 - Neutron Mainnet `CHAIN_ID=neutron-1`
 
@@ -61,10 +60,6 @@ You will need access to your operator key or a key to which your operator has de
 **THIS STEP IS ONLY REQUIRED IF YOUR CHAIN DOES NOT INCLUDE `mev-tendermint` BY DEFAULT.**
 
 We provide forks of the source code for all the open source chains we support at https://github.com/skip-mev that come pre-loaded with mev-tendermint _and no other modifications_.
-
-:::caution Not applicable for Injective
-Because the Injective codebase is not open source, Injective requires a different process. You must follow the special Injective instructions [here](injective-build). (Don't worry, they're simple.)
-:::
 
 1. Set `SKIP_CHAIN_REPO` to the name of the fork of the chain you're building:
 
@@ -130,16 +125,15 @@ api_key = "fake_api_key"
 
   **Mainnets**
 
-  | Chain name        | Chain ID      | Supported Chain Version | sentinel_rpc_string                  | sentinel_peer_string                                                             |
-  | ----------------- | ------------- | ----------------------- | ------------------------------------ | -------------------------------------------------------------------------------- |
-  | JUNO Mainnet      | `juno-1`      | `v14.1.0`               | `https://juno-1-api.skip.money`      | `8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656`      |
-  | Terra2 Mainnet    | `phoenix-1`   | `v2.3.1`                | `https://phoenix-1-api.skip.money`   | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656`   |
-  | Injective Mainnet | `injective-1` | `v1.10.0`               | `https://injective-1-api.skip.money` | `6f3b548716049d83ab701a1eddef56bd202c09db@injective-1-sentinel.skip.money:26656` |
-  | Comdex Mainnet    | `comdex-1`    | `v7.0.0`                | `https://comdex-1-api.skip.money`    | `79505b5fb2782acbea09059abde58e7bca76c8e1@comdex-1-sentinel.skip.money:26656`    |
-  | Neutron Mainnet   | `neutron-1`   | `v1.0.1`                | `https://neutron-1-api.skip.money`   | `08a1653fd6669468f8b9c22d70f476a5b27f576a@neutron-1-sentinel.skip.money:26656`   |
-
+  | Chain name      | Chain ID    | Supported Chain Version | sentinel_rpc_string                | sentinel_peer_string                                         |
+  | --------------- | ----------- | ----------------------- | ---------------------------------- | ------------------------------------------------------------ |
+  | JUNO Mainnet    | `juno-1`    | `v14.1.0`               | `https://juno-1-api.skip.money`    | `8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656` |
+  | Terra2 Mainnet  | `phoenix-1` | `v2.3.1`                | `https://phoenix-1-api.skip.money` | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656` |
+  | Comdex Mainnet  | `comdex-1`  | `v7.0.0`                | `https://comdex-1-api.skip.money`  | `79505b5fb2782acbea09059abde58e7bca76c8e1@comdex-1-sentinel.skip.money:26656` |
+  | Neutron Mainnet | `neutron-1` | `v1.0.1`                | `https://neutron-1-api.skip.money` | `08a1653fd6669468f8b9c22d70f476a5b27f576a@neutron-1-sentinel.skip.money:26656` |
+  
   **Testnets**
-
+  
   | Chain name      | Chain ID       | Supported Chain Version | sentinel_rpc_string                   | sentinel_peer_string                                         |
   | --------------- | -------------- | ----------------------- | ------------------------------------- | ------------------------------------------------------------ |
   | JUNO Testnet    | `uni-6`        | `v14.0.0-alpha.2`       | `https://uni-6-api.skip.money`        | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656` |

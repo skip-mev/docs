@@ -20,10 +20,6 @@ For either approach, you will need to know the official chain ID (`CHAIN_ID`) an
 You can find the correct values for these variables [here](../chain-configuration).
 :::
 
-:::caution Not applicable for Injective
-Because the Injective codebase is not open source, this approach is not suitable for Injective. You must follow the special injective instructions [here](injective-build)
-:::
-
 - **Automated replacement**
 
   Run the following commands to automatically update your `go.mod` file with the correct version of mev-tendermint:
