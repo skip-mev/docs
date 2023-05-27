@@ -6,12 +6,17 @@ sidebar_position: 8
 
 # Install on Injective
 
+:::caution Deprecation warning
+
+Injective testnet is already deprecated and mainnet is going to be deprecated on their next upgrade. Injective is going to be switching to Skip v2 as part of their upcoming releases.
+
+:::
+
 Injective is not open source, so we provide a compiled binary with mev-tendermint.
 
 Set a version tag based on whether you're using testnet or mainnet:
 
 - Mainnet (`injective-1`): `export VERSION_TAG=1.10.0`
-- Testnet (`injective-888`): `export VERSION_TAG=1.10.2`
 
 Download the tarball:
 

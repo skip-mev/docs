@@ -31,7 +31,6 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 
 - Juno Testnet `CHAIN_ID=uni-6`
 - Terra2 Testnet `CHAIN_ID=pisco-1`
-- Injective Testnet `CHAIN_ID=injective-888`
 - Comdex Testnet `CHAIN_ID=comdex-test2`
 - Neutron Testnet `CHAIN_ID=pion-1`
 
@@ -141,13 +140,12 @@ api_key = "fake_api_key"
 
   **Testnets**
 
-  | Chain name        | Chain ID        | Supported Chain Version | sentinel_rpc_string                    | sentinel_peer_string                                                               |
-  | ----------------- | --------------- | ----------------------- | -------------------------------------- | ---------------------------------------------------------------------------------- |
-  | JUNO Testnet      | `uni-6`         | `v14.0.0-alpha.2`       | `https://uni-6-api.skip.money`         | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656`         |
-  | Injective Testnet | `injective-888` | `v1.10.2`               | `https://injective-888-api.skip.money` | `24b0ca5c32b1c90fe7e373075de1d94ddf94c0b3@injective-888-sentinel.skip.money:26656` |
-  | Terra 2 Testnet   | `pisco-1`       | `v2.3.0-rc.0`           | `https://pisco-1-api.skip.money`       | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656`       |
-  | Comdex Testnet    | `comdex-test2`  | `v10.1.0`               | `https://comdex-test2-api.skip.money`  | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656`  |
-  | Neutron Testnet   | `pion-1`        | `v1.0.0-rc1`            | `https://pion-1-api.skip.money`        | `f44aa4467a5c411f650fd9223644d70afc1eacd1@pion-1-sentinel.skip.money:26656`        |
+  | Chain name      | Chain ID       | Supported Chain Version | sentinel_rpc_string                   | sentinel_peer_string                                         |
+  | --------------- | -------------- | ----------------------- | ------------------------------------- | ------------------------------------------------------------ |
+  | JUNO Testnet    | `uni-6`        | `v14.0.0-alpha.2`       | `https://uni-6-api.skip.money`        | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656` |
+  | Terra 2 Testnet | `pisco-1`      | `v2.3.0-rc.0`           | `https://pisco-1-api.skip.money`      | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656` |
+  | Comdex Testnet  | `comdex-test2` | `v10.1.0`               | `https://comdex-test2-api.skip.money` | `0ef2b039f0f370be9c5f39924923e96ef94bc87f@comdex-test2-sentinel.skip.money:26656` |
+  | Neutron Testnet | `pion-1`       | `v1.0.0-rc1`            | `https://pion-1-api.skip.money`       | `f44aa4467a5c411f650fd9223644d70afc1eacd1@pion-1-sentinel.skip.money:26656` |
 
 ### Extra config for sentry configurations
 
@@ -193,7 +191,7 @@ These steps are only relevant for folks with set ups where they want one of thei
 
   ```jsx
   <NODE_DAEMON> tendermint show-node-id --home <HOME_DIR>
-
+  
   # example:
   junod tendermint show-node-id --home ./juno
   ```

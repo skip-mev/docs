@@ -21,7 +21,6 @@ sidebar_position: 7
   {
   	"chains": [
   		"phoenix-1",
-  		"injective-888",
   		"pisco-1",
   		"injective-1",
   		"comdex-test2",
