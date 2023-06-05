@@ -19,7 +19,3 @@ If you use Cosmovisor, just place the output binary in the cosmovisor `upgrades/
 :::info Same as normal upgrade process
 Notice that this process is **identical** to performing a normal chain upgrade except that instead of using the official upstream repo and the `CHAIN_VERSION` tag, you are using a fork of chain source code from https://github.com/skip-mev/ and a `CHAIN_VERSION-mev` tag.
 :::
-
-:::caution Not applicable for Injective
-Because the Injective codebase is not open source, injective requires a different process. You must follow the special Injective instructions [here](injective-build). (Don't worrry, they're simple.)
-:::
