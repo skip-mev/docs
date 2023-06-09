@@ -125,7 +125,7 @@ api_key = "fake_api_key"
   | Chain name      | Chain ID    | Supported Chain Version | sentinel_rpc_string                | sentinel_peer_string                                                           |
   | --------------- | ----------- | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
   | JUNO Mainnet    | `juno-1`    | `v15.0.0`               | `https://juno-1-api.skip.money`    | `8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656`    |
-  | Terra2 Mainnet  | `phoenix-1` | `v2.3.2`                | `https://phoenix-1-api.skip.money` | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656` |
+  | Terra2 Mainnet  | `phoenix-1` | `v2.3.4`                | `https://phoenix-1-api.skip.money` | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656` |
   | Neutron Mainnet | `neutron-1` | `v1.0.1`                | `https://neutron-1-api.skip.money` | `08a1653fd6669468f8b9c22d70f476a5b27f576a@neutron-1-sentinel.skip.money:26656` |
 
   **Testnets**
