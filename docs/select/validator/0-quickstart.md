@@ -131,9 +131,9 @@ api_key = "fake_api_key"
   **Testnets**
 
   | Chain name      | Chain ID  | Supported Chain Version | sentinel_rpc_string              | sentinel_peer_string                                                         |
-  | --------------- | --------- | ----------------------- | -------------------------------- | ---------------------------------------------------------------------------- |
+  | --------------- | --------- |-------------------------| -------------------------------- | ---------------------------------------------------------------------------- |
   | JUNO Testnet    | `uni-6`   | `v15.0.0-alpha.1`       | `https://uni-6-api.skip.money`   | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656`   |
-  | Terra 2 Testnet | `pisco-1` | `v2.3.0-rc.0`           | `https://pisco-1-api.skip.money` | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656` |
+  | Terra 2 Testnet | `pisco-1` | `v2.4.0-rc.5`           | `https://pisco-1-api.skip.money` | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656` |
   | Neutron Testnet | `pion-1`  | `v1.0.0-rc1`            | `https://pion-1-api.skip.money`  | `f44aa4467a5c411f650fd9223644d70afc1eacd1@pion-1-sentinel.skip.money:26656`  |
 
 ### Extra config for sentry configurations
