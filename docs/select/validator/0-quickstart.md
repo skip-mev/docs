@@ -125,13 +125,13 @@ api_key = "fake_api_key"
   | Chain name      | Chain ID    | Supported Chain Version | sentinel_rpc_string                | sentinel_peer_string                                                           |
   | --------------- | ----------- | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
   | JUNO Mainnet    | `juno-1`    | `v15.0.0`               | `https://juno-1-api.skip.money`    | `8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656`    |
-  | Terra2 Mainnet  | `phoenix-1` | `v2.3.4`                | `https://phoenix-1-api.skip.money` | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656` |
+  | Terra 2 Mainnet | `phoenix-1` | `v2.4.1`                | `https://phoenix-1-api.skip.money` | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656` |
   | Neutron Mainnet | `neutron-1` | `v1.0.1`                | `https://neutron-1-api.skip.money` | `08a1653fd6669468f8b9c22d70f476a5b27f576a@neutron-1-sentinel.skip.money:26656` |
 
   **Testnets**
 
   | Chain name      | Chain ID  | Supported Chain Version | sentinel_rpc_string              | sentinel_peer_string                                                         |
-  | --------------- | --------- |-------------------------| -------------------------------- | ---------------------------------------------------------------------------- |
+  | --------------- | --------- | ----------------------- | -------------------------------- | ---------------------------------------------------------------------------- |
   | JUNO Testnet    | `uni-6`   | `v15.0.0-alpha.1`       | `https://uni-6-api.skip.money`   | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656`   |
   | Terra 2 Testnet | `pisco-1` | `v2.4.0-rc.5`           | `https://pisco-1-api.skip.money` | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656` |
   | Neutron Testnet | `pion-1`  | `v1.0.0-rc1`            | `https://pion-1-api.skip.money`  | `f44aa4467a5c411f650fd9223644d70afc1eacd1@pion-1-sentinel.skip.money:26656`  |
