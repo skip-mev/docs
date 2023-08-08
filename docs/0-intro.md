@@ -23,6 +23,10 @@ Skip offers two products - Skip V1 [Select](select/intro) and Skip V2 [POB](pob/
 Skip V2 is recommended for any chains over Cosmos SDK version 0.47 as it’s fully in-protocol, decentralized, and lightning-fast.
 All integrations take < 20 mins to set up, and please [contact us](https://skip.money/contact) if you need assistance.
 
+#### [COMING SOON]
+
+Skip is developing a [mempool SDK](pob/mempool-sdk) that will allow chains to easily integrate with Skip V2 and allow for more complex block building strategies.
+
 ### For Validators
 
 On networks that use Skip V1 [Select](select/chain-configuration), validators can register to receive MEV rewards and share the revenue with stakers according to their preference.
