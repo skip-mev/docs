@@ -5,7 +5,9 @@ sidebar_position: 1
 ---
 
 :::info BlockBuster
-**`BlockBuster`** is a framework for creating modular, application specific mempools by **separating transactions into “lanes” with custom transaction handling.**
+**`BlockBuster`** is Skip's mempool SDK and a framework for creating modular, application specific mempools by **separating transactions into “lanes” with custom transaction handling.**
+
+For implementation details, please visit the **[Github repository](https://github.com/skip-mev/pob/tree/main/blockbuster)**.
 :::
 
 ## What is a Mempool?
