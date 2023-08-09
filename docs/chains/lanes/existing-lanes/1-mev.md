@@ -1,17 +1,27 @@
 ---
-description: Skip POB Quickstart
-title: Chain Integration
+description: MEV Lane (POB)
+title: MEV Lane (aka POB)
 sidebar_position: 1
 ---
 
+<!-- TODO: @David check if correct -->
+
+### 💰 MEV Lane (aka POB)
+
+Blockspace is valuable, and MEV bots find arbitrage opportunities to capture value. The Block SDK provides a fair auction for these opportunities via the `x/auction` module inside the Block SDK so that protocols are rewarded while ensuring that users are not front-run or sandwiched in the process.
+
+The Block SDK uses the app-side mempool, `PrepareProposal` / `ProcessProposal`, and `CheckTx` to create an MEV marketplace inside the protocol. It introduces a new message type, called a `MsgAuctionBid`, that allows the submitter to execute multiple transactions at the **top of the block atomically** (atomically = directly next to each other). Read more [here](mev-integration)
+
+This means that ‘searchers’ can find opportunities in the mempool, backrun them, and submit them at the top of the block. This covers most MEV recapture via arbitrage and liquidations. It can be configured to **not allow** for sandwich attacks or harmful MEV.
+
 :::note 📚 **This page is for chain developers.**
 
-For a more in-depth walk through, the POB repository contains an [**installation and set up guide**](https://github.com/skip-mev/pob#readme) alongside a sample integration with a [**basic simulation application**](https://github.com/skip-mev/pob/blob/main/tests/app/app.go).
+For a more in-depth walk through, the Block SDK repository contains an [**installation and set up guide**](https://github.com/skip-mev/pob#readme) alongside a sample integration with a [**basic simulation application**](https://github.com/skip-mev/pob/blob/main/tests/app/app.go).
 :::
 
 Please [**reach out to us**](https://skip.money/contact) if you need help!
 
-Skip's POB provides developers with a set of a few core primitives:
+Skip's Block SDK provides developers with a set of a few core MEV primitives:
 
 - `x/builder`: This Cosmos SDK module gives applications the ability to process
   MEV bundled transactions in addition to having the ability to define how searchers
@@ -32,7 +42,7 @@ Skip's POB provides developers with a set of a few core primitives:
   the ability to validate bids as if they were to be executed first on the latest committed
   state, auctions can be grieved and MEV can be stolen.
 
-**At a high level, to integrate POB chains must:**
+**At a high level, to integrate MEV chains must:**
 
 1. Be using Cosmos SDK version or higher `v0.47.0`.
 2. Add the `x/builder` module to their set of SDK modules.
@@ -44,9 +54,9 @@ Skip's POB provides developers with a set of a few core primitives:
 
 ### Release Compatibility Matrix
 
-| POB Version | Cosmos SDK |
-| :---------: | :--------: |
-|   v1.x.x    |  v0.47.x   |
+| Block SDK Version | Cosmos SDK |
+| :---------------: | :--------: |
+|      v1.x.x       |  v0.47.x   |
 
 **The following sections will walk through each of these steps in detail.**
 

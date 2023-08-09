@@ -1,7 +1,7 @@
 ---
-description: Skip POB Quickstart
-title: Searcher Docs
-sidebar_position: 1
+description: Searcher Documentation
+title: 🥷 For Searchers
+sidebar_position: 3
 ---
 
 :::caution Searcher Simluation
@@ -9,7 +9,7 @@ sidebar_position: 1
 Bundles must only pass basic `CheckTx` validation (e.g. nonce, account balance, etc.) in order to be accepted by the auction. This means that bundles that are submitted to the auction may not be entirely valid on-chain since `runMsgs` is not executed. Searchers are encouraged to simulate their bundles before submitting them to the auction.
 :::
 
-### ➡️ How do searchers submit bundles?
+### ➡️ How do searchers submit bundles to chains that use the Block SDK?
 
 :::info Definitions
 💡 `AuctionTx` (auction bid transaction) = `sdk.Tx` that includes a single `MsgAuctionBid`

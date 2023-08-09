@@ -1,7 +1,7 @@
 ---
 description: FAQs About Skip
-title: FAQ
-sidebar_position: 6
+title: 📣 FAQ
+sidebar_position: 1
 ---
 
 ### What is Skip?
