@@ -17,7 +17,7 @@ Skip has built out a number of plug-and-play `lanes` on the SDK that your protoc
 Most Cosmos chains today utilize standard `CometBFT` block construction - which is too limited.
 
 - The standard `CometBFT` block building is susceptible to MEV-related issues, such as front-running and sandwich attacks, since proposers have monopolistic rights on ordering and no verification of good behavior. MEV that is created cannot be redistributed to the protocol.
-- The standard `CometBFT` block building uses a one-size-fits-all approach, which can result in inefficient transaction processing for specific applications or use cases and create sub-optimal fee markets.
+- The standard `CometBFT` block building uses a one-size-fits-all approach, which can result in inefficient transaction processing for specific applications or use cases and sub-optimal fee markets.
 - Transactions tailored for specific applications may need custom prioritization, ordering or validation rules that the mempool is otherwise unaware of because transactions within a block are currently in-differentiable when a blockchain might want them to be.
 
 ### ✅ Solution: The Block SDK

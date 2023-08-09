@@ -15,26 +15,27 @@ The Block SDK is **open-source software** licensed under MIT. It is free to use,
 
 ### 1. 💅 Determine the `lanes` desired
 
-<!-- TODO: add links -->
+Visit our [Lane App Store](lanes/existing-lanes/default) and select the `lanes` you want, or [Build Your Own](lanes/build-your-own-lane). Skip currently supports the following `lanes`:
 
-See [Lane Implementations](/) and select the `lanes` you want, or [Build Your Own](/).
+1. [MEV Lane](lanes/existing-lanes/mev) that allows for MEV recapture by auctioning off the top of block space.
+2. [Free Lane](lanes/existing-lanes/free) that allows for transactions with certain properties (e.g. from trusted accounts or performing encouraged actions) to be included in the next block for free.
+3. [Default Lane](lanes/existing-lanes/default) that accepts all other transactions.
 
 ### 2. ⚡️ Instantiate the Block SDK in base app
 
 The `lanes` are ordered by priority and are configurable by developers. The first `lane` is the highest priority `lane` and the last `lane` is the lowest priority `lane`.
 
-<!-- TODO: everything blockbuster has to be renamed block SDK -->
-
 ```go
-// Set the blockbuster mempool into the app.
+// Set the block SDK mempool into the app.
 // Create the lanes.
 //
 // NOTE: The lanes are ordered by priority. The first lane is the highest priority
 // lane and the last lane is the lowest priority lane.
 // Top of block lane allows transactions to bid for inclusion at the top of the next block.
 //
-// blockbuster.BaseLaneConfig is utilized for basic encoding/decoding of transactions.
-tobConfig := blockbuster.BaseLaneConfig{
+// block.BaseLaneConfig is utilized for basic encoding/decoding of transactions, configuring how much
+// block space the lane can consume, and how many transactions the lane can retain.
+tobConfig := block.BaseLaneConfig{
     Logger:        app.Logger(),
     TxEncoder:     app.txConfig.TxEncoder(),
     TxDecoder:     app.txConfig.TxDecoder(),
@@ -42,6 +43,7 @@ tobConfig := blockbuster.BaseLaneConfig{
     // indicates that the lane can use all available block space.
     MaxBlockSpace: sdk.ZeroDec(),
 }
+// Top of block lane allows transactions to bid for inclusion at the top of the next block.
 tobLane := auction.NewTOBLane(
     tobConfig,
     // the maximum number of transactions that the mempool can store. a value of 0 indicates
@@ -54,44 +56,43 @@ tobLane := auction.NewTOBLane(
 )
 
 // Free lane allows transactions to be included in the next block for free.
-freeConfig := blockbuster.BaseLaneConfig{
+freeConfig := block.BaseLaneConfig{
     Logger:        app.Logger(),
     TxEncoder:     app.txConfig.TxEncoder(),
     TxDecoder:     app.txConfig.TxDecoder(),
     MaxBlockSpace: sdk.ZeroDec(),
-    // IgnoreList is a list of lanes that if a transaction should be included in, it will be
-    // ignored by the lane. For example, if a transaction should belong to the tob lane, it
-    // will be ignored by the free lane.
-    IgnoreList: []blockbuster.Lane{
-    tobLane,
-    },
 }
 freeLane := free.NewFreeLane(
     freeConfig,
+    // The FreeFactory is responsible for determining what is a free transaction. There is a
+    // default implementation that can be used or application developers can implement
+    // their own.
     free.NewDefaultFreeFactory(app.txConfig.TxDecoder()),
 )
 
 // Default lane accepts all other transactions.
-defaultConfig := blockbuster.BaseLaneConfig{
+defaultConfig := block.BaseLaneConfig{
     Logger:        app.Logger(),
     TxEncoder:     app.txConfig.TxEncoder(),
     TxDecoder:     app.txConfig.TxDecoder(),
     MaxBlockSpace: sdk.ZeroDec(),
-    IgnoreList: []blockbuster.Lane{
-        tobLane,
-        freeLane,
-    },
 }
 defaultLane := base.NewDefaultLane(defaultConfig)
 
 // Set the lanes into the mempool.
-lanes := []blockbuster.Lane{
+lanes := []block.Lane{
     tobLane,
     freeLane,
     defaultLane,
 }
-mempool := blockbuster.NewMempool(lanes...)
+mempool := block.NewMempool(lanes...)
 app.App.SetMempool(mempool)
+
+// Set the lane antehandlers on the lanes.
+for _, lane := range lanes {
+    lane.SetAnteHandler(anteHandler)
+}
+app.App.SetAnteHandler(anteHandler)
 ```
 
 ### 3. 🚀 Instantiate the Block SDK Proposal Handlers
@@ -100,7 +101,7 @@ app.App.SetMempool(mempool)
 proposalHandlers := abci.NewProposalHandler(
     app.Logger(),
     app.txConfig.TxDecoder(),
-    mempool, // BlockBuster mempool
+    mempool, // Block SDK mempool
 )
 app.App.SetPrepareProposal(proposalHandlers.PrepareProposalHandler())
 app.App.SetProcessProposal(proposalHandlers.ProcessProposalHandler())
@@ -121,7 +122,7 @@ the `IgnoreList` field on the lane’s `Config` to ignore lanes that the transac
 ### Block Proposals
 
 :::info Block Proposal Example
-The ordering of lanes when initializing BlockBuster in base app will determine the ordering of how proposals are built. For example, say that we instantiate three lanes:
+The ordering of lanes when initializing a Block SDK mempool in base app will determine the ordering of how proposals are built. For example, say that we instantiate three lanes:
 
 1. Top of block lane
 2. Free lane
@@ -131,9 +132,9 @@ The ordering of lanes when initializing BlockBuster in base app will determine t
 
 ### Preparing Proposals
 
-When the current proposer starts building a block, it will first populate the proposal with transactions from the top of block lane, followed by free and default lane. Each lane proposes its own set of transactions using the lane’s `PrepareLane` (analogous to `PrepareProposal`). Each lane has a limit on the relative percentage of total block space (`MaxBlockSpace`) that the lane can consume. For example, the free lane might be configured to only make up 10% of any block. This is defined on each lane’s `Config` when it is instantiated.
+When the current proposer starts building a block, it will first populate the proposal with transactions from the top of block lane, followed by free and default lane. Each lane proposes its own set of transactions using the lane’s `PrepareLane` (analogous to `PrepareProposal`). Each lane has a limit on the relative percentage of total block space (`MaxBlockSpace`) that the lane can consume. For example, the free lane might be configured to only make up 10% of any block. This is defined on each lane’s `BaseLaneConfig` when it is instantiated.
 
-In the case when any lane fails to propose its portion of the block, it will be skipped and the next lane in the set of lanes will propose its portion of the block. Failures of partial block proposals are independent of one another.
+In the case when any lane fails to propose its portion of the block, it will be skipped and the next lane in the set of lanes will propose its portion of the block. **Failures of partial block proposals are independent of one another**.
 
 ### Processing Proposals
 
@@ -145,7 +146,7 @@ Block proposals are validated iteratively following the exact ordering of lanes 
 
 It will be rejected because it does not respect the lane ordering.
 
-The BlockBuster `ProcessProposalHandler` processes the proposal by verifying all transactions in the proposal according to each lane's verification logic in a greedy fashion. If a lane's portion of the proposal is invalid, we reject the proposal. After a lane's portion of the proposal is verified, we pass the remaining transactions to the next lane in the chain.
+The Block SDK `ProcessProposalHandler` processes the proposal by verifying all transactions in the proposal according to each lane's verification logic in a greedy fashion. If a lane's portion of the proposal is invalid, we reject the proposal. After a lane's portion of the proposal is verified, we pass the remaining transactions to the next lane in the chain.
 
 #### Coming Soon
 
