@@ -4,7 +4,9 @@ title: Default Lane
 sidebar_position: 2
 ---
 
-:::info Default Lane
+<!-- TODO: Idk what other information we might want here @mag -->
+
+:::info TLDR
 
 The `Default Lane` is the **most general and least restrictive** lane. The Default Lane accepts all transactions that are not accepted by the other lanes, is generally the lowest priority lane, and consumes all blockspace that is
 not consumed by the other lanes.
@@ -17,7 +19,6 @@ The default lane mirrors how CometBFT/Tendermint creates proposals today.
 
 - Does a basic check to ensure that the transaction is valid (using baseapp's CheckTx).
 - Orders the transactions based on tx fee amount (highest to lowest).
-- Creates a partial block with the ordered transactions.
 
 The default lane implements the same `ABCI++` interface as the other lanes, however it does no special processing of transactions (outside of a basic `AnteHandler` check) and orders the transactions based on their fee amount in its partial block. The `PrepareLane` handler will reap transactions from the lane up to the `MaxBlockSpace` limit, and the `ProcessLane` handler will ensure that the transactions are ordered based on their fee amount and pass the same checks done in `PrepareLane`.
 

@@ -4,6 +4,12 @@ title: MEV Lane
 sidebar_position: 0
 ---
 
+:::info TLDR
+
+The `MEV Lane` hosts top of block auctions in protocol and verifiably builds blocks with top-of-block block space reserved for auction winners, with auction revenue being redistributed to chains.
+
+:::
+
 ### 💰 Overview
 
 Blockspace is valuable, and MEV bots find arbitrage opportunities to capture value. The Block SDK provides a fair auction for these opportunities via the `x/auction` module inside the Block SDK so that protocols are rewarded while ensuring that users are not front-run or sandwiched in the process.
