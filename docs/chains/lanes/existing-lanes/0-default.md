@@ -1,7 +1,7 @@
 ---
 description: Default Lane
-title: Default Lane
-sidebar_position: 2
+title: 1️⃣ Default Lane
+sidebar_position: 0
 ---
 
 <!-- TODO: Idk what other information we might want here @mag -->

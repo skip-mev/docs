@@ -4,72 +4,68 @@ title: 📣 FAQ
 sidebar_position: 1
 ---
 
-### What is Skip?
+### 🤔 What is Skip?
 
-Skip builds infrastructure and protocols to help sovereign blockchain ecosystems leverage their blockspace markets and orderflow to enrich network stakeholders and protect users from the harmful effects of MEV.
+Skip helps sovereign blockchains and frontends improve UX and leverage MEV to enrich network stakeholders and protect them from its harmful effects.
 
-Skip gives app chains and validators maximum choice and flexibility in how to build their MEV marketplaces, including choice over:
+We're on a mission to make interoperability dead easy.
 
-- Where and to whom MEV revenue accrues
-- What forms of MEV are facilitated
-- And more...
+### 🤔 What are Skip’s products?
 
-### What are Skip’s products?
-
-- [Protocol Owned Builder](pob/overview)
-  - Protocol-Owned Builder (POB) is a set of Cosmos SDK and ABCI++ primitives that permissionlessly, fairly capture MEV in-protocol via an auction of **bundles** (i.e. a set of transactions).
-- [Skip Select](select/intro)
-  - A a blockspace auction system that’s currently deployed on most chains that work with Skip. It builds the top of the block from tipped bundles submitted by traders and gives this segment of the block to validators to include on chain
-  - Searchers / traders submit bundles of transactions to Skip Select with a "tip" that they're willing to pay in exchange for the guarantee that their bundle will land on chain in exactly the order they specify and not revert.
-  - It requires validators to update their binary to include `mev-tendermint` -- an open-source, battle tested patch of Tendermint currently running on over 170 validators and 5 networks. Installation takes 5 minutes.
+- [Block SDK](chains/overview)
+  - The Block SDK is a set of Cosmos SDK and ABCI++ primitives that allow chains to fully customize blocks to specific use cases. It turns your chain's blocks into a **`highway`** consisting of individual **`lanes`** with their own special functionality.
+  - Comes with a pre-built MEV system, oracle, and custom gas markets!
+- [Skip API](https://api-docs.skip.money/docs)
+  - Skip API is a unified REST/RPC service that helps developers create more seamless cross-chain experiences for their end users with IBC.
+  - We’ve designed it so that even developers who are completely new to IBC and interoperability can use it to build applications and frontends with powerful IBC one-click functionality.
 - [ProtoRev](https://github.com/osmosis-labs/osmosis/blob/main/x/protorev/protorev.md)
   - An onchain module deployed on Osmosis, that captures MEV by backrunning transactions at execution time
 - [Skipper](https://github.com/skip-mev/skipper)
   - An opensource bot that allows for anyone to recapture “good” MEV (backrunning) on any Cosmos network where Skip Select is deployed
-- [Skip Secure](select/skip-secure)
-  - A private RPC endpoint anyone can add to their wallets to have private transactions, meaning no possibility of frontrunning or sandwiching
+- [Skip Select [Deprecated]](select/intro)
+  - A a blockspace auction system that’s currently deployed on most chains that work with Skip. It builds the top of the block from tipped bundles submitted by traders and gives this segment of the block to validators to include on chain
+  - Searchers / traders submit bundles of transactions to Skip Select with a "tip" that they're willing to pay in exchange for the guarantee that their bundle will land on chain in exactly the order they specify and not revert.
+  - It requires validators to update their binary to include `mev-tendermint` -- an open-source, battle tested patch of Tendermint currently running on over 170 validators and 5 networks. Installation takes 5 minutes.
 
-### Does Skip have a token?
+### 🤔 Does Skip have a token?
 
 No, Skip doesn’t have a token.
 
-### How many chains is Skip currently live on?
+### 🤔 How many chains is Skip currently live on?
 
-Check [skip.money/validators](http://skip.money/validators) to see all chains that Skip currently supports.
+Skip is currently live on 20+ chains across it's Block SDK, API, ProtoRev and Skipper products.
 
-### Are there rewards for testnet?
+### 🤔 Are there rewards for testnet?
 
 No, Skip is not a chain and doesn’t have a testnet.
 
-#### Is Skip audited?
+### 🤔 Is Skip audited?
 
-Skip is currently being audited by Informal Systems
+Yes, Skip software is audited by both Informal Systems and Oak Security.
 
-### Is Skip’s integration free for validators / searchers?
+### 🤔 Are Skip’s products free for validators / searchers?
 
-Yes, Skip is free to use, and takes no fees from any parties.
+Yes, Skip is free to use, and takes no fees from users.
 
-### How does a validator integrate Skip?
+### 🤔 How does a validator integrate Skip?
 
-Please follow the “Validator Quickstart” guide in the Skip docs [here](select/validator/quickstart)
+For chains that run Skip Select (Deprecated), follow the “Validator Quickstart” guide in the Skip docs [here](select/validator/quickstart)
 
-### How long does validator integration take?
+### 🤔 How long does validator integration take?
 
 Validator integration typically takes 5-10 minutes
 
-### What is Skip’s Vision
-
-Skip’s vision is to make blockchains financially sustainable through MEV, and to give app-chains and validators maximum choice in creating MEV markets.
-
-### Is it possible to know if a validator is running Skip?
+### 🤔 Is it possible to know if a validator is running Skip?
 
 Yes, Validators running Skip have a Skip badge in the validators details on Mintscan, and are also listed on Skip's website ([https://skip.money/validators](https://skip.money/validators))
 
-### How much money does Skip generate validators?
+On chains that integrate the [Block SDK](/chains/overview), all validators run MEV auctions in consensus.
+
+### 🤔 How much money does Skip generate?
 
 - MEV rewards are dependent on activity and volume, specifically DeFi related activity (e.g. DEX trading and liquidations) - this changes constantly per network
-- You can see how much validators earn by running Skip by examining skip.money/validators, and see daily volume and revenue in skip.money/activity
+- More metrics for measuring Skip profits are coming soon!
 
-### How does Skip make money?
+### 🤔 How does Skip make money?
 
-Skip is grant-funded, and in the future may take a small (~5%) fee of auction revenues after discussions with chains and validators.
+Skip is grant and chain-foundation-funded.

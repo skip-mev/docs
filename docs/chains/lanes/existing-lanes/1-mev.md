@@ -1,7 +1,7 @@
 ---
 description: MEV Lane
-title: MEV Lane
-sidebar_position: 0
+title: 2️⃣ MEV Lane
+sidebar_position: 1
 ---
 
 :::info TLDR
