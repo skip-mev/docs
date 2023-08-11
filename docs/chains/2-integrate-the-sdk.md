@@ -1,7 +1,7 @@
 ---
 description: Block SDK Integration
 title: ⚡️ Integrate the Block SDK
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 :::info Block SDK
@@ -119,35 +119,6 @@ the `IgnoreList` field on the lane’s `Config` to ignore lanes that the transac
 
 :::
 
-### Block Proposals
-
-:::info Block Proposal Example
-The ordering of lanes when initializing a Block SDK mempool in base app will determine the ordering of how proposals are built. For example, say that we instantiate three lanes:
-
-1. Top of block lane
-2. Free lane
-3. Default lane
-
-:::
-
-### Preparing Proposals
-
-When the current proposer starts building a block, it will first populate the proposal with transactions from the top of block lane, followed by free and default lane. Each lane proposes its own set of transactions using the lane’s `PrepareLane` (analogous to `PrepareProposal`). Each lane has a limit on the relative percentage of total block space (`MaxBlockSpace`) that the lane can consume. For example, the free lane might be configured to only make up 10% of any block. This is defined on each lane’s `BaseLaneConfig` when it is instantiated.
-
-In the case when any lane fails to propose its portion of the block, it will be skipped and the next lane in the set of lanes will propose its portion of the block. **Failures of partial block proposals are independent of one another**.
-
-### Processing Proposals
-
-Block proposals are validated iteratively following the exact ordering of lanes defined on base app. Transactions included in block proposals must respect the ordering of lanes. Any proposal that includes transactions that are out of order relative to the ordering of lanes will be rejected. Following the example defined above, if a proposal contains the following transactions:
-
-1. Default transaction (belonging to the default lane)
-2. Top of block transaction (belonging to the top of block lane)
-3. Free transaction (belonging to the free lane)
-
-It will be rejected because it does not respect the lane ordering.
-
-The Block SDK `ProcessProposalHandler` processes the proposal by verifying all transactions in the proposal according to each lane's verification logic in a greedy fashion. If a lane's portion of the proposal is invalid, we reject the proposal. After a lane's portion of the proposal is verified, we pass the remaining transactions to the next lane in the chain.
-
-#### Coming Soon
+#### ™️ Coming Soon
 
 The Block SDK will have its own dedicated gRPC service for searchers, wallets, and users that allows them to query what `lane` their transaction might belong in, what fees they might have to pay for a given transaction, and the general state of the Block SDK mempool.
