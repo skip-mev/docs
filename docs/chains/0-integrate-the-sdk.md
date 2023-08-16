@@ -25,7 +25,7 @@ The default lane mirrors how CometBFT creates proposals today.
 
 <!-- TODO: create script -->
 
-{{ readme_default_lane }}
+{{ readme }}
 
 ### 💅 Next step: implement other `lanes`
 

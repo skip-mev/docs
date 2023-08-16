@@ -32,4 +32,4 @@ This means that ‘searchers’ can find opportunities in the mempool, backrun t
 4. Import and configure the Block SDK `Prepare` / `Process` proposal handlers into their base app.
 5. Import and instantiate the `x/builder` module into their base app.
 
-{{ readme_mev_lane }}
+{{ readme }}

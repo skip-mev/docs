@@ -22,4 +22,4 @@ With it, developers can build their own lane(s) in less than 10 minutes!
 
 ### 📖 Set Up [60 mins]
 
-{{ readme_build_your_own_lane }}
+{{ readme }}

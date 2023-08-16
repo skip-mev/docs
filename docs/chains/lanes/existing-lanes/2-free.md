@@ -31,4 +31,4 @@ The free lane implements the same `ABCI++` interface as the other lanes, and doe
 3. Import and configure the Block SDK mempool into their base app.
 4. Import and configure the Block SDK `Prepare` / `Process` proposal handlers into their base app.
 
-{{ readme_free_lane }}
+{{ readme }}
