@@ -4,6 +4,8 @@ title: 🔎 How it Works
 sidebar_position: 1
 ---
 
+<!-- TODO: add images to this -->
+
 ### Summary
 
 With the Block SDK, blocks are broken up into smaller partial blocks called `lanes`.
