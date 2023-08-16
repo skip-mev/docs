@@ -19,7 +19,7 @@ We're on a mission to make interoperability dead easy.
   - Skip API is a unified REST/RPC service that helps developers create more seamless cross-chain experiences for their end users with IBC.
   - We’ve designed it so that even developers who are completely new to IBC and interoperability can use it to build applications and frontends with powerful IBC one-click functionality.
 - [ProtoRev](https://github.com/osmosis-labs/osmosis/blob/main/x/protorev/protorev.md)
-  - An onchain module deployed on Osmosis, that captures MEV by backrunning transactions at execution time
+  - An onchain module deployed on Osmosis, that captures MEV by backrunning transactions at execution time.
 - [Skipper](https://github.com/skip-mev/skipper)
   - An opensource bot that allows for anyone to recapture “good” MEV (backrunning) on any Cosmos network where Skip Select is deployed
 - [Skip Select [Deprecated]](select/intro)
@@ -59,7 +59,7 @@ Validator integration typically takes 5-10 minutes
 
 Yes, Validators running Skip have a Skip badge in the validators details on Mintscan, and are also listed on Skip's website ([https://skip.money/validators](https://skip.money/validators))
 
-On chains that integrate the [Block SDK](/chains/overview), all validators run MEV auctions in consensus.
+On chains that integrate the [Block SDK](/chains/overview), all validators run Skip's ABCI++ software in consensus.
 
 ### 🤔 How much money does Skip generate?
 

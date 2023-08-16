@@ -4,89 +4,33 @@ title: 🎨 Build Your Own Lane
 sidebar_position: 3
 ---
 
+:::info **Background**
+
+Before reading over this section, it is highly recommended that developers read over the [**How It Works**](../1-how-it-works.md) page. This page will provide a high level overview of the lane system and how it works.
+
+:::
+
 ## 💡 Overview
 
-The **Base Lane** is a generic implementation of a lane. It comes out of the box with default implementations for all the required interfaces. It is meant to be used as a starting point for building your own lane. 🏗️ Build your own lane in less than 10 minutes by extending the Base Lane.
+The **Base Lane** is a generic implementation of a lane. It comes out of the box with default implementations for all the required interfaces. It is meant to be used as a starting point for building your own lane. With it, developers can build their own lane(s) in less than 10 minutes!
 
 ## 🤔 How to use it
 
 :::info **Default Implementations**
 
-There are default implementations for all of the below which can be found in the `block/base` package. It is highly recommended that developers overview the default implementations before building their own lane.
+There are default implementations for all of the below which can be found in the [**block/base**](https://github.com/skip-mev/pob/tree/main/blockbuster) package. It is highly recommended that developers overview the default implementations before building their own lane.
 
 :::
 
-There are **three** critical components to building a custom lane using the base lane:
+There are **two** required components to building a custom lane using the base lane:
 
-1. `LaneConfig` - The lane configuration which determines the basic properties of the lane including the maximum block space that the lane can fill up.
-2. `LaneMempool` - The lane mempool which is responsible for storing transactions that have been verified and are waiting to be included in proposals.
-3. `MatchHandler` - This is responsible for determining whether a transaction should belong to this lane.
-4. [**OPTIONAL**] `PrepareLaneHandler` - Allows developers to define their own handler to customize the how transactions are verified and ordered before they are included into a proposal.
-5. [**OPTIONAL**] `CheckOrderHandler` - Allows developers to define their own handler that will run any custom checks on whether transactions included in block proposals are in the correct order (respecting the ordering rules of the lane and the ordering rules of the other lanes).
-6. [**OPTIONAL**] `ProcessLaneHandler` - Allows developers to define their own handler for processing transactions that are included in block proposals.
+1. `Mempool` - The lane's mempool is responsible for storing transactions that have been verified and are waiting to be included in proposals.
+2. `MatchHandler` - This is responsible for determining whether a transaction should belong to this lane.
+3. [**OPTIONAL**] `PrepareLaneHandler` - Allows developers to define their own handler to customize the how transactions are verified and ordered before they are included into a proposal.
+4. [**OPTIONAL**] `CheckOrderHandler` - Allows developers to define their own handler that will run any custom checks on whether transactions included in block proposals are in the correct order (respecting the ordering rules of the lane and the ordering rules of the other lanes).
+5. [**OPTIONAL**] `ProcessLaneHandler` - Allows developers to define their own handler for processing transactions that are included in block proposals.
 
-### 1. 📝 Lane Config
-
-The lane config (`LaneConfig`) is a simple configuration object that defines the desired amount of block space the lane should utilize when building a proposal, an antehandler that is used to verify transactions as they are added/verified to/in a proposal, and more. By default, we recommend that user's pass in all of the base apps configurations (txDecoder, logger, etc.). A sample `LaneConfig` might look like the following:
-
-```golang
-config := block.LaneConfig{
-    Logger: app.Logger(),
-    TxDecoder: app.TxDecoder(),
-    TxEncoder: app.TxEncoder(),
-    AnteHandler: app.AnteHandler(),
-    MaxTxs: 0,
-    MaxBlockSpace: math.LegacyZeroDec(),
-    IgnoreList: []block.Lane{},
-}
-```
-
-The three most important parameters to set are the `AnteHandler`, `MaxTxs`, and `MaxBlockSpace`.
-
-#### **AnteHandler**
-
-With the default implementation, the `AnteHandler` is responsible for verifying transactions as they are being considered for a new proposal or are being processed in a proposed block. We recommend user's utilize the same antehandler chain that is used in the base app. If developers want a certain `AnteDecorator` to be ignored if it qualifies for a given lane, they can do so by using the `NewIgnoreDecorator` defined in `block/utils/ante.go`.
-
-For example, a free lane might want to ignore the `DeductFeeDecorator` so that its transactions are not charged any fees. Where ever the `AnteHandler` is defined, we could add the following to ignore the `DeductFeeDecorator`:
-
-```golang
-anteDecorators := []sdk.AnteDecorator{
-    ante.NewSetUpContextDecorator(),
-    ...,
-    utils.NewIgnoreDecorator(
-        ante.NewDeductFeeDecorator(
-            options.BaseOptions.AccountKeeper,
-            options.BaseOptions.BankKeeper,
-            options.BaseOptions.FeegrantKeeper,
-            options.BaseOptions.TxFeeChecker,
-        ),
-        options.FreeLane,
-    ),
-    ...,
-}
-```
-
-Anytime a transaction that qualifies for the free lane is being processed, the `DeductFeeDecorator` will be ignored and no fees will be deducted!
-
-#### **MaxTxs**
-
-This sets the maximum number of transactions allowed in the mempool with the semantics:
-
-- if `MaxTxs` == 0, there is no cap on the number of transactions in the mempool
-- if `MaxTxs` > 0, the mempool will cap the number of transactions it stores, and will prioritize transactions by their priority and sender-nonce (sequence number) when evicting transactions.
-- if `MaxTxs` < 0, `Insert` is a no-op.
-
-#### **MaxBlockSpace**
-
-MaxBlockSpace is the maximum amount of block space that the lane will attempt to fill when building a proposal. This parameter may be useful lanes that should be limited (such as a free or onboarding lane) in space usage. Setting this to 0 will allow the lane to fill the block with as many transactions as possible.
-
-If a block proposal request has a `MaxTxBytes` of 1000 and the lane has a `MaxBlockSpace` of 0.5, the lane will attempt to fill the block with 500 bytes.
-
-#### **[OPTIONAL] IgnoreList**
-
-`IgnoreList` defines the list of lanes to ignore when processing transactions. For example, say there are two lanes: default and free. The free lane is processed after the default lane. In this case, the free lane should be added to the ignore list of the default lane. Otherwise, the transactions that belong to the free lane will be processed by the default lane (which accepts all transactions by default).
-
-### 2. 🗄️ LaneMempool
+### 1. 🗄️ Mempool
 
 This is the data structure that is responsible for storing transactions as they are being verified and are waiting to be included in proposals. `block/base/mempool.go` provides an out-of-the-box implementation that should be used as a starting point for building out the mempool and should cover most use cases. To utilize the mempool, you must implement a `TxPriority[C]` struct that does the following:
 
@@ -106,7 +50,7 @@ What if we wanted to prioritize transactions by the amount they have staked on a
 
 :::
 
-Well we could do something like the following:
+We could do something like the following:
 
 ```golang
 // CustomTxPriority returns a TxPriority that prioritizes transactions by the
@@ -182,7 +126,7 @@ priorityCfg := NewPriorityConfig(
 
 // define your mempool that orders transactions by on-chain stake
 mempool := base.NewMempool[string](
-    priorityCfg.CustomTxPriority(),
+    priorityCfg.CustomTxPriority(), // pass in the custom tx priority
     laneCfg.TxEncoder,
     laneCfg.MaxTxs,
 )
@@ -198,7 +142,7 @@ lane := base.NewBaseLane(
 
 ### 3. 🤝 MatchHandler
 
-`MatchHandler` is utilized to determine if a transaction should be included in the lane. This function can be a stateless or stateful check on the transaction. The default implementation can be found in `block/base/handlers.go`.
+`MatchHandler` is utilized to determine if a transaction should be included in the lane. **This function can be a stateless or stateful check on the transaction!** The default implementation can be found in `block/base/handlers.go`.
 
 The match handler can be as custom as desired. Following the example above, if we wanted to make a lane that only accepts transactions if they have a large amount staked, we could do the following:
 
@@ -261,21 +205,20 @@ lane := base.NewBaseLane(
 )
 ```
 
-### Summary on Steps 1-3
+### Summary on Steps 1-2
 
 The following is a summary of the steps above:
 
-1. Create a custom `LaneConfig` struct that defines the configuration of the lane.
-2. Create a custom `TxPriority[C]` struct to have a custom mempool that orders transactions via a custom priority mechanism.
-3. Create a custom `MatchHandler` that implements the `block.MatchHandler` to have a custom lane that only accepts transactions that match a custom criteria.
+1. Create a custom `TxPriority[C]` struct to have a custom mempool that orders transactions via a custom priority mechanism.
+2. Create a custom `MatchHandler` that implements the `block.MatchHandler` to have a custom lane that only accepts transactions that match a custom criteria.
 
-### [OPTIONAL] Steps 4-6
+### [OPTIONAL] Steps 3-5
 
 The remaining steps walk through the process of creating custom block building/verification logic. The default implementation found in `block/base/handlers.go` should fit most use cases. Please reference that file for more details on the default implementation and whether it fits your use case.
 
 Implementing custom block building/verification logic is a bit more involved than the previous steps and is a all or nothing approach. This means that if you implement any of the handlers, you must implement all of them in most cases. If you do not implement all of them, the lane may have unintended behavior.
 
-### 4. 🛠️ PrepareLaneHandler
+### 3. 🛠️ PrepareLaneHandler
 
 The `PrepareLaneHandler` is an optional field you can set on the base lane.
 This handler is responsible for the transaction selection logic when a new proposal
@@ -318,7 +261,7 @@ customLane := NewCustomLane(
 customLane.SetPrepareLaneHandler(customlane.PrepareLaneHandler())
 ```
 
-### 5. ✅ CheckOrderHandler
+### 4. ✅ CheckOrderHandler
 
 The `CheckOrderHandler` is an optional field you can set on the base lane. This handler is responsible for verifying the ordering of the transactions in the block proposal that belong to the lane.
 
@@ -353,7 +296,7 @@ customLane := NewCustomLane(
 customLane.SetCheckOrderHandler(customlane.CheckOrderHandler())
 ```
 
-### 6. 🆗 ProcessLaneHandler
+### 5. 🆗 ProcessLaneHandler
 
 The `ProcessLaneHandler` is an optional field you can set on the base lane. This handler is responsible for verifying the transactions in the block proposal that belong to the lane. This handler is executed after the `CheckOrderHandler` so the transactions passed into this function SHOULD already be in order respecting the ordering rules of the lane and respecting the ordering rules of mempool relative to the lanes it has. This means that if the first transaction does not belong to the lane, the remaining transactions should not belong to the lane either.
 
@@ -371,6 +314,94 @@ Given the invarients above, the default implementation is simple. It will contin
 1. If a transaction matches to this lane, verify it and continue. If it is not valid, return an error.
 2. If a transaction does not match to this lane, return the remaining transactions to the next lane to process.
 
-### Summary on Steps 4-6
+Similar to the setup of handlers above, if a more involved verification process is required, you can implement your own `ProcessLaneHandler` and and set it after creating the base lane.
 
-Although not required, steps 4-6 are recommended if you want to have a custom lane that has custom block building/verification logic. Before implementing these steps, please reference the default implementation found in `block/base/handlers.go` to see if it fits your use case. If it does not, you can implement your own handlers and set them on the lane after creating it. Additionally, the `lanes/mev/abci.go` file has an example of a custom lane that implements steps 4-6.
+```golang
+// Pseudocode for creating the custom check order handler
+// This assumes that the CustomLane inherits from the base
+// lane.
+customLane := NewCustomLane(
+    cfg,
+    mempool,
+    handler.CustomMatchHandler(),
+)
+
+// Set the custom ProcessLaneHandler on the lane
+customLane.SetProcessLaneHandler(customlane.ProcessLaneHandler())
+```
+
+### Summary on Steps 3-5
+
+Although not required, steps 3-5 are recommended if you want to have a custom lane that has custom block building/verification logic. Before implementing these steps, please reference the default implementation found in `block/base/handlers.go` to see if it fits your use case.
+
+### Configuring your Lane in your Application
+
+Once you have created your custom lane, you can configure it in the application by doing the following:
+
+1. Create a custom `LaneConfig` struct that defines the configuration of the lane.
+2. Instantiate the lane with the custom `LaneConfig` struct alongside any other dependencies (mempool, match handler, etc.).
+3. Instantiate a new `LanedMempool` with the custom lane.
+4. Set the `LanedMempool` on the `BaseApp` instance.
+5. Set up the proposal handlers of the Block SDK to use your lane.
+6. That's it! You're done!
+
+### 📝 Lane Config
+
+The lane config (`LaneConfig`) is a simple configuration object that defines the desired amount of block space the lane should utilize when building a proposal, an antehandler that is used to verify transactions as they are added/verified to/in a proposal, and more. By default, we recommend that user's pass in all of the base apps configurations (txDecoder, logger, etc.). A sample `LaneConfig` might look like the following:
+
+```golang
+config := block.LaneConfig{
+    Logger: app.Logger(),
+    TxDecoder: app.TxDecoder(),
+    TxEncoder: app.TxEncoder(),
+    AnteHandler: app.AnteHandler(),
+    MaxTxs: 0,
+    MaxBlockSpace: math.LegacyZeroDec(),
+    IgnoreList: []block.Lane{},
+}
+```
+
+The three most important parameters to set are the `AnteHandler`, `MaxTxs`, and `MaxBlockSpace`.
+
+#### **AnteHandler**
+
+With the default implementation, the `AnteHandler` is responsible for verifying transactions as they are being considered for a new proposal or are being processed in a proposed block. We recommend user's utilize the same antehandler chain that is used in the base app. If developers want a certain `AnteDecorator` to be ignored if it qualifies for a given lane, they can do so by using the `NewIgnoreDecorator` defined in `block/utils/ante.go`.
+
+For example, a free lane might want to ignore the `DeductFeeDecorator` so that its transactions are not charged any fees. Where ever the `AnteHandler` is defined, we could add the following to ignore the `DeductFeeDecorator`:
+
+```golang
+anteDecorators := []sdk.AnteDecorator{
+    ante.NewSetUpContextDecorator(),
+    ...,
+    utils.NewIgnoreDecorator(
+        ante.NewDeductFeeDecorator(
+            options.BaseOptions.AccountKeeper,
+            options.BaseOptions.BankKeeper,
+            options.BaseOptions.FeegrantKeeper,
+            options.BaseOptions.TxFeeChecker,
+        ),
+        options.FreeLane,
+    ),
+    ...,
+}
+```
+
+Anytime a transaction that qualifies for the free lane is being processed, the `DeductFeeDecorator` will be ignored and no fees will be deducted!
+
+#### **MaxTxs**
+
+This sets the maximum number of transactions allowed in the mempool with the semantics:
+
+- if `MaxTxs` == 0, there is no cap on the number of transactions in the mempool
+- if `MaxTxs` > 0, the mempool will cap the number of transactions it stores, and will prioritize transactions by their priority and sender-nonce (sequence number) when evicting transactions.
+- if `MaxTxs` < 0, `Insert` is a no-op.
+
+#### **MaxBlockSpace**
+
+MaxBlockSpace is the maximum amount of block space that the lane will attempt to fill when building a proposal. This parameter may be useful lanes that should be limited (such as a free or onboarding lane) in space usage. Setting this to 0 will allow the lane to fill the block with as many transactions as possible.
+
+If a block proposal request has a `MaxTxBytes` of 1000 and the lane has a `MaxBlockSpace` of 0.5, the lane will attempt to fill the block with 500 bytes.
+
+#### **[OPTIONAL] IgnoreList**
+
+`IgnoreList` defines the list of lanes to ignore when processing transactions. For example, say there are two lanes: default and free. The free lane is processed after the default lane. In this case, the free lane should be added to the ignore list of the default lane. Otherwise, the transactions that belong to the free lane will be processed by the default lane (which accepts all transactions by default).
