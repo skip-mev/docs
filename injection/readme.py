@@ -4,11 +4,16 @@ def read_file(filename):
     with open(filename, 'r') as file:
         return file.read()
 
-readme = read_file('../../POB/README.md')
+# TODO: Make this either a CI job that runs everytime we make an update to the
+# Block SDK repo, or make it something that runs before every release with a fetch.
+file_path_default_gh_readme = '../../POB/lanes/base/README.md'
+file_path_default_docs_readme = '../docs/chains/lanes/existing-lanes/0-default.md'
 
-template_content = read_file('../docs/chains/1-integrate-the-sdk.md')
+default_readme = read_file(file_path_default_gh_readme)
+
+template_content = read_file(file_path_default_docs_readme)
 template = Template(template_content)
-rendered_content = template.render(readme=readme)
+rendered_content = template.render(default_readme=default_readme)
 
-with open('../docs/chains/1-integrate-the-sdk.md', 'w') as file:
+with open(file_path_default_docs_readme, 'w') as file:
     file.write(rendered_content)
