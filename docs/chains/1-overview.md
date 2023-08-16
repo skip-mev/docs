@@ -1,7 +1,7 @@
 ---
 description: Skip Block SDK Quickstart
 title: ✨ Block SDK Overview
-sidebar_position: 0
+sidebar_position: 1
 ---
 
 ### 🤔 What is the Block SDK?

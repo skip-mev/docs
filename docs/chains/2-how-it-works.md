@@ -1,7 +1,7 @@
 ---
 description: 🔎 Example
 title: 🔎 How it Works
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 <!-- TODO: add images to this -->

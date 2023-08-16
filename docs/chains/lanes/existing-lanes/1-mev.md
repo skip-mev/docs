@@ -8,6 +8,8 @@ sidebar_position: 1
 
 The `MEV Lane` allows top-of-block MEV auctions in-protocol, revenue being redistributed to chains.
 
+If you have not already, we recommend following the [General Setup](chains/integrate-the-sdk) guide first!
+
 Please [**reach out to us**](https://skip.money/contact) if you need help!
 
 :::
@@ -21,8 +23,6 @@ The Block SDK uses the app-side `LanedMempool`, `PrepareLane` / `ProcessLane`, a
 This means that ‘searchers’ can find opportunities in the mempool, backrun them, and submit them at the top of the block. This covers most MEV recapture via arbitrage and liquidations. It can be configured to **not allow** for sandwich attacks or harmful MEV.
 
 ### 📖 Set Up [10 mins]
-
-If you have not already, we recommend following the [General Setup](chains/integrate-the-sdk) guide first!
 
 **At a high level, to integrate the MEV Lane, chains must:**
 

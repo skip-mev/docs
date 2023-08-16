@@ -6,7 +6,9 @@ sidebar_position: 2
 
 :::info TLDR
 
-The `Free Lane` is purposefully built to allow certain transactions to be included in a block without paying fees. This lane can be used to encourage certain behaviors on the chain, such as staking, governance, or other actions that are beneficial to the chain.
+The `Free Lane` allows certain transactions to be included in a block without paying fees. This lane can be used to encourage certain behaviors on the chain, such as staking, governance, or others.
+
+If you have not already, this assumes you have completed the [General Setup](chains/integrate-the-sdk) guide first!
 
 Please [**reach out to us**](https://skip.money/contact) if you need help!
 :::
@@ -21,8 +23,6 @@ The free lane closely follows the block building logic of the default lane, with
 The free lane implements the same `ABCI++` interface as the other lanes, and does the same verification logic as the [default lane](default). The free lane's `PrepareLane` handler will reap transactions from the lane up to the `MaxBlockSpace` limit, and the `ProcessLane` handler will ensure that the transactions are ordered based on their fee amount (by default) and pass the same checks done in `PrepareLane`.
 
 ### 📖 Set Up [10 mins]
-
-If you have not already, we recommend following the [General Setup](chains/integrate-the-sdk) guide first!
 
 **At a high level, to integrate the MEV Lane, chains must:**
 
