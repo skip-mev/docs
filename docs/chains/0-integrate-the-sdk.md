@@ -29,4 +29,4 @@ The default lane mirrors how CometBFT creates proposals today.
 
 ### 💅 Next step: implement other `lanes`
 
-Visit our [Lane App Store](lanes/existing-lanes/mev) and select the `lanes` you want, or [Build Your Own](lanes/build-your-own-lane).
+Visit our [Lane App Store](/docs/chains/lanes/existing-lanes/1-mev.md) and select the `lanes` you want, or [Build Your Own](/docs/chains/lanes/1-build-your-own-lane.md).

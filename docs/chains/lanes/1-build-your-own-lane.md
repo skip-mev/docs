@@ -6,9 +6,9 @@ sidebar_position: 3
 
 :::info **Background**
 
-Before reading over this section, it is highly recommended that developers read over the [**How It Works**](../1-how-it-works.md) page.
+Before reading over this section, it is highly recommended that developers read over the [**How It Works**](/docs/chains/2-how-it-works.md) page.
 
-If you have not already, this assumes you have completed the [General Setup](chains/integrate-the-sdk) guide first!
+If you have not already, this assumes you have completed the [General Setup](/docs/chains/0-integrate-the-sdk.md) guide first!
 
 This is an 🚨 **advanced** 🚨 setup, please [**reach out to us**](https://skip.money/contact) if you need help!
 

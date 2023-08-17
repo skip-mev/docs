@@ -14,7 +14,7 @@ Please see our documentation below for how to integrate and use our endpoints.
 
 :::tip Get started right away
 
-Check out [Quickstart](validator/quickstart) to set up Skip Select now. It takes 5 minutes.
+Check out [Quickstart](/docs/select/0-intro.md) to set up Skip Select now. It takes 5 minutes.
 
 :::
 
@@ -33,13 +33,13 @@ The process of integrating with Skip Select is very easy:
 - No need to make changes to sentry ↔  signing node configurations
 
 All you need to do is register for an API key and rebuild your chain client `mev-tendermint` according to the
-the instructions in [Quickstart](validator/quickstart). Some chains include `mev-tendermint` in their default build, so you may not need to do anything outside
+the instructions in [Quickstart](/docs/select/0-intro.md). Some chains include `mev-tendermint` in their default build, so you may not need to do anything outside
 of registering for an API key and configuring your chain to use it.
 
 ## **For searchers**
 
-Check out the [Searcher Docs](searcher)
+Check out the [Searcher Docs](/docs/0-searcher-docs.md)
 
 ## FAQ
 
-Check out our [FAQ page](../faq) if you have more questions.
+Check out our [FAQ page](/docs/about/1-faq.md) if you have more questions.

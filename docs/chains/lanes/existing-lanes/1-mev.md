@@ -8,7 +8,7 @@ sidebar_position: 1
 
 The `MEV Lane` allows top-of-block MEV auctions in-protocol, revenue being redistributed to chains.
 
-If you have not already, we recommend following the [General Setup](chains/integrate-the-sdk) guide first!
+If you have not already, we recommend following the [General Setup](/docs/chains/0-integrate-the-sdk.md) guide first!
 
 Please [**reach out to us**](https://skip.money/contact) if you need help!
 

@@ -12,7 +12,7 @@ We're on a mission to make interoperability dead easy.
 
 ### 🤔 What are Skip’s products?
 
-- [Block SDK](chains/overview)
+- [Block SDK](/docs/chains/0-integrate-the-sdk.md)
   - The Block SDK is a set of Cosmos SDK and ABCI++ primitives that allow chains to fully customize blocks to specific use cases. It turns your chain's blocks into a **`highway`** consisting of individual **`lanes`** with their own special functionality.
   - Comes with a pre-built MEV system, oracle, and custom gas markets!
 - [Skip API](https://api-docs.skip.money/docs)
@@ -22,7 +22,7 @@ We're on a mission to make interoperability dead easy.
   - An onchain module deployed on Osmosis, that captures MEV by backrunning transactions at execution time.
 - [Skipper](https://github.com/skip-mev/skipper)
   - An opensource bot that allows for anyone to recapture “good” MEV (backrunning) on any Cosmos network where Skip Select is deployed
-- [Skip Select [Deprecated]](select/intro)
+- [Skip Select [Deprecated]](/docs/select/0-intro.md)
   - A a blockspace auction system that’s currently deployed on most chains that work with Skip. It builds the top of the block from tipped bundles submitted by traders and gives this segment of the block to validators to include on chain
   - Searchers / traders submit bundles of transactions to Skip Select with a "tip" that they're willing to pay in exchange for the guarantee that their bundle will land on chain in exactly the order they specify and not revert.
   - It requires validators to update their binary to include `mev-tendermint` -- an open-source, battle tested patch of Tendermint currently running on over 170 validators and 5 networks. Installation takes 5 minutes.
@@ -49,7 +49,7 @@ Yes, Skip is free to use, and takes no fees from users.
 
 ### 🤔 How does a validator integrate Skip?
 
-For chains that run Skip Select (Deprecated), follow the “Validator Quickstart” guide in the Skip docs [here](select/validator/quickstart)
+For chains that run Skip Select (Deprecated), follow the “Validator Quickstart” guide in the Skip docs [here](/docs/select/0-intro.md)
 
 ### 🤔 How long does validator integration take?
 
@@ -59,7 +59,7 @@ Validator integration typically takes 5-10 minutes
 
 Yes, Validators running Skip have a Skip badge in the validators details on Mintscan, and are also listed on Skip's website ([https://skip.money/validators](https://skip.money/validators))
 
-On chains that integrate the [Block SDK](/chains/overview), all validators run Skip's ABCI++ software in consensus.
+On chains that integrate the [Block SDK](/docs/chains/0-integrate-the-sdk.md), all validators run Skip's ABCI++ software in consensus.
 
 ### 🤔 How much money does Skip generate?
 
