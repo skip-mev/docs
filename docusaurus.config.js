@@ -86,7 +86,7 @@ const config = {
 		{
 			label: 'For Searchers',
 			// TODO: change
-			to: '/block/overview'
+			to: '/select/searcher'
 		  },
 	    {
 	      label: 'Select',
