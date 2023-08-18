@@ -1,6 +1,6 @@
 ---
 description: Custom Fee Market Lane
-title: 4️⃣ Custom Fee Market Lane
+title: 3️⃣ Custom Fee Market Lane
 sidebar_position: 3
 ---
 

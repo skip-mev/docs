@@ -1,6 +1,6 @@
 ---
 description: Free Lane
-title: 3️⃣ Free Lane
+title: 2️⃣ Free Lane
 sidebar_position: 2
 ---
 

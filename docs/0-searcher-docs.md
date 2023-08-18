@@ -19,7 +19,7 @@ Bundles must only pass basic `CheckTx` validation (e.g. nonce, account balance, 
 Searchers submit bundles by broadcasting a `AuctionTx` in the same way they broadcast any other transaction. A few important things to note:
 
 - When a `MsgAuctionBid` message is included in a transaction, no other `sdk.Msg` can be present.
-- Interfacing with the auction _may be different across_ `POB` chains. Bidding may involve interacting with a dedicated `AuctionHouse` smart contract instead of including this special message type. In the future, we will link a POB chain directory here to check on which interface you need, when there are different implementations.
+- Interfacing with the auction _may be different across_ `Block SDK` chains. Bidding may involve interacting with a dedicated `AuctionHouse` smart contract instead of including this special message type. In the future, we will link a chain directory here to check on which interface you need, when there are different implementations.
 
 #### Default Auction Bid Message
 
@@ -143,7 +143,7 @@ func createBidTx(
 ### ⚙️ Auction fees
 
 :::info Auction Configuration
-All auction parameters are accessible though the `/pob/builder/v1/params` HTTP path on a standard node or gRPC service defined by `x/builder`.
+All auction parameters are accessible though the `/block-sdk/x/builder/v1/params` HTTP path on a standard node or gRPC service defined by `x/builder`.
 :::
 
 In order to participate in an auction, searchers must pay a fee. This fee is paid in the native token of the chain. The fee is determined by the auction parameters, which are set by the chain. The auction parameters are:

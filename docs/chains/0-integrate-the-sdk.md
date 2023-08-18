@@ -1,12 +1,14 @@
 ---
 description: Block SDK Integration
 title: ⚡️ Integrate the Block SDK
-sidebar_position: 0
+sidebar_position: 1
 ---
 
 :::info Block SDK
 
 The Block SDK is **open-source software** licensed under MIT. It is free to use, and has existing plug-and-play Lanes that work immediately!
+
+Visit the GitHub repo [here](https://github.com/skip-mev/block-sdk).
 
 Please [**reach out to us**](https://skip.money/contact) if you need help!
 
