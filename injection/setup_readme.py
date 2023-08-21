@@ -10,19 +10,19 @@ def write_file(filename, rendered_content):
 
 lane_readmes  = {
     'default': {
-        "github": "../../POB/lanes/base/README.md",
-        "docs": "../docs/chains/2-integrate-the-sdk.md"
+        "github": "../../block-sdk/lanes/base/README.md",
+        "docs": "../docs/chains/0-integrate-the-sdk.md"
     },
     'mev': {
-        "github": "../../POB/lanes/mev/README.md",
+        "github": "../../block-sdk/lanes/mev/README.md",
         "docs": "../docs/chains/lanes/existing-lanes/1-mev.md"
     },
     'free': {
-        "github": "../../POB/lanes/free/README.md",
+        "github": "../../block-sdk/lanes/free/README.md",
         "docs": "../docs/chains/lanes/existing-lanes/2-free.md"
     },
     'build-your-own': {
-        "github": "../../POB/lanes/build-your-own/README.md",
+        "github": "../../block-sdk/lanes/build-your-own/README.md",
         "docs": "../docs/chains/lanes/1-build-your-own-lane.md"
     }
 }
