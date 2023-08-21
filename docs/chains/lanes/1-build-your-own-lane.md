@@ -20,6 +20,4 @@ The **Base Lane** is a generic implementation of a lane. It comes out-of-the-box
 
 With it, developers can build their own lane(s) in less than 10 minutes!
 
-### 📖 Set Up [60 mins]
-
 {{ readme }}
