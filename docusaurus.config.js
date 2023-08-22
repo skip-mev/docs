@@ -75,18 +75,23 @@ const config = {
 	{
 	  title: 'Docs',
 	  items: [
+		{
+			label: 'About',
+			to: '/'
+		  },
 	    {
-	      label: 'Protocol Owned Builder',
-	      to: '/pob/overview'
+	      label: 'For Chains',
+	      to: '/chains/overview'
 	    },
+		{
+			label: 'For Searchers',
+			// TODO: change
+			to: '/select/searcher'
+		  },
 	    {
 	      label: 'Select',
 	      to: '/select/intro'
 	    },
-	    {
-	      label: 'Skip Secure',
-	      to: '/select/skip-secure'
-	    }
 	  ],
 	},
 	{

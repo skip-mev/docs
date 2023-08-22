@@ -1,0 +1,5 @@
+label: "✨ About"
+position: 0
+link: null
+customProps:
+  description: Skip helps sovereign blockchains and frontends improve UX and leverage MEV to enrich network stakeholders and protect them from its harmful effects.

@@ -12,7 +12,7 @@ Skip does not make chain upgrades more complex.
 - You still just build one binary from source
 - You do not need to mess with the source code of your node yourself
 
-Simply follow the instructions from the quickstart guide about [how to compile your node with `mev-tendermint`](quickstart#2-compile-your-node-with-mev-tendermint) each time.
+Simply follow the instructions from the quickstart guide about [how to compile your node with `mev-tendermint`](/docs/select/validator/0-quickstart.md) each time.
 
 If you use Cosmovisor, just place the output binary in the cosmovisor `upgrades/CHAIN_VERSION` bin as you normally do.
 

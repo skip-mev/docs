@@ -33,7 +33,7 @@ You can find the correct values for these variables [here](../chain-configuratio
   ```
 
 - **Manual Replacement**
-  Find the correct mev-tendermint version tag [here](../chain-configuration) or run:
+  Find the correct mev-tendermint version tag [here](/docs/select/3-chain-configuration.md) or run:
 
   ```bash
   export CHAIN_ID=<CHAIN ID>

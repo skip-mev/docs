@@ -32,7 +32,7 @@ Skip Secure is a private transaction system that enables users, frontends, and b
     curl -X POST "http://pisco-1-lcd.skip.money/cosmos/tx/v1beta1/txs" -H "accept: application/json" -H "Content-Type: application/json" -d '{ "tx": { "msg": [ "string" ], "fee": { "gas": "5000", "amount": [ { "denom\": "uluna", "amount": "50" } ] }, "memo": "memo_here", "signature": { "signature": "MEUCIQD02fsDPra8MtbRsyB1w7bqTM55Wu138zQbFcWx4+CFyAIge5WNPfKIuvzBZ69MyqHsqD8S1IwiEp+iUb6VSdtlpgY=", "pub_key": { "type": "tendermint/PubKeySecp256k1", "value": "Avz04VhtKJh8ACCVzlI8aTosGy0ikFXKIVHQ3jKMrosH" }, "account_number": "0", "sequence": "0" } }, "mode": "sync", "sequences": [ "1" ], "fee_granter": "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv"}'
     ```
 
-- Please find the Skip Sentinel's RPC and Cosmos-SDK REST / LCD endpoints [here](chain-configuration)
+- Please find the Skip Sentinel's RPC and Cosmos-SDK REST / LCD endpoints [here](/docs/select/3-chain-configuration.md)
 - Transactions sent through Skip Secure RPC **MUST** have the `memo` field of the transaction exactly equal to the sender address.
 - For convenience, the `skipjs` and `skip-py` libraries also expose helper functions for developers to easily integrate with Skip Secure.
   For example usage, see the [skipjs GitHub Repo](https://github.com/skip-mev/skipjs) and [skip-py GitHub Repo](https://github.com/skip-mev/skip-py).
@@ -47,7 +47,7 @@ After this configuration, all transactions sent by the wallet:
 - **MUST** have the transaction `memo` field set exactly to the sender address.
 
 :::tip Sentinel LCD Endpoints
-You can find the Sentinel LCD endpoints for all chains Skip Secure supports in [this table](chain-configuration#mainnets) under the column labeled "Skip Sentinel Cosmos-SDK REST / LCD for Skip Secure".
+You can find the Sentinel LCD endpoints for all chains Skip Secure supports in [this table](/docs/select/3-chain-configuration.md) under the column labeled "Skip Sentinel Cosmos-SDK REST / LCD for Skip Secure".
 :::
 
 #### Keplr
