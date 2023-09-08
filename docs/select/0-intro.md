@@ -20,7 +20,7 @@ Check out [Quickstart](/docs/select/0-intro.md) to set up Skip Select now. It ta
 
 Validators that integrate with Skip Select:
 
-- Allow MEV to be captured in their blocks without needing to sign headers for unseen blocks, **increasing block rewards** without sacrificing their builder rights
+- Allow MEV to be captured in their blocks without needing to sign headers for unseen blocks, **increasing block rewards** without sacrificing their auction rights
 - **Can prevent toxic MEV strategies** like frontrunning & sandwich attacks, while still capturing revenue from other forms of MEV
 - Can configure **how much MEV revenue to keep** and how much to share with delegates and the network
 - **Do not need to modify** their consensus key signing services (e.g. Horcrux, TMKMS, or custom), or make any new security assumptions

@@ -24,7 +24,7 @@ Searchers submit bundles by broadcasting a `AuctionTx` in the same way they broa
 #### Default Auction Bid Message
 
 ```go
-// MsgAuctionBid defines a request type for sending bids to the x/builder
+// MsgAuctionBid defines a request type for sending bids to the x/auction
 // module.
 type MsgAuctionBid struct {
     // bidder is the address of the account that is submitting a bid to the
@@ -143,7 +143,7 @@ func createBidTx(
 ### ⚙️ Auction fees
 
 :::info Auction Configuration
-All auction parameters are accessible though the `/block-sdk/x/builder/v1/params` HTTP path on a standard node or gRPC service defined by `x/builder`.
+All auction parameters are accessible though the `/block-sdk/x/auction/v1/params` HTTP path on a standard node or gRPC service defined by `x/auction`.
 :::
 
 In order to participate in an auction, searchers must pay a fee. This fee is paid in the native token of the chain. The fee is determined by the auction parameters, which are set by the chain. The auction parameters are:
@@ -171,7 +171,7 @@ Bundle Examples:
 #### Querying auction parameters
 
 ```go
-func getAuctionParams() (*buildertypes.Params, error) {
+func getAuctionParams() (*auctiontypes.Params, error) {
     # Replace this URL with the gRPC url of a node
     url := "localhost:9090"
 
@@ -184,11 +184,29 @@ func getAuctionParams() (*buildertypes.Params, error) {
         return nil, err
     }
 
-    client := buildertypes.NewQueryClient(grpcConn)
+    client := auctiontypes.NewQueryClient(grpcConn)
 
-    req := &buildertypes.QueryParamsRequest{}
+    req := &auctiontypes.QueryParamsRequest{}
     resp, err := client.Params(context.Background(), req)
 
     return resp.Params
 }
 ```
+
+### 🚨 Chains currently using the MEV-Lane
+
+#### Mainnets
+
+| Chain Name  | Chain-ID        | Block-SDK Version |
+| ----------- | --------------- | ----------------- |
+| Juno        | `juno-1`        | `v1.0.2`          |
+| Persistence | `persistence-1` | `v1.0.2`          |
+| Initia      | `NA`            | `v1.0.2`          |
+| Prism       | `NA`            | `v1.0.2`          |
+| Terra       | `phoenix-1`     | `v1.0.2`          |
+
+#### Testnets
+
+| Chain Name | Chain-ID | Block-SDK Version |
+| ---------- | -------- | ----------------- |
+| Juno       | `uni-6`  | `v1.0.2`          |
