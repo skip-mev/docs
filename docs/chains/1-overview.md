@@ -74,6 +74,7 @@ A block with separate `lanes` can be used for:
 
 #### Testnets
 
-| Chain Name | Chain-ID | Block-SDK Version |
-| ---------- | -------- | ----------------- |
-| Juno       | `uni-6`  | `v1.0.2`          |
+| Chain Name   | Chain-ID | Block-SDK Version |
+| ------------ | -------- | ----------------- |
+| Juno         | `uni-6`  | `v1.0.2`          |
+| Terra Testnet| `pisco-1`| `v1.0.4`          |
