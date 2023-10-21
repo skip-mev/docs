@@ -21,26 +21,20 @@ It takes just 5 minutes to start using Skip Select to capture MEV with your vali
 
 ### Mainnets
 
-- Juno Mainnet `CHAIN_ID=juno-1`
-- Terra2 Mainnet `CHAIN_ID=phoenix-1`
 - Neutron Mainnet `CHAIN_ID=neutron-1`
 
 ### Testnets
 
-- Juno Testnet `CHAIN_ID=uni-6`
-- Terra2 Testnet `CHAIN_ID=pisco-1`
 - Neutron Testnet `CHAIN_ID=pion-1`
 
 ## Chain IDs that include `mev-tendermint` by default
 
 ### Mainnets
 
-- Juno Mainnet `CHAIN_ID=juno-1`
 - Neutron Mainnet `CHAIN_ID=neutron-1`
 
 ### Testnets
 
-- Juno Testnet `CHAIN_ID=uni-6`
 - Neutron Testnet `CHAIN_ID=pion-1`
 
 ---
@@ -53,51 +47,8 @@ You will need access to your operator key or a key to which your operator has de
 
 💵 **After registering, you can also use the Skip web app to configure your MEV payments between you / network stakers on the site.**
 
-## 2. Compile your node with `mev-tendermint`
 
-**THIS STEP IS ONLY REQUIRED IF YOUR CHAIN DOES NOT INCLUDE `mev-tendermint` BY DEFAULT.**
-
-We provide forks of the source code for all the open source chains we support at https://github.com/skip-mev that come pre-loaded with mev-tendermint _and no other modifications_.
-
-1. Set `SKIP_CHAIN_REPO` to the name of the fork of the chain you're building:
-
-- **JUNO:** `export SKIP_CHAIN_REPO=juno`
-- **Terra2:** `export SKIP_CHAIN_REPO=terra-core`
-
-2. Clone the appropriate fork and enter the directory:
-
-```bash
-git clone https://github.com/skip-mev/$SKIP_CHAIN_REPO
-cd $SKIP_CHAIN_REPO
-```
-
-3. Determine the current version of the chain binary using the official chain documentation or Skip's documentation [here](/docs/select/3-chain-configuration.md). and checkout the corresponding `-mev` tag:
-
-```bash
-git checkout $CHAIN_VERSION-mev
-```
-
-4. Build the binary as normal using `make install`
-
-:::note Example
-For example, if we were building v14.1.0 of Juno, the process would look like:
-
-```bash
-git clone https://github.com/skip-mev/juno
-cd juno
-git checkout v14.1.0-mev
-make install
-```
-
-:::
-
-5. Repeat this process for all of your full nodes, including if you use Horcrux.
-
-:::info Alternative methods
-Read more about other methods that do not require forking our repos [here](/docs/select/validator/5-alternatives.md) if you would prefer to use the official chain repo and inject `mev-tendermint` yourself
-:::
-
-## 3. Update config.toml
+## 2. Update config.toml
 
 `mev-tendermint` introduces a new section of config in `config.toml` called `[sidecar]` that includes several
 config settings that allow your node to recieve MEV bundles from Skip.
@@ -124,16 +75,12 @@ api_key = "fake_api_key"
 
   | Chain name      | Chain ID    | Supported Chain Version | sentinel_rpc_string                | sentinel_peer_string                                                           |
   | --------------- | ----------- | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
-  | JUNO Mainnet    | `juno-1`    | `v15.0.0`               | `https://juno-1-api.skip.money`    | `8dd5dfefe8959f7186e6c80bdb87dbd919534677@juno-1-sentinel.skip.money:26656`    |
-  | Terra 2 Mainnet | `phoenix-1` | `v2.4.1`                | `https://phoenix-1-api.skip.money` | `20a61f70d93af978a3bc1d6be634a57918934f79@phoenix-1-sentinel.skip.money:26656` |
   | Neutron Mainnet | `neutron-1` | `v1.0.1`                | `https://neutron-1-api.skip.money` | `08a1653fd6669468f8b9c22d70f476a5b27f576a@neutron-1-sentinel.skip.money:26656` |
 
   **Testnets**
 
   | Chain name      | Chain ID  | Supported Chain Version | sentinel_rpc_string              | sentinel_peer_string                                                         |
   | --------------- | --------- | ----------------------- | -------------------------------- | ---------------------------------------------------------------------------- |
-  | JUNO Testnet    | `uni-6`   | `v15.0.0-alpha.1`       | `https://uni-6-api.skip.money`   | `f18d6e226545b348aa37c86cc735d0620838fcd8@uni-6-sentinel.skip.money:26656`   |
-  | Terra 2 Testnet | `pisco-1` | `v2.4.0-rc.5`           | `https://pisco-1-api.skip.money` | `5cc5e6506818a113387d92e0b60a7206845b4d7e@pisco-1-sentinel.skip.money:26656` |
   | Neutron Testnet | `pion-1`  | `v1.0.0-rc1`            | `https://pion-1-api.skip.money`  | `f44aa4467a5c411f650fd9223644d70afc1eacd1@pion-1-sentinel.skip.money:26656`  |
 
 ### Extra config for sentry configurations
@@ -161,7 +108,7 @@ These steps are only relevant for folks with set ups where they want one of thei
   <NODE_DAEMON> tendermint show-node-id --home <HOME_DIR>
 
   # example:
-  junod tendermint show-node-id --home ./juno
+  neutrond tendermint show-node-id --home ./neutron
   ```
 
 - **On the validator:**
@@ -182,7 +129,7 @@ These steps are only relevant for folks with set ups where they want one of thei
   <NODE_DAEMON> tendermint show-node-id --home <HOME_DIR>
 
   # example:
-  junod tendermint show-node-id --home ./juno
+  neutrond tendermint show-node-id --home ./neutron
   ```
 
 ---
