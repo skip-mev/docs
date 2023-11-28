@@ -6,7 +6,7 @@ sidebar_position: 1
 
 :::info TLDR
 
-The `MEV Lane` allows top-of-block MEV auctions in-protocol, with revenue being redistributed to chains.
+The `MEV lane` allows top-of-block MEV auctions in-protocol, with programmable revenue redistribution. The MEV lane leverages ABCI 2.0's vote extension feature to create a censorship resistant list of bids, which can then be used to verify and enforce block proposer behavior. This means that Comet and the Block SDK ensure a proposer cannot exclude or reorder transactions.
 
 If you have not already, we recommend following the [General Setup](/docs/chains/0-integrate-the-sdk.md) guide first!
 
