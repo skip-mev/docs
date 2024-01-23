@@ -8,7 +8,7 @@ sidebar_position: 2
 
 We are in the process of building up our core documentation around operational issues and troubleshooting.
 
-Feel free to contribute via opening an issue in [our repo](github.com/skip-mev/docs)!
+Feel free to contribute via opening an issue in [our repo](https://github.com/skip-mev/docs)!
 
 ### I do not see an issue addressing my question.
 
