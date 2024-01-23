@@ -16,10 +16,13 @@ Skip helps sovereign blockchains and frontends improve UX and leverage MEV to en
 
 ### 🧱 For Chains
 
-Skip builds an open-source [Block SDK](/docs/chains/1-overview.md) that allows for full control over how blocks are built, including a MEV recapture mechanism, a sovereign Oracle, and segmentation to tailor blocks to your app-chain use case.
+Skip builds an open-source [Block SDK](/docs/chains/blocksdk/1-overview.md) that allows for full control over how blocks are built, including a MEV recapture mechanism, a sovereign Oracle, and segmentation to tailor blocks to your app-chain use case.
 
-Used by the majority of major Cosmos SDK chains, we recommend the [Block SDK](/docs/chains/0-integrate-the-sdk.md) for any chains running Cosmos SDK version 0.47 or higher.
+Used by the majority of major Cosmos SDK chains, we recommend the [Block SDK](/docs/chains/blocksdk/0-integrate-the-sdk.md) for any chains running Cosmos SDK version 0.47 or higher.
 Integration takes < 20 mins, and please [contact us](https://skip.money/contact) if you need assistance.
+
+We also built Slinky(/docs/chains/slinky/0-overview.md), an enshrined oracle that integrates with Cosmos chains using ABCI++ to provide a simple, secure, and reliable way to post data on-chain.
+If you're interested in integrating Slinky into your chain please [contact us](https://skip.money/contact).
 
 ### 🥷 For Searchers
 

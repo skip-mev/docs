@@ -17,7 +17,7 @@ Please [**reach out to us**](https://skip.money/contact) if you need help!
 ## ⚙️ Architecture [15 mins]
 
 :::note
-This is a high-level overview of the architecture, please reference [this page](/docs/chains/2-how-it-works.md) or the [`Block-SDK` repo](https://github.com/skip-mev/block-sdk) for detailed and up to date info. For those eager to code, feel free to skip this and start down the page at **Set Up**!
+This is a high-level overview of the architecture, please reference [this page](/docs/chains/blocksdk/2-how-it-works.md) or the [`Block-SDK` repo](https://github.com/skip-mev/block-sdk) for detailed and up to date info. For those eager to code, feel free to skip this and start down the page at **Set Up**!
 :::
 
 ### How Were Blocks Constructed pre-Block-SDK?
@@ -215,4 +215,4 @@ func NewApp() {
 
 ### 💅 Next step: implement other `lanes`
 
-Visit our [Lane App Store](/docs/chains/lanes/existing-lanes/1-mev.md) and select the `lanes` you want, or [Build Your Own](/docs/chains/lanes/1-build-your-own-lane.md).
+Visit our [Lane App Store](/docs/chains/blocksdk/lanes/existing-lanes/1-mev.md) and select the `lanes` you want, or [Build Your Own](/docs/chains/blocksdk/lanes/1-build-your-own-lane.md).

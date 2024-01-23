@@ -12,7 +12,10 @@ We're on a mission to make interoperability dead easy.
 
 ### 🤔 What are Skip’s products?
 
-- [Block SDK](/docs/chains/0-integrate-the-sdk.md)
+- [Slinky](/docs/chains/slinky/0-overview.md)
+  - Slinky is an enshrined oracle that integrates with Cosmos chains using ABCI++ to provide a simple, secure, and reliable way to post data on-chain.
+  - It leverages chains' existing validator sets to guarantee posted data with the same set of security properties as CometBFT.
+- [Block SDK](/docs/chains/blocksdk/0-integrate-the-sdk.md)
   - The Block SDK is a set of Cosmos SDK and ABCI++ primitives that allow chains to fully customize blocks to specific use cases. It turns your chain's blocks into a **`highway`** consisting of individual **`lanes`** with their own special functionality.
   - Comes with a pre-built MEV system, oracle, and custom gas markets!
 - [Skip API](https://api-docs.skip.money/docs)
@@ -59,7 +62,7 @@ Validator integration typically takes 5-10 minutes
 
 Yes, Validators running Skip have a Skip badge in the validators details on Mintscan, and are also listed on Skip's website ([https://skip.money/validators](https://skip.money/validators))
 
-On chains that integrate the [Block SDK](/docs/chains/0-integrate-the-sdk.md), all validators run Skip's ABCI++ software in consensus.
+On chains that integrate either the [Block SDK](/docs/chains/blocksdk/0-integrate-the-sdk.md) or [Slinky](/docs/chains/slinky/0-overview.md), all validators run Skip's ABCI++ software in consensus.
 
 ### 🤔 How much money does Skip generate?
 
