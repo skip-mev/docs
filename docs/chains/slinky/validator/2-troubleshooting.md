@@ -12,4 +12,4 @@ Feel free to contribute via opening an issue in [our repo](https://github.com/sk
 
 ### I do not see an issue addressing my question.
 
-Please reach out to us using your preferred method. We are available on [Discord](https://discord.gg/amAgf9Z39w) and [Telegram](https://t.me/skipmev).
+Please reach out to us using your preferred method. We are available on [our website](https://skip.money/contact) or via a [Github issue](https://github.com/skip-mev/docs/issues/new).

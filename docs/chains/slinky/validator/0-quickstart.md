@@ -60,6 +60,9 @@ which slinky
 The config file in the Slinky repository is regenerated every time a change is made to the sidecar.
 As such, it may contain additional config options that are not yet supported by earlier versions of the sidecar.
 Please use the config file from the release if you are unsure.
+
+Config files for the sidecar are generally chain-specific. Prefer to use the config file provided by the chain you're running for instead of the default config located in the repository.
+
 :::
 
 ## 4. Run the slinky sidecar ✅

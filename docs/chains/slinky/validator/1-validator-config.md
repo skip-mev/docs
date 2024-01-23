@@ -8,7 +8,7 @@ sidebar_position: 1
 
 This readme overview's the configuration options for the oracle service and its corresponding metrics intrumentation.
 
-Validator's running on a network that support's the oracle module (`x/oracle`) **must** run the oracle side-car. Non-validator's can configure their oracle config's to be disabled, and the oracle side-car will not be run.
+Validator's running on a network that support's the oracle **must** run the oracle side-car. Non-validator's can configure their oracle config's to be disabled, and the oracle side-car will not be run.
 
 > <div align="center">
 >
@@ -125,7 +125,7 @@ This field is utilized to set the list of providers that the oracle will fetch p
 
 ## CurrencyPairs
 
-This field is utilized to set the list of currency pairs that the oracle will fetch prices for. These should be the same exact currency pairs that the oracle module (`x/oracle`) is currently configured to accept.
+This field is utilized to set the list of currency pairs that the oracle will fetch prices for. These should be the same exact currency pairs that the chain-specific oracle configuration (usually located in the module `x/oracle`) is currently configured to accept.
 
 ## Example Configuration
 
