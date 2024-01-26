@@ -83,15 +83,6 @@ const config = {
 	      label: 'For Chains',
 	      to: '/chains/overview'
 	    },
-		{
-			label: 'For Searchers',
-			// TODO: change
-			to: '/select/searcher'
-		  },
-	    {
-	      label: 'Select',
-	      to: '/select/intro'
-	    },
 	  ],
 	},
 	{

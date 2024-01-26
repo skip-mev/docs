@@ -9,7 +9,7 @@ sidebar_position: 3
 Bundles must only pass basic `CheckTx` validation (e.g. nonce, account balance, etc.) in order to be accepted by the auction. This means that bundles that are submitted to the auction may not be entirely valid on-chain since `runMsgs` is not executed. Searchers are encouraged to simulate their bundles before submitting them to the auction.
 :::
 
-### ➡️ How do searchers submit bundles to chains that use the Block SDK?
+### ➡️ How do searchers submit bundles to chains that use the Block SDK?
 
 :::info Definitions
 💡 `AuctionTx` (auction bid transaction) = `sdk.Tx` that includes a single `MsgAuctionBid`
@@ -140,7 +140,7 @@ func createBidTx(
 }
 ```
 
-### ⚙️ Auction fees
+### ⚙️ Auction fees
 
 :::info Auction Configuration
 All auction parameters are accessible though the `/block-sdk/x/auction/v1/params` HTTP path on a standard node or gRPC service defined by `x/auction`.
