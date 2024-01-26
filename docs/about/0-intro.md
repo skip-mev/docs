@@ -23,12 +23,8 @@ Integration takes < 20 mins, and please [contact us](https://skip.money/contact)
 
 ### 🥷 For Searchers
 
-On both chains that use Skip V1 and V2, searchers can participate in capturing MEV and bidding in the top-of-block auction for atomic execution. Check out our searcher docs for Skip [V1](/docs/select/2-searcher.md) and [V2](/docs/0-searcher-docs.md).
+On both chains that use Skip Block SDK, searchers can participate in capturing MEV and bidding in the top-of-block auction for atomic execution. Check out our searcher docs for Skip [Block SDK](/docs/0-searcher-docs.md).
 
 ### 👩‍💻 For Frontends
 
 Frontends in the IBC ecosystem can dramatically improve their UX by using the free [Skip APIs](https://api-docs.skip.money/docs). See the docs for how to get set up!
-
-:::info Old Documentation
-
-### For chains that use Skip V1 (deprecated), see [Select](select/chain-configuration) documentation
