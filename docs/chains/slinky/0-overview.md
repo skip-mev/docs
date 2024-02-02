@@ -30,6 +30,8 @@ sidebar_position: 0
 - The application will use GRPC requests to fetch the latest price for a given currency pair
   when it needs to submit prices to the chain.
 
+  ![Sidecar](/img/sidecar.svg)
+
 ### Extend Vote / Verify Vote
 
 The ExtendVote and VerifyVote methods of ABCI++ are where a given price starts its journey in the chain.
@@ -44,6 +46,8 @@ During PrepareProposal the vote extensions from the previous round are pulled ou
 - Slinky ensures that the set of vote extensions comprise the required minimum stake (default of 2/3).
 - It also ensures that the vote extensions are valid and can be understood by the application.
 - Finally, it encodes the vote extensions and injects them into the top of the block proposal as a pseudo-transaction.
+
+  ![Prepare Proposal](/img/prepare.svg)
 
 :::note
 

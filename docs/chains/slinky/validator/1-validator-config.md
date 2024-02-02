@@ -113,7 +113,7 @@ The `oracle.toml` file is the configuration file that is consumed by the oracle 
 
 ## Oracle Configuration
 
-The main oracle configuration object is located in [oracle.go](oracle.go). This is utilized to set up the oracle and to configure the providers that the oracle will use. The object is defined as follows:
+The main oracle configuration object is located in [oracle.go](https://github.com/skip-mev/slinky/blob/main/oracle/config/oracle.go). This is utilized to set up the oracle and to configure the providers that the oracle will use. The object is defined as follows:
 
 ```go
 type OracleConfig struct {
@@ -304,7 +304,7 @@ This field is utilized to set whether the oracle is running in production mode. 
 
 ## Metrics
 
-This field is utilized to set the metrics configurations for the oracle. To read more about the various metrics that are collected and corresponding queries, please read the [Readme](../../README.md).
+This field is utilized to set the metrics configurations for the oracle. To read more about the various metrics that are collected and corresponding queries, please read the [Readme](https://github.com/skip-mev/slinky/blob/main/oracle/metrics/README.md).
 
 ```go
 type MetricsConfig struct {

@@ -34,10 +34,6 @@ lane_readmes  = {
         "github": "https://raw.githubusercontent.com/skip-mev/block-sdk/main/lanes/build-your-own/README.md",
         "docs": "docs/chains/blocksdk/lanes/1-build-your-own-lane.md"
     },
-    'slinky-config': {
-        "github": "https://raw.githubusercontent.com/skip-mev/slinky/main/oracle/config/README.md",
-        "docs": "docs/chains/slinky/validator/1-validator-config.md"
-    }
 }
 
 # TODO: Make this either a CI job that runs everytime we make an update to the
