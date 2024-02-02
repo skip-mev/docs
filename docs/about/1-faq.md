@@ -14,7 +14,7 @@ We're on a mission to make interoperability dead easy.
 
 - [Slinky](/docs/chains/slinky/0-overview.md)
   - Slinky is an enshrined oracle that integrates with Cosmos chains using ABCI++ to provide a simple, secure, and reliable way to post data on-chain.
-  - It leverages chains' existing validator sets to guarantee posted data with the same set of security properties as CometBFT.
+  - It leverages chains' existing validator sets to secure posted data with the same set of security properties as CometBFT.
 - [Block SDK](/docs/chains/blocksdk/0-integrate-the-sdk.md)
   - The Block SDK is a set of Cosmos SDK and ABCI++ primitives that allow chains to fully customize blocks to specific use cases. It turns your chain's blocks into a **`highway`** consisting of individual **`lanes`** with their own special functionality.
   - Comes with a pre-built MEV system, oracle, and custom gas markets!

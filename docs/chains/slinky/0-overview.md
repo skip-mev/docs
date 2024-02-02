@@ -27,7 +27,7 @@ sidebar_position: 0
 - The Slinky sidecar is an out of process service that efficiently fetches prices from various data sources and runs aggregation logic
   to combine them into a single price for each currency pair.
 
-- The application will use GRPC requests to fetch the latest price for a given currency pair
+- The application will use GRPC requests the sidecar to fetch the latest price for a given currency pair
   when it needs to submit prices to the chain.
 
   ![Sidecar](/img/sidecar.svg)
@@ -37,11 +37,11 @@ sidebar_position: 0
 The ExtendVote and VerifyVote methods of ABCI++ are where a given price starts its journey in the chain.
 
 - The application fetches prices from the sidecar and submits them to the chain via the ABCI++ ExtendVote method.
-- VerifyVote is also used to ensure that the submitted data is valid--i.e. it can be unmarhsalled by another validator.
+- VerifyVote is also used to ensure that the submitted data is valid--i.e. it can be unmarshalled by another validator.
 
 ### Prepare Proposal
 
-During PrepareProposal the vote extensions from the previous round are pulled out of the extended commit info and various checks are run on them.
+During PrepareProposal the vote extensions from the previous round are aggregated by the block proposer, and various checks are run on them.
 
 - Slinky ensures that the set of vote extensions comprise the required minimum stake (default of 2/3).
 - It also ensures that the vote extensions are valid and can be understood by the application.
@@ -51,8 +51,10 @@ During PrepareProposal the vote extensions from the previous round are pulled ou
 
 :::note
 
-It is crucial that the injected vote extension transaction is not ever unmarshalled into a transaction object as this will cause a panic.
+It is crucial that the injected vote extension transaction is ignored by the chain application outside of the oracle's handling of it in Finalize Block.
 :::
+
+For more information on Vote Extensions in general, refer to [the Cosmos SDK docs](https://docs.cosmos.network/main/build/abci/vote-extensions).
 
 ### Process Proposal
 
