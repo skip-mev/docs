@@ -1,0 +1,7 @@
+label: "🔮 Slinky"
+position: 1
+link:
+  type: doc
+  id: overview
+customProps:
+  description: Slinky.

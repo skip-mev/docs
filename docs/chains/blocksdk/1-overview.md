@@ -18,9 +18,9 @@ Let's say you're the designer of a 4 lane highway. You'd want a paid lane, for f
 
 #### If you've been here before
 
-##### [Integrate Block-SDK](/docs/chains/0-integrate-the-sdk.md)
+##### [Integrate Block-SDK](/docs/chains/blocksdk/0-integrate-the-sdk.md)
 
-##### [Building your own Lane](/docs/chains/lanes/1-build-your-own-lane.md)
+##### [Building your own Lane](/docs/chains/blocksdk/lanes/1-build-your-own-lane.md)
 
 ##### [Searcher docs for MEV Lane](/docs/0-searcher-docs.md)
 
@@ -52,7 +52,7 @@ In the Block SDK, each `lane` has its own set of rules and transaction flow mana
 
 A block with separate `lanes` can be used for:
 
-1. **MEV mitigation**: a top of block lane could be designed to create an in-protocol top-of-block [auction](/docs/chains/lanes/existing-lanes/1-mev.md) to recapture MEV in a transparent and governable way.
+1. **MEV mitigation**: a top of block lane could be designed to create an in-protocol top-of-block [auction](/docs/chains/blocksdk/lanes/existing-lanes/1-mev.md) to recapture MEV in a transparent and governable way.
 2. **Free/reduced fee txs**: transactions with certain properties (e.g. from trusted accounts or performing encouraged actions) could leverage a free lane to facilitate _good_ behavior.
 3. **Dedicated oracle space** Oracles could be included before other kinds of transactions to ensure that price updates occur first, and are not able to be sandwiched or manipulated.
 4. **Orderflow auctions**: an OFA lane could be constructed such that order flow providers can have their submitted transactions bundled with specific backrunners, to guarantee MEV rewards are attributed back to users

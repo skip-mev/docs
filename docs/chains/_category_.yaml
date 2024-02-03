@@ -1,5 +1,6 @@
 label: "⛓️ For Chains"
-position: 1
-link: null
+position: 0
+link:
+  type: generated-index
 customProps:
-  description: The Skip Block SDK lets chains customize their block structure for their use case.
+  description: Skip helps sovereign blockchains and frontends improve UX and leverage MEV to enrich network stakeholders and protect them from its harmful effects.

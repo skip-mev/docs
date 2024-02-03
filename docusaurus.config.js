@@ -81,7 +81,7 @@ const config = {
 		  },
 	    {
 	      label: 'For Chains',
-	      to: '/chains/overview'
+	      to: '/chains/blocksdk/overview'
 	    },
 	  ],
 	},
