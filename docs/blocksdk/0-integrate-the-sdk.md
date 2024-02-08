@@ -1,7 +1,7 @@
 ---
 description: Block SDK Integration
 title: ⚡️ Integrate the Block SDK
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 :::info Block SDK
