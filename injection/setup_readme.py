@@ -20,19 +20,19 @@ def write_file(filename, rendered_content):
 lane_readmes  = {
     'default': {
         "github": "https://raw.githubusercontent.com/skip-mev/block-sdk/main/lanes/base/README.md",
-        "docs": "docs/chains/blocksdk/0-integrate-the-sdk.md"
+        "docs": "docs/blocksdk/0-integrate-the-sdk.md"
     },
     'mev': {
         "github": "https://raw.githubusercontent.com/skip-mev/block-sdk/main/lanes/mev/README.md",
-        "docs": "docs/chains/blocksdk/lanes/existing-lanes/1-mev.md"
+        "docs": "docs/blocksdk/lanes/existing-lanes/1-mev.md"
     },
     'free': {
         "github": "https://raw.githubusercontent.com/skip-mev/block-sdk/main/lanes/free/README.md",
-        "docs": "docs/chains/blocksdk/lanes/existing-lanes/2-free.md"
+        "docs": "docs/blocksdk/lanes/existing-lanes/2-free.md"
     },
     'build-your-own': {
         "github": "https://raw.githubusercontent.com/skip-mev/block-sdk/main/lanes/build-your-own/README.md",
-        "docs": "docs/chains/blocksdk/lanes/1-build-your-own-lane.md"
+        "docs": "docs/blocksdk/lanes/1-build-your-own-lane.md"
     },
 }
 
