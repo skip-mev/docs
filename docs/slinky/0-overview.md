@@ -1,12 +1,24 @@
 ---
 description: Skip's In-Protocol Oracle
-title: ✨ Slinky Overview
+title: ✨ Overview
 sidebar_position: 0
 ---
 
 <div align="center">
 <img src={'/img/slinky-banner.png'} width="100%"/>
 </div>
+
+<br />
+
+:::info Block SDK
+
+Slinky is **business-licensed software** under BSL. It is source viewable, but [**reach out to us**](https://skip.money/contact) to us if you are interested in integrating!
+
+Visit the GitHub repo [here](https://github.com/skip-mev/slinky).
+
+For support, [**join our discord**](https://skip.money/discord)!
+
+:::
 
 ## 🦾 Slinky Features
 

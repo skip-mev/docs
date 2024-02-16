@@ -1,5 +1,5 @@
 ---
-description: Advanced Oracle Validator Configuration
+description: Advanced Slinky Validator Configuration
 title: 🗃️ Validator Configuration Reference
 sidebar_position: 1
 ---

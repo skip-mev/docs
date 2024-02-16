@@ -1,6 +1,6 @@
 ---
-description: Oracle Sidecar Troubleshooting
-title: ❓ Oracle Troubleshooting
+description: Slinky Sidecar Troubleshooting
+title: ❓ Slinky Troubleshooting
 sidebar_position: 2
 ---
 

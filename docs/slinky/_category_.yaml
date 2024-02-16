@@ -1,7 +1,5 @@
 label: "🔮 Slinky"
 position: 1
-link:
-  type: doc
-  id: overview
+link: null
 customProps:
   description: Slinky.

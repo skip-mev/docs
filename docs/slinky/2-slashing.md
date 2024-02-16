@@ -1,10 +1,8 @@
 ---
 description: Slinky Incentivization Method
 title: ⚖️ Incentivization & Slashing
-sidebar_position: 2
+sidebar_position: 1
 ---
-
-<br />
 
 ## 🤝 Validators and Slinky
 

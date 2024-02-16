@@ -28,6 +28,6 @@ If you're interested in integrating, check out our <b>[integration docs](/blocks
 
 <hr class="dotted" />
 
-#### 👩‍💻 For Frontends
+#### 👩‍💻 For Frontends & Wallets
 
-Frontends in the IBC ecosystem can dramatically improve their UX by using the free [Skip APIs](https://api-docs.skip.money/docs). See the docs for how to get set up!
+Applications building in crypto can dramatically improve their UX by using the free [Skip APIs](https://api-docs.skip.money/docs). See the docs for how to get set up!

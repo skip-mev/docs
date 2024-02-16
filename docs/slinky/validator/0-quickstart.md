@@ -1,8 +1,12 @@
 ---
-description: Oracle Validator Quickstart
-title: ☝️ Getting Started
+description: Slinky Validator Quickstart
+title: ☝️ Quickstart
 sidebar_position: 0
 ---
+
+:::note
+**Running Slinky? First step is to join our [Discord](https://discord.gg/amAgf9Z39w)**
+:::
 
 ## Summary of Steps
 
@@ -15,8 +19,6 @@ In this walkthrough, we'll be going through the 5 steps to set up Slinky.
 3. Configure your slinky sidecar process.
 4. Run the slinky sidecar.
 5. Start the chain application.
-
-**Any questions / issues during integration? Ask us on [Discord](https://discord.gg/amAgf9Z39w)**
 
 ## 1. Install the Chain Binary ✅
 
