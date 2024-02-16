@@ -10,7 +10,7 @@ The Block SDK is **open-source software** licensed under MIT. It is free to use,
 
 Visit the GitHub repo [here](https://github.com/skip-mev/block-sdk).
 
-Please [**reach out to us**](https://skip.money/contact) if you need help!
+We strive to be responsive to questions and issues within 1-2 weeks - please open a GitHub issue or <b>[join our Discord](https://skip.money/discord)</b>. Note, we are not currently providing hands-on support for new integrations.
 
 :::
 
