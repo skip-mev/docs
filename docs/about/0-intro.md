@@ -24,7 +24,7 @@ If you're interested in integrating Slinky, please <b>[contact us](https://skip.
 
 We also build the [Block SDK](/blocksdk/overview), an open-source module that gives full control over how blocks are built, including a prebuilt MEV recapture mechanism, a EIP-1559 fee market, and segmentation to tailor blocks to your app-chain use case.
 
-If you're interested in integrating, check out our <b>[integration docs](/blocksdk/0-integrate-the-sdk)!</b>
+If you're interested in integrating, check out our <b>[integration docs](/blocksdk/0-integrate-the-sdk.md)!</b>
 
 <hr class="dotted" />
 
