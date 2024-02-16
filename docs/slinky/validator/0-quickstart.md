@@ -5,7 +5,7 @@ sidebar_position: 0
 ---
 
 :::note
-**Running Slinky? First step is to join our [Discord](https://discord.gg/amAgf9Z39w)**
+Running Slinky? First step is **[join our Discord](https://discord.gg/amAgf9Z39w)**
 :::
 
 ## Summary of Steps

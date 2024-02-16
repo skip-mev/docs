@@ -22,12 +22,6 @@ sidebar_position: 1
 
 Rewards can come from various sources. The easiest to implement is an additional share of inflation yield. However, Slinky also can support sharing of trading-fees and any arbitrary source of revenue.
 
-:::info We Share Everything
-
-Skip is dedicated to rewarding validators. For any fees a chain agrees to pay Skip for Slinky operation, we share 20% of this with the validators who operate it.
-
-:::
-
 With fee sharing, a fixed amount of fees is shared <b>per-block</b> to validators that correctly operate Slinky.
 
 - This means, if `$1000` was allocated for a certain block, and only 10 validators correctly operated Slinky that block, each validator would recieve an additional `$100` on top of their block rewards.
