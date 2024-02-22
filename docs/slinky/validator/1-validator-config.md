@@ -1,14 +1,14 @@
 ---
-description: Advanced Oracle Validator Configuration
+description: Advanced Slinky Validator Configuration
 title: 🗃️ Validator Configuration Reference
 sidebar_position: 1
 ---
 
 # Configurations
 
-This readme overview's the configuration options for the oracle service and its corresponding metrics intrumentation.
+This readme gives an overview of the configuration options for the oracle service and its corresponding metrics intrumentation.
 
-Validator's running on a network that support's the oracle **must** run the oracle side-car. Non-validator's can configure their oracle config's to be disabled, and the oracle side-car will not be run.
+Validators running on a network that supports the oracle **must** run the oracle side-car. Non-validator nodes can configure their oracle config's to be disabled, and the oracle side-car will not run.
 
 > <div align="center">
 >

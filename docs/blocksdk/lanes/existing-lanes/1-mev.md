@@ -8,7 +8,7 @@ sidebar_position: 1
 
 The `MEV Lane` allows top-of-block MEV auctions in-protocol, with revenue being redistributed to chains.
 
-If you have not already, we recommend following the [General Setup](/docs/chains/blocksdk/0-integrate-the-sdk.md) guide first!
+If you have not already, we recommend following the [General Setup](/docs/blocksdk/0-integrate-the-sdk.md) guide first!
 
 Please [**reach out to us**](https://skip.money/contact) if you need help!
 
@@ -42,7 +42,7 @@ This means that ‘searchers’ can find opportunities in the mempool, backrun t
 The Block SDK is built on top of the Cosmos SDK. The Block SDK is currently
 compatible with Cosmos SDK versions greater than or equal to `v0.47.0`.
 
-The `MEVLane` requires that apps use the `LanedMempool` as their app-side mempool, see [here](/docs/chains/blocksdk/0-integrate-the-sdk.md)
+The `MEVLane` requires that apps use the `LanedMempool` as their app-side mempool, see [here](/docs/blocksdk/0-integrate-the-sdk.md)
 
 ### Release Compatibility Matrix
 

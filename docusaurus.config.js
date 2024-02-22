@@ -80,9 +80,13 @@ const config = {
 			to: '/'
 		  },
 	    {
-	      label: 'For Chains',
-	      to: '/chains/blocksdk/overview'
+	      	label: 'Slinky',
+	      	to: '/slinky/overview'
 	    },
+		{
+			label: 'Block SDK',
+			to: '/blocksdk/overview'
+		  },
 	  ],
 	},
 	{
@@ -90,12 +94,8 @@ const config = {
 	  items: [
 	    {
 	      label: 'Discord',
-	      href: 'https://discord.gg/sq4bPtYV57',
+	      href: 'https://skip.money/discord',
 	    },
-	    {
-	      label: 'Chat Telegram',
-	      href: 'https://t.me/+nwk3BENlQbsxMGNh',
-	    }, 
 	  ],
 	},
 	{
@@ -112,7 +112,7 @@ const config = {
 	  ],
 	},
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Skip Protocol. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Skip Protocol`,
     },
     prism: {
       theme: lightCodeTheme,

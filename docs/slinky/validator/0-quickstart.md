@@ -1,12 +1,18 @@
 ---
-description: Oracle Validator Quickstart
-title: ☝️ Getting Started
+description: Slinky Validator Quickstart
+title: ☝️ Quickstart
 sidebar_position: 0
 ---
+
+:::note
+**Running Slinky? First step is to join our [Discord](https://discord.gg/amAgf9Z39w)**
+:::
 
 ## Summary of Steps
 
 **Estimated Time**: 10 mins
+
+In this walkthrough, we'll be going through the 5 steps to set up Slinky.
 
 1. Install the binary of a support chain application.
 2. Install the slinky binary.
@@ -14,30 +20,18 @@ sidebar_position: 0
 4. Run the slinky sidecar.
 5. Start the chain application.
 
-**Any questions / issues during integration? Ask us on [Discord](https://discord.gg/amAgf9Z39w)**
+## 1. Install the Chain Binary ✅
 
-## Chains that support the Slinky Oracle:
+**🚨** Please visit the chain's validator-specific instructions to install and configure the node binary for the desired chain.
 
-### Mainnets
-
-- Check back soon for updates!
-
-### Testnets
-
-- Check back soon for updates!
-
-## 1. Install the chain application ✅
-
-**🚨** Please consult the list of supported network above to install and configure the node binary for the desired chain.
-
-For the purposes of this guide we'll use `testappd` as our example application binary.
+For the purposes of this guide we'll use `testappd` as our example application binary, but it will be the same for any chain!
 
 ## 2. Install the `slinky` binary ✅
 
 You can install the slinky binary either by building from source or by downloading a pre-built binary.
 
-- Install the latest binary from the [releases page](https://github.com/skip-mev/slinky/releases)
-- Build from source by cloning the repo and running `make install`
+- Install the latest binary from the <b>[releases page](https://github.com/skip-mev/slinky/releases)</b>
+- Build from source by cloning the <b>[repo](https://github.com/skip-mev/slinky)</b> and running `make install`
 
 ```shell
 git clone git@github.com:skip-mev/slinky.git
@@ -45,18 +39,20 @@ cd slinky
 make install
 ```
 
-Slinky should now be in your path.
+Slinky should now be in your path. Check to make sure with:
 
 ```shell
 which slinky
 ```
 
-## 3. Configure your slinky sidecar process ✅
+## 3. Configure your Slinky Sidecar Process ✅
 
 - The provided releases include an `oracle.toml` file that you can use as a template for configuring your sidecar process.
-- Alternatively, the repository contains the most up-to-date version of the config file [here](https://github.com/skip-mev/slinky/blob/main/config/local/oracle.toml)
+- Alternatively, the repository contains the most up-to-date version of the config file <b>[here](https://github.com/skip-mev/slinky/blob/main/config/local/oracle.toml)</b>
 
 :::warning
+<b>Make sure your config matches your version and chain!</b>
+
 The config file in the Slinky repository is regenerated every time a change is made to the sidecar.
 As such, it may contain additional config options that are not yet supported by earlier versions of the sidecar.
 Please use the config file from the release if you are unsure.
@@ -65,7 +61,7 @@ Config files for the sidecar are generally chain-specific. Prefer to use the con
 
 :::
 
-## 4. Run the slinky sidecar ✅
+## 4. Run the Slinky Sidecar ✅
 
 You can run the slinky sidecar by running the following command:
 
@@ -106,4 +102,4 @@ testappd start
 
 ## Troubleshooting
 
-If you are having issues running the oracle sidecar, please see the [Troubleshooting section](/docs/chains/slinky/validator/2-troubleshooting.md) for more information.
+If you are having issues running the oracle sidecar, please see the [Troubleshooting section](/docs/slinky/validator/2-troubleshooting.md) for more information.

@@ -1,7 +1,7 @@
 ---
 description: Block SDK Integration
 title: ⚡️ Integrate the Block SDK
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 :::info Block SDK
@@ -10,14 +10,14 @@ The Block SDK is **open-source software** licensed under MIT. It is free to use,
 
 Visit the GitHub repo [here](https://github.com/skip-mev/block-sdk).
 
-Please [**reach out to us**](https://skip.money/contact) if you need help!
+We strive to be responsive to questions and issues within 1-2 weeks - please open a GitHub issue or <b>[join our Discord](https://skip.money/discord)</b>. Note, we are not currently providing hands-on support for new integrations.
 
 :::
 
 ## ⚙️ Architecture [15 mins]
 
 :::note
-This is a high-level overview of the architecture, please reference [this page](/docs/chains/blocksdk/2-how-it-works.md) or the [`Block-SDK` repo](https://github.com/skip-mev/block-sdk) for detailed and up to date info. For those eager to code, feel free to skip this and start down the page at **Set Up**!
+This is a high-level overview of the architecture, please reference [this page](/docs/blocksdk/2-how-it-works.md) or the [`Block-SDK` repo](https://github.com/skip-mev/block-sdk) for detailed and up to date info. For those eager to code, feel free to skip this and start down the page at **Set Up**!
 :::
 
 ### How Were Blocks Constructed pre-Block-SDK?
@@ -215,4 +215,4 @@ func NewApp() {
 
 ### 💅 Next step: implement other `lanes`
 
-Visit our [Lane App Store](/docs/chains/blocksdk/lanes/existing-lanes/1-mev.md) and select the `lanes` you want, or [Build Your Own](/docs/chains/blocksdk/lanes/1-build-your-own-lane.md).
+Visit our [Lane App Store](/docs/blocksdk/lanes/existing-lanes/1-mev.md) and select the `lanes` you want, or [Build Your Own](/docs/blocksdk/lanes/1-build-your-own-lane.md).
