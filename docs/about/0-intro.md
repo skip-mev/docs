@@ -12,7 +12,7 @@ sidebar_position: 0
 Skip helps blockchains become more powerful and user friendly by providing them groundbreaking new products in oracles, consensus, sequencing, and interoperability.
 :::
 
-# ⛓️ Skip On-Chain Products
+# ⛓️ Skip Products
 
 ### 🔮 Slinky
 
@@ -20,14 +20,14 @@ Skip builds [Slinky](/slinky/overview), an enshrined oracle for the highest-perf
 
 If you're interested in integrating Slinky, please <b>[contact us](https://skip.money/contact).</b>
 
+### 👩‍💻 Skip API
+
+Applications building in crypto can dramatically improve their UX by using the [Skip API](https://api-docs.skip.money/docs).
+
+If you're interested in integrating, check out our <b>[API integration docs](https://api-docs.skip.money/docs)</b>.
+
 ### 🧱 Block SDK
 
 We also build the [Block SDK](/blocksdk/overview), an open-source module that gives full control over how blocks are built, including a prebuilt MEV recapture mechanism, a EIP-1559 fee market, and segmentation to tailor blocks to your app-chain use case.
 
-If you're interested in integrating, check out our <b>[integration docs](/blocksdk/0-integrate-the-sdk.md)!</b>
-
-<hr class="dotted" />
-
-#### 👩‍💻 For Frontends & Wallets
-
-Applications building in crypto can dramatically improve their UX by using the free [Skip APIs](https://api-docs.skip.money/docs). See the docs for how to get set up!
+If you're interested in integrating, check out our <b>[chain integration docs](/blocksdk/0-integrate-the-sdk.md)!</b>

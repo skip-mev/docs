@@ -13,7 +13,7 @@ We are a multi-product company, with each product designed to make chains more p
 ### 🤔 What are Skip’s products?
 
 - 🔮 <b>[Slinky](/slinky/overview)</b>
-  - Slinky is an enshrined oracle that integrates with Cosmos chains using ABCI++ to provide a simple, secure, and reliable way to post data on-chain.
+  - Slinky is a restaked, enshrined oracle built for the highest performance DeFi that guarantees millisecond-fresh price updates per-block.
   - It leverages chains' existing validator sets to secure posted data with the same set of security properties as CometBFT.
 - 🔀 <b>[Skip API](https://api-docs.skip.money/docs)</b>
   - Skip API is a unified REST/RPC service that helps developers create more seamless cross-chain experiences for their end users, across a variety of bridges.
