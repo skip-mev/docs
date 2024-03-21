@@ -44,19 +44,19 @@
       "name": "API Reference",
       "isDefaultHidden": true,
       "icon": "square-terminal",
-      "url": "docs.skip.money/api"
+      "url": "https://docs.skip.money/api"
     },
     {
       "name": "Slinky",
       "isDefaultHidden": true,
       "icon": "wand-magic-sparkles",
-      "url": "docs.skip.money/slinky"
+      "url": "https://docs.skip.money/slinky"
     },
     {
       "name": "Block SDK",
       "isDefaultHidden": true,
       "icon": "code",
-      "url": "docs.skip.money/block-sdk"
+      "url": "https://docs.skip.money/block-sdk"
     }
   ],
   "navigation": [
