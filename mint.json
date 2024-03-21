@@ -1,0 +1,80 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Skip",
+  "logo": {
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#0E0E0E",
+    "light": "#FAFAFA",
+    "dark": "#0E0E0E",
+    "background": {
+      "dark": "#151617"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Products",
+      "url": "https://skip.money/products"
+    },
+    {
+      "name": "Contact",
+      "url": "https://skip.money/contact"
+    },
+    {
+      "name": "Research",
+      "url": "https://ideas.skip.money"
+    },
+    {
+      "name": "Jobs",
+      "url": "https://jobs.skip.money"
+    }
+  ],
+  "modeToggle": {
+    "default": "dark"
+  },
+  "topAnchor": {
+    "name": "Home",
+    "icon": "house"
+  },
+  "anchors": [
+    {
+      "name": "API Reference",
+      "isDefaultHidden": true,
+      "icon": "square-terminal",
+      "url": "docs.skip.money/api"
+    },
+    {
+      "name": "Slinky",
+      "isDefaultHidden": true,
+      "icon": "wand-magic-sparkles",
+      "url": "docs.skip.money/slinky"
+    },
+    {
+      "name": "Block SDK",
+      "isDefaultHidden": true,
+      "icon": "code",
+      "url": "docs.skip.money/block-sdk"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Home",
+      "pages": [
+        "home"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/skipprotocol",
+    "discord": "https://discord.com/invite/hFeHVAE26P"
+  },
+  "redirects": [
+    {
+      "source": "/api",
+      "destination": "/api-reference"
+    }
+  ]
+}
