@@ -1,0 +1,457 @@
+---
+title: "Multi-chain transaction tracking"
+description: The `/v2/tx` endpoints include APIs that broadcast transactions and provide insight into the status of transactions and their subsequent cross-chain actions over Axelar, IBC, and all other bridges we support. You can use the `/v2/tx` endpoints to track the progress of a cross-chain transfer or swap, no matter how many chains or bridges the transfer touches, in realtime. (For more advanced use cases, the endpoints support tracking multiple distinct transfers initiated in a single transaction) 
+---
+
+You can also use it to identify failure cases (e.g. a swap that fails due to slippage, an IBC transfer that fails due to inactive relayers) and determine where the user's tokens will become available ASAP. 
+
+For example, if one of your end users initiates a swap that begins with ATOM on Neutron and concludes with JUNO on Juno, you can use the lifecycle tracking to report when the ATOM moves from Neutron to the Hub, when it reaches Osmosis, and when the JUNO finally arrives safely on Juno. 
+
+<Note>
+
+**Please use the `/v2/tx` endpoints, instead of the `/v1/tx` endpoints**
+
+V2 has support for: 
+
+* Multiple underlying bridges, including IBC + Axelar (V1 only supports IBC transfers/swaps)
+* Multiple simultaneous + independent transfers created by a single transaction (V1 only allows tracking 1 sequence of transfers per transaction.)
+</Note>
+### Typical Usage
+
+This will walk through an example of how a developer would use the api to track the progress of a sequence of Axelar or IBC transfers. 
+
+In this particular example, we'll cover a simple 2-hop IBC transfer from axelar to the cosmoshub through osmosis.
+
+_(Usage is similar for tracking Axelar transfers or transfers that include multiple hops over distinct bridges but the data structures change slightly depending on what underlying bridge is being used)_
+
+#### 1\. Call `/tx/submit` to broadcast a transaction
+
+Post a signed user transaction (that you can form using `/fungible` endpoints) to the `/submit` endpoint. The Skip api will handle the broadcasting of this transaction and asynchronously begin tracking the status of this transaction and any subsequent transfers.
+
+A successful response looks like the following: 
+
+```json response
+{
+  "tx_hash": "AAEA76709215A808AF6D7FC2B8FBB8746BC1F196E46FFAE84B79C6F6CD0A79C9"
+}
+```
+
+It indicates that the transaction was accepted by the Skip api and its status can be tracked using the returned `tx_hash`. 
+
+The transaction is broadcast using `BROADCAST_MODE_SYNC` and in the event that a transaction is rejected by the node, the `/submit` endpoint will return a 400 response along with the failure reason as shown below:
+
+```json response
+{
+    "code": 3,
+    "message": "insufficient fees; got: 0uosmo which converts to 0uosmo. required: 2000uosmo: insufficient fee",
+    "details": []
+}
+```
+
+<Note>
+
+Tracking a transaction that was not broadcast using `/submit`
+
+If a transaction was not broadcast through the `/submit` endpoint and has already landed on chain, the `/track` endpoint can be used to initiate tracking of the transaction's progress.
+</Note>
+
+#### 2\. Call `/status` to query the status of the transaction and IBC transfer progress
+
+Skip API continually indexes chain state to determine the state of the transaction and the subsequent IBC transfer progress. This information can be queried using the `/status` endpoint. 
+
+It will initially yield a response that looks like the following: 
+
+* There's a top-level `transfers` field, which gives an array where each entry corresponds to a **single sequence of transfers**. This does not mean there's one entry in the `transfers` field for every bridging operation. In general, one `transfer` could consist of an arbitrarily long sequence of swaps and transfers over potentially multiple bridges. `transfers` is an array because one transaction can initiate potentially several distinct and independent transfers (e.g. transferring OSMO to Osmosis and ATOM to the Hub) in the same tx.
+* The `state` field will give `STATE_SUBMITTED` indicating the transaction has been accepted for tracking by the Skip api but no events have been indexed yet:
+
+```json response
+{
+  transfers: [
+    {
+      "state": "STATE_SUBMITTED",
+      "transfer_sequence": [],
+      "next_blocking_transfer": null,
+      "transfer_asset_release": null,
+      "error": null
+    }
+  ]
+}
+```
+
+Once indexing for the transaction has begun, the `state` will change to `STATE_PENDING`.
+
+* The status of any transfers along the transfer sequence will be returned in the `transfer_sequence` field as shown in the example response below.
+* The entries in the `transfer_sequence` correspond to transfers and will be represented by different objects depending on which bridge is being used (e.g. Axelar or IBC).
+* The `next_blocking_transfer` field gives some information about the next blocking transfer in the`transfer_sequence` field.  
+   * The `transfer_sequence_index` indicates which transfer in the `transfer_sequence` field is blocking progress.  
+   * The `state` field indicates the state of the blocking transfer:  
+         * We can be waiting for the transfer to be progressing towards its destination (`TRANSFER_PROPAGATING`).  
+         * Or we can be waiting for an error to be propagating back to the source (`ERROR_PROPAGATING`). In this case, the transfer will fail.
+* The `transfer_asset_release` field will be populated with information about the asset release as it is becomes known.  
+   * The `chain_id` and `denom` fields indicate the location and asset being released.  
+   * The `released` field indicates whether the assets are accessible. The `transfer_asset_release` field may become populated in advance of asset release if it can be determined with certainty where the eventual release will be. This will happen for example in a transfer sequence that is a PFM-enabled sequence of IBC transfers when one hop fails due to packet timeout or an acknowledgement failure. The transfer sequence will revert and the `transfer_asset_release` field will indicate that the assets will be released on the initial chain.
+
+```json response
+{
+  "transfers": [
+    {
+      "state": "STATE_PENDING",
+      "transfer_sequence": [
+        {
+         "ibc_transfer": {
+            "src_chain_id": "axelar_dojo-1",
+            "dst_chain_id": "osmosis-1",
+            "state": "TRANSFER_PENDING",
+            "packet": {
+              "send_tx": {
+                "chain_id": "axelar-dojo-1",
+                "tx_hash": "AAEA76709215A808AF6D7FC2B8FBB8746BC1F196E46FFAE84B79C6F6CD0A79C9",
+                "explorer_link": "https://www.mintscan.io/axelar/transactions/AAEA76709215A808AF6D7FC2B8FBB8746BC1F196E46FFAE84B79C6F6CD0A79C9"
+              },
+              "receive_tx": null,
+              "acknowledge_tx": null,
+              "timeout_tx": null,
+              "error": null
+            }
+         }
+       }
+      ],
+      "next_blocking_transfer": {
+        "transfer_sequence_index": 0
+      },
+      "transfer_asset_release": null,
+      "error": null
+    }
+  ]
+}
+```
+
+The transfer assets will be released before all expected acknowledgements have been indexed. When the transfer sequence has reached this state, the `status` will be updated to `STATE_RECEIVED` as shown in the example response below. Note that `transfer_asset_release` now indicates the chain ID of the chain where the assets are released and the denomination of the released assets.
+
+```json response
+{
+  transfers: [
+    {
+      "state": "STATE_COMPLETED_SUCCESS",
+      "transfer_sequence": [
+        {
+          "ibc_transfer": {
+            "src_chain_id": "axelar_dojo-1",
+            "dst_chain_id": "osmosis-1",
+            "state": "TRANSFER_PENDING",
+            "packet": {
+              "send_tx": {
+                "chain_id": "axelar-dojo-1",
+                "tx_hash": "AAEA76709215A808AF6D7FC2B8FBB8746BC1F196E46FFAE84B79C6F6CD0A79C9",
+                "explorer_link": "https://www.mintscan.io/axelar/transactions/AAEA76709215A808AF6D7FC2B8FBB8746BC1F196E46FFAE84B79C6F6CD0A79C9"
+
+              },
+              "receive_tx": {
+                "chain_id": "osmosis-1",
+                "tx_hash": "082A6C8024998EC277C2B90BFDDB323CCA506C24A6730C658B9B6DC653198E3D",
+                "explorer_link": "https://www.mintscan.io/osmosis/transactions/082A6C8024998EC277C2B90BFDDB323CCA506C24A6730C658B9B6DC653198E3D"
+              },
+              "acknowledge_tx": null,
+              "timeout_tx": null,
+              "error": null
+            }
+          }
+        },
+        {
+          "ibc_transfer": {
+            "src_chain_id": "osmosis-1",
+            "dst_chain_id": "cosmoshub-4",
+            "state": "TRANSFER_SUCCESS",
+            "packet": {
+              "send_tx": {
+                "chain_id": "osmosis-1",
+                "tx_hash": "082A6C8024998EC277C2B90BFDDB323CCA506C24A6730C658B9B6DC653198E3D",
+                "explorer_link": "https://www.mintscan.io/osmosis/transactions/082A6C8024998EC277C2B90BFDDB323CCA506C24A6730C658B9B6DC653198E3D"
+              },
+              "receive_tx": {
+                "chain_id": "cosmoshub-4",
+                "tx_hash": "913E2542EBFEF2E885C19DD9C4F8ECB6ADAFFE59D60BB108FAD94FBABF9C5671",
+                "explorer_link": "https://www.mintscan.io/cosmos/transactions/913E2542EBFEF2E885C19DD9C4F8ECB6ADAFFE59D60BB108FAD94FBABF9C5671"
+
+              },
+              "acknowledge_tx": null,
+              "timeout_tx": null,
+              "error": null
+            }
+          }
+        }
+      ],
+      "next_blocking_transfer": null,
+      "transfer_asset_release": {
+        "chain_id": "cosmoshub-4",
+        "denom": "uatom",
+        "released": true
+      },
+      "error": null
+    }
+  ]
+}
+```
+
+Once it has been determined that all packets along the transfer sequence have either been acknowledged or timed out, `state` will be updated to `STATE_COMPLETED_SUCCESS` as shown in the example response below. Note that `next_blocking_transfer` is now null since the transfer is complete.
+
+```json response
+{
+  "transfers": [ 
+    {
+      "state": "STATE_COMPLETED_SUCCESS",
+      "transfer_sequence": [
+        {
+          "ibc_transfer": {
+            "src_chain_id": "axelar_dojo-1",
+            "dst_chain_id": "osmosis-1",
+            "state": "TRANSFER_SUCCESS",
+            "packet": {
+              "send_tx": {
+                "chain_id": "axelar-dojo-1",
+                "tx_hash": "AAEA76709215A808AF6D7FC2B8FBB8746BC1F196E46FFAE84B79C6F6CD0A79C9",
+                "explorer_link": "https://www.mintscan.io/axelar/transactions/AAEA76709215A808AF6D7FC2B8FBB8746BC1F196E46FFAE84B79C6F6CD0A79C9"
+              },
+              "receive_tx": {
+                "chain_id": "osmosis-1",
+                "tx_hash": "082A6C8024998EC277C2B90BFDDB323CCA506C24A6730C658B9B6DC653198E3D",
+                "explorer_link": "https://www.mintscan.io/osmosis/transactions/082A6C8024998EC277C2B90BFDDB323CCA506C24A6730C658B9B6DC653198E3D"
+              },
+              "acknowledge_tx": {
+                "chain_id": "axelar-dojo-1",
+                "tx_hash": "C9A36F94A5B2CA9C7ABF20402561E46FD8B80EBAC4F0D5B7C01F978E34285CCA",
+                "explorer_link": "https://www.mintscan.io/axelar/transactions/C9A36F94A5B2CA9C7ABF20402561E46FD8B80EBAC4F0D5B7C01F978E34285CCA"
+              },
+              "timeout_tx": null,
+              "error": null
+            }
+          }
+        },
+        {
+        	"ibc_transfer": {
+            "src_chain_id": "osmosis-1",
+            "dst_chain_id": "cosmoshub-4",
+            "state": "TRANSFER_SUCCESS",
+            "packet": {
+              "send_tx": {
+                "chain_id": "osmosis-1",
+                "tx_hash": "082A6C8024998EC277C2B90BFDDB323CCA506C24A6730C658B9B6DC653198E3D",
+                "explorer_link": "https://www.mintscan.io/osmosis/transactions/082A6C8024998EC277C2B90BFDDB323CCA506C24A6730C658B9B6DC653198E3D"
+              },
+              "receive_tx": {
+                "chain_id": "cosmoshub-4",
+                "tx_hash": "913E2542EBFEF2E885C19DD9C4F8ECB6ADAFFE59D60BB108FAD94FBABF9C5671",
+                "explorer_link": "https://www.mintscan.io/cosmos/transactions/913E2542EBFEF2E885C19DD9C4F8ECB6ADAFFE59D60BB108FAD94FBABF9C5671"
+              },
+              "acknowledge_tx": {
+                "chain_id": "osmosis-1",
+                "tx_hash": "1EDB2886E6FD59D6B9C096FBADB1A52585745694F4DFEE3A3CD3FF0153307EBC",
+                "explorer_link": "https://www.mintscan.io/osmosis/transactions/1EDB2886E6FD59D6B9C096FBADB1A52585745694F4DFEE3A3CD3FF0153307EBC"
+              },
+              "timeout_tx": null,
+              "error": null
+            }
+        	}
+        }
+      ],
+      "next_blocking_transfer": null,
+      "transfer_asset_release": {
+        "chain_id": "cosmoshub-4",
+        "denom": "uatom",
+        "released": true
+      },
+      "error": null
+    }
+  ]
+}
+```
+
+Any packet acknowledgement errors will be surfaced in the error field for the relevant packet as follows:
+
+```json response
+{
+  "transfers": [
+  	{
+      "state": "STATE_COMPLETED_ERROR",
+      "transfer_sequence": [
+        {
+          "ibc_transfer": {
+            "src_chain_id": "osmosis-1",
+            "dst_chain_id": "cosmoshub-4",
+            "state": "TRANSFER_FAILED",
+            "packet": {
+              "send_tx": {
+                "chain_id": "osmosis-1",
+                "tx_hash": "112714A8144019161CAAA8317016505A9A1DDF5DA7B146320A640814DDFA41C0",
+                "explorer_link": "https://www.mintscan.io/osmosis/transactions/112714A8144019161CAAA8317016505A9A1DDF5DA7B146320A640814DDFA41C0"
+              },
+              "receive_tx": {
+                "chain_id": "cosmoshub-4",
+                "tx_hash": "E7FB2152D8EA58D7F377D6E8DC4172C99791346214387B65676A723FCFC7C980",
+                "explorer_link": "https://www.mintscan.io/osmosis/cosmos/E7FB2152D8EA58D7F377D6E8DC4172C99791346214387B65676A723FCFC7C98"
+
+              },
+              "acknowledge_tx": {
+                "chain_id": "osmosis-1",
+                "tx_hash": "8C9C1FA55E73CD03F04813B51C697C1D98E326E1C71AB568A2D23BF8AEAFFEC7",
+                "explorer_link": "https://www.mintscan.io/osmosis/transactions/8C9C1FA55E73CD03F04813B51C697C1D98E326E1C71AB568A2D23BF8AEAFFEC7"
+
+              },
+              "timeout_tx": null,
+              "error": {
+                "code": 1,
+                "message": "ABCI code: 1: error handling packet: see events for details"
+              }
+            }
+          }
+        }
+      ],
+      "next_blocking_transfer": null,
+      "transfer_asset_release": {
+        "chain_id": "osmosis-1",
+        "denom": "uosmo",
+        "released": true
+      },
+      "error": null
+		}
+	]
+}
+```
+
+Any execution errors for the initial transaction will be surfaced in the error field at the top level of the response as follows:
+
+```json response
+{
+  "transfers": [
+    {
+      "state": "STATE_COMPLETED_ERROR",
+      "transfer_sequence": [],
+      "next_blocking_transfer": null,
+      "transfer_asset_release": null,
+      "error": {
+        "code": 11,
+        "message": "out of gas in location: Loading CosmWasm module: sudo; gasWanted: 200000, gasUsed: 259553: out of gas"
+      }
+    }
+  ]
+}
+```
+
+### Transaction statuses
+
+The `state` field returned by the `/status` endpoint provides top-level insight into the current progress of the multi-chain (or single chain) sequence of events kicked off by: 
+
+* `STATE_SUBMITTED`: The initial transaction has been submitted to Skip API but not observed on chain yet.
+* `STATE_PENDING` \- The initial transaction has been observed on chain, and there are still pending actions (i.e. packets that have been written to state by the transaction or its successors but haven't been ferried to their destinations yet).
+* `STATE_RECEIVED`\- The transfer assets are released and accessible, but not all expected events have been indexed.
+* `STATE_COMPLETED_SUCCESS` \- The transaction, any subsequent cross-chain actions, and associated packet propagation has been completed without error. All expected events have been indexed.
+* `STATE_COMPLETED_ERROR` \- The transaction, any subsequent cross-chain actions, and associated packet/data propagation have been completed but not successfully. Some type of error has occurred and tokens are available (likely on the initial chain or an intermediate chain) at the location given by `transfer_asset_release`
+* `STATE_ABANDONED` \- Tracking for the transaction has been abandoned. This happens if the cross-chain sequence of actions stalls for more than 5 minutes or if the initial transaction does not get observed in a block for 10 minutes.
+
+### Transfer states
+
+The `state` field found in the `transfer_sequence` entries in the `/status` endpoint response is interpreted as follows: 
+
+* `TRANSFER_UNKNOWN`: The transfer state is unknown.
+* `TRANSFER_PENDING` \- The send packet for the transfer has been committed and the transfer is pending.
+* `TRANSFER_RECEIVED`\- The transfer packet has been received by the destination chain. It can still fail and revert if it is part of a multi-hop PFM transfer.
+* `TRANSFER_SUCCESS` \- The transfer has been successfully completed and will not revert.
+* `TRANSFER_FAILURE` \- The transfer has failed.
+
+<Check>
+
+**Want to see us get better? Have questions or comments?**
+
+You can reach us easily at support@skip.money or in our [Discord](https://discord.gg/sq4bPtYV57)
+</Check>
+## Axelar Transfer Tracking Details and Schema
+
+When one of the transfers is an Axelar transfer, the `transfer_sequence` array will give an `axelar_transfer`, instead of an `ibc_transfer`, which contains different data because: 
+
+* Axelar may utilize send\_token and contract\_call\_with\_token (distinct underlying protocols)
+* Axelar does not have a notion of packets or acks, like IBC does
+
+```json response
+{
+	"transfers": [
+  	{
+      "state": "STATE_COMPLETED_SUCCESS",
+      "transfer_sequence": [
+        {
+          "ibc_transfer": {
+            "src_chain_id": "cosmoshub-4",
+            "dst_chain_id": "osmosis-1",
+            "state": "TRANSFER_SUCCESS",
+            "packet_txs": {
+              "send_tx": {
+                "chain_id": "cosmoshub-4",
+                "tx_hash": "16B47FABCC230690ECEF5E98BAFE4A4E4EF619F76CE7329702687F8E66ACDDE9"
+              },
+              "receive_tx": {
+                "chain_id": "osmosis-1",
+                "tx_hash": "B6A0176A1D9F72D9445D9865B365E40735F060972931C6A99E89DCC8B736CE07"
+              },
+              "acknowledge_tx": {
+                "chain_id": "cosmoshub-4",
+                "tx_hash": "E050943F28EF5C2B3E90D55A66EB6BE23588F9EC4DFEB291370EF724D4B97EA7"
+              },
+              "timeout_tx": null,
+              "error": null
+            }
+          }
+        },
+        {
+          "axelar_transfer": {
+            "src_chain_id": "osmosis-1",
+            "dst_chain_id": "43114",
+            "type": "AXELAR_TRANSFER_SEND_TOKEN",
+            "state": "AXELAR_TRANSFER_SUCCESS",
+            "txs": {
+              "send_token_txs": {
+                "send_tx": {
+                  "chain_id": "osmosis-1",
+                  "tx_hash": "B6A0176A1D9F72D9445D9865B365E40735F060972931C6A99E89DCC8B736CE07"
+                },
+                "confirm_tx": null,
+                "execute_tx": {
+                  "chain_id": "43114",
+                  "tx_hash": "0xc78b62283ae813ad58e5c1d4023007459070f67c00fa949aa1af8288337ad421"
+                },
+                "error": null
+              }
+            }
+          }
+        }
+      ],
+      "next_blocking_transfer": null,
+      "transfer_asset_release": {
+        "chain_id": "43114",
+        "denom": "wavax-wei",
+        "released": "true:"
+      },
+      "error": null
+    }
+  ]
+}
+```
+
+_Note that the `transfersequence` now contains information about both IBC and Axelar transfers._
+
+The `type` field in the `AxelarTransferInfo` object is an enum of `AXELAR_TRANSFER_SEND_TOKEN` and `AXELAR_TRANSFER_CONTRACT_CALL_WITH_TOKEN`, which indicate whether the Axelar transfer is a \[Send Token\]([https://docs.axelar.dev/dev/send-tokens/overview](https://docs.axelar.dev/dev/send-tokens/overview)) or a \[Contract Call With Token\]([https://docs.axelar.dev/dev/general-message-passing/gmp-tokens-with-messages](https://docs.axelar.dev/dev/general-message-passing/gmp-tokens-with-messages)) transfer respectively.
+
+The `state` field indicates the current state of the Axelar transfer using the following values:
+
+* `AXELAR_TRANSFER_UNKNOWN` \- The transfer state is unknown.
+* `AXELAR_TRANSFER_PENDING_CONFIRMATION` \- The transfer has been initiated is pending confirmation by the Axelar network.
+* `AXELAR_TRANSFER_PENDING_RECEIPT` \- The transfer has been confirmed by the Axelar network and is pending receipt at the destination.
+* `AXELAR_TRANSFER_SUCCESS` \- The transfer has been completed successfully and assets have been received at the destination.
+* `AXELAR_TRANSFER_FAILURE` \- The transfer has failed.
+
+The `txs` field provides the sequence of transactions from transfer initiation to completion. The schema will vary based on the Axelar transfer `type`.
+
+<Check>
+
+**Want to help us get better? Have questions or feedback?**
+
+You can reach us easily at support@skip.money or in [our developer support channel on TG](https://t.me/+3y5biSyZRPIwZWIx)
+</Check>

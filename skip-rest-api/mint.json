@@ -1,0 +1,153 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Skip",
+  "logo": {
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#0E0E0E",
+    "light": "#FAFAFA",
+    "dark": "#0E0E0E",
+    "background": {
+      "dark": "#151617"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Products",
+      "url": "https://skip.money/products"
+    },
+    {
+      "name": "Contact",
+      "url": "https://skip.money/contact"
+    },
+    {
+      "name": "Research",
+      "url": "https://ideas.skip.money"
+    },
+    {
+      "name": "Jobs",
+      "url": "https://jobs.skip.money"
+    }
+  ],
+  "modeToggle": {
+    "default": "dark"
+  },
+  "topAnchor": {
+    "name": "API Reference",
+    "icon": "square-terminal"
+  },
+  "anchors": [
+    {
+      "name": "Home",
+      "icon": "house",
+      "url": "https://skip.mintlify.app"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "General API Docs",
+      "pages": [
+        "docs/getting-started",
+        "docs/multi-chain-transaction-tracking",
+        "docs/post-route-actions",
+        "docs/cross-chain-failure-cases",
+        "docs/ibc-token-routing--problem---skip-api-routing-algorithm",
+        "docs/evm-transactions-intro",
+        "docs/cw20-tokens---their-limitations",
+        "docs/experimental-features",
+        "docs/upcoming-features",
+        "docs/faq"
+      ]
+    },
+    {
+      "group": "SDK Docs",
+      "pages": [
+        "docs/getting-started--typescript-sdk",
+        "docs/gas-and-fee-tooling"
+      ]
+    },
+    {
+      "group": "Advanced Swapping Docs",
+      "pages": [
+        "docs/understanding-quote-quality-metrics",
+        "docs/safe-swapping--how-to-protect-users-from-bad-trades",
+        "docs/allow-unsafe---preventing---handling-bad-execution"
+      ]
+    },
+    {
+      "group": "Dev Endpoints",
+      "pages": [
+        {
+          "group": "Info",
+          "pages": [
+            "docs/developer/info/get-v1infochains",
+            "docs/developer/info/get-v2infobridges"
+          ]
+        },
+        {
+          "group": "Fungible",
+          "pages": [
+            "docs/developer/fungible/get-v1fungiblevenues",
+            "docs/developer/fungible/get-v1fungibleassets",
+            "docs/developer/fungible/post-v1fungibleassets_from_source",
+            "docs/developer/fungible/post-v2fungibleroute",
+            "docs/developer/fungible/post-v2fungiblemsgs",
+            "docs/developer/fungible/post-v2fungiblemsgs_direct",
+            "docs/developer/fungible/post-v1fungiblerecommend_assets",
+            "docs/developer/fungible/post-v1fungibleibc_origin_assets",
+            "docs/developer/fungible/post-v2fungibleassets_between_chains"
+          ]
+        },
+        {
+          "group": "Transaction",
+          "pages": [
+            "docs/developer/transaction/post-v2txsubmit",
+            "docs/developer/transaction/post-v2txtrack",
+            "docs/developer/transaction/get-v2txstatus"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Prod Endpoints",
+      "pages": [
+        {
+          "group": "Info",
+          "pages": [
+            "docs/prod/info/get-v1infochains",
+            "docs/prod/info/get-v2infobridges"
+          ]
+        },
+        {
+          "group": "Fungible",
+          "pages": [
+            "docs/prod/fungible/get-v1fungiblevenues",
+            "docs/prod/fungible/get-v1fungibleassets",
+            "docs/prod/fungible/post-v1fungibleassets_from_source",
+            "docs/prod/fungible/post-v2fungibleroute",
+            "docs/prod/fungible/post-v2fungiblemsgs",
+            "docs/prod/fungible/post-v2fungiblemsgs_direct",
+            "docs/prod/fungible/post-v1fungiblerecommend_assets",
+            "docs/prod/fungible/post-v1fungibleibc_origin_assets",
+            "docs/prod/fungible/post-v2fungibleassets_between_chains"
+          ]
+        },
+        {
+          "group": "Transaction",
+          "pages": [
+            "docs/prod/transaction/post-v2txsubmit",
+            "docs/prod/transaction/post-v2txtrack",
+            "docs/prod/transaction/get-v2txstatus"
+          ]
+        }
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/skipprotocol",
+    "discord": "https://discord.com/invite/hFeHVAE26P"
+  }
+}

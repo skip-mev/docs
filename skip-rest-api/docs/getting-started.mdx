@@ -1,0 +1,522 @@
+---
+title: "Getting Started"
+description: "This page will help you get started with Skip API."
+---
+
+<Frame>
+![](/images/1.png) 
+</Frame>
+
+## 👋 Introduction
+
+Welcome to the Skip API docs!
+
+**Skip API is a unified REST/RPC service that enables developers to create seamless cross-chain experiences for their end users using a variety of underlying cross-chain messaging protocols, including IBC, CCTP, and Axelar. We're on a mission to make all interop dead easy** 
+
+We’ve designed it so that even developers who are completely new to interoperability and have never worked with any of the bridges or DEXes we use can build applications and frontends that offer: 
+
+* Single transaction any-to-any cross-chain swaps with built-in cross-chain DEX aggregation under the hood
+* Cross-chain contract calls that allow users to take actions on remote chains without having to explicitly bridge in separate transactions
+* Multi-hop cross-chain transfers with automatic denom & path recommendations for any asset and chain
+* Composite bridging paths that use multiple underlying bridges for different stages of the path
+* Real-time cross-chain workflow tracking, along with gas + completion timing estimates
+* Fast / prioritized relaying
+* Protection from common cross-chain UX failures (e.g. bridging to a chain where the end user doesn’t have gas)  
+... and much more
+
+Skip API includes several different endpoint types which allow developers to choose their level of abstraction and build a wide variety of cross-chain applications. These include: 
+
+* **High-level endpoints** that return fully-formed messages and transactions
+* **Low-level endpoints** that return detailed pathing and swapping data
+* **Utility endpoints** for multi-chain transaction + packet submission, relaying, tracking, and simulation
+
+<Note>
+
+**What does it cost?**
+
+The API is completely free to use and permissionless to integrate with. 
+
+Skip does not take fees on swaps or transfers now and never will. The cross-chain swapping, transferring, and routing functionality is completely free now and always will be. 
+
+In the future, Skip may charge for more advanced functionality (e.g. high-speed, multi-hop relaying)
+</Note>
+## 📝 `/info` endpoints
+
+The `/info` endpoints provide general purpose information about the API and data about the chains it supports. For each chain, the available data includes:
+
+* Version of packet-forward-middleware (PFM)
+* Versions of ibc-hooks supported (if any)
+* Version of ibc-go support (if any)
+* Version of fee-grant supported (if any)
+* Version of Cosmos-SDK used
+* .. and more
+
+## 🪙 `/fungible` endpoints
+
+The `/fungible` endpoints provide APIs for cross-chain swaps and transfers of fungible tokens. In the background, the API provides automatic DEX aggregation, bridge routing, denom recommendation, and routing
+
+The API includes endpoints designed to provide one-stop, end-to-end support for swapping and transferring applications, as well as Dapps that may want to integrate those actions into more expressive 1-click flows 
+
+### Typical Usage
+
+This will walk through a common example of how developers use the different endpoints in the API. This is just one possible flow. Many others can be constructed from the available endpoints on data. 
+
+Please contact us if you believe the API doesn't conveniently support your desired user experience. 
+
+#### 1\. GET `v1/info/chains` on page load to get supported chains
+
+This returns a list of supported chains and metadata for them that can be used to populate dropdowns or search bars for users: 
+
+![](/images/2.png) 
+
+The response looks like this: 
+
+```json response
+{  
+  "chains": [  
+    {
+      chain_name: 'cosmoshub',
+      chain_id: 'cosmoshub-4',
+      pfm_enabled: true,
+      cosmos_module_support: { authz: true, feegrant: true },
+      supports_memo: true,
+      logo_uri: 'https://raw.githubusercontent.com/cosmos/chain-registry/master/cosmoshub/images/atom.png',
+      bech32_prefix: 'cosmos',
+      fee_assets: [
+        {
+          denom: 'uatom',
+          gas_price: { low: '0.005', average: '0.025', high: '0.03' }
+        }
+      ],
+      chain_type: 'cosmos',
+      ibc_capabilities: {
+        cosmos_pfm: true,
+        cosmos_ibc_hooks: false,
+        cosmos_memo: true,
+        cosmos_autopilot: false
+      }
+    },
+    {
+      chain_name: 'osmosis',
+      chain_id: 'osmosis-1',
+      pfm_enabled: true,
+      cosmos_module_support: { authz: true, feegrant: false },
+      supports_memo: true,
+      logo_uri: 'https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmosis-chain-logo.png',
+      bech32_prefix: 'osmo',
+      fee_assets: [
+        {
+          denom: 'uosmo',
+          gas_price: { low: '0.0025', average: '0.025', high: '0.04' }
+        }
+      ],
+      chain_type: 'cosmos',
+      ibc_capabilities: {
+        cosmos_pfm: true,
+        cosmos_ibc_hooks: true,
+        cosmos_memo: true,
+        cosmos_autopilot: false
+      }
+    },
+    {
+      chain_name: 'Ethereum',
+      chain_id: '1',
+      pfm_enabled: false,
+      cosmos_module_support: { authz: false, feegrant: false },
+      supports_memo: false,
+      logo_uri: 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/info/logo.png',
+      bech32_prefix: '',
+      fee_assets: [],
+      chain_type: 'evm',
+      ibc_capabilities: {
+        cosmos_pfm: false,
+        cosmos_ibc_hooks: false,
+        cosmos_memo: false,
+        cosmos_autopilot: false
+      }
+    },
+  ]  
+}
+```
+
+#### 2\. GET `v1/fungible/assets?chain_id=<SELECTED_CHAIN_ID>` to get available assets
+
+When the user selects their initial chain, you can use `v1/fungible/assets?chain_id=<SELECTED_CHAIN_ID>` to get the list of possible of tokens they could select for their starting asset:
+
+![](/images/66a9d2b-Screen_Shot_2023-07-25_at_9.50.00_AM.png) 
+
+For each asset, the returned data includes not only the denom of the asset (e.g. `ibc/abc123xyz`, but also metadata helpful for displaying it to the user. These include the `name`, `decimals`, `origin_denom`(for IBC bridged assets) and `origin_chain_id`. We also provide a `recommended_symbol` to help front-ends better distinguish between multiple assets that might have the same name on one chain. This is useful for assets like USDC which has over 10 USDC denoms listed. 
+
+```json response
+{
+  "chain_to_assets_map": {
+    "osmosis-1": {
+      "assets": [
+        {
+          "denom": "uosmo",
+          "chain_id": "osmosis-1",
+          "origin_denom": "uosmo",
+          "origin_chain_id": "osmosis-1",
+          "trace": "",
+          "is_cw20": false,
+          "is_evm": false,
+          "symbol": "OSMO",
+          "name": "OSMO",
+          "logo_uri": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.png",
+          "decimals": 6,
+          "description": "The native token of Osmosis",
+          "coingecko_id": "osmosis",
+          "recommended_symbol": "OSMO"
+        },
+        {
+          denom: 'ibc/903A61A498756EA560B85A85132D3AEE21B5DEDD41213725D22ABF276EA6945E',
+          chain_id: 'osmosis-1',
+          origin_denom: 'uaxl',
+          origin_chain_id: 'axelar-dojo-1',
+          trace: 'transfer/channel-208',
+          is_cw20: false,
+          is_evm: false,
+          symbol: 'AXL',
+          name: 'AXL',
+          logo_uri: 'https://raw.githubusercontent.com/cosmos/chain-registry/master/axelar/images/axl.png',
+          decimals: 6,
+          description: 'Axelar Staking Coin',
+          coingecko_id: 'axelar',
+          recommended_symbol: 'AXL'
+        },        
+        {...other assets...},
+        {
+          "denom": "factory/osmo1pfyxruwvtwk00y8z06dh2lqjdj82ldvy74wzm3/WOSMO",
+          "chain_id": "osmosis-1",
+          "origin_denom": "factory/osmo1pfyxruwvtwk00y8z06dh2lqjdj82ldvy74wzm3/WOSMO",
+          "origin_chain_id": "osmosis-1",
+          "trace": "",
+          "is_cw20": false,
+          "is_evm": false,
+          "symbol": "WOSMO",
+          "name": "WOSMO",
+          "logo_uri": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/WOSMO.png",
+          "decimals": 6,
+          "description": "The first native memecoin on Osmosis. Crafted by the deftest of hands in the lab of lunacy. It's scientifically anarchic, professionally foolish, and your ticket to the madhouse.",
+          "recommended_symbol": "WOSMO"
+        }
+      ]
+    }
+  }
+}
+```
+
+#### 3\. POST `/v1/fungible/assets_from_source` with the `chain_id` & `denom` to get destinations
+
+Once the user has chosen her starting token (source chain & source denom), we need to populate the list of chains & assets which she can send or swap her tokens to so she can choose her destination. We do this by calling the `/assets_from_source` endpoint when she selects her source asset. 
+
+The`/assets_from_source` endpoint returns a list of assets that a particular asset on a particular chain may be transferred to in exactly 1 transaction (again along with useful info for giving the user info about those possible assets). 
+
+This filters out chains that don't have a recommended version of the source token on them, which helps you avoid giving users the option to transfer to a chain where their token doesn't respond. 
+
+This is a sample of the response: 
+
+```json response
+{
+  "dest_assets": {
+    "agoric-3": {
+      "assets": [
+        {
+          "denom": "ibc/0471F1C4E7AFD3F07702BEF6DC365268D64570F7C1FDC98EA6098DD6DE59817B",
+          "chain_id": "agoric-3",
+          "origin_denom": "uosmo",
+          "origin_chain_id": "osmosis-1",
+          "trace": "transfer/channel-1",
+          "is_cw20": false,
+          "is_evm": false,
+          "symbol": "OSMO",
+          "name": "OSMO",
+          "logo_uri": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.png",
+          "decimals": 6,
+          "description": "The native token of Osmosis",
+          "coingecko_id": "osmosis",
+          "recommended_symbol": "OSMO"
+        }
+      ]
+    },
+    {...other assets...},
+    "axelar-dojo-1": {
+      "assets": [
+        {
+          "denom": "ibc/47BD209179859CDE4A2806763D7189B6E6FE13A17880FE2B42DE1E6C1E329E23",
+          "chain_id": "axelar-dojo-1",
+          "origin_denom": "uosmo",
+          "origin_chain_id": "osmosis-1",
+          "trace": "transfer/channel-3",
+          "is_cw20": false,
+          "is_evm": false,
+          "symbol": "OSMO",
+          "name": "OSMO",
+          "logo_uri": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.png",
+          "decimals": 6,
+          "description": "The native token of Osmosis",
+          "coingecko_id": "osmosis",
+          "recommended_symbol": "OSMO"
+        }
+      ]
+    },
+  }
+}
+```
+
+![](/images/3ff1176-Screen_Shot_2023-07-25_at_11.46.38_AM.png) 
+
+<Note>
+
+**Since /assets\_from\_source only supports transfers, what should I do to get destination assets for a swapping interface?**
+
+Right now, `/assets_from_source` only returns assets that can be reached in a single transaction via transfer operations alone, i.e. it does not support swaps. 
+
+So if you're building a swapping interface, we recommend just using `/assets` to get the list assets the user may route to. This will return the list of all supported assets, but this is okay because almost every asset is reachable from almost every asset when you allow swaps (there's a very dense denom graph)
+
+In the medium term, the term is working on adding support for more options (e.g. assets that require multiple txs to reach + assets that require swaps to reach).
+</Note>
+#### 4\. Call `/fungible/route` using the source and destination assets to get a quote
+
+When the user inputs the amount of tokens they want to transfer, we call `/fungible/route` to generate a route from the source to the destination along with a quote estimating how many destination tokens the user will receive at the end of the route. 
+
+The API automatically performs DEX aggregation and DEX routing optimization in the background for you. The returned route consists of a sequence of swap + transfer operations (see `operations` in the response). 
+
+If the route includes a swap, the route will: 
+
+1. Transfer the tokens to the venue where the best price is available for the swap, given the user's desired input amount (automatically performing recommended multi-hop routing + token unwinding along the way to provide the recommended version of the input asset on the venue chain)
+2. Perform the sequence of swaps on the DEX
+3. Transfer the tokens to the destination chain (automatically performing recommended multi-hop routing to provide the recommended version of the input asset on the destination chain)
+
+If the route doesn't include an asset exchange of any kind, it will route tokens from the source chain to the destination chain (automatically performing recommended multi-hop routing to provide the recommended version of the input asset on the destination chain)
+
+<Note>
+
+**Route Recommendations**
+
+You can read more about the IBC path routing algorithm we use [here](/docs/ibc-routing-algorithm)
+</Note>
+The response includes all of the information you'd need to show an informative preview of the route to the user or construct messages to execute the route: 
+
+```json response
+{
+  "source_asset_denom": "uusdc",
+  "source_asset_chain_id": "axelar-dojo-1",
+  "dest_asset_denom": "uatom",
+  "dest_asset_chain_id": "cosmoshub-4",
+  "amount_in": "1000000",
+  "operations": [
+    {
+      "transfer": {
+        "port": "transfer",
+        "channel": "channel-3",
+        "chain_id": "axelar-dojo-1",
+        "pfm_enabled": false,
+        "dest_denom": "ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858"
+      }
+    },
+    {
+      "swap": {
+        "swap_in": {
+          "swap_venue": {
+            "name": "osmosis-poolmanager",
+            "chain_id": "osmosis-1"
+          },
+          "swap_operations": [
+            {
+              "pool": "678",
+              "denom_in": "ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858",
+              "denom_out": "uosmo"
+            },
+            {
+              "pool": "1",
+              "denom_in": "uosmo",
+              "denom_out": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2"
+            }
+          ],
+          "swap_amount_in": "1000000"
+        },
+        "estimated_affiliate_fee": "0ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2"
+      }
+    },
+    {
+      "transfer": {
+        "port": "transfer",
+        "channel": "channel-0",
+        "chain_id": "osmosis-1",
+        "pfm_enabled": true,
+        "dest_denom": "uatom"
+      }
+    }
+  ],
+  "chain_ids": [
+    "axelar-dojo-1",
+    "cosmoshub-4",
+    "osmosis-1"
+  ],
+  "does_swap": true,
+  "estimated_amount_out": "110740",
+  "swap_venue": {
+    "name": "osmosis-poolmanager",
+    "chain_id": "osmosis-1"
+  }
+}
+```
+
+![](/images/443a393-Screen_Shot_2023-07-25_at_11.46.47_AM.png) 
+
+#### 5\. Pass output of `/fungible/route` into `/fungible/msgs` to generate messages for signing
+
+Now that we have a source, a destination, a route, and a quote for the user, we can call `/fungible/msgs` to construct the message(s) the user needs to sign to traverse the route and obtain their desired output token. 
+
+**This endpoint returns the minimum possible number of transactions required to execute a particular route.** In certain cases, a route requires more than 1 message when an intermediate chain does not support any data forwarding technology (e.g. IBC's PFM). In these cases, the user will need to sign multiple transactions -- one for each returned message. 
+
+To call `/fungible/msgs`, simply take the response from `/fungible/route` then add a few additional pieces of data to it and pass it as the body of `/fungible/msgs`: 
+
+* `chain_ids_to_addresses`: A map of chain-id strings to bech32 addresses for each chain along the route. (The list of chains along the route can be easily obtained from the `response.chain_ids` array in the `/fungible/route` response.
+* `slippage_tolerance_percent`: The percentage difference between the actual and the estimated amount out (measured from estimate) above which the swap will revert
+* `affiliates`: An array of `Affiliate` objects (containing addresses on the venue chain + fee amounts) that receive fees from this swap. Commonly used to charge fees for swaps
+
+Example code for generating route, generating message(s), then constructing, signing and submitting txs: 
+
+
+<CodeGroup>
+```tsx Getting Route and Generating Msgs
+import axios
+
+// GET ROUTE THEN MESSAGES
+
+// get route 
+const routeResponse = await axios.post(`${API_URL}/fungible/route`, {
+  amount_in: "100000"
+  source_asset_denom: "uusdc",
+  source_asset_chain_id: "axelar-dojo-1",
+  dest_asset_denom: "ibc/14F9BC3E44B8A9C1BE1FB08980FAB87034C9905EF17CF2F5008FC085218811CC",
+  dest_asset_chain_id: "cosmoshub-4",
+  cumulative_affiliate_fee_bps: "0",
+}).data;
+
+// get user addresses for messages
+const userAddresses = {};
+for (const chainID of routeResponse.chain_ids) {
+  const address = await getAddressForChain(walletClient, chainID);
+  userAddresses[chainID] = address;
+}
+
+// construct msg request
+const msgRequest =  {
+  ...routeResponse,
+  chain_ids_to_addresses: userAddresses,
+  slippage_tolerance_percent: "5.0",
+  affiliates: [],
+};
+
+// request messages
+const msgsResponse = const response = await axios.post(`${API_URL}/fungible/msgs`, request).data;
+
+if len(msgsResponse.msgs) !== 1 {
+  throw new Error("Unsupported number of txs. Only single tx routes supported")
+}
+```
+
+```tsx Sign and Submit Transaction
+import { SigningStargateClient } from "@cosmjs/stargate";
+import * as chainRegistry from "chain-registry";
+import { WalletClient } from "@cosmos-kit/core";
+
+// SIGN AND SUBMIT TX
+const multihopMsg = msgResponse.msgs[0]
+const msgJSON = JSON.parse(multiHopMsg.msg);
+
+// get signing client
+const RPC_URL = `https://my-frontend.zone/${multihopMsg.chain_id}`;
+const account = await walletClient.getAccount(multihopMsg.chain_id);
+const signer = await walletClient.getOfflineSignerDirect multiHopMsg.chain_id);
+const sourceChain = chainRegistry.chains.find(
+    (chain) => chain.chain_id === multihopMsg.chain_id
+  )[0];
+}
+
+// get average gas price
+const feeInfo = chain.fees?.fee_tokens[0];
+let averageGasPrice = 0;
+if (feeInfo.average_gas_price) {
+  averageGasPrice = feeInfo.average_gas_price;
+}
+
+let msg = {};
+// case signing and transaction construction based on message type -- could be 
+// ibc transfer or cosmwasm contract call
+if (
+      multiHopMsg.msg_type_url === "/ibc.applications.transfer.v1.MsgTransfer"
+    ) {
+  const client = await getSigningStargateClientForChainID(
+    multihopMsg.chain_id,
+    signer,
+    {
+      gasPrice: GasPrice.fromString(
+        `${feeInfo.average_gas_price ?? 0}${feeInfo.denom}``
+  		),
+    }
+	);
+	msg = {
+  	typeUrl: multihopMsg.msg_type_url,
+  	value: {
+      sourcePort: msgJSON.source_port,
+      sourceChannel: msgJSON.source_channel,
+      token: msgJSON.token,
+      sender: msgJSON.sender,
+      receiver: msgJSON.receiver,
+      timeoutTimestamp: msgJSON.timeout_timestamp,
+      memo: msgJSON.memo,
+  	},
+	};
+	const client = await SigningStargateClient.connectWithSigner(
+  	RPC_URL,
+  	signer,
+  	{
+    	gasPrice: GasPrice.fromString(
+      	`${feeInfo.average_gas_price ?? 0}${feeInfo.denom}``
+			),
+    }
+  );
+// handle case where it's a cosmwasm call
+} else {
+  const client = await SigningCosmWasmClient.connectWithSigner(
+      RPC_URL,
+      signer,
+      options
+    );
+  msg = {
+    typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
+    value: {
+      sender: msgJSON.sender,
+      contract: msgJSON.contract,
+      msg: Uint8Array.from(Buffer.from(JSON.stringify(msgJSON.msg))),
+      funds: msgJSON.funds,
+    },
+  };
+}
+  
+const tx = await client.signAndBroadcast(msgJSON.sender, [msg], "auto");
+```
+
+</CodeGroup>
+
+<Warning>
+
+**`/fungible/msgs` can return multiple types of messages**
+
+Notice the API can return multiple types of messages here: 
+
+* `CosmosSDK Message`: Which may be a `MsgTransfer`,`MsgBankSend`, or `MsgExecuteContract` depending on what the first operation in the route is
+* `EVM Transaction`: Whenever an operation needs to be executed on an EVM chain (e.g. Ethereum Mainnet, Arbitrum one, Optimism etc...)
+</Warning>
+![](/images/51dc78a-Screen_Shot_2023-07-25_at_3.04.14_PM.png) 
+
+<Check>
+
+**Want to help us get better? Have questions or feedback?**
+
+You can reach us easily at support@skip.money or in [our developer support channel on TG](https://t.me/+3y5biSyZRPIwZWIx)
+</Check>

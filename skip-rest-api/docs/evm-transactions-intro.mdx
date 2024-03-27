@@ -1,0 +1,130 @@
+---
+title: "EVM Transactions Intro"
+description: "This doc covers how to interact with the EvmTx type returned by the Skip API (/fungible/msgs + /fungible/msgs_direct)"
+---
+
+## Intro
+
+* When a user needs to transfer or swap from an EVM chain (e.g. Ethereum mainnet, Arbitrum, Optimism, etc...), the Skip API will return an `EvmTx` type for the developer to pass to the user for signing
+* Unlike CosmosSDK transactions, EVM transactions do not have a notion of messages, so this object doesn't correspond 1-to-1 to a "message", which might be a more familiar notion to Cosmos developers
+* This doc is intended for CosmosSDK developers who aren't already familiar with the concepts of transaction construction in the EVM and need to use `EvmTx` to help their users move from/to EVM chains.
+
+## `EvmTx` Data Structure
+
+The EvmTx has 4 fields that the developer needs to understand: 
+
+* `to`: The address of the smart contract or externally owned account (EOA) with which this transaction interacts, as a hex-string prefixed with 0x (e.g.
+* `value`: The amount of `wei` this transaction sends to the contract its interacting with (1 ether = 1^18 wei)
+* `data`: The calldata this transaction uses to call the smart contract it interacts with, as a hex string. The data bytes will be interpreted according to the application-binary-interface (ABI) of the contract that's being interacted with. If this field is empty, it means the transaction is sending funds to an address, rather than calling a contract.
+* `required_erc20_approvals`: The permissions that must be granted to a specific smart contract to spend or transfer a certain amount of their ERC-20 tokens on behalf of the end user. This allows smart contracts to execute expressive flows that may involve moving some amount of the user's ERC-20 tokens  
+   * If this field is non-empty, the approval must be granted, signed, and submitted before the `EvmTx` populated by the other fields in the response can be submitted to the network. Otherwise, it will fail to execute  
+   * Skip's `ERC20Approval` object has 3 fields that define approval:  
+         * `token_contract`: The address of the ERC-20 token on which the approval is granted  
+         * `spender`: The address of the contract to which the approval will grant spend authority  
+         * `amount`: The amount of `token_contract` tokens the approval will grant the `spender` to spend  
+   * Check out EIP-2612 for more information on ERC-20 approvals.
+* `chain_id`: This is the same as in the Cosmos context (simply an identifier for the chain), but it's an int instead of a string
+
+For more information on transactions, check out the Ethereum foundation's [docs](https://ethereum.org/en/developers/docs/transactions/)
+
+## Set up Signing Library
+
+To enable EVM transactions in your application, first install an EVM developer library. The most popular options are:
+
+* [viem](https://viem.sh/)
+* [ethers.js](https://docs.ethers.org/v5/)
+* [web3.js](https://web3js.readthedocs.io/en/v1.10.0/)
+
+The code snippets below use viem. 
+
+## Create a signer object
+
+Both libraries allow you to create "signer" objects that: 
+
+* Use an RPC provider under the hood to query the chain for necessary data to create transactions (e.g. nonce, gas price, etc...)
+* Expose an API that allows constructing, signing, and broadcasting transactions
+
+You need to initialize one of these before you can grant approvals or sign other kinds of transactions. 
+
+For example, with Viem, we do the folllowing: 
+
+```TypeScript TypeScript
+import { createWalletClient, http, publicActions } from 'viem'
+import { mainnet } from 'viem/chains'
+
+const account = privateKeyToAccount('0x...')
+
+const client = createWalletClient({
+  account,
+  chain: mainnet,
+  transport: http()
+}).extend(publicActions)
+```
+
+## Granting approvals
+
+If your transaction requires an approval (see above), grant it before asking the user to sign their EVM transaction. 
+
+In Viem, the whole process of granting an approval given a response from the Skip API `/fungible/messages` or `/fungible/messages_direct` endpoint looks like: 
+
+```TypeScript TypeScript
+// iterating over approvals in the EvmTx
+for (const requiredApproval of message.requiredERC20Approvals){
+  // reading the contract of the ERC20 token to figure out whether the user already has 
+  // granted at least the necessary approval
+  const allowance = await extendedSigner.readContract({
+    address: requiredApproval.tokenContract as `0x${string}`,
+    abi: erc20ABI,
+    functionName: "allowance",
+    args: [
+      signer.account.address as `0x${string}`,
+      requiredApproval.spender as `0x${string}`,
+    ],
+  });
+	// not requesting a new approval if its already been granted in the past
+  if (allowance > BigInt(requiredApproval.amount)) {
+    continue;
+  }
+
+  // constructing the approval
+  const txHash = await extendedSigner.writeContract({
+    account: signer.account,
+    address: requiredApproval.tokenContract as `0x${string}`,
+    abi: erc20ABI,
+    functionName: "approve",
+    args: [requiredApproval.spender as `0x${string}`, maxUint256],
+    chain: signer.chain,
+  });
+
+  const receipt = await extendedSigner.waitForTransactionReceipt({
+    hash: txHash,
+  });
+
+  if (receipt.status === "reverted") {
+    throw new Error(`EVM tx reverted: ${receipt.transactionHash}`);
+  }
+}
+```
+
+## Constructing and signing transactions
+
+Once the approval has been granted, use the rest of the fields in the EvmTx object to construct, sign and broadcast the necessary EVM transaction to kick off the flow. 
+
+In viem, we use the signer's `sendTransaction` function:
+
+```TypeScript TypeScript
+const txHash = await extendedSigner.sendTransaction({
+    account: signer.account,
+    to: message.to as `0x${string}`,
+    data: `0x${message.data}`,
+    chain: signer.chain,
+    value: message.value === "" ? undefined : BigInt(message.value),
+});
+```
+
+<Check>
+
+**Want to help us get better? Have questions or feedback?**
+
+You can reach us easily by joining [our Discord](https://skip.money/discord) and grabbing the "Skip API Developer" role.
+</Check>
