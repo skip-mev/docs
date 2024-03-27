@@ -1,7 +1,0 @@
-label: "🧊 Block SDK"
-position: 2
-link:
-  type: doc
-  id: overview
-customProps:
-  description: The Skip Block SDK lets chains customize their block structure for their use case.
