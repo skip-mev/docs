@@ -30,7 +30,7 @@ sidebar_position: 0
 
    **_Configure the Slinky process_**
 
-   Slinky has 1 important config file for running with dYdX.
+   Slinky has 1 important config file for running with dYdX:
 
    `oracle.json` contains mostly data that is static over the operating lifetime of the sidecar. It determines polling frequency for certain endpoints to prevent rate limiting, connection buffer sizes, websocket multiplexing behavior, and other configurations which affect the success rate of price providers in the sidecar.
 
@@ -115,7 +115,7 @@ If you are running the Slinky sidecar in a container you can shut down the conta
 If you are running the binary via systemd or other management tool, you will need to stop the process and re-launch using the newly released binary.
 
 :::note
-We recommend you build some automation around config management either by pulling the latest `oracle.json` file directly from the release (if your dydx node is at localhost:1317) or via reconstructing the config using the `slinky-config` binary included in the release. The `oracle.json` file from previous releases will be compatible with future releases unless there is a major version bump, _however_, newly added price feeds may require updated information from your oracle config that was not present in the previous release which may cause breakage.
+We recommend you build some automation around config management either by pulling the latest `config/dydx/oracle.json` file directly from the release (if your dydx node is at localhost:1317) or via reconstructing the config using the `slinky-config` binary included in the release. The `oracle.json` file from previous releases will be compatible with future releases unless there is a major version bump, _however_, newly added price feeds may require updated information from your oracle config that was not present in the previous release which may cause breakage.
 :::
 
 The dydx node will still be able to participate in consensus without the sidecar, and will begin attaching prices to blocks once Slinky is available. In the worst case, an upgrade in any of these manners will cause you to miss including vote extensions for a single block which should have no negative effects on you or the network.
