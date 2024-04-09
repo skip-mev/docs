@@ -53,7 +53,7 @@ for a given chain. It also contains pre-generated configs which have correct def
 - The provided releases include various preconfigured config files. Both `oracle.json`, and `market.json` files can be used for configuring your sidecar process.
 - Alternatively, the repository contains the most up-to-date version of the config file <b>[here](https://github.com/skip-mev/slinky/blob/main/config/local/oracle.json)</b>
 
-Please see our [chain config](/docs/slinky/integrations) page for reference about a particular integration.
+Please see our [chain config](/slinky/integrations) page for reference about a particular integration.
 
 :::warning
 <b>Make sure your config matches your version and chain!</b>
