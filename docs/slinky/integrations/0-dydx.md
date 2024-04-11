@@ -16,9 +16,9 @@ sidebar_position: 0
 
    https://github.com/skip-mev/slinky/releases
 
-   The initial version required for dYdX is `0.3.1`
+   The initial version required for dYdX is `v0.3.2`
 
-   https://github.com/skip-mev/slinky/releases/tag/v0.3.1
+   https://github.com/skip-mev/slinky/releases/tag/v0.3.2
 
    We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](http://ghcr.io/skip-mev/slinky-sidecar)
 
