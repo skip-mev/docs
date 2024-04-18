@@ -88,6 +88,54 @@ sidebar_position: 0
    prometheus_server_address = ""
    ```
 
+4. **Get your free API Keys and configure your decentralized provider endpoints**
+
+Slinky supports the addition of state-RPCs to gather data directly from Solana and EVM chains. The Skip and dYdX
+team have already set up relationships and pre-paid for API endpoints you can use to get this data.
+
+For each RPC URL, you will need an API key unique to your validator. To get this, go to the dYdX validator slack channel
+(which you should already be invited to once you make it into the active set), and request API keys from Helius, Polkachu,
+KingNodes, LavenderFive, and RhinoStake. Each of these are necessary to load into your config so your decentralized providers
+can work properly.
+
+Once you have your 5 API keys, head to [CONFIG FILE] and configure an endpoint for each provider.
+
+The endpoint URLs should be [TO UPDATE]:
+
+1. `polkachu.com`
+2. `helius.com`
+3. `rhinostake.com`
+4. `lavenderfive.com`
+5. `kingnodes.com`
+
+Then you must fill in your API keys. For example:
+
+```
+Endpoints: [
+    {
+        URL: "pokachu.com",
+        Authentication: {
+            Header: "X-Api-Key",
+            Key: "API KEY YOU'VE RETRIEVED FROM SLACK"
+        }
+    },
+    {
+        URL: "rhinostake.com",
+        Authentication: {
+            Header: "X-Api-Key",
+            Key: "API KEY YOU'VE RETRIEVED FROM SLACK"
+        }
+    },
+    {
+        URL: "skiprpc.com",
+        Authentication: {
+            Header: "X-Api-Key",
+            Key: "API KEY YOU'VE RETRIEVED FROM SLACK"
+        }
+    }
+}
+```
+
 ### **Q: How do I know if my validator is properly fetching prices and posting them to the chain?**
 
 **A:** A full set of prometheus metrics are integrated into both the sidecar and the dYdX application binary.
