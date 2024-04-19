@@ -8,33 +8,40 @@ sidebar_position: 3
 
 Within Slinky, validators can add more authenticated RPC endpoints to report decentralized price data from supported blockchains (e.g. Solana, Ethereum, Base...).
 
-To do this, head over to your config [WHICH CONFIG] and add an additional list item to your `Endpoints` array. Make sure that the RPC you are adding supports authentication via adding a `X-Api-Key` field within the header.
+To do this, head over to your `oracle.json` config and add or update your provider entry for `endopints`. Make sure that the RPC you are adding supports authentication via adding a `X-Api-Key` field within the header.
 
-For example, if you wanted to add a new RPC with the URL `skiprpc.com` with the API key `skip123`, you would add to the end of the array like so:
+For example, if you wanted to add a new RPC with the URL `skiprpc.com` with the API key `skip123` for the Raydium Solana API provider, you would end up with a config like so:
 
-```
-Endpoints: [
+```json
+{
+  "providers": [
     {
-        URL: "pokachu.com",
-        Authentication: {
-            Header: "X-Api-Key",
-            Key: "abc123"
-        }
-    },
-    {
-        URL: "rhinostake.com",
-        Authentication: {
-            Header: "X-Api-Key",
-            Key: "123abc"
-        }
-    },
-    {
-        URL: "skiprpc.com",
-        Authentication: {
-            Header: "X-Api-Key",
-            Key: "skip123"
-        }
+      "name": "raydium_api",
+      "api": {
+        "enabled": true,
+        "timeout": 500000000,
+        "interval": 500000000,
+        "reconnectTimeout": 2000000000,
+        "maxQueries": 10,
+        "atomic": false,
+        "url": "",
+        "endpoints": [
+          {
+            "url": "https://api.devnet.solana.com"
+          },
+          {
+            "url": "skiprpc.com",
+            "authentication": {
+              "apiKey": "X-Api-Key",
+              "apiKeyHeader": "skip123"
+            }
+          }
+        ],
+        "batchSize": 50,
+        "name": "raydium_api"
+      }
     }
+  ]
 }
 ```
 
