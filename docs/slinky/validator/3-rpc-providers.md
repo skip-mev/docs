@@ -46,3 +46,8 @@ For example, if you wanted to add a new RPC with the URL `skiprpc.com` with the 
 ```
 
 After this is completed, save you config file, and restart your node!
+
+The supported decentralized providers for which this is applicable are:
+
+- `raydium_api`
+- `uniswapv3_api-ethereum`
