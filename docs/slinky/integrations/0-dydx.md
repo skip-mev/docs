@@ -54,92 +54,92 @@ sidebar_position: 0
 
    The above command will start your Slinky sidecar with no markets and use the chain to bootstrap and figure out which prices it needs to fetch.
 
-   3. **Point your chain binary at the Slinky sidecar**
+3. **Point your chain binary at the Slinky sidecar**
 
-      The dYdX binary has been altered to accept new options which are used to configure your application. The following options in `app.toml` are relevant to Slinky operation.
+   The dYdX binary has been altered to accept new options which are used to configure your application. The following options in `app.toml` are relevant to Slinky operation.
 
-      ```toml
-      slinky-vote-extension-oracle-enabled = "true"
-      ###############################################################################
-      ###                                  Oracle                                 ###
-      ###############################################################################
-      [oracle]
-      # Enabled indicates whether the oracle is enabled.
-      enabled = "true"
+   ```toml
+   slinky-vote-extension-oracle-enabled = "true"
+   ###############################################################################
+   ###                                  Oracle                                 ###
+   ###############################################################################
+   [oracle]
+   # Enabled indicates whether the oracle is enabled.
+   enabled = "true"
 
-      # Oracle Address is the URL of the out of process oracle sidecar. This is used to
-      # connect to the oracle sidecar when the application boots up. Note that the address
-      # can be modified at any point, but will only take effect after the application is
-      # restarted. This can be the address of an oracle container running on the same
-      # machine or a remote machine.
-      oracle_address = "localhost:8080"
+   # Oracle Address is the URL of the out of process oracle sidecar. This is used to
+   # connect to the oracle sidecar when the application boots up. Note that the address
+   # can be modified at any point, but will only take effect after the application is
+   # restarted. This can be the address of an oracle container running on the same
+   # machine or a remote machine.
+   oracle_address = "localhost:8080"
 
-      # Client Timeout is the time that the client is willing to wait for responses from
-      # the oracle before timing out.
-      client_timeout = "2s"
+   # Client Timeout is the time that the client is willing to wait for responses from
+   # the oracle before timing out.
+   client_timeout = "2s"
 
-      # MetricsEnabled determines whether oracle metrics are enabled. Specifically
-      # this enables intsrumentation of the oracle client and the interaction between
-      # the oracle and the app.
-      metrics_enabled = "false"
+   # MetricsEnabled determines whether oracle metrics are enabled. Specifically
+   # this enables intsrumentation of the oracle client and the interaction between
+   # the oracle and the app.
+   metrics_enabled = "false"
 
-      # PrometheusServerAddress is the address of the prometheus server that metrics will be
-      # exposed to.
-      prometheus_server_address = ""
-      ```
+   # PrometheusServerAddress is the address of the prometheus server that metrics will be
+   # exposed to.
+   prometheus_server_address = ""
+   ```
 
-      4. **Get your free API Keys and configure your decentralized provider endpoints**
+4. **Get your free API Keys and configure your decentralized provider endpoints**
 
-         Slinky supports the addition of state-RPCs to gather data directly from Solana and EVM chains. The Skip and dYdX
-         team have already set up relationships and pre-paid for API endpoints you can use to get this data.
+   Slinky supports the addition of state-RPCs to gather data directly from Solana and EVM chains. The Skip and dYdX
+   team have already set up relationships and pre-paid for API endpoints you can use to get this data.
 
-         For each RPC URL, you will need an API key unique to your validator. To get this, go to the dYdX validator slack channel
-         (which you should already be invited to once you make it into the active set), and request API keys from Helius, Polkachu,
-         KingNodes, LavenderFive, and RhinoStake. Each of these are necessary to load into your config so your decentralized providers
-         can work properly.
+   For each RPC URL, you will need an API key unique to your validator. To get this, go to the dYdX validator slack channel
+   (which you should already be invited to once you make it into the active set), and request API keys from Helius, Polkachu,
+   KingNodes, LavenderFive, and RhinoStake. Each of these are necessary to load into your config so your decentralized providers
+   can work properly.
 
-         Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
+   Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
 
-         The endpoint URLs should be [TO UPDATE]:
+   The endpoint URLs should be [TO UPDATE]:
 
-         1. `polkachu.com`
-         2. `helius.com`
-         3. `rhinostake.com`
-         4. `lavenderfive.com`
-         5. `kingnodes.com`
+   1. `polkachu.com`
+   2. `helius.com`
+   3. `rhinostake.com`
+   4. `lavenderfive.com`
+   5. `kingnodes.com`
 
-         Then you must fill in your API keys. For example:
+   Then you must fill in your API keys. For example:
 
-         ```
+   ```
+   {
+      "name": "raydium_api",
+      "api": {
+         "endpoints": [
          {
-            "name": "raydium_api",
-            "api": {
-               "endpoints": [
-               {
-                  "url": "polkachu.com"
-                  "authentication: {
-                     "apiKey": "X-Api-Key",
-                     "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
-                  }
-               },
-               {
-                  "url": "rhinostake.com"
-                  "authentication: {
-                     "apiKey": "X-Api-Key",
-                     "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
-                  }
-               },
-               {
-                  "url": "skiprpc.com"
-                  "authentication: {
-                     "apiKey": "X-Api-Key",
-                     "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
-                  }
-               },
-               ],
+            "url": "polkachu.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
-         }
-         ```
+         },
+         {
+            "url": "rhinostake.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "skiprpc.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         ],
+      }
+   }
+   ```
 
 ### **Q: How do I know if my validator is properly fetching prices and posting them to the chain?**
 
