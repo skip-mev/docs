@@ -16,9 +16,9 @@ sidebar_position: 0
 
    https://github.com/skip-mev/slinky/releases
 
-   The initial version required for dYdX is `v0.3.2`
+   The initial version required for dYdX is `v0.4.X`
 
-   https://github.com/skip-mev/slinky/releases/tag/v0.3.2
+   https://github.com/skip-mev/slinky/releases/
 
    We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](http://ghcr.io/skip-mev/slinky-sidecar)
 
@@ -81,11 +81,52 @@ sidebar_position: 0
    # MetricsEnabled determines whether oracle metrics are enabled. Specifically
    # this enables intsrumentation of the oracle client and the interaction between
    # the oracle and the app.
-   metrics_enabled = "false"
+   metrics_enabled = "true"
+   ```
 
-   # PrometheusServerAddress is the address of the prometheus server that metrics will be
-   # exposed to.
-   prometheus_server_address = ""
+4. **Get your free API Keys and configure your decentralized provider endpoints**
+
+   Slinky supports the addition of state-RPCs to gather data directly from Solana and EVM chains. The Skip and dYdX
+   team have already set up relationships and pre-paid for API endpoints you can use to get this data.
+
+   For each RPC URL, you will need an API key unique to your validator. To get this, go to the dYdX validator slack channel
+   (which you should already be invited to once you make it into the active set), and request API keys from Helius, Polkachu,
+   KingNodes, LavenderFive, and RhinoStake. Each of these are necessary to load into your config so your decentralized providers
+   can work properly.
+
+   Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
+
+   Then you must fill in your API keys. For example:
+
+   ```
+   {
+      "name": "raydium_api",
+      "api": {
+         "endpoints": [
+         {
+            "url": "polkachu.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "rhinostake.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "skiprpc.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         ],
+      }
+   }
    ```
 
 ### **Q: How do I know if my validator is properly fetching prices and posting them to the chain?**
