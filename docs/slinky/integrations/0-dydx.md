@@ -16,9 +16,9 @@ sidebar_position: 0
 
    https://github.com/skip-mev/slinky/releases
 
-   The initial version required for dYdX is `v0.3.2`
+   The initial version required for dYdX is `v0.4.X`
 
-   https://github.com/skip-mev/slinky/releases/tag/v0.3.2
+   https://github.com/skip-mev/slinky/releases/
 
    We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](http://ghcr.io/skip-mev/slinky-sidecar)
 
@@ -81,11 +81,7 @@ sidebar_position: 0
    # MetricsEnabled determines whether oracle metrics are enabled. Specifically
    # this enables intsrumentation of the oracle client and the interaction between
    # the oracle and the app.
-   metrics_enabled = "false"
-
-   # PrometheusServerAddress is the address of the prometheus server that metrics will be
-   # exposed to.
-   prometheus_server_address = ""
+   metrics_enabled = "true"
    ```
 
 4. **Get your free API Keys and configure your decentralized provider endpoints**
@@ -99,14 +95,6 @@ sidebar_position: 0
    can work properly.
 
    Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
-
-   The endpoint URLs should be [TO UPDATE]:
-
-   1. `polkachu.com`
-   2. `helius.com`
-   3. `rhinostake.com`
-   4. `lavenderfive.com`
-   5. `kingnodes.com`
 
    Then you must fill in your API keys. For example:
 
