@@ -104,14 +104,28 @@ sidebar_position: 0
       "api": {
          "endpoints": [
          {
-            "url": "polkachu.com"
+            "url": "slinky-solana.kingnodes.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
          },
          {
-            "url": "rhinostake.com"
+            "url": "solana.lavenderfive.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "solana.polkachu.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "solana-rpc.rhino-apis.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
