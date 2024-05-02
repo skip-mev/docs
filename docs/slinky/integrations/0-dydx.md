@@ -96,7 +96,8 @@ sidebar_position: 0
 
    Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
 
-   Then you must fill in your API keys. For example:
+   Then you must fill in your API keys. You should use the URLs listed below, and ask on the `#ext-dydx-validators-discussion` channel
+   for API keys to fill in below.
 
    ```
    {
@@ -104,21 +105,28 @@ sidebar_position: 0
       "api": {
          "endpoints": [
          {
-            "url": "polkachu.com"
+            "url": "solana.polkachu.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
          },
          {
-            "url": "rhinostake.com"
+            "url": "slinky-solana.kingnodes.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
          },
          {
-            "url": "skiprpc.com"
+            "url": "solana.lavenderfive.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "https://solana-rpc.rhino-apis.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
