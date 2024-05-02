@@ -38,7 +38,7 @@ For support, [**join our discord**](https://skip.money/discord)!
 
 - The Slinky sidecar is an out-of-process service that efficiently fetches prices from various data sources and runs aggregation logic
   to combine them into a single price for each feed.
-- Validators use GRPC requests to the sidecar to fetch the latest updates to update on-chain prices from over 10 providers.
+- Validators use GRPC requests to the sidecar to fetch the latest updates to update on-chain prices from over 20+ providers.
 
 ![Sidecar](/img/sidecar.svg)
 
