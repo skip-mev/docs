@@ -96,7 +96,7 @@ sidebar_position: 0
 
    Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
 
-   Then you must fill in your API keys. You should use the URLs listed below, and ask on the `#ext-dydx-validators-discussion` channel
+   Then you must fill in your API keys. You should use the URLs listed below, and ask on the Slack `#ext-dydx-validators-discussion` or `#v-dydx-private-testnet-discussion` channels:
    for API keys to fill in below.
 
    ```
