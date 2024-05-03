@@ -105,21 +105,21 @@ sidebar_position: 0
       "api": {
          "endpoints": [
          {
-            "url": "solana.polkachu.com"
+            "url": "https://solana.polkachu.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
          },
          {
-            "url": "slinky-solana.kingnodes.com"
+            "url": "https://slinky-solana.kingnodes.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
          },
          {
-            "url": "solana.lavenderfive.com"
+            "url": "https://solana.lavenderfive.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
@@ -127,6 +127,13 @@ sidebar_position: 0
          },
          {
             "url": "https://solana-rpc.rhino-apis.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "https://dydx.helius-rpc.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
