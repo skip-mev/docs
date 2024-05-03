@@ -96,7 +96,8 @@ sidebar_position: 0
 
    Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
 
-   Then you must fill in your API keys. For example:
+   Then you must fill in your API keys. You should use the URLs listed below, and ask on the Slack `#ext-dydx-validators-discussion` or `#v-dydx-private-testnet-discussion` channels:
+   for API keys to fill in below.
 
    ```
    {
@@ -104,21 +105,35 @@ sidebar_position: 0
       "api": {
          "endpoints": [
          {
-            "url": "polkachu.com"
+            "url": "https://solana.polkachu.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
          },
          {
-            "url": "rhinostake.com"
+            "url": "https://slinky-solana.kingnodes.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
          },
          {
-            "url": "skiprpc.com"
+            "url": "https://solana.lavenderfive.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "https://solana-rpc.rhino-apis.com"
+            "authentication: {
+               "apiKey": "X-Api-Key",
+               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "https://dydx.helius-rpc.com"
             "authentication: {
                "apiKey": "X-Api-Key",
                "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
