@@ -42,8 +42,10 @@ sidebar_position: 0
 
    As an example, running the following would point your sidecar binary at the `dydxprotocold` node binary running on the same host at the default port of `1317`:
 
+   NOTE: The `url` field of your `dydx_api` provider (the same field as your `--node-http-url` below), but be prefixed with `http://`.
+
    ```bash
-   slinky-config --chain dydx --node-http-url "localhost:1317" --raydium-enabled --solana-node-endpoint https://solana.polkachu.com,https://slinky-solana.kingnodes.com,https://solana.lavenderfive.com,https://solana-rpc.rhino-apis.com,https://dydx.helius-rpc.com
+   slinky-config --chain dydx --node-http-url "http://localhost:1317" --raydium-enabled --solana-node-endpoint https://solana.polkachu.com,https://slinky-solana.kingnodes.com,https://solana.lavenderfive.com,https://solana-rpc.rhino-apis.com,https://dydx.helius-rpc.com
    ```
 
    This command (with default localhost:1317) should produce the equivalent of the `oracle.json` file bundled in the `config/dydx` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
@@ -60,9 +62,17 @@ sidebar_position: 0
 3. **Point your chain binary at the Slinky sidecar**
 
    The dYdX binary has been altered to accept new options which are used to configure your application. The following options in `app.toml` are relevant to Slinky operation.
+   The top level config fields are as follows:
 
    ```toml
+   # This is a top level field which controls slinky vote extension enablement.
+   # It should always be set to true.
    slinky-vote-extension-oracle-enabled = "true"
+   ```
+
+   The following fields are specific to the oracle config section:
+
+   ```toml
    ###############################################################################
    ###                                  Oracle                                 ###
    ###############################################################################

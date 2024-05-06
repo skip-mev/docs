@@ -71,13 +71,13 @@ Config files for the sidecar are generally chain-specific. Prefer to use the con
 You can run the slinky sidecar by running the following command:
 
 ```shell
-slinky oracle --config oracle.toml
+slinky --oracle-config-path oracle.json
 ```
 
 You can verify whether prices are being retrieved by running the following command:
 
 ```shell
-curl --request -x GET 'http://localhost:8080/slinky/v1/oracle/prices | jq .'
+curl 'http://localhost:8080/slinky/oracle/v1/prices' | jq .
 ```
 
 You should see output similar to the following:
