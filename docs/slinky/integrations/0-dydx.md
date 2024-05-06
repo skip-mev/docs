@@ -117,42 +117,42 @@ sidebar_position: 0
       "name": "raydium_api",
       "api": {
          "endpoints": [
-         {
-            "url": "https://solana.polkachu.com"
-            "authentication: {
-               "apiKey": "X-Api-Key",
-               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            {
+               "url": "https://solana.polkachu.com"
+               "authentication": {
+                  "apiKey": "X-Api-Key",
+                  "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
+            },
+            {
+               "url": "https://slinky-solana.kingnodes.com"
+               "authentication": {
+                  "apiKey": "X-Api-Key",
+                  "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
+            },
+            {
+               "url": "https://solana.lavenderfive.com"
+               "authentication": {
+                  "apiKey": "X-Api-Key",
+                  "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
+            },
+            {
+               "url": "https://solana-rpc.rhino-apis.com"
+               "authentication": {
+                  "apiKey": "X-Api-Key",
+                  "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
+            },
+            {
+               "url": "https://dydx.helius-rpc.com"
+               "authentication": {
+                  "apiKey": "X-Api-Key",
+                  "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
             }
-         },
-         {
-            "url": "https://slinky-solana.kingnodes.com"
-            "authentication: {
-               "apiKey": "X-Api-Key",
-               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
-            }
-         },
-         {
-            "url": "https://solana.lavenderfive.com"
-            "authentication: {
-               "apiKey": "X-Api-Key",
-               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
-            }
-         },
-         {
-            "url": "https://solana-rpc.rhino-apis.com"
-            "authentication: {
-               "apiKey": "X-Api-Key",
-               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
-            }
-         },
-         {
-            "url": "https://dydx.helius-rpc.com"
-            "authentication: {
-               "apiKey": "X-Api-Key",
-               "apiKeyHeader": "API KEY YOU'VE RETRIEVED FROM SLACK"
-            }
-         },
-         ],
+         ]
       }
    }
    ```
