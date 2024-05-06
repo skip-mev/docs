@@ -148,9 +148,11 @@ sidebar_position: 0
 
 **A:** A full set of prometheus metrics are integrated into both the sidecar and the dYdX application binary.
 
-A comprehensive overview of the relevant side-car metrics is hosted in the root [metrics.md](https://github.com/skip-mev/slinky/blob/main/metrics.md). This document includes a grafana dashboard that can be utilized to monitor the sidecar.
+A comprehensive overview of the relevant side-car metrics is hosted in the root [metrics.md](https://github.com/skip-mev/slinky/blob/main/metrics.md). This document includes a grafana dashboard that can be utilized to monitor the sidecar. Apart from the Slinky SideCar Dashboard, we highly recommend the [LavenderFive](https://github.com/LavenderFive/slinky-monitoring) and [RhinoStake](https://github.com/RhinoStake/slinky_monitoring_dashboard) monitoring dashboards which are built to be used with the Slinky sidecar.
 
-Apart from the Slinky SideCar Dashboard, we highly recommend the [LavenderFive](https://github.com/LavenderFive/slinky-monitoring) and [RhinoStake](https://github.com/RhinoStake/slinky_monitoring_dashboard) monitoring dashboards which are built to be used with the Slinky sidecar.
+To check if the sidecar is properly fetching prices, you can run `curl localhost:8080/slinky/oracle/v1/prices | jq` - where localhost:8080 is the default address of the sidecar. This will return a JSON object with the prices the sidecar has fetched.
+
+To check if the dYdX application is properly fetching prices from the sidecar, you can run `curl -s http://localhost:26660 | grep 'app_oracle_responses'`.
 
 Additionally, the logs from your dYdX node binary will contain the following error if it is unable to connect to Slinky to grab prices:
 
