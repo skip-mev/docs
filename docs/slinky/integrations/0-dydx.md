@@ -43,10 +43,13 @@ sidebar_position: 0
    As an example, running the following would point your sidecar binary at the `dydxprotocold` node binary running on the same host at the default port of `1317`:
 
    ```bash
-   slinky-config --chain dydx --node-http-url "localhost:1317"
+   slinky-config --chain dydx --node-http-url "localhost:1317" --raydium-enabled --solana-node-endpoint https://solana.polkachu.com,https://slinky-solana.kingnodes.com,https://solana.lavenderfive.com,https://solana-rpc.rhino-apis.com,https://dydx.helius-rpc.com
    ```
 
    This command (with default localhost:1317) should produce the equivalent of the `oracle.json` file bundled in the `config/dydx` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
+
+   Please note that you'll need to also enable Solana nodes. The command above will scaffold the config with a Raydium provider config, and you will need to fill in the
+   authentication details (as shown below in step 4).
 
    ```bash
    slinky -oracle-config-path ./oracle.json
@@ -143,6 +146,8 @@ sidebar_position: 0
       }
    }
    ```
+
+   Note that there should be additional fields in your Raydium provider config which are left out in the above example for brevity.
 
 ### **Q: How do I know if my validator is properly fetching prices and posting them to the chain?**
 
