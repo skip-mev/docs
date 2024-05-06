@@ -71,7 +71,7 @@ Config files for the sidecar are generally chain-specific. Prefer to use the con
 You can run the slinky sidecar by running the following command:
 
 ```shell
-slinky oracle --oracle-config-path oracle.json
+slinky --oracle-config-path oracle.json
 ```
 
 You can verify whether prices are being retrieved by running the following command:
