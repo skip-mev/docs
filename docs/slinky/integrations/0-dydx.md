@@ -152,11 +152,13 @@ A comprehensive overview of the relevant side-car metrics is hosted in the root 
 
 To check if the sidecar is properly fetching prices, you can run `curl localhost:8080/slinky/oracle/v1/prices | jq` - where localhost:8080 is the default address of the sidecar. This will return a JSON object with the prices the sidecar has fetched.
 
-To check if the dYdX application is properly fetching prices from the sidecar, you can run `curl -s http://localhost:26660 | grep 'app_oracle_responses'`.
+To check if the dYdX application is properly fetching prices from the sidecar, you can run `curl -s http://localhost:26660 | grep 'app_oracle_responses'` - where localhost:26660 is the local prometheus endpoint of the dYdX application.
 
 Additionally, the logs from your dYdX node binary will contain the following error if it is unable to connect to Slinky to grab prices:
 
 `Failed to run fetch prices for slinky daemon`
+
+If you are having issues, please read over the live support section below.
 
 ### **Q: How do I upgrade the sidecar binary?**
 
