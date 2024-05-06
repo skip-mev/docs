@@ -148,15 +148,9 @@ sidebar_position: 0
 
 **A:** A full set of prometheus metrics are integrated into both the sidecar and the dYdX application binary.
 
-A comprehensive overview of the relevant metrics is hosted in the root [metrics.md](https://github.com/skip-mev/slinky/blob/262fddc8ff1335c87886cf7aacce2efea8164246/metrics.md).
+A comprehensive overview of the relevant side-car metrics is hosted in the root [metrics.md](https://github.com/skip-mev/slinky/blob/main/metrics.md). This document includes a grafana dashboard that can be utilized to monitor the sidecar.
 
-A further breakdown of metrics are listed in the Slinky repo, categorized by subsystem:
-
-- [Application-Side Metrics](https://github.com/skip-mev/slinky/blob/a6577aa779f1f98c47ec95d626e4af70949af7b1/service/metrics/README.md)
-- [General Oracle Sidecar Metrics](https://github.com/skip-mev/slinky/blob/a6577aa779f1f98c47ec95d626e4af70949af7b1/oracle/metrics/README.md)
-- [Sidecar Provider Metrics](https://github.com/skip-mev/slinky/blob/a6577aa779f1f98c47ec95d626e4af70949af7b1/providers/base/metrics/README.md)
-- [API Provider Metrics](https://github.com/skip-mev/slinky/blob/a6577aa779f1f98c47ec95d626e4af70949af7b1/providers/base/api/metrics/README.md)
-- [Websocket Provider Metrics](https://github.com/skip-mev/slinky/blob/a6577aa779f1f98c47ec95d626e4af70949af7b1/providers/base/websocket/metrics/README.md)
+Apart from the Slinky SideCar Dashboard, we highly recommend the [LavenderFive](https://github.com/LavenderFive/slinky-monitoring) and [RhinoStake](https://github.com/RhinoStake/slinky_monitoring_dashboard) monitoring dashboards which are built to be used with the Slinky sidecar.
 
 Additionally, the logs from your dYdX node binary will contain the following error if it is unable to connect to Slinky to grab prices:
 
