@@ -10,7 +10,9 @@ sidebar_position: 0
 
 ## Summary
 
-Slinky prices, on most chains, are stored within the [`x/oracle`](https://github.com/skip-mev/slinky/tree/main/x/oracle) module by default. On a few chains, like dYdX, they live in a different storage module (in dYdX's chase, `x/prices`).
+Slinky prices are stored within the [`x/oracle`](https://github.com/skip-mev/slinky/tree/main/x/oracle) module by default.
+
+On very specific chains - right now only dYdX - they live in a different storage module (in dYdX's case, `x/prices`).
 
 These prices are updated on a per-block basis, when there is sufficient difference from the last block's price. They can be accessed natively by CosmWasm smart contracts, by other modules, or by anyone else who has access to chain state.
 
@@ -108,3 +110,7 @@ However, an individual Slinky feed will not update on any given block if:
 1. (More common) There was not a sufficient enough change from last block's price to surpass the Slinky `min_price_change` parameter. To save network bandwidth, the price won't update.
 2. (Less common) The market is disabled (i.e. not updating) within `x/marketmap`
 3. (Less common) Less than 2/3s of validators (by stake weight) contributed to a price update. This can happen if not enough validators run the Slinky sidecar, or there is a massive, widespread outage across providers.
+
+### Q: Can I get historical prices in Slinky?
+
+**A:** No, the `x/oracle` module only stores the most recently posted price. However, you can use blockchain indexers or inspect past blocks to see the prices committed on previous heights.

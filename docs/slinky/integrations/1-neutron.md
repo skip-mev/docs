@@ -16,7 +16,7 @@ sidebar_position: 1
 
    https://github.com/skip-mev/slinky/releases
 
-   The initial version required for Neutron is `v0.4.X`
+   The initial version required for Neutron is `v0.4.2+`
 
    https://github.com/skip-mev/slinky/releases/
 
@@ -26,7 +26,7 @@ sidebar_position: 1
 
 2. **Integrate the Slinky sidecar into your setup.**
 
-   The configuration of your validator setup requires you to tackle a few problems which we’ll mention here.
+   The configuration of your validator setup requires a couple steps:
 
    **_Configure the Slinky process_**
 
