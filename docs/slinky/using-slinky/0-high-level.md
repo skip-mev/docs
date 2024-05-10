@@ -42,7 +42,7 @@ To get a **specific** currency pair, you can call:
 
 When calling `getPrices` via the above methods, you are returned an array of `GetPriceResponse`, each of which contains the following metadata about individual prices:
 
-1. QuotePrice
+1. `QuotePrice`
 2. nonce
 3. decimals
 4. ID
