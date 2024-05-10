@@ -39,7 +39,7 @@ Instructions on how to do these steps are outlined below.
 
 ### Nil-checking a price response
 
-Slinky may sometimes return a "nil" Price  if it has not been written to. This means, within the `GetPriceResponse`, the price will have `Nonce = 0`
+Slinky may sometimes return a "nil" Price if it has not been written to. This means, within the `GetPriceResponse`, the price will have `Nonce = 0`
 
 The safest way to check for a nil price is to check if the `Nonce == 0`, here's a code snippet below:
 
@@ -55,7 +55,7 @@ The safest way to check for a nil price is to check if the `Nonce == 0`, here's 
 
 ### Q: Can I get historical prices in Slinky?
 
-**A:** No, the `x/oracle` module only stores the most recently posted price.
+**A:** No, the `x/oracle` module only stores the most recently posted price. However, you can use blockchain indexers or inspect past blocks to see the prices committed on previous heights.
 
 ### Q: Can I get confidence bands / other statistical information about prices?
 
