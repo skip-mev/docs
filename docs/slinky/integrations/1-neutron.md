@@ -43,7 +43,7 @@ sidebar_position: 1
    As an example, running the following would point your sidecar binary at the `neutrond` node binary running on the same host at the default port of `1317`:
 
    ```bash
-   slinky-config --chain neutron --node-http-url "localhost:1317"
+   slinky-config --chain neutron --node-http-url "localhost:9090"
    ```
 
    This command (with default localhost:1317) should produce the equivalent of the `oracle.json` file bundled in the `config/neutron` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
