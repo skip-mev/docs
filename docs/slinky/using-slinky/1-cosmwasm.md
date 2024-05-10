@@ -39,7 +39,7 @@ Instructions on how to do these steps are outlined below.
 
 ### Nil-checking a price response
 
-Slinky may sometimes return `nil` if they have not been initialized. This means, within the `GetPriceResponse`, the price will have `Nonce = 0`
+Slinky may sometimes return a "nil" Price  if it has not been written to. This means, within the `GetPriceResponse`, the price will have `Nonce = 0`
 
 The safest way to check for a nil price is to check if the `Nonce == 0`, here's a code snippet below:
 
