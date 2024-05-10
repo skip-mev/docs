@@ -21,7 +21,7 @@ Slinky market configuration is stored in the [`x/marketmap`](https://github.com/
 Every chain will have a different set of supported assets. You can find out which assets are supported on your chain by either running:
 
 1. (via a local running chain): `curl http://localhost:1317/slinky/marketmap/v1/marketmap`
-2. (via chain app CLI): `appd q marketmap marketmap`
+2. (via chain app CLI): `<APP>d q marketmap marketmap`
 3. (via gRPC): `grpcurl -plaintext localhost:9090 slinky.marketmap.v1.Query/MarketMap`
 
 This will return a JSON list of supported assets with associated metadata.
