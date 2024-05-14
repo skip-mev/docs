@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "yarn update-readmes && docusaurus start",
-    "build": "yarn update-readmes && docusaurus build",
-    "update-readmes": "pip3 install -r requirements.txt && python3 injection/setup_readme.py",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
