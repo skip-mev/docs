@@ -12,13 +12,9 @@ sidebar_position: 0
 
 1. **Download the Slinky binary.**
 
-   The best way to get the Slinky binary is in the GitHub releases page for Slinky.
+   The best way to get the Slinky binary is in the GitHub releases page for Slinky. The initial version required for Initia is `v0.4.X`. You can find the latest release at https://github.com/skip-mev/slinky/releases.
 
-   The initial version required for Initia is `v0.4.X`. You can find the latest release at https://github.com/skip-mev/slinky/releases.
-
-   We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](http://ghcr.io/skip-mev/slinky-sidecar).
-
-   This will include the Slinky binary, `slinky`, as well as some pre-generated configuration files.
+   We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](http://ghcr.io/skip-mev/slinky-sidecar). This will include the Slinky binary `slinky`.
 
 2. **Integrate the Slinky sidecar into your setup.**
 
@@ -69,19 +65,60 @@ sidebar_position: 0
    }
    ```
 
+   **Starting the Slinky sidecar from source**
+
+   To start the sidecar from source, you can run the following commands:
+
+   ```bash
+   # clone the repo
+   git clone https://github.com/skip-mev/slinky.git
+   cd slinky
+
+   # checkout the proper version
+   git checkout v0.4.X
+
+   # build the binary
+   make build
+   ```
+
    As an example, running the following would point your sidecar binary at the `initad` node binary running on the same host at the default port of `9090`:
 
    ```bash
+   # start the sidecar with the market map endpoint on the same host
    slinky --oracle-config-path ./oracle.json --market-map-endpoint localhost:9090
    ```
 
    Alternatively, if you manually updated the `oracle.json` file, you can run the following command to start the sidecar:
 
    ```bash
-    slinky --oracle-config-path ./oracle.json
+   slinky --oracle-config-path ./oracle.json
    ```
 
    The above command will start your Slinky sidecar with no markets and use the chain to bootstrap and figure out which prices it needs to fetch.
+
+   **Starting the Slinky sidecar using a pre-built container image**
+
+   To start the sidecar using the pre-built container, you can run the following command:
+
+   ```bash
+   docker run \
+       --entrypoint "/usr/local/bin/slinky" \
+       -v "oracle.json:/oracle/oracle.json" \
+       ghcr.io/skip-mev/slinky-sidecar:v0.4.X \
+       --oracle-config-path /oracle/oracle.json \
+       --update-market-config-path /oracle/market.json \
+       --market-map-endpoint 0.0.0.0:9090
+   ```
+
+   Walking through the command above:
+
+   1. `docker run` - starts a new container.
+   2. `--entrypoint "/usr/local/bin/slinky"` - sets the entrypoint for the container to the Slinky binary.
+   3. `-v "oracle.json:/oracle/oracle.json"` - mounts the `oracle.json` file to the container. As mentioned above, you can use the default `oracle.json` file provided in the release found in the `config/core/oracle.json` directory.
+   4. `ghcr.io/skip-mev/slinky-sidecar:v0.4.X` - the container image to run.
+   5. `--oracle-config-path /oracle/oracle.json` - the path to the `oracle.json` file in the container.
+   6. `--update-market-config-path /oracle/market.json` - this is an optional flag that will write the set of markets the sidecar needs to fetch prices for once it receives an update from the node.
+   7. `--market-map-endpoint` - the GRPC endpoint of the node to fetch the markets from.
 
 3. **Point your chain binary at the Slinky sidecar**
 
