@@ -85,13 +85,13 @@ sidebar_position: 0
 
    ```bash
    # start the sidecar with the market map endpoint on the same host
-   slinky --oracle-config-path ./oracle.json --market-map-endpoint localhost:9090
+   ./build/slinky --oracle-config-path ./oracle.json --market-map-endpoint localhost:9090
    ```
 
    Alternatively, if you manually updated the `oracle.json` file, you can run the following command to start the sidecar:
 
    ```bash
-   slinky --oracle-config-path ./oracle.json
+   ./build/slinky --oracle-config-path ./oracle.json
    ```
 
    The above command will start your Slinky sidecar with no markets and use the chain to bootstrap and figure out which prices it needs to fetch.
