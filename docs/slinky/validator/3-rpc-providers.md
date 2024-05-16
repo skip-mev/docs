@@ -8,7 +8,7 @@ sidebar_position: 3
 
 Within Slinky, validators can add more authenticated RPC endpoints to report decentralized price data from supported blockchains (e.g. Solana, Ethereum, Base...).
 
-To do this, head over to your `oracle.json` config and add or update your provider entry for `endopints`. Make sure that the RPC you are adding supports authentication via adding a `X-Api-Key` field within the header.
+To do this, head over to your `oracle.json` config and add or update your provider entry for `endopints`. Make sure that the RPC you are adding supports authentication via adding a `x-api-key` field within the header.
 
 For example, if you wanted to add a new RPC with the URL `skiprpc.com` with the API key `skip123` for the Raydium Solana API provider, you would end up with a config like so:
 
@@ -32,8 +32,8 @@ For example, if you wanted to add a new RPC with the URL `skiprpc.com` with the 
           {
             "url": "skiprpc.com",
             "authentication": {
-              "apiKey": "X-Api-Key",
-              "apiKeyHeader": "skip123"
+              "apiKeyHeader": "x-api-key",
+              "apiKey": "skip123"
             }
           }
         ],

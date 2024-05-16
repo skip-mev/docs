@@ -120,35 +120,35 @@ sidebar_position: 0
             {
                "url": "https://solana.polkachu.com"
                "authentication": {
-                  "apiKeyHeader": "X-Api-Key",
+                  "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             },
             {
                "url": "https://slinky-solana.kingnodes.com"
                "authentication": {
-                  "apiKeyHeader": "X-Api-Key",
+                  "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             },
             {
                "url": "https://solana.lavenderfive.com"
                "authentication": {
-                  "apiKeyHeader": "X-Api-Key",
+                  "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             },
             {
                "url": "https://solana-rpc.rhino-apis.com"
                "authentication": {
-                  "apiKeyHeader": "X-Api-Key",
+                  "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             },
             {
                "url": "https://dydx.helius-rpc.com"
                "authentication": {
-                  "apiKeyHeader": "X-Api-Key",
+                  "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             }
