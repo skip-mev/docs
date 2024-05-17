@@ -48,13 +48,15 @@ sidebar_position: 0
    slinky-config --chain dydx --node-http-url "http://localhost:1317" --raydium-enabled --solana-node-endpoint https://solana.polkachu.com,https://slinky-solana.kingnodes.com,https://solana.lavenderfive.com,https://solana-rpc.rhino-apis.com,https://dydx.helius-rpc.com
    ```
 
-   This command (with default localhost:1317) should produce the equivalent of the `oracle.json` file bundled in the `config/dydx` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
+   This command (with default `http://localhost:1317`) should produce the equivalent of the `oracle.json` file bundled in the `config/dydx` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
+
+   > Please note, the `--node-http-url` flag (which will update the `.providers[dydx_api].api.url` field) always expects URI scheme to be specified in the URL, i.e make sure to include the `http<s>://` prefix in the `url` field of the `dydx_api` provider's config
 
    Please note that you'll need to also enable Solana nodes. The command above will scaffold the config with a Raydium provider config, and you will need to fill in the
    authentication details (as shown below in step 4).
 
    ```bash
-   slinky -oracle-config-path ./oracle.json
+   slinky --oracle-config-path ./oracle.json
    ```
 
    The above command will start your Slinky sidecar with no markets and use the chain to bootstrap and figure out which prices it needs to fetch.
