@@ -199,7 +199,6 @@ func getAuctionParams() (*auctiontypes.Params, error) {
 
 | Chain Name  | Chain-ID        | Block-SDK Version |
 | ----------- | --------------- | ----------------- |
-| Initia      | `NA`            | `v2.1.2`          |
 | Osmosis     | `osmosis-1`     | `v1.4.2`          |
 | Neutron     | `neutron-1`     | `v1.4.0`          |
 | Juno        | `juno-1`        | `v1.0.4`          |
@@ -208,6 +207,7 @@ func getAuctionParams() (*auctiontypes.Params, error) {
 
 #### Testnets
 
-| Chain Name | Chain-ID | Block-SDK Version |
-| ---------- | -------- | ----------------- |
-| Juno       | `uni-6`  | `v1.0.4`          |
+| Chain Name | Chain-ID       | Block-SDK Version |
+| ---------- | -------------- | ----------------- |
+| Initia     | `initiation-1` | `v2.1.2`          |
+| Juno       | `uni-6`        | `v1.0.4`          |
