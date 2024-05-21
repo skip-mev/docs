@@ -16,7 +16,7 @@ sidebar_position: 1
 
    https://github.com/skip-mev/slinky/releases
 
-   The initial version required for Neutron is `v0.4.2+`
+   The initial version required for Neutron is `v0.4.5+`
 
    https://github.com/skip-mev/slinky/releases/
 
@@ -72,7 +72,7 @@ sidebar_position: 1
    }
    ```
 
-   This `oracle.json` file may also contain other overrides, for example, the below config changes the port over which the oracle is serving prices (by default the oracle serves over `8080`) + changes the port over which metrics are served (by default metrics are served over `8003`).
+   This `oracle.json` file may also contain other overrides, for example, the below config changes the port over which the oracle is serving prices (by default the oracle serves over `8080`) + changes the port over which metrics are served (by default metrics are served over `8002`).
 
    ```json
    {
@@ -96,7 +96,7 @@ sidebar_position: 1
    slinky --oracle-config <path to oracle.json file>
    ```
 
-   for more details on the names of oracle config fields, see an example config [here](https://github.com/skip-mev/slinky/blob/main/config/core/oracle.json), for docs on what the config fields mean, see [here](https://github.com/skip-mev/slinky/tree/main/oracle/config). Any fields in the `OracleConfig` data-structure that are missing (unspecified) in the `oracle.json` file will be filled with defaults defined [here](https://github.com/skip-mev/slinky/blob/eric/slinky-config-chains/cmd/slinky/config.go#L17)
+   For more details on the names of oracle config fields, see an example config [here](https://github.com/skip-mev/slinky/blob/main/config/core/oracle.json), for docs on what the config fields mean, see [here](https://github.com/skip-mev/slinky/tree/main/oracle/config). Any fields in the `OracleConfig` data-structure that are missing (unspecified) in the `oracle.json` file will be filled with defaults defined [here](https://github.com/skip-mev/slinky/blob/eric/slinky-config-chains/cmd/slinky/config.go#L17)
 
    #### Overrides via environment variables
 
@@ -124,7 +124,6 @@ sidebar_position: 1
    The chain binary has been altered to accept new options which are used to configure your application. The following options in `app.toml` are relevant to Slinky operation.
 
    ```toml
-   slinky-vote-extension-oracle-enabled = "true"
    ###############################################################################
    ###                                  Oracle                                 ###
    ###############################################################################
@@ -176,10 +175,6 @@ Additionally, the logs from your chain node binary will contain the following er
 If you are running the Slinky sidecar in a container you can shut down the container, pull the updated container image and relaunch your container to update.
 
 If you are running the binary via systemd or other management tool, you will need to stop the process and re-launch using the newly released binary.
-
-:::note
-We recommend you build some automation around config management either by pulling the latest `config/neutron/oracle.json` file directly from the release (if your node is at localhost:1317) or via reconstructing the config using the `slinky-config` binary included in the release. The `oracle.json` file from previous releases will be compatible with future releases unless there is a major version bump, _however_, newly added price feeds may require updated information from your oracle config that was not present in the previous release which may cause breakage.
-:::
 
 ### **Q: Can I reuse my sidecar if other ICS chains, or the Cosmos Hub, uses Slinky?**
 
