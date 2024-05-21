@@ -26,33 +26,98 @@ sidebar_position: 1
 
 2. **Integrate the Slinky sidecar into your setup.**
 
-   The configuration of your validator setup requires a couple steps:
-
-   **_Configure the Slinky process_**
-
-   Slinky has 1 important config file:
-
-   `oracle.json` contains mostly data that is static over the operating lifetime of the sidecar. It determines polling frequency for certain endpoints to prevent rate limiting, connection buffer sizes, websocket multiplexing behavior, and other configurations which affect the success rate of price providers in the sidecar.
-
-   The default values (excluding the dynamic updating process detailed below) in the `oracle.json` included in the release have been tested by the Skip team. We recommend using these and working with us to understand and adjust individual values that might optimize your operations.
-
-   **Setup Dynamic Updating**
-
-   Because the set of prices the chain wants to fetch change frequently, you must run Slinky with dynamic config updating. Using the `slinky-config` binary you can generate an `oracle.json` file which watches the chain and updates Slinky when on-chain data is changed.
-
-   As an example, running the following would point your sidecar binary at the `neutrond` node binary running on the same host at the default port of `1317`:
+   To run the slinky sidecar with stable defaults defined by the skip team
 
    ```bash
-   slinky-config --chain neutron --node-http-url "localhost:9090"
+   slinky
    ```
 
-   This command (with default localhost:1317) should produce the equivalent of the `oracle.json` file bundled in the `config/neutron` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
+   > Notice, some default values may need to change depending on how you've setup your node + slinky-sidecar
+
+   **Important defaults to change**
+
+   > Each node's slinky sidecar will need access to that node's GRPC server. By default, slinky is configured to look at `0.0.0.0:9090` for this server. If you'd like slinky to look elsewhere, you'll need to update the `marketmap_api` provider's configuration, **see below for directions**.
+
+   There are three ways of updating slinky's config:
+
+   1. Specifying the expected node grpc-server address in the entrypoint
+
+   2. Specifying the values to override in environment variables
+
+   3. Specifying the values to override in the `oracle.json`
+
+   #### Specifying the expected node grpc-server address in the entrypoint
+
+   > Notice, this method only allows operators to override the grpc-server address, other config overrides must follow approaches 2/3
 
    ```bash
-   slinky -oracle-config-path ./oracle.json
+   slinky --market-map-endpoint <node-ip>:<grpc-server-port>
    ```
 
-   The above command will start your Slinky sidecar with no markets and use the chain to bootstrap and figure out which prices it needs to fetch.
+   **It's important to note that slinky currently only supports dialing the server over HTTP, and that the http:// prefix must be removed from the URL**
+
+   #### Overrides via `oracle.json`
+
+   To override the `marketmap_api` provider's node server address, create a file `oracle.json` (the oracle's configuration file) with the following
+
+   ```json
+   {
+     "providers": {
+       "marketmap_api": {
+         "api": {
+           "url": "<node-server-ip>:<node-server-port>"
+         }
+       }
+     }
+   }
+   ```
+
+   This `oracle.json` file may also contain other overrides, for example, the below config changes the port over which the oracle is serving prices (by default the oracle serves over `8080`) + changes the port over which metrics are served (by default metrics are served over `8003`).
+
+   ```json
+   {
+     "port": 8081,
+     "metrics": {
+       "prometheusServerAddress": "0.0.0.0:8003"
+     },
+     "providers": {
+       "marketmap_api": {
+         "api": {
+           "url": "<node-server-ip>:<node-server-port>"
+         }
+       }
+     }
+   }
+   ```
+
+   To run `slinky` with this config
+
+   ```bash
+   slinky --oracle-config <path to oracle.json file>
+   ```
+
+   for more details on the names of oracle config fields, see an example config [here](https://github.com/skip-mev/slinky/blob/main/config/core/oracle.json), for docs on what the config fields mean, see [here](https://github.com/skip-mev/slinky/tree/main/oracle/config). Any fields in the `OracleConfig` data-structure that are missing (unspecified) in the `oracle.json` file will be filled with defaults defined [here](https://github.com/skip-mev/slinky/blob/eric/slinky-config-chains/cmd/slinky/config.go#L17)
+
+   #### Overrides via environment variables
+
+   You may override slinky defaults via environment variables as well. Slinky looks for environment variables prefixed with `SLINKY_CONFIG`, to specify an override for a specific field append the index (in json-query notation) into the `oracle.json` object to the `SLINKY_CONFIG` prefix, see below for examples
+
+   ```bash
+   SLINKY_CONFIG_PROVIDERS_MARKETMAP_API_API_URL=<node-server-ip>:<node-server-port>
+   ```
+
+   The above environment variable would override the `marketmap_api` provider's node-server location. The environment variables below would update the port over which the oracle serves prices + metrics
+
+   ```bash
+   SLINKY_CONFIG_PORT=8081
+   SLINKY_CONFIG_METRICS_PROMETHEUSSERVERADDRESS=0.0.0.0:8003
+   ```
+
+   You may run slinky as normal with these overrides, i.e
+
+   ```bash
+   slinky
+   ```
 
 3. **Point your chain binary at the Slinky sidecar**
 
