@@ -29,7 +29,7 @@ sidebar_position: 1
    To run the slinky sidecar with stable defaults defined by the skip team
 
    ```bash
-   slinky
+   slinky --default-config
    ```
 
    > Notice, some default values may need to change depending on how you've setup your node + slinky-sidecar
@@ -51,7 +51,7 @@ sidebar_position: 1
    > Notice, this method only allows operators to override the grpc-server address, other config overrides must follow approaches 2/3
 
    ```bash
-   slinky --market-map-endpoint <node-ip>:<grpc-server-port>
+   slinky --default-config --market-map-endpoint <node-ip>:<grpc-server-port>
    ```
 
    **It's important to note that slinky currently only supports dialing the server over HTTP, and that the http:// prefix must be removed from the URL**
@@ -93,7 +93,7 @@ sidebar_position: 1
    To run `slinky` with this config
 
    ```bash
-   slinky --oracle-config <path to oracle.json file>
+   slinky --default-config --oracle-config <path to oracle.json file>
    ```
 
    For more details on the names of oracle config fields, see an example config [here](https://github.com/skip-mev/slinky/blob/main/config/core/oracle.json), for docs on what the config fields mean, see [here](https://github.com/skip-mev/slinky/tree/main/oracle/config). Any fields in the `OracleConfig` data-structure that are missing (unspecified) in the `oracle.json` file will be filled with defaults defined [here](https://github.com/skip-mev/slinky/blob/eric/slinky-config-chains/cmd/slinky/config.go#L17)
@@ -116,7 +116,7 @@ sidebar_position: 1
    You may run slinky as normal with these overrides, i.e
 
    ```bash
-   slinky
+   slinky --default-config
    ```
 
 3. **Point your chain binary at the Slinky sidecar**
