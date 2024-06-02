@@ -118,7 +118,7 @@ const config = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
       // add additional languages for syntax highlighting here
-      additionalLanguages: ['toml']
+      additionalLanguages: ['toml', 'rust']
     },
   }),
   themes: [
