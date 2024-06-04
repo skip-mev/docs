@@ -44,7 +44,7 @@ For support, [**join our discord**](https://skip.money/discord)!
 
 ## ⚡️ On-chain aggregation
 
-Slinky uses <b>[ABCI++](https://docs.cometbft.com/v0.37/spec/abci/)</b> to separate Oracle aggregation and into secure and efficient steps.
+Slinky uses <b>[ABCI++](https://docs.cometbft.com/v0.37/spec/abci/)</b> to separate Oracle aggregation into secure and efficient steps.
 
 ![Slinky Architecture](/img/slinky-arch.png)
 
