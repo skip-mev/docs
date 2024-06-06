@@ -13,15 +13,14 @@ sidebar_position: 1
 1. **Download the Slinky Sidecar binary.**
 
    The best way to get the Slinky Sidecar binary is in the GitHub releases page for Slinky.
-   <!-- TODO(nikhil): change release links to v1.x.x when ready -->
 
-   https://github.com/skip-mev/slinky/releases/tag/v0.4.6
+   https://github.com/skip-mev/slinky/releases/tag/v1.0.0
 
    The initial version required for Neutron is `v1.0.0+`
 
-   https://github.com/skip-mev/slinky/releases/tag/v0.4.6
+   https://github.com/skip-mev/slinky/releases/tag/v1.0.0
 
-   We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](https://github.com/skip-mev/slinky/pkgs/container/slinky-sidecar/219721936?tag=v0.4.6)
+   We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](https://github.com/skip-mev/slinky/pkgs/container/slinky-sidecar/226136960?tag=v1)
 
    This will include the Slinky binary, `slinky`
 
