@@ -1,6 +1,6 @@
 ---
 description: Overviewing the flags available in Slinky
-title: 🚀 Flags Guide
+title: 🏁 Flags Guide
 sidebar_position: 5
 ---
 
