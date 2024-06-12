@@ -14,6 +14,31 @@ For example, if you wanted to add a new RPC with the URL `skiprpc.com` with the 
 
 ```json
 {
+  "providers": {
+    "raydium_api": {
+      "api": {
+        "endpoints": [
+          {
+            "url": "https://api.devnet.solana.com"
+          },
+          {
+            "url": "skiprpc.com",
+            "authentication": {
+              "apiKeyHeader": "x-api-key",
+              "apiKey": "skip123"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+Note: For v 0.4.X and earlier the following config is required.
+
+```json
+{
   "providers": [
     {
       "name": "raydium_api",
@@ -51,3 +76,4 @@ The supported decentralized providers for which this is applicable are:
 
 - `raydium_api`
 - `uniswapv3_api-ethereum`
+- `uniswapv3_api-base`

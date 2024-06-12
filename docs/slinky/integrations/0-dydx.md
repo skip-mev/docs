@@ -10,156 +10,156 @@ sidebar_position: 0
 
 **A:** Here is a quick (5-10 minutes) step-by-step breakdown. Please reach out to us at [skip.money/discord](http://skip.money/discord) if you have questions!
 
-1. **Download the Slinky binary.**
+#### **Download the Slinky binary.**
 
-   The best way to get the Slinky binary is in the GitHub releases page for Slinky.
+The best way to get the Slinky binary is in the GitHub releases page for Slinky.
 
-   https://github.com/skip-mev/slinky/releases
+https://github.com/skip-mev/slinky/releases
 
-   The initial version required for dYdX is `v0.4.X`
+The initial version required for dYdX is `v0.4.X`
 
-   https://github.com/skip-mev/slinky/releases/
+https://github.com/skip-mev/slinky/releases/
 
-   We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](http://ghcr.io/skip-mev/slinky-sidecar)
+We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](http://ghcr.io/skip-mev/slinky-sidecar)
 
-   This will include the Slinky binary, `slinky` , and a utility binary `slinky-config` as well as some pre-generated configuration files.
+This will include the Slinky binary, `slinky` , and a utility binary `slinky-config` as well as some pre-generated configuration files.
 
-2. **Integrate the Slinky sidecar into your setup.**
+#### **Integrate the Slinky sidecar into your setup.**
 
-   The configuration of your validator setup requires you to tackle a few problems which we’ll mention here.
+The configuration of your validator setup requires you to tackle a few problems which we’ll mention here.
 
-   **_Configure the Slinky process_**
+**_Configure the Slinky process_**
 
-   Slinky has 1 important config file for running with dYdX:
+Slinky has 1 important config file for running with dYdX:
 
-   `oracle.json` contains mostly data that is static over the operating lifetime of the sidecar. It determines polling frequency for certain endpoints to prevent rate limiting, connection buffer sizes, websocket multiplexing behavior, and other configurations which affect the success rate of price providers in the sidecar.
+`oracle.json` contains mostly data that is static over the operating lifetime of the sidecar. It determines polling frequency for certain endpoints to prevent rate limiting, connection buffer sizes, websocket multiplexing behavior, and other configurations which affect the success rate of price providers in the sidecar.
 
-   The default values (excluding the dynamic updating process detailed below) in the `oracle.json` included in the release have been tested by the Skip team. We recommend using these and working with us to understand and adjust individual values that might optimize your operations.
+The default values (excluding the dynamic updating process detailed below) in the `oracle.json` included in the release have been tested by the Skip team. We recommend using these and working with us to understand and adjust individual values that might optimize your operations.
 
-   **Setup Dynamic Updating**
+**Setup Dynamic Updating**
 
-   Because the set of prices the chain wants to fetch change frequently, you must run Slinky with dynamic config updating. Using the `slinky-config` binary you can generate an `oracle.json` file which watches the chain and updates Slinky when on-chain data is changed.
+Because the set of prices the chain wants to fetch change frequently, you must run Slinky with dynamic config updating. Using the `slinky-config` binary you can generate an `oracle.json` file which watches the chain and updates Slinky when on-chain data is changed.
 
-   As an example, running the following would point your sidecar binary at the `dydxprotocold` node binary running on the same host at the default port of `1317`:
+As an example, running the following would point your sidecar binary at the `dydxprotocold` node binary running on the same host at the default port of `1317`:
 
-   NOTE: The `url` field of your `dydx_api` provider (the same field as your `--node-http-url` below), but be prefixed with `http://`.
+NOTE: The `url` field of your `dydx_api` provider (the same field as your `--node-http-url` below), but be prefixed with `http://`.
 
-   ```bash
-   slinky-config --chain dydx --node-http-url "http://localhost:1317" --raydium-enabled --solana-node-endpoint https://solana.polkachu.com,https://slinky-solana.kingnodes.com,https://solana.lavenderfive.com,https://solana-rpc.rhino-apis.com,https://dydx.helius-rpc.com
-   ```
+```bash
+slinky-config --chain dydx --node-http-url "http://localhost:1317" --raydium-enabled --solana-node-endpoint https://solana.polkachu.com,https://slinky-solana.kingnodes.com,https://solana.lavenderfive.com,https://solana-rpc.rhino-apis.com,https://dydx.helius-rpc.com
+```
 
-   This command (with default `http://localhost:1317`) should produce the equivalent of the `oracle.json` file bundled in the `config/dydx` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
+This command (with default `http://localhost:1317`) should produce the equivalent of the `oracle.json` file bundled in the `config/dydx` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
 
-   > Please note, the `--node-http-url` flag (which will update the `.providers[dydx_api].api.url` field) always expects URI scheme to be specified in the URL, i.e make sure to include the `http<s>://` prefix in the `url` field of the `dydx_api` provider's config
+> Please note, the `--node-http-url` flag (which will update the `.providers[dydx_api].api.url` field) always expects URI scheme to be specified in the URL, i.e make sure to include the `http<s>://` prefix in the `url` field of the `dydx_api` provider's config
 
-   Please note that you'll need to also enable Solana nodes. The command above will scaffold the config with a Raydium provider config, and you will need to fill in the
-   authentication details (as shown below in step 4).
+Please note that you'll need to also enable Solana nodes. The command above will scaffold the config with a Raydium provider config, and you will need to fill in the
+authentication details (as shown below in step 4).
 
-   ```bash
-   slinky --oracle-config-path ./oracle.json
-   ```
+```bash
+slinky --oracle-config-path ./oracle.json
+```
 
-   The above command will start your Slinky sidecar with no markets and use the chain to bootstrap and figure out which prices it needs to fetch.
+The above command will start your Slinky sidecar with no markets and use the chain to bootstrap and figure out which prices it needs to fetch.
 
-3. **Point your chain binary at the Slinky sidecar**
+#### **Point your chain binary at the Slinky sidecar**
 
-   The dYdX binary has been altered to accept new options which are used to configure your application. The following options in `app.toml` are relevant to Slinky operation.
-   The top level config fields are as follows:
+The dYdX binary has been altered to accept new options which are used to configure your application. The following options in `app.toml` are relevant to Slinky operation.
+The top level config fields are as follows:
 
-   ```toml
-   # This is a top level field which controls slinky vote extension enablement.
-   # It should always be set to true.
-   slinky-vote-extension-oracle-enabled = "true"
-   ```
+```toml
+# This is a top level field which controls slinky vote extension enablement.
+# It should always be set to true.
+slinky-vote-extension-oracle-enabled = "true"
+```
 
-   The following fields are specific to the oracle config section:
+The following fields are specific to the oracle config section:
 
-   ```toml
-   ###############################################################################
-   ###                                  Oracle                                 ###
-   ###############################################################################
-   [oracle]
-   # Enabled indicates whether the oracle is enabled.
-   enabled = "true"
+```toml
+###############################################################################
+###                                  Oracle                                 ###
+###############################################################################
+[oracle]
+# Enabled indicates whether the oracle is enabled.
+enabled = "true"
 
-   # Oracle Address is the URL of the out of process oracle sidecar. This is used to
-   # connect to the oracle sidecar when the application boots up. Note that the address
-   # can be modified at any point, but will only take effect after the application is
-   # restarted. This can be the address of an oracle container running on the same
-   # machine or a remote machine.
-   oracle_address = "localhost:8080"
+# Oracle Address is the URL of the out of process oracle sidecar. This is used to
+# connect to the oracle sidecar when the application boots up. Note that the address
+# can be modified at any point, but will only take effect after the application is
+# restarted. This can be the address of an oracle container running on the same
+# machine or a remote machine.
+oracle_address = "localhost:8080"
 
-   # Client Timeout is the time that the client is willing to wait for responses from
-   # the oracle before timing out.
-   client_timeout = "2s"
+# Client Timeout is the time that the client is willing to wait for responses from
+# the oracle before timing out.
+client_timeout = "2s"
 
-   # MetricsEnabled determines whether oracle metrics are enabled. Specifically
-   # this enables intsrumentation of the oracle client and the interaction between
-   # the oracle and the app.
-   metrics_enabled = "true"
-   ```
+# MetricsEnabled determines whether oracle metrics are enabled. Specifically
+# this enables intsrumentation of the oracle client and the interaction between
+# the oracle and the app.
+metrics_enabled = "true"
+```
 
-4. **Get your free API Keys and configure your decentralized provider endpoints**
+#### **Get your free API Keys and configure your decentralized provider endpoints**
 
-   Slinky supports the addition of state-RPCs to gather data directly from Solana and EVM chains. The Skip and dYdX
-   team have already set up relationships and pre-paid for API endpoints you can use to get this data.
+Slinky supports the addition of state-RPCs to gather data directly from Solana and EVM chains. The Skip and dYdX
+team have already set up relationships and pre-paid for API endpoints you can use to get this data.
 
-   For each RPC URL, you will need an API key unique to your validator. To get this, go to the dYdX validator slack channel
-   (which you should already be invited to once you make it into the active set), and request API keys from Helius, Polkachu,
-   KingNodes, LavenderFive, and RhinoStake. Each of these are necessary to load into your config so your decentralized providers
-   can work properly.
+For each RPC URL, you will need an API key unique to your validator. To get this, go to the dYdX validator slack channel
+(which you should already be invited to once you make it into the active set), and request API keys from Helius, Polkachu,
+KingNodes, LavenderFive, and RhinoStake. Each of these are necessary to load into your config so your decentralized providers
+can work properly.
 
-   Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
+Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
 
-   Then you must fill in your API keys. You should use the URLs listed below, and ask on the Slack `#ext-dydx-validators-discussion` or `#v-dydx-private-testnet-discussion` channels:
-   for API keys to fill in below.
+Then you must fill in your API keys. You should use the URLs listed below, and ask on the Slack `#ext-dydx-validators-discussion` or `#v-dydx-private-testnet-discussion` channels:
+for API keys to fill in below.
 
-   ```
-   {
-      "name": "raydium_api",
-      "api": {
-         "endpoints": [
-            {
-               "url": "https://solana.polkachu.com"
-               "authentication": {
-                  "apiKeyHeader": "x-api-key",
-                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-               }
-            },
-            {
-               "url": "https://slinky-solana.kingnodes.com"
-               "authentication": {
-                  "apiKeyHeader": "x-api-key",
-                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-               }
-            },
-            {
-               "url": "https://solana.lavenderfive.com"
-               "authentication": {
-                  "apiKeyHeader": "x-api-key",
-                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-               }
-            },
-            {
-               "url": "https://solana-rpc.rhino-apis.com"
-               "authentication": {
-                  "apiKeyHeader": "x-api-key",
-                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-               }
-            },
-            {
-               "url": "https://dydx.helius-rpc.com"
-               "authentication": {
-                  "apiKeyHeader": "x-api-key",
-                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-               }
+```
+{
+   "name": "raydium_api",
+   "api": {
+      "endpoints": [
+         {
+            "url": "https://solana.polkachu.com"
+            "authentication": {
+               "apiKeyHeader": "x-api-key",
+               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
             }
-         ]
-      }
+         },
+         {
+            "url": "https://slinky-solana.kingnodes.com"
+            "authentication": {
+               "apiKeyHeader": "x-api-key",
+               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "https://solana.lavenderfive.com"
+            "authentication": {
+               "apiKeyHeader": "x-api-key",
+               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "https://solana-rpc.rhino-apis.com"
+            "authentication": {
+               "apiKeyHeader": "x-api-key",
+               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         },
+         {
+            "url": "https://dydx.helius-rpc.com"
+            "authentication": {
+               "apiKeyHeader": "x-api-key",
+               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+            }
+         }
+      ]
    }
-   ```
+}
+```
 
-   Note that there should be additional fields in your Raydium provider config which are left out in the above example for brevity.
+Note that there should be additional fields in your Raydium provider config which are left out in the above example for brevity.
 
 ### **Q: How do I know if my validator is properly fetching prices and posting them to the chain?**
 
