@@ -157,7 +157,22 @@ Currently supported websocket Providers:
 
 #### Durations
 
-Durations work as 1s, 2ms, 1m, 50000000
+A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m".
+Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+
+The default unit is ns. i.e. `250000000 = 250ms = .25s`
+
+#### Endpoints
+
+Endpoints are used in every provider as a uniform way of specifying connection data.
+The endpoints configuration for a Provider is an array of Endpoint objects with the following properties.
+
+Note that only some Providers support multiple Endpoints (such as Uniswap or Raydium).
+
+| Name   | Type   | Description                                          |
+| ------ | ------ | ---------------------------------------------------- |
+| url    | string | The URL used by the Provider.                        |
+| apiKey | string | The value specified for the `X-Api-Key` HTTP header. |
 
 ### Sample configuration:
 
