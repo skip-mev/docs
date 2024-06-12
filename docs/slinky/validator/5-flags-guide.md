@@ -23,7 +23,7 @@ This flag allows you to specify how `slinky` should be looking for the markets i
 slinky --marketmap-provider dydx_api
 ```
 
-By default this assumes that the dydx node's REST LCD is running at `http://localhost:1317`. If you need to change this, please utilize the [market-map-endpoint](/docs/slinky/validator/5-flags-guide.md#market-map-endpoint) flag.
+By default this assumes that the dydx node's REST endpoint is running at `http://localhost:1317`. If you need to change this, please utilize the [market-map-endpoint](/docs/slinky/validator/5-flags-guide.md#market-map-endpoint) flag.
 
 If you are serving prices for any other network, you should be using the `marketmap_api` (which is the default `slinky` is using).
 
@@ -36,14 +36,14 @@ By default this assumes that the node's app GRPC endpoint is running at `localho
 
 ### market-map-endpoint
 
-> The `marketmap_api` provider must always point to the app GRPC endpoint (typically port 9090), while the `dydx_api` provider must always point to the REST LCD (typically port 1317).
+> The `marketmap_api` provider must always point to the app GRPC endpoint (typically port 9090), while the `dydx_api` provider must always point to the REST endpoint (typically port 1317).
 
 This flag allows you to specify where `slinky` should be looking for the markets it will be serving prices for. By default, `slinky` assumes `localhost:9090` for the `marketmap_api` provider and `localhost:1317` for the `dydx_api` provider.
 
 To change the default behavior, you can run `slinky` with the following arguments:
 
 ```bash
-# Pointing your sidecar to a custom node's app GRPC/REST LCD endpoint
+# Pointing your sidecar to a custom node's app GRPC/REST endpoint
 slinky --market-map-endpoint <host>:<port>
 ```
 
