@@ -1,7 +1,7 @@
 ---
 description: Setting up Additional RPCs within Slinky
 title: ⛓️ Setting up Additional RPCs within Slinky
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 ### Setting up Additional RPCs within Slinky

@@ -27,3 +27,7 @@ iframe.video {
   width: 100%;
   max-width: 800px;
 }
+
+table {
+  font-size: 13px;
+}

@@ -1,7 +1,7 @@
 ---
 description: Slinky Sidecar Troubleshooting
 title: ❓ Slinky Troubleshooting
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 ## Troubleshooting FAQs
