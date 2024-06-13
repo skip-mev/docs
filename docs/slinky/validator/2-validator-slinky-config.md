@@ -83,10 +83,10 @@ The endpoint of your configured market map provider should be set to your valida
 
 Currently supported Market Map Providers:
 
-- marketmap_api
+- marketmap_api  
   This is the default Provider from which Slinky will determine which data to fetch. It uses the GRPC port of the validating node.
 
-- dydx_api
+- dydx_api  
   This is a custom-built Provider which reads from dYdX version 5 in order to determine which markets to fetch. It uses the REST port of the validating node.
 
 #### DeFi Providers
