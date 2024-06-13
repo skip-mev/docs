@@ -137,8 +137,8 @@ Note that only some Providers support multiple Endpoints (such as Uniswap or Ray
 
 | Name   | Type   | Description                                          |
 | ------ | ------ | ---------------------------------------------------- |
-| url    | string | The URL used by the Provider.                        |
-| apiKey | string | The value specified for the `X-Api-Key` HTTP header. |
+| url    | String | The URL used by the Provider.                        |
+| apiKey | String | The value specified for the `X-Api-Key` HTTP header. |
 
 ## Sample Configuration:
 
