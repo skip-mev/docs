@@ -16,13 +16,11 @@ The best way to get the Slinky binary is in the GitHub releases page for Slinky.
 
 https://github.com/skip-mev/slinky/releases
 
-The initial version required for dYdX is `v0.4.X`
+The slinky version required for dYdX is [`v1.0.1`](https://github.com/skip-mev/slinky/releases/tag/v1.0.1)
 
-https://github.com/skip-mev/slinky/releases/
+We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](https://github.com/skip-mev/slinky/pkgs/container/slinky-sidecar/230279145?tag=v1.0.1)
 
-We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](http://ghcr.io/skip-mev/slinky-sidecar)
-
-This will include the Slinky binary, `slinky` , and a utility binary `slinky-config` as well as some pre-generated configuration files.
+This will include the Slinky binary, `slinky`.
 
 #### **Integrate the Slinky sidecar into your setup.**
 
@@ -30,36 +28,15 @@ The configuration of your validator setup requires you to tackle a few problems 
 
 **_Configure the Slinky process_**
 
-Slinky has 1 important config file for running with dYdX:
-
-`oracle.json` contains mostly data that is static over the operating lifetime of the sidecar. It determines polling frequency for certain endpoints to prevent rate limiting, connection buffer sizes, websocket multiplexing behavior, and other configurations which affect the success rate of price providers in the sidecar.
-
-The default values (excluding the dynamic updating process detailed below) in the `oracle.json` included in the release have been tested by the Skip team. We recommend using these and working with us to understand and adjust individual values that might optimize your operations.
-
-**Setup Dynamic Updating**
-
-Because the set of prices the chain wants to fetch change frequently, you must run Slinky with dynamic config updating. Using the `slinky-config` binary you can generate an `oracle.json` file which watches the chain and updates Slinky when on-chain data is changed.
-
-As an example, running the following would point your sidecar binary at the `dydxprotocold` node binary running on the same host at the default port of `1317`:
-
-NOTE: The `url` field of your `dydx_api` provider (the same field as your `--node-http-url` below), but be prefixed with `http://`.
+To run the slinky sidecar with stable defaults defined by the skip team
 
 ```bash
-slinky-config --chain dydx --node-http-url "http://localhost:1317" --raydium-enabled --solana-node-endpoint https://solana.polkachu.com,https://slinky-solana.kingnodes.com,https://solana.lavenderfive.com,https://solana-rpc.rhino-apis.com,https://dydx.helius-rpc.com
+slinky --marketmap-provider dydx_api --market-map-endpoint https://<dydx-node REST API endpoint>
 ```
 
-This command (with default `http://localhost:1317`) should produce the equivalent of the `oracle.json` file bundled in the `config/dydx` directory in the release. After running this command you should have produced valid `oracle.json` file and you can start your sidecar process.
+Before you complete your sidecar setup it is important that you setup your raydium API-keys + configure your sidecar to use these, see [here](#get-your-free-api-keys-and-configure-your-decentralized-provider-endpoints) for directions.
 
-> Please note, the `--node-http-url` flag (which will update the `.providers[dydx_api].api.url` field) always expects URI scheme to be specified in the URL, i.e make sure to include the `http<s>://` prefix in the `url` field of the `dydx_api` provider's config
-
-Please note that you'll need to also enable Solana nodes. The command above will scaffold the config with a Raydium provider config, and you will need to fill in the
-authentication details (as shown below in step 4).
-
-```bash
-slinky --oracle-config-path ./oracle.json
-```
-
-The above command will start your Slinky sidecar with no markets and use the chain to bootstrap and figure out which prices it needs to fetch.
+> Notice, some default values may need to change depending on how you've setup your node + slinky-sidecar. See the **Important defaults to change** section in the [Migration Guide](../validator/5-migration-guide.md#important-defaults-to-change)
 
 #### **Point your chain binary at the Slinky sidecar**
 
@@ -109,57 +86,60 @@ For each RPC URL, you will need an API key unique to your validator. To get this
 KingNodes, LavenderFive, and RhinoStake. Each of these are necessary to load into your config so your decentralized providers
 can work properly.
 
-Once you have your 5 API keys, head to `oracle.json` and configure endpoint(s) for each provider.
-
-Then you must fill in your API keys. You should use the URLs listed below, and ask on the Slack `#ext-dydx-validators-discussion` or `#v-dydx-private-testnet-discussion` channels:
+Once you have your 5 API keys, create an `oracle.json` and populate it as follows with your API keys. You should use the URLs listed below, and ask on the Slack `#ext-dydx-validators-discussion` or `#v-dydx-private-testnet-discussion` channels:
 for API keys to fill in below.
 
 ```
 {
-   "name": "raydium_api",
-   "api": {
-      "endpoints": [
-         {
-            "url": "https://solana.polkachu.com"
-            "authentication": {
-               "apiKeyHeader": "x-api-key",
-               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+   "providers": {
+      "raydium_api": {
+         "endpoints": [
+            {
+               "url": "https://solana.polkachu.com"
+               "authentication": {
+                  "apiKeyHeader": "x-api-key",
+                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
+            },
+            {
+               "url": "https://slinky-solana.kingnodes.com"
+               "authentication": {
+                  "apiKeyHeader": "x-api-key",
+                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
+            },
+            {
+               "url": "https://solana.lavenderfive.com"
+               "authentication": {
+                  "apiKeyHeader": "x-api-key",
+                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
+            },
+            {
+               "url": "https://solana-rpc.rhino-apis.com"
+               "authentication": {
+                  "apiKeyHeader": "x-api-key",
+                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
+            },
+            {
+               "url": "https://dydx.helius-rpc.com"
+               "authentication": {
+                  "apiKeyHeader": "x-api-key",
+                  "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
+               }
             }
-         },
-         {
-            "url": "https://slinky-solana.kingnodes.com"
-            "authentication": {
-               "apiKeyHeader": "x-api-key",
-               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-            }
-         },
-         {
-            "url": "https://solana.lavenderfive.com"
-            "authentication": {
-               "apiKeyHeader": "x-api-key",
-               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-            }
-         },
-         {
-            "url": "https://solana-rpc.rhino-apis.com"
-            "authentication": {
-               "apiKeyHeader": "x-api-key",
-               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-            }
-         },
-         {
-            "url": "https://dydx.helius-rpc.com"
-            "authentication": {
-               "apiKeyHeader": "x-api-key",
-               "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
-            }
-         }
-      ]
+         ]
+      }
    }
 }
 ```
 
-Note that there should be additional fields in your Raydium provider config which are left out in the above example for brevity.
+Once you've created this file, you may run your sidecar as follows:
+
+```
+slinky --marketmap-provider dydx_api --market-map-endpoint https://<dydx-node REST API> --oracle-config <path to oracle.json>
+```
 
 ### **Q: How do I know if my validator is properly fetching prices and posting them to the chain?**
 
@@ -184,10 +164,6 @@ If you are having issues, please read over the live support section below.
 If you are running the Slinky sidecar in a container you can shut down the container, pull the updated container image and relaunch your container to update.
 
 If you are running the binary via systemd or other management tool, you will need to stop the process and re-launch using the newly released binary.
-
-:::note
-We recommend you build some automation around config management either by pulling the latest `config/dydx/oracle.json` file directly from the release (if your dydx node is at localhost:1317) or via reconstructing the config using the `slinky-config` binary included in the release. The `oracle.json` file from previous releases will be compatible with future releases unless there is a major version bump, _however_, newly added price feeds may require updated information from your oracle config that was not present in the previous release which may cause breakage.
-:::
 
 The dydx node will still be able to participate in consensus without the sidecar, and will begin attaching prices to blocks once Slinky is available. In the worst case, an upgrade in any of these manners will cause you to miss including vote extensions for a single block which should have no negative effects on you or the network.
 
