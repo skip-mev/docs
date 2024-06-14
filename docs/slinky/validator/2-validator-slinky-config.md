@@ -25,14 +25,12 @@ overriding each option.
 
 ### Base Options
 
-| Name           | Type                                     | Default      | Environment Variable         | Description                                                                                                                   |
-| -------------- | ---------------------------------------- | ------------ | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| updateInterval | [Duration](#durations)                   | 250000000    | SLINKY_CONFIG_UPDATEINTERVAL | The frequency at which Slinky calculates aggregate prices from the data retrieved by its Providers.                           |
-| maxPriceAge    | [Duration](#durations)                   | 120000000000 | SLINKY_CONFIG_MAXPRICEAGE    | The maximum age which Slinky considers a valid price update. The prices API will not return price data older than this value. |
-| providers      | {"ProviderName": [Provider](#providers)} |              |                              | The configuration values for each of the configured providers running in Slinky.                                              |
-| metrics        | [Metrics](#metrics)                      |              |                              | The configuration values for prometheus metrics setup in Slinky.                                                              |
-| host           | String                                   | "0.0.0.0"    | SLINKY_CONFIG_HOST           | The host address which the Slinky API server will listen on.                                                                  |
-| port           | String                                   | "8080"       | SLINKY_CONFIG_PORT           | The port which the Slinky API server will listen on.                                                                          |
+| Name      | Type                                     | Default   | Environment Variable | Description                                                                      |
+| --------- | ---------------------------------------- | --------- | -------------------- | -------------------------------------------------------------------------------- |
+| providers | {"ProviderName": [Provider](#providers)} |           |                      | The configuration values for each of the configured providers running in Slinky. |
+| metrics   | [Metrics](#metrics)                      |           |                      | The configuration values for prometheus metrics setup in Slinky.                 |
+| host      | String                                   | "0.0.0.0" | SLINKY_CONFIG_HOST   | The host address which the Slinky API server will listen on.                     |
+| port      | String                                   | "8080"    | SLINKY_CONFIG_PORT   | The port which the Slinky API server will listen on.                             |
 
 ### Providers
 
