@@ -80,7 +80,6 @@ func createBidTx(
     bid sdk.Coin,
     bundle [][]byte,
     height uint64,
-    sequenceOffset uint64,
 ) (sdk.Tx, error) {
     // bid transaction can only include a single MsgAuctionBid
     msgs := []sdk.Msg{
@@ -110,14 +109,13 @@ func createBidTx(
     // ******************************************************
     txBuilder.SetTimeoutHeight(height)
 
-    // Sign the auction transaction with nonce n + 1
-    // where n is the number of transactions in the bundle
-    // that are signed by the searcher
-    offsetNonce := sequenceNum + sequenceOffset
+    // Sign the auction transaction using nonce n + 1,
+    // and ensure that all subsequent transactions by
+    // the searcher are signed with incrementing values of auction transaction.
     signerData := auth.SignerData{
         ChainID:       CHAIN_ID,
         AccountNumber: accountNumber,
-        Sequence:      offsetNonce,
+        Sequence:      sequenceNum,
     }
 
     sigV2, err = clientTx.SignWithPrivKey(
@@ -126,7 +124,7 @@ func createBidTx(
         txBuilder,
         privateKey,
         txConfig,
-        offsetNonce,
+        sequenceNum,
     )
     if err != nil {
         return nil, err
