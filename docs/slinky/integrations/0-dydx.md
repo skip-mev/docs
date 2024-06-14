@@ -16,7 +16,7 @@ The best way to get the Slinky binary is in the GitHub releases page for Slinky.
 
 https://github.com/skip-mev/slinky/releases
 
-The slinky version required for dYdX is [`v1.0.1`](https://github.com/skip-mev/slinky/releases/tag/v1.0.1)
+The **minimum** slinky version required for dYdX is [`v1.0.1`](https://github.com/skip-mev/slinky/releases/tag/v1.0.1)
 
 We also provide a container image at [ghcr.io/skip-mev/slinky-sidecar](https://github.com/skip-mev/slinky/pkgs/container/slinky-sidecar/230279145?tag=v1.0.1)
 
