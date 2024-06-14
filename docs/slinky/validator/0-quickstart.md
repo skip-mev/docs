@@ -107,4 +107,4 @@ testappd start
 
 ## Troubleshooting
 
-If you are having issues running the oracle sidecar, please see the [Troubleshooting section](/docs/slinky/validator/2-troubleshooting.md) for more information.
+If you are having issues running the oracle sidecar, please see the [Troubleshooting section](/docs/slinky/validator/3-troubleshooting.md) for more information.

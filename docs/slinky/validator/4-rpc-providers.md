@@ -1,7 +1,7 @@
 ---
 description: Setting up Additional RPCs within Slinky
 title: ⛓️ Setting up Additional RPCs within Slinky
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 ### Setting up Additional RPCs within Slinky
@@ -11,6 +11,31 @@ Within Slinky, validators can add more authenticated RPC endpoints to report dec
 To do this, head over to your `oracle.json` config and add or update your provider entry for `endopints`. Make sure that the RPC you are adding supports authentication via adding a `x-api-key` field within the header.
 
 For example, if you wanted to add a new RPC with the URL `skiprpc.com` with the API key `skip123` for the Raydium Solana API provider, you would end up with a config like so:
+
+```json
+{
+  "providers": {
+    "raydium_api": {
+      "api": {
+        "endpoints": [
+          {
+            "url": "https://api.devnet.solana.com"
+          },
+          {
+            "url": "skiprpc.com",
+            "authentication": {
+              "apiKeyHeader": "x-api-key",
+              "apiKey": "skip123"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+Note: For v 0.4.X and earlier the following config is required.
 
 ```json
 {
@@ -51,3 +76,4 @@ The supported decentralized providers for which this is applicable are:
 
 - `raydium_api`
 - `uniswapv3_api-ethereum`
+- `uniswapv3_api-base`

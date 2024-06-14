@@ -1,7 +1,7 @@
 ---
 description: Migration Paths between Slinky Versions
 title: 🚀 Migration Guide
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 ### v0.x.x -> v1.x.x
@@ -176,7 +176,7 @@ To run `slinky` with this config
 slinky --oracle-config <path to oracle.json file>
 ```
 
-For more details on the names of oracle config fields, see an example config [here](https://github.com/skip-mev/slinky/blob/main/config/core/oracle.json), for docs on what the config fields mean, see [here](https://github.com/skip-mev/slinky/tree/main/oracle/config). Any fields in the `OracleConfig` data-structure that are missing (unspecified) in the `oracle.json` file will be filled with defaults defined [here](https://github.com/skip-mev/slinky/blob/eric/slinky-config-chains/cmd/slinky/config.go#L17)
+For more details on the names of oracle config fields, see an example config [here](https://github.com/skip-mev/slinky/blob/main/config/core/oracle.json), for docs on what the config fields mean, see [here](https://github.com/skip-mev/slinky/tree/main/oracle/config). Any fields in the `OracleConfig` data-structure that are missing (unspecified) in the `oracle.json` file will be filled with defaults defined [here](/docs/slinky/validator/2-validator-slinky-config.md)
 
 #### Overrides via environment variables
 

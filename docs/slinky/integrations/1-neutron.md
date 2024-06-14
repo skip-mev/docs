@@ -32,7 +32,7 @@ sidebar_position: 1
    slinky
    ```
 
-   > Notice, some default values may need to change depending on how you've setup your node + slinky-sidecar. See the **Important defaults to change** section in the [Migration Guide](../validator/4-migration-guide.md#important-defaults-to-change)
+   > Notice, some default values may need to change depending on how you've setup your node + slinky-sidecar. See the **Important defaults to change** section in the [Migration Guide](../validator/5-migration-guide.md#important-defaults-to-change)
 
 3. **Point your chain binary at the Slinky sidecar**
 
