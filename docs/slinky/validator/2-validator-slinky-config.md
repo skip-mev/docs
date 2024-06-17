@@ -133,10 +133,20 @@ The endpoints configuration for a Provider is an array of Endpoint objects with 
 
 Note that only some Providers support multiple Endpoints (such as Uniswap or Raydium).
 
-| Name   | Type   | Description                                          |
-| ------ | ------ | ---------------------------------------------------- |
-| url    | String | The URL used by the Provider.                        |
-| apiKey | String | The value specified for the `X-Api-Key` HTTP header. |
+| Name           | Type                              | Description                                             |
+| -------------- | --------------------------------- | ------------------------------------------------------- |
+| url            | String                            | The URL used by the Provider.                           |
+| authentication | [Authentication](#authentication) | The Authentication object associated with the Endpoint. |
+
+### Authentication
+
+Authentication allows configuration of auth-related request details. Currently supports injecting HTTP header info for
+auth support.
+
+| Name         | Type   | Default     | Description                                                                        |
+| ------------ | ------ | ----------- | ---------------------------------------------------------------------------------- |
+| apiKey       | String | ""          | The value portion of the HTTP header for requests made to the associated provider. |
+| apiKeyHeader | String | "X-Api-Key" | The HTTP header key which will be sent with requests.                              |
 
 ## Sample Configuration:
 
@@ -170,14 +180,34 @@ Note that only some Providers support multiple Endpoints (such as Uniswap or Ray
   "providers": {
     "raydium_api": {
       "endpoints": [
-        { "url": "solana-rpc1.com", "apiKey": "abc123" },
-        { "url": "solana-rpc2.com", "apiKey": "123abc" }
+        {
+          "url": "solana-rpc1.com",
+          "authentication": {
+            "apiKey": "abc123"
+          }
+        },
+        {
+          "url": "solana-rpc2.com",
+          "authentication": {
+            "apiKey": "123abc"
+          }
+        }
       ]
     },
     "uniswapv3-base_api": {
       "endpoints": [
-        { "url": "base-rpc1.com", "apiKey": "abc123" },
-        { "url": "base-rpc2.com", "apiKey": "123abc" }
+        {
+          "url": "base-rpc1.com",
+          "authentication": {
+            "apiKey": "abc123"
+          }
+        },
+        {
+          "url": "base-rpc2.com",
+          "authentication": {
+            "apiKey": "123abc"
+          }
+        }
       ]
     }
   }
