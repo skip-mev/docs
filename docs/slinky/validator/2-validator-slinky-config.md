@@ -167,7 +167,9 @@ auth support.
 {
   "providers": {
     "marketmap_api": {
-      "endpoints": [{ "url": "localhost:99999" }]
+      "api": {
+        "endpoints": [{ "url": "localhost:99999" }]
+      }
     }
   }
 }
@@ -179,36 +181,40 @@ auth support.
 {
   "providers": {
     "raydium_api": {
-      "endpoints": [
-        {
-          "url": "solana-rpc1.com",
-          "authentication": {
-            "apiKey": "abc123"
+      "api": {
+        "endpoints": [
+          {
+            "url": "solana-rpc1.com",
+            "authentication": {
+              "apiKey": "abc123"
+            }
+          },
+          {
+            "url": "solana-rpc2.com",
+            "authentication": {
+              "apiKey": "123abc"
+            }
           }
-        },
-        {
-          "url": "solana-rpc2.com",
-          "authentication": {
-            "apiKey": "123abc"
-          }
-        }
-      ]
+        ]
+      }
     },
     "uniswapv3-base_api": {
-      "endpoints": [
-        {
-          "url": "base-rpc1.com",
-          "authentication": {
-            "apiKey": "abc123"
+      "api": {
+        "endpoints": [
+          {
+            "url": "base-rpc1.com",
+            "authentication": {
+              "apiKey": "abc123"
+            }
+          },
+          {
+            "url": "base-rpc2.com",
+            "authentication": {
+              "apiKey": "123abc"
+            }
           }
-        },
-        {
-          "url": "base-rpc2.com",
-          "authentication": {
-            "apiKey": "123abc"
-          }
-        }
-      ]
+        ]
+      }
     }
   }
 }
