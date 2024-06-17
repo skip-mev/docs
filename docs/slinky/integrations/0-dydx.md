@@ -95,35 +95,35 @@ for API keys to fill in below.
       "raydium_api": {
          "endpoints": [
             {
-               "url": "https://solana.polkachu.com"
+               "url": "https://solana.polkachu.com",
                "authentication": {
                   "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             },
             {
-               "url": "https://slinky-solana.kingnodes.com"
+               "url": "https://slinky-solana.kingnodes.com",
                "authentication": {
                   "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             },
             {
-               "url": "https://solana.lavenderfive.com"
+               "url": "https://solana.lavenderfive.com",
                "authentication": {
                   "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             },
             {
-               "url": "https://solana-rpc.rhino-apis.com"
+               "url": "https://solana-rpc.rhino-apis.com",
                "authentication": {
                   "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
                }
             },
             {
-               "url": "https://dydx.helius-rpc.com"
+               "url": "https://dydx.helius-rpc.com",
                "authentication": {
                   "apiKeyHeader": "x-api-key",
                   "apiKey": "API KEY YOU'VE RETRIEVED FROM SLACK"
