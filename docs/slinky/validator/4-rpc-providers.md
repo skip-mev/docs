@@ -24,7 +24,7 @@ For example, if you wanted to add a new RPC with the URL `skiprpc.com` with the 
           {
             "url": "skiprpc.com",
             "authentication": {
-              "apiKeyHeader": "X-Api-Key",
+              "apiKeyHeader": "x-api-key",
               "apiKey": "skip123"
             }
           }
