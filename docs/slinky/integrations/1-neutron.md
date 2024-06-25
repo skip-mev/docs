@@ -32,8 +32,6 @@ sidebar_position: 1
    slinky
    ```
 
-   > Notice, some default values may need to change depending on how you've setup your node + slinky-sidecar. See the **Important defaults to change** section in the [Migration Guide](../validator/5-migration-guide.md#important-defaults-to-change)
-
 3. **Point your chain binary at the Slinky sidecar**
 
    The chain binary has been altered to accept new options which are used to configure your application. The following options in `app.toml` are relevant to Slinky operation.

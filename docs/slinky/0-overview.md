@@ -12,7 +12,7 @@ sidebar_position: 0
 
 :::info Block SDK
 
-Slinky is **business-licensed software** under BSL. It is source viewable, but [**reach out to us**](https://skip.money/contact) to us if you are interested in integrating! We are limiting the number of chains we work with to seven in 2024. We apologize if we run out of capacity.
+Slinky is **business-licensed software** under BSL. It is source viewable, but [**reach out to us on Discord**](https://skip.money/discord) if you are interested in integrating! We are limiting the number of chains we work with to seven in 2024. We apologize if we run out of capacity.
 
 Visit the GitHub repo [here](https://github.com/skip-mev/slinky).
 
