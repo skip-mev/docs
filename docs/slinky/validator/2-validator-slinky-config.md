@@ -146,7 +146,7 @@ auth support.
 | Name         | Type   | Default     | Description                                                                        |
 | ------------ | ------ | ----------- | ---------------------------------------------------------------------------------- |
 | apiKey       | String | ""          | The value portion of the HTTP header for requests made to the associated provider. |
-| apiKeyHeader | String | "X-Api-Key" | The HTTP header key which will be sent with requests.                              |
+| apiKeyHeader | String | "x-api-key" | The HTTP header key which will be sent with requests.                              |
 
 ## Sample Configuration:
 
@@ -186,31 +186,99 @@ auth support.
           {
             "url": "solana-rpc1.com",
             "authentication": {
-              "apiKey": "abc123"
+              "apiKey": "abc123",
+              "apiKeyHeader": "x-api-key"
             }
           },
           {
             "url": "solana-rpc2.com",
             "authentication": {
-              "apiKey": "123abc"
+              "apiKey": "123abc",
+              "apiKeyHeader": "x-api-key"
             }
           }
         ]
       }
     },
-    "uniswapv3-base_api": {
+    "uniswapv3_api-base": {
       "api": {
         "endpoints": [
           {
             "url": "base-rpc1.com",
             "authentication": {
-              "apiKey": "abc123"
+              "apiKey": "abc123",
+              "apiKeyHeader": "x-api-key"
             }
           },
           {
             "url": "base-rpc2.com",
             "authentication": {
-              "apiKey": "123abc"
+              "apiKey": "123abc",
+              "apiKeyHeader": "x-api-key"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+### A Typical dYdX Slinky Config (as of dYdX protocol version 5)
+
+Note that you can also set the `dydx_api` endpoint via a flag on the Slinky binary instead of overriding it in the json config.
+
+```shell
+slinky --marketmap-provider dydx_api --market-map-endpoint "http://localhost:1317"
+```
+
+```json
+{
+  "providers": {
+    "dydx_api": {
+      "api": {
+        "endpoints": [
+          {
+            "url": "localhost:1317"
+          }
+        ]
+      }
+    },
+    "raydium_api": {
+      "api": {
+        "endpoints": [
+          {
+            "url": "solana-rpc1.com",
+            "authentication": {
+              "apiKey": "abc123",
+              "apiKeyHeader": "x-api-key"
+            }
+          },
+          {
+            "url": "solana-rpc2.com",
+            "authentication": {
+              "apiKey": "123abc",
+              "apiKeyHeader": "x-api-key"
+            }
+          }
+        ]
+      }
+    },
+    "uniswapv3_api-base": {
+      "api": {
+        "endpoints": [
+          {
+            "url": "base-rpc1.com",
+            "authentication": {
+              "apiKey": "abc123",
+              "apiKeyHeader": "x-api-key"
+            }
+          },
+          {
+            "url": "base-rpc2.com",
+            "authentication": {
+              "apiKey": "123abc",
+              "apiKeyHeader": "x-api-key"
             }
           }
         ]

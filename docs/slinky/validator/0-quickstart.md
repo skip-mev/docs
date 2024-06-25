@@ -5,7 +5,7 @@ sidebar_position: 0
 ---
 
 :::note
-**Running Slinky? First step is to join our [Discord](https://discord.gg/amAgf9Z39w)**
+**Running Slinky? First step is to join our [Discord](https://skip.money/discord)**
 :::
 
 ## Summary of Steps
@@ -47,24 +47,11 @@ which slinky
 
 ## 3. Configure your Slinky Sidecar Process ✅
 
-The Slinky releases contain an additional binary, `slinky-config` which can be used to generate the proper config files
-for a given chain. It also contains pre-generated configs which have correct defaults for a corresponding chain and Slinky version.
+The Slinky binary sets sane defaults for as many values as possible. Depending on the chain you're operating for, you may need to override some of the default
+values.
 
-- The provided releases include various preconfigured config files. Both `oracle.json`, and `market.json` files can be used for configuring your sidecar process.
-- Alternatively, the repository contains the most up-to-date version of the config file <b>[here](https://github.com/skip-mev/slinky/blob/main/config/local/oracle.json)</b>
-
-Please see our [chain config](/slinky/integrations) page for reference about a particular integration.
-
-:::warning
-<b>Make sure your config matches your version and chain!</b>
-
-The config file in the Slinky repository is regenerated every time a change is made to the sidecar.
-As such, it may contain additional config options that are not yet supported by earlier versions of the sidecar.
-Please use the config file from the release if you are unsure.
-
-Config files for the sidecar are generally chain-specific. Prefer to use the config file provided for the chain you're running.
-
-:::
+Please see our [slinky config](/slinky/validator/2-validator-slinky-config.md) page for a complete reference on configurable values.
+Additionally, our [chain config](/slinky/integrations) has references for particular integrations.
 
 ## 4. Run the Slinky Sidecar ✅
 
