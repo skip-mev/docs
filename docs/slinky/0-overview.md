@@ -10,7 +10,7 @@ sidebar_position: 0
 
 <br />
 
-:::info Block SDK
+:::info Slinky is Business-Licensed Software
 
 Slinky is **business-licensed software** under BSL. It is source viewable, but [**reach out to us on Discord**](https://skip.money/discord) if you are interested in integrating! We are limiting the number of chains we work with to seven in 2024. We apologize if we run out of capacity.
 
@@ -85,5 +85,4 @@ The end of a price's journey is in the `Preblock` step.
 
 ### Full Flow
 
-- This full set of steps repeats on every block resulting in a continuous stream of guaranteed prices. The oracle is enshrined in the application by the
-  validator set, and so is fundamentally equivalent to chain liveness (i.e. the oracle can't go down without the chain going down)
+- This full set of steps repeats on every block resulting in a continuous stream of guaranteed prices. The oracle is enshrined in the application by the validator set, and so is fundamentally equivalent to chain liveness (i.e. the oracle can't go down without the chain going down).
