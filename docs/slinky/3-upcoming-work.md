@@ -12,29 +12,21 @@ Slinky has a number of major releases already in the works. Below, we outline a 
 
 ### 🔀 New Types of Data
 
-**_Estimated: April 2024_**
-
-As a fast follow to our support for prices, Slinky will be able to provide chains with Verifiable Randomness Functions, offchain asset reserve proofs (to support RWA tokens), and light client support (to borrow security and post data to other protocols, like EigenLayer or Celestia).
+As a follow to our support for prices, Slinky will be able to provide chains with Verifiable Randomness Functions, offchain asset reserve proofs (to support RWA tokens), and light client support (to borrow security and post data to other protocols, like EigenLayer or Celestia).
 
 ### 🤝 Validator Subsetting
 
-**_Estimated: June 2024_**
-
-In it's standard implementation, all validators running Slinky are expected and accountable for posting prices for **_all_** currency pairs every block. Although Slinky is optimized to do this for over a thousand currency pairs, it can scale further if **_subsets_** of validators are selected to report specific prices.
+In its standard implementation, all validators running Slinky are expected and accountable for posting prices for **_all_** currency pairs every block. Although Slinky is optimized to do this for over a thousand currency pairs, it can scale further if **_subsets_** of validators are selected to report specific prices.
 
 Our excitement is for this feature to enable an active marketplace, with users and traders creating incentive pools for validators that support their desired currency pair, and validators opting-into additional committments to do so.
 
 ### 🌈 Rollup Support
-
-**_Estimated: August 2024_**
 
 Already, Slinky integrators are using the oracle to gossip prices to rollups that use their chain as a settlement or DA layer. We plan to expand the tooling to more easily support rollups in general, and help our integrators become hubs for fast, verifiable data provisioning across the L2 landscape.
 
 Currently, we are working with Celestia and RollKit team to build out a first version.
 
 ### 💻 Sidecar Restaking Services
-
-**_Estimated: November 2024_**
 
 Slinky is a restaked operation by design. However, the incentive and slashing mechanisms tied to the operation of the Slinky oracle can be extended to other services that validators can offer chains. For example, this would include:
 

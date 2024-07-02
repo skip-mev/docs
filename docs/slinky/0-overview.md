@@ -10,7 +10,7 @@ sidebar_position: 0
 
 <br />
 
-:::info Block SDK
+:::info Slinky License
 
 Slinky is **business-licensed software** under BSL. It is source viewable, but [**reach out to us on Discord**](https://skip.money/discord) if you are interested in integrating! We are limiting the number of chains we work with to seven in 2024. We apologize if we run out of capacity.
 
